@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          读书 -《硅谷革命：成就苹果公司的疯狂往事》 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/09/25/readNote-Apple/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://odab6qymb.bkt.clouddn.com/20170925150634850915785.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>读书 -《硅谷革命：成就苹果公司的疯狂往事》</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-09-25
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>如果提起苹果公司，很多人应该最熟悉的就是乔布斯、iPhone 手机了吧，但是如果说起苹果的历史，应该鲜有人能说出一个一二三来。</p>
+<p>周末终于把周一收到的一本书读了一下，书名就叫做《硅谷革命》，副标题是成就苹果公司的疯狂往事。本书的内容是关于苹果公司开发 Macintosh 的历史。读完此书也算是对苹果公司的尘封往事有了些许了解，在次总结一下读书心得。</p>
+<h4 id="工程师文化"><a href="#工程师文化" class="headerlink" title="# 工程师文化"></a><font color="red">#</font> 工程师文化</h4><p>虽然我不曾在崇尚工程师文化的公司待过。但我想，如果你是一个工程师，肯定会想在那样的环境下工作的。Macintosh 开发团队的工程师，每一个都可以称得上是极客，每个人都怀揣改变世界的梦想，当然这些也是环境使然，毕竟不是每个人都有机会经历像 Macintosh 这样的大变革时代的。不过，我在读此书的过程中，每当看到作者的描写当时每个人为了 Macintosh 忘我付出的时候，心中也是热血澎湃。</p>
+<p>后来团队管理出现了一些问题，当时的乔布斯也还没有被苹果”放逐”，团队管理上存在一些问题，Macintosh 电脑可以说就是经历了从开发到巅峰，再从巅峰跌入低谷的过程。但书中的很多文字依然留给我了很多可以思考的东西。</p>
+<p>比如：如何处理与团队成员之间以及和领导间的关系，因为作者的经历也可以让我从中受到启发。还有，如何面对挑战以及解决困难、如何发挥自己的创意，实现或者创造出好玩的东西等等，而这些都是作者以及团队成员的经历。</p>
+<h4 id="另一个乔布斯"><a href="#另一个乔布斯" class="headerlink" title="# 另一个乔布斯"></a><font color="red">#</font> 另一个乔布斯</h4><p>全书也有很多对乔布斯的描写，和我从《乔布斯传》《成为乔布斯》等传记中所了解的乔布斯不同的是，在开发 Macintosh 的过程中，你能通过文字感受到乔布斯那种『现实扭曲立场』的魔力。当然，乔布斯也不是神人，在当时管理团队的过程中也能感受到他的狂妄与桀骜不逊的一面。</p>
+<p>书中还有很多商业的细节，尤其是苹果和其他公司以及苹果和微软公司的合作。以及『1984』广告的拍摄，Macintosh 电脑发布迅速让 Macintosh 走向巅峰，但由于种种原因也很快跌入谷底。而此后不久，乔布斯也被自己招聘的副总裁给踢出苹果公司。</p>
+<p>当然，30多年过去了，苹果的发展很快，整个世界的发展也很快。如果除去乔布斯，除去苹果公司的部分不谈，哪怕只看 Macintosh 开发的过程依旧能够看到现在公司或者团队的影子。</p>
+<p>一个团队，人数不多，但是每个都有极客般的热情和目标，在30年后的今天，类似 Macintosh 这样的变革的产品依然被不断的发明、被创造出来。虽然当今社会创新的难度加大了，但是看到这样的极客文化、工程师文化，多多少少都能找到一些30年前的影子。</p>
+<p>下面摘录一些书中的片段，当然，读这本书会比这些精彩的多。</p>
+<h4 id="关于代码"><a href="#关于代码" class="headerlink" title="# 关于代码"></a><font color="red">#</font> 关于代码</h4><blockquote>
+<p>一些管理者试图通过代码行数来衡量工程师的工作进度和代码质量，但 Bill Atkinson 却用更少的代码和更好的性能默默地扇了他们一巴掌。</p>
+<div align="right"> ——《负 2000 行代码》</div>
+
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>一个硬件工程师去面试软件工程师职位，并声称自己写过 35 万行代码，后来才知道他居然不知道还能在代码里使用循环。</p>
+<div align="right"> ——《后来发现可以使用循环》</div>
+
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>比尔·盖茨嘲笑乔布斯不会写代码，但他自己曾经和 Neil Konzen 一起写一款非常糟糕的游戏，而且在代码注释里留下了大名，反而成为一大笑柄。   </p>
+<div align="right"> ——《驴子》</div>
+
+</blockquote>
+<h4 id="关于薪水"><a href="#关于薪水" class="headerlink" title="# 关于薪水"></a><font color="red">#</font> 关于薪水</h4><blockquote>
+<p>Andy 从 Apple II 团队转到 Mac 团队，预计薪水会从 22000 美元一年涨到 24000 美元一年。但当他向主管提出加薪时，主管说：“这看起来很合理，但是有个小问题，我的年薪也才 20000 美元而已。”</p>
+<div align="right">——《被宠坏》</div>
+
+</blockquote>
+<h4 id="关于加班"><a href="#关于加班" class="headerlink" title="# 关于加班"></a><font color="red">#</font> 关于加班</h4><blockquote>
+<p>Mac 团队大部分成员的年龄介于 20 到 30 岁之间，没什么家事牵绊，所以大家都习惯了长时间的工作。他们对项目都相当投入，愿意把生命的全部都奉献给项目。即使是三十多年后的今天，加班依然是 IT 公司的常态，但背后的推动力却不一样了。</p>
+<div align="right"> ——《乐在其中的每周 90 小时》</div>
+
+</blockquote>
+<h4 id="关于荣誉"><a href="#关于荣誉" class="headerlink" title="# 关于荣誉"></a><font color="red">#</font> 关于荣誉</h4><blockquote>
+<p>作为 Lisa 主要设计师的 Bill Atkinson 却没能与他的经理们一同参加杂志的专访，因为他的头衔只是个工程师，他的付出无法得到肯定，感觉受到了不公平待遇。</p>
+<div align="right">——《实至名归》</div>
+
+</blockquote>
+<h4 id="关于“傲气”"><a href="#关于“傲气”" class="headerlink" title="# 关于“傲气”"></a><font color="red">#</font> 关于“傲气”</h4><blockquote>
+<p>Andy 的主管决定要给 Andy 一次差评，因为他觉得 Andy“不服从管理，也不尊重职权，妨碍了团队的其他人，而且太自视甚高了”。</p>
+<div align="right"> ——《自视甚高》</div>
+
+</blockquote>
+<h4 id="关于挑战"><a href="#关于挑战" class="headerlink" title="# 关于挑战"></a><font color="red">#</font> 关于挑战</h4><blockquote>
+<p>“我开始明白为什么 Burrell 做的很多事情都能如此成功，他和其他表现优异的人一样，都很喜欢挑战，甚至自己寻求挑战或刻意自造困难，他似乎一生都在积极寻求挑战。”</p>
+<div align="right"> ——《先搞砸再收拾》</div>
+
+</blockquote>
+<h4 id="关于创意"><a href="#关于创意" class="headerlink" title="# 关于创意"></a><font color="red">#</font> 关于创意</h4><blockquote>
+<p>百分之九十的创意都是“偷”来的。微软从苹果“偷”走了系统界面，乔布斯大发雷霆，而比尔·盖茨却说：“应该说我们都有一个名叫 Xerox 的有钱邻居，我潜入他家偷电视，却发现早被你偷走了。”</p>
+<div align="right"> ——《有个富翁邻居叫 Xerox》</div>
+
+</blockquote>
+<h4 id="关于成长"><a href="#关于成长" class="headerlink" title="# 关于成长"></a><font color="red">#</font> 关于成长</h4><blockquote>
+<p>Andy 在停薪留职结束之后与乔布斯会餐，希望乔布斯能够把 Mac 团队恢复到之前的状态。但乔布斯说：“团队需要成长，你也是。我们希望你能回来，但如果你不愿意的话，那随便你，反正你也没有自己想象得那么重要。”</p>
+<div align="right"> ——《一切都再好不过了》</div>
+
+</blockquote>
+<h4 id="关于内部竞争"><a href="#关于内部竞争" class="headerlink" title="# 关于内部竞争"></a><font color="red">#</font> 关于内部竞争</h4><blockquote>
+<p>Lisa 的主要设计师 Rich Page 看着 Mac 即将挤掉 Lisa 的位置，怒气冲冲地跑进会议室大喊：“乔布斯想要毁了 Lisa，就因为我们不想让他控制 Lisa……你们回去告诉乔布斯，我认为他正在摧毁苹果！”</p>
+<div align="right"> ——《还有一件事》</div>
+
+</blockquote>
+<h4 id="关于外部竞争"><a href="#关于外部竞争" class="headerlink" title="# 关于外部竞争"></a><font color="red">#</font> 关于外部竞争</h4><blockquote>
+<p>Adam Osborne 在电脑展会上藐视 Mac，Andy 把这件事情告诉了乔布斯。于是乔布斯打电话给 Adam 的秘书：“你帮我告诉 Adam，他是个混蛋！听说他对 Mac 很好奇。你告诉他，Mac 好到会让他的公司关门大吉，而且连他自己都会给他的孩子买上好几台。”</p>
+<div align="right"> ——《给 Adam 的留言》</div>
+
+
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/10/11/installationCocoapods/" data-toggle="tooltip" data-placement="top" title="Cocoapods 安装和基本使用">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/09/21/The-iPhone-X-adaptation/" data-toggle="tooltip" data-placement="top" title="iPhone X 简单适配">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/09/25/readNote-Apple/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/09/25/readNote-Apple/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

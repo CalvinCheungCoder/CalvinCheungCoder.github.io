@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Swift Animation 内容层动画(四) - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/06/26/Swift-Animation08/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                    <h1>Swift Animation 内容层动画(四)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-26
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="CAShapeLayer-打造动态图表"><a href="#CAShapeLayer-打造动态图表" class="headerlink" title="CAShapeLayer 打造动态图表"></a>CAShapeLayer 打造动态图表</h3><h4 id="CAShapeLayer-追本溯源"><a href="#CAShapeLayer-追本溯源" class="headerlink" title="CAShapeLayer 追本溯源"></a>CAShapeLayer 追本溯源</h4><p>CAShapeLayer 是 QuartzCore 框架下非常重要的一个类，利用它可以实现各种图形的绘制类动画效果。</p>
+<p>CAShapeLayer 是 iOS 框架下的核心动画部分，Shape 为形状的意思，描述了当前动画的特点，可以实现各类形状的绘制。</p>
+<p>Layer 表明当前动画并非直接作用于 UIView 显示层上，而是作用于 Layer 内容层上。<br><a id="more"></a></p>
+<h4 id="动态折线图表"><a href="#动态折线图表" class="headerlink" title="动态折线图表"></a>动态折线图表</h4><p>创建基于 UIView 的 LineChartView.swift 类</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="type">PNGreen</span>:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">77.0</span>/<span class="number">255.0</span>, green: <span class="number">186.0</span>/<span class="number">255.0</span>, blue: <span class="number">122.0</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> chartLine:<span class="type">CAShapeLayer</span> = <span class="type">CAShapeLayer</span>()</div><div class="line"><span class="keyword">var</span> pathAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line"><span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</div><div class="line">   <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">   <span class="keyword">self</span>.backgroundColor = <span class="type">UIColor</span>.white <span class="comment">// 背景颜色为白色</span></div><div class="line">   <span class="keyword">self</span>.clipsToBounds = <span class="literal">true</span> <span class="comment">// 超出部分的裁剪属性</span></div><div class="line">   chartLine.lineCap = kCALineCapRound <span class="comment">// 连接处的线条类型</span></div><div class="line">   chartLine.lineJoin = kCALineJoinRound <span class="comment">// 拐角处的线条类型</span></div><div class="line">   chartLine.fillColor = <span class="type">UIColor</span>.white.cgColor <span class="comment">// 折线的填充颜色</span></div><div class="line">   chartLine.lineWidth = <span class="number">10.0</span> <span class="comment">// 线条宽度</span></div><div class="line">   chartLine.strokeEnd = <span class="number">0.0</span> <span class="comment">// 线条一点点进行绘制</span></div><div class="line">   <span class="keyword">self</span>.layer.addSublayer(chartLine)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">   <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">drawLineChart</span><span class="params">()</span></span>&#123;</div><div class="line">   chartLine.strokeEnd = <span class="number">1.0</span></div><div class="line">   chartLine.add(pathAnimation, forKey: <span class="literal">nil</span>)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> rect: CGRect)</span></span> &#123;</div><div class="line">   <span class="keyword">let</span> line:<span class="type">UIBezierPath</span> = <span class="type">UIBezierPath</span>()</div><div class="line">   line.lineWidth = <span class="number">10.0</span></div><div class="line">   line.lineCapStyle = <span class="type">CGLineCap</span>.round</div><div class="line">   line.lineJoinStyle = <span class="type">CGLineJoin</span>.round</div><div class="line">   line.move(to: <span class="type">CGPoint</span>(x: <span class="number">70</span>, y: <span class="number">260</span>))</div><div class="line">   line.addLine(to: <span class="type">CGPoint</span>(x: <span class="number">140</span>, y: <span class="number">100</span>))</div><div class="line">   line.addLine(to: <span class="type">CGPoint</span>(x: <span class="number">210</span>, y: <span class="number">240</span>))</div><div class="line">   line.addLine(to: <span class="type">CGPoint</span>(x: <span class="number">280</span>, y: <span class="number">170</span>))</div><div class="line">   line.addLine(to: <span class="type">CGPoint</span>(x: <span class="number">350</span>, y: <span class="number">220</span>))</div><div class="line">   chartLine.path = line.cgPath</div><div class="line">   chartLine.strokeColor = <span class="type">PNGreen</span>.cgColor</div><div class="line">   </div><div class="line">   pathAnimation.keyPath = <span class="string">"strokeEnd"</span></div><div class="line">   </div><div class="line">   pathAnimation.timingFunction = <span class="type">CAMediaTimingFunction</span>(name: kCAMediaTimingFunctionLinear)</div><div class="line">   pathAnimation.fromValue = <span class="number">0.0</span></div><div class="line">   pathAnimation.toValue = <span class="number">1.0</span></div><div class="line">   pathAnimation.autoreverses = <span class="literal">false</span></div><div class="line">   pathAnimation.duration = <span class="number">2.0</span></div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="动态柱状图动画"><a href="#动态柱状图动画" class="headerlink" title="动态柱状图动画"></a>动态柱状图动画</h4><p>创建基于 UIView 的 BarChartView 类</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> chartLine:<span class="type">CAShapeLayer</span> = <span class="type">CAShapeLayer</span>()</div><div class="line"><span class="keyword">var</span> pathAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line"><span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</div><div class="line">   <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">   <span class="keyword">self</span>.backgroundColor = <span class="type">UIColor</span>.white</div><div class="line">   <span class="keyword">self</span>.clipsToBounds = <span class="literal">true</span></div><div class="line">   chartLine.lineCap = kCALineCapSquare</div><div class="line">   chartLine.lineJoin = kCALineJoinRound</div><div class="line">   chartLine.fillColor = <span class="type">UIColor</span>.gray.cgColor</div><div class="line">   chartLine.lineWidth = <span class="number">30.0</span></div><div class="line">   chartLine.strokeEnd = <span class="number">0.0</span></div><div class="line">   <span class="keyword">self</span>.layer.addSublayer(chartLine)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">   <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">drawLineChart</span><span class="params">()</span></span>&#123;</div><div class="line">   chartLine.strokeEnd = <span class="number">1.0</span></div><div class="line">   chartLine.add(pathAnimation, forKey: <span class="literal">nil</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> rect: CGRect)</span></span> &#123;</div><div class="line">   <span class="keyword">let</span> line:<span class="type">UIBezierPath</span> = <span class="type">UIBezierPath</span>()</div><div class="line">   line.lineWidth = <span class="number">30.0</span></div><div class="line">   line.lineCapStyle = <span class="type">CGLineCap</span>.square</div><div class="line">   line.lineJoinStyle = <span class="type">CGLineJoin</span>.round</div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...<span class="number">4</span> &#123;</div><div class="line">       <span class="keyword">let</span> x:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="number">60</span>+<span class="number">70</span>*i)</div><div class="line">       <span class="keyword">let</span> y:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="number">100</span>+<span class="number">20</span>*i)</div><div class="line">       line.move(to: <span class="type">CGPoint</span>(x: x, y: <span class="number">215</span>))</div><div class="line">       line.addLine(to: <span class="type">CGPoint</span>(x: x, y: y))</div><div class="line">   &#125;</div><div class="line">   chartLine.path = line.cgPath</div><div class="line">   chartLine.strokeColor = <span class="type">PNGreen</span>.cgColor</div><div class="line">   pathAnimation.keyPath = <span class="string">"strokeEnd"</span></div><div class="line">   pathAnimation.timingFunction = <span class="type">CAMediaTimingFunction</span>(name: kCAMediaTimingFunctionLinear)</div><div class="line">   pathAnimation.fromValue = <span class="number">0.0</span></div><div class="line">   pathAnimation.toValue = <span class="number">1.0</span></div><div class="line">   pathAnimation.autoreverses = <span class="literal">false</span></div><div class="line">   pathAnimation.duration = <span class="number">2.0</span></div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> lineChartView1:<span class="type">LineChartView</span>?</div><div class="line">    <span class="keyword">var</span> barChartView1:<span class="type">BarChartView</span>?</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        lineChartView1 = <span class="type">LineChartView</span>(frame: <span class="keyword">self</span>.view.bounds)</div><div class="line">        <span class="keyword">self</span>.view.addSubview(lineChartView1!)</div><div class="line">        </div><div class="line">        barChartView1 = <span class="type">BarChartView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="keyword">self</span>.view.bounds.height/<span class="number">2.0</span>, width: <span class="keyword">self</span>.view.bounds.width, height: <span class="keyword">self</span>.view.bounds.height))</div><div class="line">        <span class="keyword">self</span>.view.addSubview(barChartView1!)</div><div class="line">        </div><div class="line">        <span class="keyword">self</span>.addDrawChartButton()</div><div class="line">        <span class="keyword">self</span>.addAxes()</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addAxes</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// LineChart</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span>&#123;</div><div class="line">            <span class="keyword">let</span> xAxesTitle:<span class="type">String</span> = <span class="string">"SEP"</span>+<span class="string">"\(i)"</span></div><div class="line">            <span class="keyword">let</span> xAxesLabel:<span class="type">UILabel</span> = <span class="type">UILabel</span>(frame: <span class="type">CGRect</span>(x: <span class="number">50</span>+(<span class="type">CGFloat</span>(i)-<span class="number">1</span>)*<span class="number">70</span>,y: <span class="number">300</span>, width: <span class="number">50</span>, height: <span class="number">20</span>))</div><div class="line">            xAxesLabel.text = xAxesTitle</div><div class="line">            <span class="keyword">self</span>.view.addSubview(xAxesLabel)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...<span class="number">5</span>&#123;</div><div class="line">            <span class="keyword">let</span> yAxesTitle:<span class="type">String</span> = <span class="string">"\(10-i*2)"</span></div><div class="line">            <span class="keyword">let</span> yAxesLabel:<span class="type">UILabel</span> = <span class="type">UILabel</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>,y: <span class="number">120</span>+(<span class="type">CGFloat</span>(i)-<span class="number">1</span>)*<span class="number">35</span>, width: <span class="number">20</span>, height: <span class="number">20</span>))</div><div class="line">            yAxesLabel.text = yAxesTitle</div><div class="line">            <span class="keyword">self</span>.view.addSubview(yAxesLabel)</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// BarChart</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span>&#123;</div><div class="line">            <span class="keyword">let</span> xAxesTitle:<span class="type">String</span> = <span class="string">"SEP"</span>+<span class="string">"\(i)"</span></div><div class="line">            <span class="keyword">let</span> xAxesLabel:<span class="type">UILabel</span> = <span class="type">UILabel</span>(frame: <span class="type">CGRect</span>(x: <span class="number">40</span>+(<span class="type">CGFloat</span>(i)-<span class="number">1</span>)*<span class="number">70</span>,y: <span class="number">600</span>, width: <span class="number">50</span>, height: <span class="number">20</span>))</div><div class="line">            xAxesLabel.text = xAxesTitle</div><div class="line">            <span class="keyword">self</span>.view.addSubview(xAxesLabel)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addDrawChartButton</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">let</span> bt_line:<span class="type">UIButton</span> = <span class="type">UIButton</span>()</div><div class="line">        bt_line.frame = <span class="type">CGRect</span>(x: (<span class="keyword">self</span>.view.frame.size.width-<span class="number">100</span>)/<span class="number">2</span>, y: <span class="number">20</span>, width: <span class="number">100</span>, height: <span class="number">50</span>)</div><div class="line">        bt_line.setTitle(<span class="string">"Line Chart"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>())</div><div class="line">        bt_line.setTitleColor(<span class="type">PNGreen</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>())</div><div class="line">        bt_line.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">ViewController</span>.drawChart), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div><div class="line">        <span class="keyword">self</span>.view.addSubview(bt_line)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drawChart</span><span class="params">()</span></span>&#123;</div><div class="line">        lineChartView1!.drawLineChart()</div><div class="line">        barChartView1!.drawLineChart()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/2017062514983966923811.gif" alt="2017062514983966923811.gif"></p>
+<p>上文代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20CAShapeLayer/%E5%8A%A8%E6%80%81%E5%9B%BE%E8%A1%A8" target="_blank" rel="external">点击查看</a></p>
+<h3 id="CAReplicatorLayer-图层复制效果"><a href="#CAReplicatorLayer-图层复制效果" class="headerlink" title="CAReplicatorLayer:图层复制效果"></a>CAReplicatorLayer:图层复制效果</h3><p>CAReplicatorLayer 主要由三个部分组成:CA、 Replicator、 Layer。CA 为 CoreAnimation 的缩写,表明我们当前的动画使用的是 iOS 框架下的核心动画框架, Replicator 表示该图层可以用于图层的快速复制。 Layer 表明当前动画并非直接作用于 UIView 显示层上,而是作用在 Layer 内容层上。</p>
+<h4 id="恒星旋转动画实现"><a href="#恒星旋转动画实现" class="headerlink" title="恒星旋转动画实现"></a>恒星旋转动画实现</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="type">UISCREEN_WIDTH</span> = <span class="type">UIScreen</span>.main.bounds.size.width</div><div class="line"><span class="keyword">let</span> <span class="type">UISCREEN_HEIGHT</span> = <span class="type">UIScreen</span>.main.bounds.size.height</div><div class="line"><span class="keyword">var</span> replicatorLayer:<span class="type">CAReplicatorLayer</span> = <span class="type">CAReplicatorLayer</span>()</div><div class="line"><span class="keyword">var</span> iv_earth:<span class="type">UIImageView</span>?</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> background:<span class="type">UIImageView</span> = <span class="type">UIImageView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="type">UISCREEN_WIDTH</span>, height: <span class="type">UISCREEN_HEIGHT</span>))</div><div class="line">   background.image = <span class="type">UIImage</span>(named: <span class="string">"background.jpg"</span>)</div><div class="line">   <span class="keyword">self</span>.view.addSubview(background)</div><div class="line">   </div><div class="line">   iv_earth = <span class="type">UIImageView</span>(frame: <span class="type">CGRect</span>(x: (<span class="type">UISCREEN_WIDTH</span>-<span class="number">50</span>)/<span class="number">2</span>+<span class="number">150</span>, y: (<span class="type">UISCREEN_HEIGHT</span>-<span class="number">50</span>)/<span class="number">2</span>, width: <span class="number">50</span>, height: <span class="number">50</span>))</div><div class="line">   iv_earth!.image = <span class="type">UIImage</span>(named: <span class="string">"earth.png"</span>)</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> iv_sun = <span class="type">UIImageView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">50</span>, height: <span class="number">50</span>))</div><div class="line">   iv_sun.center = <span class="keyword">self</span>.view.center</div><div class="line">   iv_sun.image = <span class="type">UIImage</span>(named: <span class="string">"sun.png"</span>)</div><div class="line">   </div><div class="line">   replicatorLayer.addSublayer(iv_earth!.layer)</div><div class="line">   replicatorLayer.addSublayer(iv_sun.layer)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</div><div class="line">   <span class="keyword">let</span> path:<span class="type">UIBezierPath</span> = <span class="type">UIBezierPath</span>()</div><div class="line">   path.addArc(withCenter: <span class="type">CGPoint</span>(x: <span class="keyword">self</span>.view.center.x, y: <span class="keyword">self</span>.view.center.y), radius: <span class="number">150</span>, startAngle: <span class="number">0</span>, endAngle: <span class="type">CGFloat</span>(<span class="type">M_PI</span>*<span class="number">2</span>), clockwise: <span class="literal">true</span>)</div><div class="line">   path.close()</div><div class="line">   <span class="keyword">let</span> animation:<span class="type">CAKeyframeAnimation</span> = <span class="type">CAKeyframeAnimation</span>(keyPath:<span class="string">"position"</span>)</div><div class="line">   animation.path = path.cgPath</div><div class="line">   animation.duration = <span class="number">10</span></div><div class="line">   animation.repeatCount = <span class="type">MAXFLOAT</span></div><div class="line">   </div><div class="line">   replicatorLayer.instanceCount = <span class="number">100</span></div><div class="line">   replicatorLayer.instanceDelay = <span class="number">0.2</span></div><div class="line">   <span class="keyword">self</span>.view.layer.addSublayer(replicatorLayer)</div><div class="line">   </div><div class="line">   iv_earth?.layer.add(animation, forKey: <span class="literal">nil</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/201706261498481874461.gif" alt="201706261498481874461.gif"></p>
+<h4 id="音量跳动动画"><a href="#音量跳动动画" class="headerlink" title="音量跳动动画"></a>音量跳动动画</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> replicatorLayer:<span class="type">CAReplicatorLayer</span> = <span class="type">CAReplicatorLayer</span>()</div><div class="line">replicatorLayer.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">414</span>, height: <span class="number">200</span>)</div><div class="line">replicatorLayer.instanceCount = <span class="number">20</span>;</div><div class="line">replicatorLayer.instanceTransform = <span class="type">CATransform3DMakeTranslation</span>(<span class="number">20</span>, <span class="number">0</span>, <span class="number">0</span>)</div><div class="line">replicatorLayer.instanceDelay = <span class="number">0.2</span></div><div class="line">replicatorLayer.masksToBounds = <span class="literal">true</span></div><div class="line">replicatorLayer.backgroundColor = <span class="type">UIColor</span>.black.cgColor;</div><div class="line">   </div><div class="line"><span class="keyword">let</span> layer = <span class="type">CALayer</span>()</div><div class="line">layer.frame = <span class="type">CGRect</span>(x: <span class="number">14</span>, y: <span class="number">200</span>, width: <span class="number">10</span>, height: <span class="number">100</span>)</div><div class="line">layer.backgroundColor = <span class="type">UIColor</span>.red.cgColor</div><div class="line"></div><div class="line">replicatorLayer.addSublayer(layer)</div><div class="line"><span class="keyword">self</span>.view.layer.addSublayer(replicatorLayer)</div><div class="line">   </div><div class="line"><span class="keyword">let</span> animation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">animation.keyPath = <span class="string">"position.y"</span></div><div class="line">animation.duration = <span class="number">0.5</span></div><div class="line">animation.fromValue = <span class="number">200</span></div><div class="line">animation.toValue = <span class="number">180</span></div><div class="line">animation.autoreverses = <span class="literal">true</span></div><div class="line">animation.repeatCount = <span class="type">MAXFLOAT</span></div><div class="line">layer.add(animation, forKey: <span class="literal">nil</span>)</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170626149848216448994.gif" alt="20170626149848216448994.gif"></p>
+<p>上文代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20CAReplicatorLayer" target="_blank" rel="external">点击查看</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/27/Swift-Animation09/" data-toggle="tooltip" data-placement="top" title="Swift Animation 3D动画">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/25/Swift-Animation07/" data-toggle="tooltip" data-placement="top" title="Swift Animation 内容层动画(三)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/06/26/Swift-Animation08/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/06/26/Swift-Animation08/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

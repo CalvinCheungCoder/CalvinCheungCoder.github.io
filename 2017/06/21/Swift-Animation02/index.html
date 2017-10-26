@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Swift Animation 显示层动画(二) - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/06/21/Swift-Animation02/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                    <h1>Swift Animation 显示层动画(二)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="显示层关键帧动画"><a href="#显示层关键帧动画" class="headerlink" title="显示层关键帧动画"></a>显示层关键帧动画</h3><p>实现飞机由远及近的移动，并在移动过程中使飞机逐渐变大。</p>
+<h4 id="初始化飞机和机场视图"><a href="#初始化飞机和机场视图" class="headerlink" title="初始化飞机和机场视图"></a>初始化飞机和机场视图</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">imageViewAirport = <span class="type">UIImageView</span>()</div><div class="line">imageViewAirport?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line">imageViewAirport?.image = <span class="type">UIImage</span>(named: <span class="string">"Airport.png"</span>)</div><div class="line">imageViewAirport?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(imageViewAirport!)</div><div class="line">   </div><div class="line">imageViewPlane = <span class="type">UIImageView</span>()</div><div class="line">imageViewPlane?.frame = <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</div><div class="line">imageViewPlane?.image = <span class="type">UIImage</span>(named: <span class="string">"Plane.png"</span>)</div><div class="line">imageViewPlane?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line">imageViewAirport!.addSubview(imageViewPlane!)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="飞机移动并变大"><a href="#飞机移动并变大" class="headerlink" title="飞机移动并变大"></a>飞机移动并变大</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.animateKeyframes(withDuration: <span class="number">2</span>, delay: <span class="number">0</span>, options: <span class="type">UIViewKeyframeAnimationOptions</span>.calculationModeCubic, animations: &#123;() <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.imageViewPlane?.frame = <span class="type">CGRect</span>(x: <span class="number">300</span>, y: <span class="number">300</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</div><div class="line">&#125;, completion:&#123;(finish) <span class="keyword">in</span></div><div class="line">      <span class="built_in">print</span>(<span class="string">"done"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170621149803267633364.gif" alt="20170621149803267633364.gif"></p>
+<h3 id="关键帧复杂动画"><a href="#关键帧复杂动画" class="headerlink" title="关键帧复杂动画"></a>关键帧复杂动画</h3><p>再来一组显示层关键帧复杂动画，刚才逐帧动画只是让飞机在2点之间移动，这次做一下复杂动画，使飞机先向远处飞行并变小，而后再从远处飞回，飞机变大。</p>
+<h4 id="初始化飞机和机场"><a href="#初始化飞机和机场" class="headerlink" title="初始化飞机和机场"></a>初始化飞机和机场</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">imageViewAirport = <span class="type">UIImageView</span>()</div><div class="line">imageViewAirport?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line">imageViewAirport?.image = <span class="type">UIImage</span>(named: <span class="string">"Airport.png"</span>)</div><div class="line">imageViewAirport?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(imageViewAirport!)</div><div class="line">   </div><div class="line">imageViewPlane = <span class="type">UIImageView</span>()</div><div class="line">imageViewPlane?.frame = <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</div><div class="line">imageViewPlane?.image = <span class="type">UIImage</span>(named: <span class="string">"Plane.png"</span>)</div><div class="line">imageViewPlane?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line">imageViewAirport!.addSubview(imageViewPlane!)</div></pre></td></tr></table></figure>
+<h4 id="移动飞机的位置到远处，动画结束后再移动到近处"><a href="#移动飞机的位置到远处，动画结束后再移动到近处" class="headerlink" title="移动飞机的位置到远处，动画结束后再移动到近处"></a>移动飞机的位置到远处，动画结束后再移动到近处</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.animateKeyframes(withDuration: <span class="number">2</span>, delay: <span class="number">0</span>, options: <span class="type">UIViewKeyframeAnimationOptions</span>.calculationModeCubic, animations: &#123;() <span class="keyword">in</span></div><div class="line">  </div><div class="line">  <span class="type">UIView</span>.addKeyframe(withRelativeStartTime: <span class="number">0</span>, relativeDuration: <span class="number">1</span>/<span class="number">2</span>, animations: &#123; </div><div class="line">      <span class="keyword">self</span>.imageViewPlane?.frame = <span class="type">CGRect</span>(x: <span class="number">300</span>, y: <span class="number">100</span>, width: <span class="number">30</span>, height: <span class="number">30</span>)</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line">  <span class="type">UIView</span>.addKeyframe(withRelativeStartTime: <span class="number">1</span>/<span class="number">2</span>, relativeDuration: <span class="number">1</span>/<span class="number">2</span>, animations: &#123; </div><div class="line">      <span class="keyword">self</span>.imageViewPlane?.frame = <span class="type">CGRect</span>(x: <span class="number">300</span>, y: <span class="number">300</span>, width: <span class="number">80</span>, height: <span class="number">80</span>)</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line">&#125;, completion:&#123;(finish) <span class="keyword">in</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"done"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170621149803409235836.gif" alt="20170621149803409235836.gif"></p>
+<p>上文源码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%98%BE%E7%A4%BA%E5%B1%82%E5%85%B3%E9%94%AE%E5%B8%A7%E5%8A%A8%E7%94%BB" target="_blank" rel="external">点击前往</a></p>
+<h3 id="显示层逐帧动画"><a href="#显示层逐帧动画" class="headerlink" title="显示层逐帧动画"></a>显示层逐帧动画</h3><p>逐帧动画的实现效果就是将图片一帧帧的逐帧渲染。</p>
+<h4 id="基于-NSTimer-的逐帧动画"><a href="#基于-NSTimer-的逐帧动画" class="headerlink" title="基于 NSTimer 的逐帧动画"></a>基于 NSTimer 的逐帧动画</h4><p>基于 NSTimer 的逐帧动画经常使用在动画帧率不高，且帧率之间的时间间隔并不十分严格的情况下。</p>
+<p>添加逐帧动画的素材并初始化定时器</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Img</span> = <span class="type">UIImageView</span>()</div><div class="line"><span class="type">Img</span>?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line"><span class="type">Img</span>?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="type">Img</span>!)</div><div class="line">   </div><div class="line">index = <span class="number">0</span></div><div class="line">timer = <span class="type">Timer</span>.scheduledTimer(timeInterval:<span class="number">0.1</span>,target:<span class="keyword">self</span>,selector:#selector(<span class="type">ViewController</span>.refushImage),userInfo:<span class="literal">nil</span>,repeats:<span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<p>实现定时器事件</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       timer?.invalidate()</div><div class="line">       index -= <span class="number">1</span></div><div class="line">       <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码表示逐帧展示，若希望动画能够实现循环，则在最后一帧动画时初始化第一帧</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       index == <span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170622149813708941531.gif" alt="20170622149813708941531.gif"></p>
+<h4 id="基于-CADisplayLink-的逐帧动画"><a href="#基于-CADisplayLink-的逐帧动画" class="headerlink" title="基于 CADisplayLink 的逐帧动画"></a>基于 CADisplayLink 的逐帧动画</h4><p>iOS 设备的屏幕刷新频率默认是 60Hz，而 CADisplayLink 可以保持和屏幕频率相同的频率将内容渲染到屏幕上，因此它的精度非常高。 CADisplayLink 在使用时需要注册到 runloop 中，每当刷帧频率达到的时候 runloop 就会向 CADisplayLink 指定的 target 发送一次指定的 selector 消息，相应的 selector 中的方法就会调用一次。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Img</span> = <span class="type">UIImageView</span>()</div><div class="line"><span class="type">Img</span>?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line"><span class="type">Img</span>?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="type">Img</span>!)</div><div class="line">   </div><div class="line">index = <span class="number">0</span></div><div class="line">displaylink = <span class="type">CADisplayLink</span>.<span class="keyword">init</span>(target: <span class="keyword">self</span>, selector: #selector(<span class="type">ViewController</span>.refushImage))</div><div class="line">displaylink?.preferredFramesPerSecond = <span class="number">60</span></div><div class="line">displaylink?.add(to: <span class="type">RunLoop</span>.current, forMode: <span class="type">RunLoopMode</span>.defaultRunLoopMode)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   </div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       </div><div class="line">       index = <span class="number">0</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="基于-draw-方法的逐帧动画"><a href="#基于-draw-方法的逐帧动画" class="headerlink" title="基于 draw 方法的逐帧动画"></a>基于 draw 方法的逐帧动画</h4><p>在 UiView 中还有一个非常重要的方法: draw() 方法。当创建一个新的 View 时,其自动生成了一个 draw() 方法，且此方法可以被重写，一旦 draw() 方法被调用, Cocoa 就会为我们创建一个图形上下文，在图形上下文中的所有操作最终都会反应在当前的 UiView 界面上。按照这个思路，如果定期调用 draw() 方法绘制新的内容，那么就可以实现逐帧动画的效果。</p>
+<p>总结一下 draw() 触发的机制</p>
+<p>（1）使用 addSubView 会触发 layoutSubviews。<br>（2）使用 view 的 frame 属性会触发 layoutSubviews（frame更新）。<br>（3）直接调用 setLayoutSubviews 方法会触发 layoutSubviews。</p>
+<p>现在使用 draw() 实现黑洞动画</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackHoleView</span>: <span class="title">UIView</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> blackHoleRadius:<span class="type">Float</span> = <span class="number">0</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">blackHoleIncrease</span><span class="params">(<span class="number">_</span> radius: Float)</span></span>&#123;</div><div class="line">        blackHoleRadius = radius</div><div class="line">        <span class="keyword">self</span>.setNeedsDisplay()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> rect: CGRect)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> ctx:<span class="type">CGContext</span> = <span class="type">UIGraphicsGetCurrentContext</span>()!</div><div class="line">        ctx.addArc(center: <span class="type">CGPoint</span>(x:<span class="keyword">self</span>.center.x,y:<span class="keyword">self</span>.center.y), radius: <span class="type">CGFloat</span>(blackHoleRadius), startAngle: <span class="number">0</span>, endAngle: <span class="type">CGFloat</span>(<span class="type">M_PI</span> * <span class="number">2</span>), clockwise: <span class="literal">false</span>)</div><div class="line">        ctx.fillPath()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>初始化一个黑洞半径的浮点型参数，并公开黑洞半径增加的方法。然后重写 draw()。</p>
+<p>其中 ctx.addArc 方法绘制圆形，该方法参数：</p>
+<p>center: CGPoint：表示当前绘制圆形的中心点的x,y坐标<br>radius: CGFloat：表示当前绘制的圆形半径<br>startAngle：表示当前绘制圆形的开始角度<br>endAngle：表示当前绘制圆形的开始角度，通过合理的设置，结束的角度还可以绘制扇形<br>clockwise： false 表示逆时针绘制，true 表示顺时针绘制</p>
+<p>代码最后一行开始绘制圆形。以上为 BlackHoleView 类的主要实现代码。</p>
+<p>下面是 ViewController 中的实现代码</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> blackHole:<span class="type">BlackHoleView</span>?</div><div class="line"><span class="keyword">var</span> timer:<span class="type">Timer</span>?</div><div class="line"><span class="keyword">var</span> index:<span class="type">Float</span> = <span class="number">0</span></div><div class="line">    </div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></div><div class="line">   </div><div class="line">   blackHole = <span class="type">BlackHoleView</span>()</div><div class="line">   blackHole?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line">   blackHole?.backgroundColor = <span class="type">UIColor</span>.cyan</div><div class="line">   <span class="keyword">self</span>.view.addSubview(blackHole!)</div><div class="line">   index = <span class="number">0</span></div><div class="line">   timer = <span class="type">Timer</span>.scheduledTimer(timeInterval: <span class="number">1.0</span>/<span class="number">30</span>, target: <span class="keyword">self</span>, selector: #selector(<span class="type">ViewController</span>.refushImage), userInfo:<span class="literal">nil</span>, repeats: <span class="literal">true</span>)</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span>&#123;</div><div class="line">   blackHole?.blackHoleIncrease(index)</div><div class="line">   index += <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170622149813872566728.gif" alt="20170622149813872566728.gif"></p>
+<p>小结：</p>
+<p>CADisplayLink 精度很高，可以用于实现一些频率较高、帧率要求严格的动画效果。</p>
+<p>draw() 是 UIView 中重绘的重要方法，在 draw() 方法中，对上下文的修改都直接展示在 UIView 上，因此通过定期修改 draw() 中的内容也可以实现逐帧动画的效果，而且这种动画不需要事先准备大量的素材，可用性较好。</p>
+<p>上文代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E6%98%BE%E7%A4%BA%E5%B1%82%E9%80%90%E5%B8%A7%E5%8A%A8%E7%94%BB" target="_blank" rel="external">点击查看</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/23/Swift-Animation03/" data-toggle="tooltip" data-placement="top" title="Swift Animation GIF 动画">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/19/Swift-Animation01/" data-toggle="tooltip" data-placement="top" title="Swift Animation 显示层动画(一)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/06/21/Swift-Animation02/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/06/21/Swift-Animation02/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

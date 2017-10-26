@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          iOS 3D Touch 开发(一) Quick Actions - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/04/19/iOS-3D-Touch/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                          <a class="tag" href="/tags/#3D Touch" title="3D Touch">3D Touch</a>
+                        
+                    </div>
+                    <h1>iOS 3D Touch 开发(一) Quick Actions</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-04-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p> 3D Touch的触控技术，被苹果称为新一代多点触控技术。和 15 款 MacBookPro 上采用的 Force Touch 差不多，屏幕可感应不同的感压力度触控。现在，iPhone 6s 以后的机型支持了 3D Touch 功能，拿支付宝来说，平时超时购物直接长按一下图标，点击付款，App 直接打开并跳转到付款页面，省时省事。现在就这一功能进行实现并总结。<a id="more"></a></p>
+<h3 id="3D-Touch的三大功能"><a href="#3D-Touch的三大功能" class="headerlink" title="3D Touch的三大功能"></a>3D Touch的三大功能</h3><ul>
+<li><p>Pressure Sensitivity：压力灵敏度。主要为 UITouch 类新增一些新属性，例如 estimatedProperties（当前触摸对象估计的触摸特性），updatedProperties（当前触摸对象已经更新的触摸特性）等，新增的API，主要集中在获取 X/Y 坐标时的精度部分，如 – PreciseLocationInView:（当前触摸对象的坐标），- PrecisePreviousLocationInView:（当前触摸对象的前置坐标）等，UIForceTouchCapability，功能可用性检测。</p>
+</li>
+<li><p>Peek and Pop：Peek (预览)和 Pop (详阅)为新引入的手势，主要可以让用户预览内容，甚至进行操作。分三阶段：</p>
+<p>  （1）提示用户这里有 3D Touch 的交互，会使交互控件周围模糊。<br>  （2）继续深按，会出现预览视图。<br>  （3）通过视图上的交互控件进行进一步交互。</p>
+</li>
+<li><p>Quick Actions：快捷菜单，完整名称是Home Screen Quick Actions，类似于电脑中的右键菜单，按压主屏幕的应用Icon，呼出的菜单，有静态、动态两种方式。</p>
+</li>
+</ul>
+<h3 id="Quick-Actions-快捷菜单-的创建"><a href="#Quick-Actions-快捷菜单-的创建" class="headerlink" title="Quick Actions (快捷菜单) 的创建"></a>Quick Actions (快捷菜单) 的创建</h3><ul>
+<li><p>静态方式在 info.plist 中进行配置</p>
+</li>
+<li><p>动态则通过 UIApplicationShortcutItem 等 API 进行代码动态处理</p>
+</li>
+<li><p>系统默认会优先展示静态的 Actions。若 App 安装后从未打开时，则默认只会展示静态 Actions，只有至少完整启动一次之后，动态 Actions 才会出现</p>
+</li>
+<li><p>最多可以创建四个菜单，静态 + 动态</p>
+</li>
+</ul>
+<h4 id="静态创建"><a href="#静态创建" class="headerlink" title="静态创建"></a>静态创建</h4><p>在 <code>info.plist</code> 文件中添加一个<code>UIApplicationShortcutItems</code>的数组，数组中添加的元素就是对应的静态标签</p>
+<p>必填：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItemType</span> <span class="comment">// 设置一个快捷通道类型的字符串</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemTitle</span> <span class="comment">// 设置标签的标题</span></div></pre></td></tr></table></figure>
+<p>选填：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItemSubtitle</span> <span class="comment">// 设置标签的副标题</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconType</span> <span class="comment">// 设置标签Icon类型</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconFile</span> <span class="comment">// 设置标签的Icon文件</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemUserInfo</span> <span class="comment">// 设置信息字典(用于传值)</span></div></pre></td></tr></table></figure>
+<p>如图所示，使用 info.plist 创建一个菜单，只设置了必填项：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170419149257266880875.jpg" alt="20170419149257266880875.jpg"></p>
+<h4 id="动态创建"><a href="#动态创建" class="headerlink" title="动态创建"></a>动态创建</h4><p>在 RootViewController 的 - (void)viewDidLoad 方法中添加如下代码：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItem</span> *item = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"two"</span> localizedTitle:<span class="string">@"个人中心"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeLove</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line"><span class="built_in">UIApplicationShortcutItem</span> * itemTwo = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"three"</span> localizedTitle:<span class="string">@"查看课件"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithTemplateImageName:<span class="string">@"kejian@2x.png"</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line">[<span class="built_in">UIApplication</span> sharedApplication].shortcutItems = @[item, itemTwo];</div></pre></td></tr></table></figure>
+<p>创建2个菜单，分别使用系统图标和自定义图标。加上静态创建的1个菜单，现在应该有3个菜单了，看下效果图：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170419149257307316163.jpg" alt="20170419149257307316163.jpg"></p>
+<h3 id="Quick-Actions-的回调"><a href="#Quick-Actions-的回调" class="headerlink" title="Quick Actions 的回调"></a>Quick Actions 的回调</h3><p>UIApplication 提供了一个回调方法：<br><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler NS_AVAILABLE_IOS(9_0);</code></p>
+<p>我们依据这个回调中的<code>shortcutItem</code>的<code>type</code>和<code>userinfo</code>来做出不同的事件处理，代码如下：</p>
+<p>可以根据我们设置的唯一标识或者 title 进行判断</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 根据我们设置的唯一标识判断</span></div><div class="line"><span class="keyword">if</span>([shortcutItem.type isEqualToString:<span class="string">@"one"</span>])&#123;</div><div class="line">   </div><div class="line">   MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">   tabbar.selectedIndex = <span class="number">1</span>;</div><div class="line">   <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"><span class="comment">// 根据我们设置的 title 判断</span></div><div class="line"><span class="keyword">if</span> ([shortcutItem.localizedTitle isEqual: <span class="string">@"个人中心"</span>]) &#123;</div><div class="line">   </div><div class="line">   MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">   tabbar.selectedIndex = <span class="number">2</span>;</div><div class="line">   <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里有一点需要注意：我们在app的入口函数：<br><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;</code> 也需要进行一下判断，在<code>launchOptions</code>中有<code>UIApplicationLaunchOptionsShortcutItemKey</code>这样一个键，通过它，我们可以区别是否是从标签进入的app，如果是则处理结束逻辑后，返回NO，防止处理逻辑被反复回调。 </p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (launchOptions[<span class="string">@"UIApplicationLaunchOptionsShortcutItemKey"</span>] == <span class="literal">nil</span>) &#123;</div><div class="line">  </div><div class="line">  <span class="keyword">self</span>.window.rootViewController = [MainTabBarViewController new];</div><div class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">  </div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    <span class="built_in">UIApplicationShortcutItem</span> *item = [launchOptions valueForKey:<span class="built_in">UIApplicationLaunchOptionsShortcutItemKey</span>];</div><div class="line">    </div><div class="line">    <span class="comment">// 根据我们设置的唯一标识判断</span></div><div class="line">    <span class="keyword">if</span>([item.type isEqualToString:<span class="string">@"one"</span>])&#123;</div><div class="line">       </div><div class="line">       MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">       tabbar.selectedIndex = <span class="number">3</span>;</div><div class="line">       <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在接下来的文章中做一下 Peek、Pop 的实现。</p>
+<p><a href="https://github.com/CalvinCheungCoder/3DTouchDemo" target="_blank" rel="external">『Demo 下载』</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/04/20/ios-3dtouch-peek-pop/" data-toggle="tooltip" data-placement="top" title="iOS 3D Touch 开发(二) Peek & Pop">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/04/17/webView-TypeLinkClicked/" data-toggle="tooltip" data-placement="top" title="iOS UIWebView 获取点击链接后进行再处理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                          <a class="tag" href="/tags/#3D Touch" title="3D Touch">3D Touch</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/04/19/iOS-3D-Touch/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/04/19/iOS-3D-Touch/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

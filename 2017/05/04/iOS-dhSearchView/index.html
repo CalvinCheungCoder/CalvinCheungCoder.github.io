@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          一步一步实现 iOS App 的搜索功能 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/05/04/iOS-dhSearchView/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                    <h1>一步一步实现 iOS App 的搜索功能</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-05-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>先看下 App 中实现的搜索效果图：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/2017050414938790266857.jpg" width="500" height="444" alt="效果图1"></p>
+<p>左侧为搜索初始页面，右侧为搜索的结果列表页面，现在说一下实现的思路和步骤： <a id="more"></a></p>
+<ol>
+<li>点击搜索按钮跳转到搜索页面（包含头部热门搜索视图以及搜索历史视图和清空搜索历史功能）</li>
+<li>搜索框输入内容开始搜索并展示搜索结果列表</li>
+<li>点击搜索列表的某一行跳转到下级页面，并记录搜索历史数据</li>
+<li>如果清空搜索框内的内容，再次展示搜索页面</li>
+</ol>
+<h3 id="搜索页面"><a href="#搜索页面" class="headerlink" title="搜索页面"></a>搜索页面</h3><p>创建 基于 UIViewController 的 DHSearchViewController 类为搜索页面，当点击搜索按钮时跳转到 DHSearchViewController</p>
+<p>创建 TableView 到整个视图中，其中热门搜索标签视图为整个 TableView 的 HeadView，搜索历史数据为 TableView 的表格数据，清空搜索记录按钮为 TableView 的 FootView。</p>
+<h3 id="设置搜索页面的-TableView"><a href="#设置搜索页面的-TableView" class="headerlink" title="设置搜索页面的 TableView"></a>设置搜索页面的 TableView</h3><p>设置 TableView 以及 HeadView 和 FootView</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, kScreenWidth, kScreenHeight) style:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line">    [<span class="keyword">self</span>.tableView registerClass:[<span class="built_in">UITableViewCell</span> <span class="keyword">class</span>] forCellReuseIdentifier:<span class="string">@"cell"</span>];</div><div class="line">    <span class="keyword">self</span>.tableView.delegate = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.dataSource = <span class="keyword">self</span>;</div><div class="line">    [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.tableView];</div><div class="line">    </div><div class="line">    <span class="comment">// 创建搜索框</span></div><div class="line">    <span class="built_in">UISearchBar</span> *searchBar = [[<span class="built_in">UISearchBar</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">10</span>, <span class="number">0</span>, kScreenWidth<span class="number">-20</span>, <span class="number">20</span>)];</div><div class="line">    searchBar.placeholder = <span class="string">@"搜索平台"</span>;</div><div class="line">    searchBar.delegate = <span class="keyword">self</span>;</div><div class="line">    searchBar.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">    searchBar.showsCancelButton = <span class="literal">YES</span>;</div><div class="line">    searchBar.tintColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">    <span class="keyword">self</span>.searchBar = searchBar;</div><div class="line">    <span class="keyword">self</span>.navigationItem.titleView = <span class="keyword">self</span>.searchBar;</div><div class="line">    </div><div class="line">    <span class="comment">// headView</span></div><div class="line">    <span class="keyword">self</span>.headerView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">    <span class="keyword">self</span>.headerView.sd_x = <span class="number">0</span>;</div><div class="line">    <span class="keyword">self</span>.headerView.sd_y = <span class="number">0</span>;</div><div class="line">    <span class="keyword">self</span>.headerView.sd_width = kScreenWidth;</div><div class="line">    </div><div class="line">    <span class="built_in">UILabel</span> *titleLabel = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">10</span>, <span class="number">20</span>, kScreenWidth<span class="number">-20</span>, <span class="number">30</span>)];</div><div class="line">    titleLabel.text = <span class="string">@"热门推荐"</span>;</div><div class="line">    titleLabel.font = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">13</span>];</div><div class="line">    titleLabel.textColor = [<span class="built_in">UIColor</span> grayColor];</div><div class="line">    [titleLabel sizeToFit];</div><div class="line">    [<span class="keyword">self</span>.headerView addSubview:titleLabel];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.tagsView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">    <span class="keyword">self</span>.tagsView.sd_x = <span class="number">10</span>;</div><div class="line">    <span class="keyword">self</span>.tagsView.sd_y = titleLabel.sd_y+<span class="number">30</span>;</div><div class="line">    <span class="keyword">self</span>.tagsView.sd_width = kScreenWidth<span class="number">-20</span>;</div><div class="line">    [<span class="keyword">self</span>.headerView addSubview:<span class="keyword">self</span>.tagsView];</div><div class="line">    <span class="keyword">self</span>.tableView.tableHeaderView = <span class="keyword">self</span>.headerView;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="built_in">UIView</span> *footView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, kScreenWidth, <span class="number">40</span>)];</div><div class="line">    <span class="built_in">UILabel</span> *footLabel = [[<span class="built_in">UILabel</span> alloc] initWithFrame:footView.frame];</div><div class="line">    footLabel.textColor = [<span class="built_in">UIColor</span> grayColor];</div><div class="line">    footLabel.font = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">13</span>];</div><div class="line">    footLabel.userInteractionEnabled = <span class="literal">YES</span>;</div><div class="line">    footLabel.text = <span class="string">@"清空搜索记录"</span>;</div><div class="line">    footLabel.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</div><div class="line">    [footLabel addGestureRecognizer:[[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(emptySearchHistoryDidClick)]];</div><div class="line">    [footView addSubview:footLabel];</div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView = footView;</div></pre></td></tr></table></figure>
+<h3 id="创建搜索页面的标签视图"><a href="#创建搜索页面的标签视图" class="headerlink" title="创建搜索页面的标签视图"></a>创建搜索页面的标签视图</h3><p>根据热门搜索的内容长度设置标签</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark -- 设置标签</span></div><div class="line">- (<span class="keyword">void</span>)tagsViewWithTag</div><div class="line">&#123;</div><div class="line">    <span class="built_in">CGFloat</span> allLabelWidth = <span class="number">0</span>;</div><div class="line">    <span class="built_in">CGFloat</span> allLabelHeight = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> rowHeight = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">self</span>.tagsArray.count; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (i != <span class="keyword">self</span>.tagsArray.count<span class="number">-1</span>) &#123;</div><div class="line">            </div><div class="line">            <span class="built_in">CGFloat</span> width = [<span class="keyword">self</span> getWidthWithTitle:<span class="keyword">self</span>.tagsArray[i+<span class="number">1</span>] font:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14</span>]];</div><div class="line">            <span class="keyword">if</span> (allLabelWidth + width+<span class="number">10</span> &gt; <span class="keyword">self</span>.tagsView.frame.size.width) &#123;</div><div class="line">                rowHeight++;</div><div class="line">                allLabelWidth = <span class="number">0</span>;</div><div class="line">                allLabelHeight = rowHeight*<span class="number">40</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">CGFloat</span> width = [<span class="keyword">self</span> getWidthWithTitle:<span class="keyword">self</span>.tagsArray[<span class="keyword">self</span>.tagsArray.count<span class="number">-1</span>] font:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14</span>]];</div><div class="line">            <span class="keyword">if</span> (allLabelWidth + width+<span class="number">10</span> &gt; <span class="keyword">self</span>.tagsView.frame.size.width) &#123;</div><div class="line">                rowHeight++;</div><div class="line">                allLabelWidth = <span class="number">0</span>;</div><div class="line">                allLabelHeight = rowHeight*<span class="number">40</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">UILabel</span> *rectangleTagLabel = [[<span class="built_in">UILabel</span> alloc] init];</div><div class="line">        <span class="comment">// 设置属性</span></div><div class="line">        rectangleTagLabel.userInteractionEnabled = <span class="literal">YES</span>;</div><div class="line">        rectangleTagLabel.font = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14</span>];</div><div class="line">        rectangleTagLabel.textColor = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        rectangleTagLabel.backgroundColor = RandomColor;</div><div class="line">        rectangleTagLabel.text = <span class="keyword">self</span>.tagsArray[i];</div><div class="line">        rectangleTagLabel.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</div><div class="line">        [rectangleTagLabel addGestureRecognizer:[[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tagDidCLick:)]];</div><div class="line">        <span class="built_in">CGFloat</span> labelWidth = [<span class="keyword">self</span> getWidthWithTitle:<span class="keyword">self</span>.tagsArray[i] font:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14</span>]];</div><div class="line">        rectangleTagLabel.layer.cornerRadius = <span class="number">3</span>;</div><div class="line">        [rectangleTagLabel.layer setMasksToBounds:<span class="literal">YES</span>];</div><div class="line">        <span class="keyword">if</span> (labelWidth &gt; kScreenWidth<span class="number">-20</span>) &#123;</div><div class="line">            labelWidth = kScreenWidth<span class="number">-20</span>;</div><div class="line">        &#125;</div><div class="line">        rectangleTagLabel.frame = <span class="built_in">CGRectMake</span>(allLabelWidth, allLabelHeight, labelWidth, <span class="number">25</span>);</div><div class="line">        [<span class="keyword">self</span>.tagsView addSubview:rectangleTagLabel];</div><div class="line">        allLabelWidth = allLabelWidth+<span class="number">10</span>+labelWidth;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">self</span>.tagsView.sd_height = rowHeight*<span class="number">40</span>+<span class="number">40</span>;</div><div class="line">    <span class="keyword">self</span>.headerView.sd_height = <span class="keyword">self</span>.tagsView.sd_y+<span class="keyword">self</span>.tagsView.sd_height+<span class="number">10</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>标签的彩色背景从以下色彩池中随机获取</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">NSMutableArray</span> *)colorPol</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!_colorPol) &#123;</div><div class="line">        <span class="built_in">NSArray</span> *colorStrPol = @[<span class="string">@"009999"</span>, <span class="string">@"0099cc"</span>, <span class="string">@"0099ff"</span>, <span class="string">@"00cc99"</span>, <span class="string">@"00cccc"</span>, <span class="string">@"336699"</span>, <span class="string">@"3366cc"</span>, <span class="string">@"3366ff"</span>, <span class="string">@"339966"</span>, <span class="string">@"666666"</span>, <span class="string">@"666699"</span>, <span class="string">@"6666cc"</span>, <span class="string">@"6666ff"</span>, <span class="string">@"996666"</span>, <span class="string">@"996699"</span>, <span class="string">@"999900"</span>, <span class="string">@"999933"</span>, <span class="string">@"99cc00"</span>, <span class="string">@"99cc33"</span>, <span class="string">@"660066"</span>, <span class="string">@"669933"</span>, <span class="string">@"990066"</span>, <span class="string">@"cc9900"</span>, <span class="string">@"cc6600"</span> , <span class="string">@"cc3300"</span>, <span class="string">@"cc3366"</span>, <span class="string">@"cc6666"</span>, <span class="string">@"cc6699"</span>, <span class="string">@"cc0066"</span>, <span class="string">@"cc0033"</span>, <span class="string">@"ffcc00"</span>, <span class="string">@"ffcc33"</span>, <span class="string">@"ff9900"</span>, <span class="string">@"ff9933"</span>, <span class="string">@"ff6600"</span>, <span class="string">@"ff6633"</span>, <span class="string">@"ff6666"</span>, <span class="string">@"ff6699"</span>, <span class="string">@"ff3366"</span>, <span class="string">@"ff3333"</span>];</div><div class="line">        <span class="built_in">NSMutableArray</span> *colorPolM = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSString</span> *colorStr <span class="keyword">in</span> colorStrPol) &#123;</div><div class="line">            <span class="built_in">UIColor</span> *color = [<span class="built_in">UIColor</span> dh_colorWithHexString:colorStr];</div><div class="line">            [colorPolM addObject:color];</div><div class="line">        &#125;</div><div class="line">        _colorPol = colorPolM;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _colorPol;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="读取本地保存的搜索历史数据并刷新-TableView"><a href="#读取本地保存的搜索历史数据并刷新-TableView" class="headerlink" title="读取本地保存的搜索历史数据并刷新 TableView"></a>读取本地保存的搜索历史数据并刷新 TableView</h3><p>懒加载数组并刷新视图</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">NSMutableArray</span> *)searchHistories</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (!_searchHistories) &#123;</div><div class="line">        <span class="keyword">self</span>.searchHistoriesCachePath = SEARCH_SEARCH_HISTORY_CACHE_PATH;</div><div class="line">        _searchHistories = [<span class="built_in">NSMutableArray</span> arrayWithArray:[<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithFile:<span class="keyword">self</span>.searchHistoriesCachePath]];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _searchHistories;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setSearchHistoriesCachePath:(<span class="built_in">NSString</span> *)searchHistoriesCachePath</div><div class="line">&#123;</div><div class="line">    _searchHistoriesCachePath = [searchHistoriesCachePath <span class="keyword">copy</span>];</div><div class="line">    <span class="comment">// 刷新</span></div><div class="line">    <span class="keyword">self</span>.searchHistories = <span class="literal">nil</span>;</div><div class="line">    [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>展示搜索页面完毕后现在实现搜索功能</p>
+<h3 id="添加搜索结果页面并默认隐藏"><a href="#添加搜索结果页面并默认隐藏" class="headerlink" title="添加搜索结果页面并默认隐藏"></a>添加搜索结果页面并默认隐藏</h3><p>添加搜索结果页面，当搜索框内容为空时默认隐藏搜索结果页。当搜索框内容变化时发送通知，并在搜索结果页面接收通知，添加搜索结果到视图中</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (DHSearchSuggestViewController *)searchSuggestionVC</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!_searchSuggestionVC) &#123;</div><div class="line">        DHSearchSuggestViewController *searchSuggestionVC = [[DHSearchSuggestViewController alloc] initWithStyle:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line">        __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) _weakSelf = <span class="keyword">self</span>;</div><div class="line">        searchSuggestionVC.didSelectText = ^(<span class="built_in">NSString</span> *didSelectText) &#123;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> ([didSelectText isEqualToString:<span class="string">@""</span>]) &#123;</div><div class="line">                [<span class="keyword">self</span>.searchBar resignFirstResponder];</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="comment">// 设置搜索信息</span></div><div class="line">                _weakSelf.searchBar.text = didSelectText;</div><div class="line">                <span class="comment">// 缓存数据并且刷新界面</span></div><div class="line">                [_weakSelf saveSearchCacheAndRefreshView];</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        searchSuggestionVC.view.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">64</span>, <span class="keyword">self</span>.view.frame.size.width, <span class="keyword">self</span>.view.frame.size.height<span class="number">-64</span>);</div><div class="line">        searchSuggestionVC.view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        </div><div class="line">        [<span class="keyword">self</span>.view addSubview:searchSuggestionVC.view];</div><div class="line">        [<span class="keyword">self</span> addChildViewController:searchSuggestionVC];</div><div class="line">        _searchSuggestionVC = searchSuggestionVC;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _searchSuggestionVC;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> ([searchText isEqualToString:<span class="string">@""</span>]) &#123;</div><div class="line">        <span class="keyword">self</span>.searchSuggestionVC.view.hidden = <span class="literal">YES</span>;</div><div class="line">        <span class="keyword">self</span>.tableView.hidden = <span class="literal">NO</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">self</span>.searchSuggestionVC.view.hidden = <span class="literal">NO</span>;</div><div class="line">        <span class="keyword">self</span>.tableView.hidden = <span class="literal">YES</span>;</div><div class="line">        [<span class="keyword">self</span>.view bringSubviewToFront:<span class="keyword">self</span>.searchSuggestionVC.view];</div><div class="line">        </div><div class="line">        <span class="comment">//创建一个消息对象</span></div><div class="line">        <span class="built_in">NSNotification</span> * notice = [<span class="built_in">NSNotification</span> notificationWithName:<span class="string">@"searchBarDidChange"</span> object:<span class="literal">nil</span> userInfo:@&#123;<span class="string">@"searchText"</span>:searchText&#125;];</div><div class="line">        <span class="comment">//发送消息</span></div><div class="line">        [[<span class="built_in">NSNotificationCenter</span> defaultCenter]postNotification:notice];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在搜索结果页面接收通知并开始搜索"><a href="#在搜索结果页面接收通知并开始搜索" class="headerlink" title="在搜索结果页面接收通知并开始搜索"></a>在搜索结果页面接收通知并开始搜索</h3><p>当搜索框开始搜索时，在搜索结果页面 DHSearchSuggestViewController 接收通知</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取通知中心单例对象</span></div><div class="line">    <span class="built_in">NSNotificationCenter</span> * center = [<span class="built_in">NSNotificationCenter</span> defaultCenter];</div><div class="line">    <span class="comment">// 添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知</span></div><div class="line">    [center addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleColorChange:) name:<span class="string">@"searchBarDidChange"</span> object:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<p>接收到通知后根据搜索内容查询数据并展示：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)handleColorChange:(<span class="built_in">NSNotification</span>* )sender</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSString</span> *text = sender.userInfo[<span class="string">@"searchText"</span>];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, text);</div><div class="line">    <span class="comment">// 搜索方法写在这里并刷新数据</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>搜索数据后，隐藏搜索页面的 TableView，展示搜索结果页的 searchSuggestionVC</p>
+<h3 id="在搜索结果页面处理对应交互"><a href="#在搜索结果页面处理对应交互" class="headerlink" title="在搜索结果页面处理对应交互"></a>在搜索结果页面处理对应交互</h3><p>当用户点击搜索列表的某一行时再进行其他的操作</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 取消选中</span></div><div class="line">    [tableView deselectRowAtIndexPath:indexPath animated:<span class="literal">YES</span>];</div><div class="line">    <span class="keyword">self</span>.didSelectText([tableView cellForRowAtIndexPath:indexPath].textLabel.text);</div><div class="line">    </div><div class="line">    <span class="built_in">UIViewController</span> *vc = [[<span class="built_in">UIViewController</span> alloc]init];</div><div class="line">    [<span class="keyword">self</span>.navigationController pushViewController:vc animated:<span class="literal">YES</span>];</div></pre></td></tr></table></figure>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>1、用户点击搜索按钮后，保存搜索数据到本地</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)saveSearchCacheAndRefreshView</div><div class="line">&#123;</div><div class="line">    <span class="built_in">UISearchBar</span> *searchBar = <span class="keyword">self</span>.searchBar;</div><div class="line">    <span class="comment">// 回收键盘</span></div><div class="line">    [searchBar resignFirstResponder];</div><div class="line">    <span class="comment">// 先移除再刷新</span></div><div class="line">    [<span class="keyword">self</span>.searchHistories removeObject:searchBar.text];</div><div class="line">    [<span class="keyword">self</span>.searchHistories insertObject:searchBar.text atIndex:<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="comment">// 移除多余的缓存</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.searchHistories.count &gt; <span class="keyword">self</span>.searchHistoriesCount) &#123;</div><div class="line">        <span class="comment">// 移除最后一条缓存</span></div><div class="line">        [<span class="keyword">self</span>.searchHistories removeLastObject];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 保存搜索信息</span></div><div class="line">    [<span class="built_in">NSKeyedArchiver</span> archiveRootObject:<span class="keyword">self</span>.searchHistories toFile:<span class="keyword">self</span>.searchHistoriesCachePath];</div><div class="line">    [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2、用户点击搜索框的关闭按钮时调用 UISearchBar 的代理方法，并隐藏搜索结果页面，展示搜索页面。</p>
+<p>3、点击搜索页面清空搜索历史按钮后，清空本地的搜索数据并刷新视图</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)emptySearchHistoryDidClick</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView.hidden = <span class="literal">YES</span>;</div><div class="line">    <span class="comment">// 移除所有历史搜索</span></div><div class="line">    [<span class="keyword">self</span>.searchHistories removeAllObjects];</div><div class="line">    <span class="comment">// 移除数据缓存</span></div><div class="line">    [<span class="built_in">NSKeyedArchiver</span> archiveRootObject:<span class="keyword">self</span>.searchHistories toFile:<span class="keyword">self</span>.searchHistoriesCachePath];</div><div class="line">    [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4、点击热门搜索标签后，使标签文本填充到搜索框并进行搜索。同时隐藏搜索页面，打开搜索结果页</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)tagDidCLick:(<span class="built_in">UITapGestureRecognizer</span> *)gr</div><div class="line">&#123;</div><div class="line">    <span class="built_in">UILabel</span> *label = (<span class="built_in">UILabel</span> *)gr.view;</div><div class="line">    <span class="keyword">self</span>.searchBar.text = label.text;</div><div class="line">    <span class="comment">//  缓存数据并且刷新界面</span></div><div class="line">    [<span class="keyword">self</span> saveSearchCacheAndRefreshView];</div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView.hidden = <span class="literal">NO</span>;</div><div class="line">    <span class="keyword">self</span>.searchSuggestionVC.view.hidden = <span class="literal">NO</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.hidden = <span class="literal">YES</span>;</div><div class="line">    [<span class="keyword">self</span>.view bringSubviewToFront:<span class="keyword">self</span>.searchSuggestionVC.view];</div><div class="line">    </div><div class="line">    <span class="comment">// 创建一个消息对象</span></div><div class="line">    <span class="built_in">NSNotification</span> *notice = [<span class="built_in">NSNotification</span> notificationWithName:<span class="string">@"searchBarDidChange"</span> object:<span class="literal">nil</span> userInfo:@&#123;<span class="string">@"searchText"</span>:label.text&#125;];</div><div class="line">    <span class="comment">// 发送消息</span></div><div class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter]postNotification:notice];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5、设置历史搜索页面的单条记录清除按钮，当点击按钮后清除单条数据，并刷新视图</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)closeDidClick:(<span class="built_in">UIButton</span> *)sender</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获取当前cell</span></div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = (<span class="built_in">UITableViewCell</span> *)sender.superview;</div><div class="line">    <span class="comment">// 移除搜索信息</span></div><div class="line">    [<span class="keyword">self</span>.searchHistories removeObject:cell.textLabel.text];</div><div class="line">    <span class="comment">// 保存搜索信息</span></div><div class="line">    [<span class="built_in">NSKeyedArchiver</span> archiveRootObject:<span class="keyword">self</span>.searchHistories toFile:SEARCH_SEARCH_HISTORY_CACHE_PATH];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.searchHistories.count == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.tableView.tableFooterView.hidden = <span class="literal">YES</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 刷新</span></div><div class="line">    [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/CalvinCheungCoder/DHSearchView" target="_blank" rel="external"><font-color =="" 'blue'="">附Demo下载链接</font-color></a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/05/04/Use-you-get-download-web-video/" data-toggle="tooltip" data-placement="top" title="使用 you-get 下载网页视频">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/02/iOS-UIView-tips/" data-toggle="tooltip" data-placement="top" title="UIView 的 setNeedsDisplay 和 setNeedsLayout 方法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/05/04/iOS-dhSearchView/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/05/04/iOS-dhSearchView/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

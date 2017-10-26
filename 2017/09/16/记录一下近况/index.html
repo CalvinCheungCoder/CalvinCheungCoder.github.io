@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          记录一下近况 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/09/16/记录一下近况/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://odab6qymb.bkt.clouddn.com/20170916150554187365641.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>记录一下近况</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-09-16
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>转眼已经到了9月中旬，上海的天气也渐渐有了凉意。由于最近在新公司的工作比较忙，一直在赶新的项目，也没有抽出时间写技术博客。正好赶上周末就记录下最近的情况吧。</p>
+<p>上个月中旬左右入职了这家公司，差不多也有一个月的时间了。初创公司，入职的当天就把我硬盘里事先准备好的工作软件安装到电脑开始进入工作状态了。当然这一个月也很充实，基本上没有闲过，一直在项目上，接下来就先说说最近的工作情况。</p>
+<h4 id="为什么选择了这家公司？"><a href="#为什么选择了这家公司？" class="headerlink" title="# 为什么选择了这家公司？"></a><font color="red">#</font> 为什么选择了这家公司？</h4><p>上个月在现在公司入职时手中还有另外一家公司的 offer，公司业务是做小贷公司服务的，产品一句话总结就是小贷公司的钉钉吧。当时和这家公司的项目负责人以及公司 HR 都聊了很多，他们及时的给我发放了 offer，薪资也比我目前的公司高了一些，但是最终我选择了薪资更低的现在所在的公司报到，对方 HR 还打电话来询问情况，为什么不愿意加入他们等。当时没想到对方公司还打电话来，感觉挺不好意思的，只对 HR 说自己入职了另外一家公司就匆匆挂了电话。</p>
+<p>另外，这家公司是初创公司，薪资也没有另外一家给的高，之所以选择了这家公司主要原因有2点：</p>
+<p>1、公司业务是和区块链相关的，自我感觉业务还算比较有前景。<br>2、公司办公氛围好，全员 Mac 办公，上下班不打卡，时间上自由一些。工作安排好了就去做，按时完成并对接就好。</p>
+<p>当然，虽然工作环境相对宽松，自己也是丝毫没有懈怠。入职前就先准备好工作中需要的软件包，入职当天办完手续就把软件安排好开始码代码了。</p>
+<p>公司代码管理使用 Github，直接配置好随时随地在任何地方都可以办公，提交代码了。公司产品主要是 ToC 的钱包产品，主要功能是管理用户的数字资产。第一款产品因为安卓已经完成的差不多了，所以入职就直接按照安卓的功能进行开发。</p>
+<p>因为第一款产品功能和业务逻辑相对简单一些，我在2周时间基本上就开发完毕了，时间上一点都没用耽误。第三周开始移交测试并修复 Bug。</p>
+<p>而且这次申请邓白氏编码以及开发者账号也是及其的快，在写代码的2周时间内已经申请并开通了公司的苹果开发者帐号。</p>
+<p>第三周一周的时间基本上就是测试，改 Bug 阶段，一周内修复完成并提交 AppStore。至此，公司的第一款简单产品告一段落。</p>
+<h4 id="现在做的产品"><a href="#现在做的产品" class="headerlink" title="# 现在做的产品"></a><font color="red">#</font> 现在做的产品</h4><p>现在做的产品也是目前公司主力做的一款产品，是基于 QTUM 链进行开发的一款产品。基本功能就是 QTUM 和 代币的收付款转账。</p>
+<p>基本功能的代码是基本 QTUM 官方开源的 iOS 代码进行开发的，QTUM 开发团队在白俄罗斯。当我把他们的代码 clone 下来以后就惊呆了，整个代码压缩后还有 100MB，生成软件包 50多 MB。由于开发时间比较紧，我就没有使用他们的代码，直接看他们的代码逻辑并进行抽离，从而进行功能实现。</p>
+<p>真是应了那句话：每个人看别人的代码都感觉对方写的就是一坨屎。我看到他们代码的第一感觉也是如此，一个钱包应用没有太多功能却加入了那么多东西，而且代码中每个类都在使用代理，通知也使用了不少。看了2周他们的代码我简直到疯掉了。</p>
+<p>好在代码剥离还算顺利，经过大概2周的时间已经把他们 App 的基本功能在我司的产品中进行了实现，而且目前我司的软件包才 3MB 大小。</p>
+<p>下周要开发活动相关的功能了，而且接下来还有聊天、社交、商城等功能。估计接下来的2个月时间也会排的很满。不过在工作中实现了很多有趣的功能的时候，幸福感还是很强的。</p>
+<p>虽说公司的工作环境相对宽松，不过小公司还是有很多小公司的弊端的。比如很多工作都要自己来，遇到问题需要自己去解决，尤其是在一些功能的实现以及出现问题的时候，都需要自己去摸索解决。并且钱包应用和传统的软件还有所不同，因为没有了注册登录的流程，也没有了用户的概念，这些都是很新奇需要自己很快接受并学习的东西。</p>
+<h4 id="最近的所想所得"><a href="#最近的所想所得" class="headerlink" title="# 最近的所想所得"></a><font color="red">#</font> 最近的所想所得</h4><p>由于入职了这家公司，自己也逐渐了解到了比特币、区块链、以太坊等等的名词。平时也在关注这些话题。刚入职的时候，得到王煜全老师的新专栏《全球创新260讲》里有一周的时间都提到了这些内容，当时看到后果断订阅学习。</p>
+<p>我经常在得到听音频，比如得到里的李笑来《通往财富自由之路》是得到订阅数量最多的一个专栏。在不了解比特币的信息的时候我对李笑来的了解还不多，但后来逐渐了解以后，才发现李笑来在整个”币圈”的名声可以说是一踏糊涂。</p>
+<p>人就是需要这样不断的去了解和学习不同的东西，这样才能不至于陷入思维的陷阱，才能通过自己的所学所想去客观的看待一些事情和人。如果不是去了解比特币相关的东西的话，我肯定不会想到号称”中国比特币支首富”的李笑来老师在行内人眼中那么不受待见。</p>
+<p>当然了，这些年其实经历过很多类似的事情，由于自己缺乏对一件事情的全面了解而做出一些片面的理解，有时候甚至是像个傻逼似的固执已见。所以，现在的我也在逐渐的改掉以前的一些片面思想，遇到问题在全面了解以后再做自己的判断。当然，这样的思维锻炼不是那么容易的。</p>
+<p>举个例子：我住处附近的地铁站由于只有一个出入口，所以工作日每天早晨都要限流。首先在入口有很多护栏，进入地铁站需要排队。当然这个是可以理解的，毕竟人那么多，有了护栏以后大家分成几列进入地铁站会更有秩序。但让我不理解的事情是关闭地铁站的电梯，这个电梯每天早晨都会关闭，旁边写了是由于限流原因关闭电梯。可能很多人并不会在意这样的一个问题，但是如果你仔细想一下。当电梯没有关闭的时候，会有一帮人乘坐电梯上楼去等地铁，而下了地铁的人则会走电梯旁边的楼梯下楼出站。现在呢？电梯关闭，而每天上班的人并不会因为电梯关闭而减少，现在上楼等地铁的人要走楼梯，下楼出站的人也要走楼梯，这样就造成了一个楼梯上有上有下，人比较多还需要相互谦让一下，无形中让每个人的效率下降，每个人都要浪费时间。本来为了限流而关闭了电梯，在我看来，关闭了电梯不仅没有完成限流的目标，反而增加了每个人乘坐地铁的时间，还很有可能造成拥堵、踩踏等事件的发生。</p>
+<p>如果没有这样的一个角度去看待地铁站限流，可能我们永远也意识不到有些部门的工作简直就是毫无用处，甚至还会造成资源的浪费。</p>
+<p>最后，最近虽然工作很忙，不过自己业余时间也读了一些书，看了一些电影，当然还在准备10月份即将到来的几门考试。鉴于自己目前还没有很多有价值的输出，书单和电影就不在这里分享了，等年终的时候再做回顾好了。技术博客会尽量抽时间写写，也算记录下自己的成长吧。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/09/21/The-iPhone-X-adaptation/" data-toggle="tooltip" data-placement="top" title="iPhone X 简单适配">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/06/Technology-changes-the-world/" data-toggle="tooltip" data-placement="top" title="由技术发展所引发的个人思考">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/09/16/记录一下近况/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/09/16/记录一下近况/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

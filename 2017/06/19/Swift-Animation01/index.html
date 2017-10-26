@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Swift Animation 显示层动画(一) - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/06/19/Swift-Animation01/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                    <h1>Swift Animation 显示层动画(一)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="位移动画"><a href="#位移动画" class="headerlink" title="位移动画"></a>位移动画</h3><p>位移动画，顾名思义，在一定时间内视图移动到一定的位置。我们实现一下在登录页面设置登录按钮从左侧出现并移动到合适的位置。</p>
+<p>1.初始化位置</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 第一阶段:初始化登录按钮</span></div><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: -<span class="number">394</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>2.在页面进入时移动按钮的位置</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 方法一:闭包</span></div><div class="line"><span class="type">UIView</span>.animate(withDuration: <span class="number">1</span>) &#123; </div><div class="line">  <span class="keyword">self</span>.loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 方法二:方法形式</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间设置</span></div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)<span class="comment">// 按钮位置变化</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 提交动画// 方法二:方法形式</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间设置</span></div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)<span class="comment">// 按钮位置变化</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 提交动画</span></div></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149785461320448.gif" alt="20170619149785461320448.gif"></p>
+<h3 id="几何形状动画"><a href="#几何形状动画" class="headerlink" title="几何形状动画"></a>几何形状动画</h3><p>几何形状动画：即让视图改变其视图形状。例如：我们实现让登录页面的登录按钮由两侧向中间收拢的效果。</p>
+<p>1.初始化按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.改变按钮的宽为之前的0.7倍，高度为之前的1.2倍，动画时间2s</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 几何形状动画</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.bounds = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: loginButton!.frame.size.width*<span class="number">0.7</span>, height: loginButton!.frame.size.height*<span class="number">1.2</span>)</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149785916847478.gif" alt="20170619149785916847478.gif"></p>
+<h3 id="位置-形状动画"><a href="#位置-形状动画" class="headerlink" title="位置+形状动画"></a>位置+形状动画</h3><p>在登录页面，设置登录按钮的位置和形状大小的改变</p>
+<p>1.初始化按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.进行形状和位置的改变</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 位置 + 形状动画</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.bounds = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">210</span>, width: loginButton!.frame.size.width*<span class="number">0.7</span>, height: loginButton!.frame.size.height*<span class="number">1.2</span>)</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149786175784160.gif" alt="20170619149786175784160.gif"></p>
+<h3 id="淡入淡出动画"><a href="#淡入淡出动画" class="headerlink" title="淡入淡出动画"></a>淡入淡出动画</h3><p>淡入淡出动画通过改变视图的透明度来实现。例如：实现登录按钮的背景由淡到深的变化。</p>
+<p>1.初始化按钮并设置透明度为0</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line">loginButton!.alpha = <span class="number">0</span><span class="comment">// 透明度</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.实现透明度由0至1的变化，时间为1s</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 淡入淡出</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.alpha = <span class="number">1</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下:</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149786216851548.gif" alt="20170619149786216851548.gif"></p>
+<h3 id="颜色渐变动画"><a href="#颜色渐变动画" class="headerlink" title="颜色渐变动画"></a>颜色渐变动画</h3><p>颜色渐变，顾名思义，就是指视图颜色在一定时间内逐渐变化的动画。例如：登录按钮颜色的变化</p>
+<p>1.初始化按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.设置动画时间以及变化的颜色</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>.gray</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149787840835975.gif" alt="20170619149787840835975.gif"></p>
+<h3 id="缩放动画：基于-UIView-的-transform-属性"><a href="#缩放动画：基于-UIView-的-transform-属性" class="headerlink" title="缩放动画：基于 UIView 的 transform 属性"></a>缩放动画：基于 UIView 的 transform 属性</h3><p>UIView 有一个非常重要的动画属性 transform，该属性继承于 CGAffineTransform,”CG”实际上是 CoreGraphics 框架的缩写。</p>
+<p>现在实现一下缩放动画</p>
+<p>1.初始化登录按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.设置动画时间和缩放比例</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 缩放，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(scaleX: <span class="number">0.5</span>, y: <span class="number">1.2</span>)<span class="comment">// 缩放比，&gt;1为扩大，&lt;1为缩放</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149787878141732.gif" alt="20170619149787878141732.gif"></p>
+<h3 id="旋转动画：基于-UIView-的-transform-属性"><a href="#旋转动画：基于-UIView-的-transform-属性" class="headerlink" title="旋转动画：基于 UIView 的 transform 属性"></a>旋转动画：基于 UIView 的 transform 属性</h3><p>实现登录按钮 45° 旋转</p>
+<p>1.初始化登录按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.实现旋转效果</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 旋转动画，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line"><span class="keyword">let</span> angel:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="type">M_PI_4</span>)</div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(rotationAngle: angel)<span class="comment">// rotationAngle 是以弧度为单位旋转的</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149787916448100.gif" alt="20170619149787916448100.gif"></p>
+<h3 id="位移动画：基于-UIView-的-transform-属性"><a href="#位移动画：基于-UIView-的-transform-属性" class="headerlink" title="位移动画：基于 UIView 的 transform 属性"></a>位移动画：基于 UIView 的 transform 属性</h3><p>1.初始化按钮</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.实现位移</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 位移动画，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(translationX: -<span class="number">20</span>, y: <span class="number">100</span>)<span class="comment">// translation 在 X 和 Y 移动的大小</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149787940669710.gif" alt="20170619149787940669710.gif"></p>
+<h3 id="组合动画效果"><a href="#组合动画效果" class="headerlink" title="组合动画效果"></a>组合动画效果</h3><p>基于以上几种初级动画效果，下面来一个大组合，使之实现更复杂和高级的效果。</p>
+<p>整个动画过程为：点击登录按钮后，登录按钮一边旋转，一边缩放，同时向登录界面右上角移动，在移动的同时按钮的透明度也在逐渐减弱。最后整个登录按钮消失在登录界面的右上角。</p>
+<p>整个动画涉及到的效果</p>
+<ol>
+<li>旋转动画</li>
+<li>位置动画</li>
+<li>缩放动画</li>
+<li>淡入淡出动画</li>
+</ol>
+<p>现在就这个效果进行代码实现：</p>
+<p>1.初始化按钮并添加点击事件</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line">loginButton!.addTarget(<span class="keyword">self</span>, action: #selector(loginAction), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
+<p>2.实现点击事件的动画效果</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)</div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)</div><div class="line"><span class="keyword">let</span> angel:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="type">M_PI</span>)</div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(rotationAngle: angel)</div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">400</span>, y: <span class="number">0</span>, width: loginButton!.frame.width*<span class="number">0.1</span>, height: loginButton!.frame.height*<span class="number">0.1</span>)</div><div class="line">loginButton!.alpha = <span class="number">0</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170619149787966613737.gif" alt="20170619149787966613737.gif"></p>
+<h3 id="动画常用属性及回调方法"><a href="#动画常用属性及回调方法" class="headerlink" title="动画常用属性及回调方法"></a>动画常用属性及回调方法</h3><p>常用的 UIView 动画属性设置方法：</p>
+<ol>
+<li>setAnimationDelay</li>
+<li>setAnimationCurve</li>
+<li>setAnimationsEnabled</li>
+<li>setAnimationDuration</li>
+<li>setAnimationRepeatAutoreverses</li>
+<li>setAnimationRepeatCount</li>
+</ol>
+<p>(1) 延迟加载方法<br>(2) 设置动画的加速和减速效果，传递的参数为枚举类型</p>
+<p>UIViewAnimationCurve.easeInOut // 动画开始和结束时都呈现减速效果<br>UIViewAnimationCurve.easeIn // 动画开始时减速效果<br>UIViewAnimationCurve.easeOut // 动画结束时减速效果<br>UIViewAnimationCurve.linear // 整个动画周期内速度一致</p>
+<p>(3) 设置动画效果是否可用<br>(4) 设置动画执行时间<br>(5) 设置动画是否有重复返回效果<br>(6) 设置动画重复执行的次数</p>
+<p>动画回调方法：</p>
+<p>(1) delegate 回调</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDelegate(<span class="keyword">self</span>)<span class="comment">// 设置回调对象</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(scaleX: <span class="number">0.7</span>, y: <span class="number">1.2</span>)<span class="comment">// 缩放比，&gt;1为扩大，&lt;1为缩放</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>代码第2行设置 self 回调对象。实现动画结束后的回调方法，所以重写 animationDidStop 方法。这里的 override 重写，而不是创建一个新的方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.delegate 回调</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">animationDidStop</span><span class="params">(<span class="number">_</span> anim: CAAnimation, finished flag: Bool)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"animation stop!"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(2) 设置 setAnimationDidStopSelector 自定义回调方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 缩放，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDelegate(<span class="keyword">self</span>)<span class="comment">// 设置回调对象</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(scaleX: <span class="number">0.7</span>, y: <span class="number">1.2</span>)<span class="comment">// 缩放比，&gt;1为扩大，&lt;1为缩放</span></div><div class="line"><span class="type">UIView</span>.setAnimationDidStop(#selector(<span class="type">ViewController</span>.animationEnd))</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
+<p>实现自定义回调</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 2.自定义回调</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">animationEnd</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="built_in">print</span>(<span class="string">"animationEnd"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>本文所有代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E6%98%BE%E7%A4%BA%E5%B1%82%E5%88%9D%E7%BA%A7%E5%8A%A8%E7%94%BB" target="_blank" rel="external">点击查看</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/21/Swift-Animation02/" data-toggle="tooltip" data-placement="top" title="Swift Animation 显示层动画(二)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/12/2017-06-12/" data-toggle="tooltip" data-placement="top" title="苹果和微信撕逼，到底撕的是什么？">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/06/19/Swift-Animation01/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/06/19/Swift-Animation01/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

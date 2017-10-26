@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          iOS 3D Touch 开发(二) Peek &amp; Pop - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/04/20/ios-3dtouch-peek-pop/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                          <a class="tag" href="/tags/#3D Touch" title="3D Touch">3D Touch</a>
+                        
+                    </div>
+                    <h1>iOS 3D Touch 开发(二) Peek &amp; Pop</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-04-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>上篇文章写了 3D Touch 的 Quick Actions(快捷菜单)，如果你也在添加 3D Touch 功能到 App 中，请点击<a href="http://zhangdinghao.cn/2017/04/19/iOS-3D-Touch/" target="_blank" rel="external">『文章链接』</a>查看 3D Touch 开发的第一篇文章，接下来我们来谈谈 Peek 和 Pop 的实现。<a id="more"></a></p>
+<p>先上一张效果图：<br><img src="http://odab6qymb.bkt.clouddn.com/2017042014926558317018.jpg" alt="2017042014926558317018.jpg"></p>
+<p>如图从左至右展示了 Peek 和 Pop 的三个阶段：</p>
+<p>（1）提示用户这里有 3D Touch 的交互，会使交互控件周围模糊。<br>（2）继续深按，会出现预览视图。<br>（3）通过视图上的交互控件进行进一步交互。</p>
+<h3 id="Peek-实现"><a href="#Peek-实现" class="headerlink" title="Peek 实现"></a>Peek 实现</h3><p>因为我是在 UITableViewCell 中长按实现的此功能，接下来上代码：</p>
+<p>1、首先检测 3D Touch 是否可用，可以使用的话注册代理和视图</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *homeTwoCell = <span class="string">@"HomeOneCell"</span>;</div><div class="line"><span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:homeTwoCell];</div><div class="line"><span class="keyword">if</span> (!cell) &#123;</div><div class="line">   cell = [[<span class="built_in">UITableViewCell</span> alloc]initWithStyle:<span class="built_in">UITableViewCellStyleValue1</span> reuseIdentifier:homeTwoCell];</div><div class="line">&#125;</div><div class="line">cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</div><div class="line">cell.textLabel.text = <span class="string">@"3D Touch"</span>;</div><div class="line">    </div><div class="line"><span class="comment">// 检测3D Touch可用性 并注册</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.traitCollection.forceTouchCapability == <span class="built_in">UIForceTouchCapabilityAvailable</span>) &#123;</div><div class="line">   </div><div class="line">   [<span class="keyword">self</span> registerForPreviewingWithDelegate:<span class="keyword">self</span> sourceView:cell];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2、实现 Peek 代理方法</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- peek手势</span></div><div class="line">- (<span class="keyword">nullable</span> <span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext viewControllerForLocation:(<span class="built_in">CGPoint</span>)location</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 转化坐标</span></div><div class="line">    location = [<span class="keyword">self</span>.tableView convertPoint:location fromView:[previewingContext sourceView]];</div><div class="line">    <span class="comment">// 根据locaton获取位置</span></div><div class="line">    <span class="built_in">NSIndexPath</span> *path = [<span class="keyword">self</span>.tableView indexPathForRowAtPoint:location];</div><div class="line">    <span class="comment">// 根据位置获取字典数据传传入控制器</span></div><div class="line">    DetailViewController *detail = [DetailViewController new];</div><div class="line">    detail.titleStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%ld"</span>,(<span class="keyword">long</span>)path.row];</div><div class="line">    <span class="keyword">return</span> detail;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>至此已经实现了点击 Cell 出现 Peek，当然此时点击 Cell 出现的 Peek 视图的大小是系统默认的(如上图所示，Peek 视图的尺寸是系统默认的)。</p>
+<p>如果我们想自定义 Peek 视图的大小该如何设置呢？</p>
+<hr>
+<p>『 04.21 更正』</p>
+<p>如果在 Peek 页面想要自定义 PeekView 大小的时候，只需要在上面的代码中添加如下代码即可，设置好自己想要的预览试图的大小，添加此代码不影响 Peek 的3个阶段展示：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">detail.preferredContentSize = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,ScreenHeight<span class="number">-160</span>);</div></pre></td></tr></table></figure>
+<p>设置以后的视图效果如图所示：<br><img src="http://odab6qymb.bkt.clouddn.com/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
+<h3 id="Pop-实现"><a href="#Pop-实现" class="headerlink" title="Pop 实现"></a>Pop 实现</h3><p>当出现 Peek 视图后，用户继续长按会有 Pop 视图，即进入到详情页面。因为我们已经实现了 Peek 视图的代理方法，所以在此实现一下 Pop 视图的代理方法即可。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- pop手势</span></div><div class="line"></div><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment">   *previewingContext：被预览的视图控制器的内容对象 == 上面代理方法中的previewingContext，内存中是同一个对象</span></div><div class="line"><span class="comment">   *viewControllerToCommit：被present（pop）的视图控制器 == 上面代理方法中返回的控制器，内存中是同一个对象</span></div><div class="line"><span class="comment">   *调用时间：pop阶段调用这个方法</span></div><div class="line"><span class="comment">   *作用：配置并且present一个commit（pop）视图控制器。</span></div><div class="line"><span class="comment">*/</span></div><div class="line">- (<span class="keyword">void</span>)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext commitViewController:(<span class="built_in">UIViewController</span> *)viewControllerToCommit&#123;</div><div class="line">    </div><div class="line">    viewControllerToCommit.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</div><div class="line">    [<span class="keyword">self</span>.navigationController pushViewController:viewControllerToCommit animated:<span class="literal">YES</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Peek-quick-action-Peek-视图下的快捷菜单"><a href="#Peek-quick-action-Peek-视图下的快捷菜单" class="headerlink" title="Peek quick action(Peek 视图下的快捷菜单)"></a>Peek quick action(Peek 视图下的快捷菜单)</h3><p>部分应用在 Peek 视图是有一些快捷菜单的，如图：<br><img src="http://odab6qymb.bkt.clouddn.com/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
+<p>如何设置 Peek 视图菜单呢？</p>
+<p>在即将进入的 DetailView 中声明菜单数组：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *previewActionItems;</div></pre></td></tr></table></figure>
+<p>懒加载数组并在每个 Action 中实现事件:</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;<span class="built_in">UIPreviewActionItem</span>&gt;&gt; *)previewActionItems&#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 分享</span></div><div class="line">    <span class="built_in">UIPreviewAction</span> *itemOne = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"点赞"</span> style:<span class="built_in">UIPreviewActionStyleDefault</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</div><div class="line">        <span class="comment">// 实现分享</span></div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    <span class="comment">// 点赞</span></div><div class="line">    <span class="built_in">UIPreviewAction</span> *itemTwo = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"分享"</span> style:<span class="built_in">UIPreviewActionStyleDestructive</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</div><div class="line">        <span class="comment">// 实现点赞</span></div><div class="line">    &#125;];</div><div class="line">    <span class="keyword">return</span> @[itemOne,itemTwo];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样在 Peek 界面中就会出现对应的菜单，并做出对应的处理。</p>
+<p>至此，3D Touch 的 Peek 和 Pop 实现已经基本完毕，如果后续有更新再继续添加。</p>
+<p>附：<a href="https://github.com/CalvinCheungCoder/3DTouchDemo" target="_blank" rel="external">『源码下载』</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/04/20/ios-tableView-leftSlid/" data-toggle="tooltip" data-placement="top" title="iOS 8 以上实现 TableViewCell 左滑菜单功能">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/04/19/iOS-3D-Touch/" data-toggle="tooltip" data-placement="top" title="iOS 3D Touch 开发(一) Quick Actions">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                          <a class="tag" href="/tags/#3D Touch" title="3D Touch">3D Touch</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/04/20/ios-3dtouch-peek-pop/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/04/20/ios-3dtouch-peek-pop/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Swift Animation 登录按钮动画 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/06/25/Swift-Animation06/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                    <h1>Swift Animation 登录按钮动画</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-25
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="登录按钮的水纹动画"><a href="#登录按钮的水纹动画" class="headerlink" title="登录按钮的水纹动画"></a>登录按钮的水纹动画</h3><p>当点击登录按钮时，会以点击点为圆心形成水纹扩散。扩散形状为圆形，扩散颜色为粉色，在扩散过程中按钮的状态为不可点击。</p>
+<a id="more"></a>
+<p>水纹动画拆解为以下5个功能模块</p>
+<ol>
+<li>UIButton 坐标获取</li>
+<li>Draw 圆形绘制</li>
+<li>定时器刷新</li>
+<li>其他模块</li>
+<li>调用模块</li>
+</ol>
+<p>创建基于 UIButton 的 MyButton 类</p>
+<h4 id="坐标获取"><a href="#坐标获取" class="headerlink" title="坐标获取"></a>坐标获取</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">startButtonAnimation</span><span class="params">(<span class="number">_</span> msenderBt:UIButton,mevent:UIEvent)</span></span>&#123;</div><div class="line">   <span class="keyword">self</span>.isUserInteractionEnabled = <span class="literal">false</span></div><div class="line">   <span class="keyword">let</span> button:<span class="type">UIView</span> = msenderBt <span class="keyword">as</span> <span class="type">UIView</span></div><div class="line">   <span class="keyword">let</span> touchSet:<span class="type">NSSet</span>=mevent.touches(<span class="keyword">for</span>: button)! <span class="keyword">as</span> <span class="type">NSSet</span></div><div class="line">   <span class="keyword">var</span> touchArray:[<span class="type">AnyObject</span>] = touchSet.allObjects <span class="keyword">as</span> [<span class="type">AnyObject</span>]</div><div class="line">   <span class="keyword">let</span> touch1:<span class="type">UITouch</span> = touchArray[<span class="number">0</span>] <span class="keyword">as</span>! <span class="type">UITouch</span></div><div class="line">   <span class="keyword">let</span> point1:<span class="type">CGPoint</span> = touch1.location(<span class="keyword">in</span>: button)</div><div class="line">   </div><div class="line">   <span class="keyword">self</span>.circleCenterX = point1.x</div><div class="line">   <span class="keyword">self</span>.circleCenterY = point1.y</div><div class="line">   timer = <span class="type">Timer</span>.scheduledTimer(timeInterval: <span class="number">0.02</span>, target: <span class="keyword">self</span>,</div><div class="line">                                                        selector: #selector(<span class="type">MyButton</span>.timeaction), userInfo: <span class="literal">nil</span>, repeats: <span class="literal">true</span>);</div><div class="line">   <span class="type">RunLoop</span>.main.add(timer!, forMode:<span class="type">RunLoopMode</span>.commonModes)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Draw-绘制圆形"><a href="#Draw-绘制圆形" class="headerlink" title="Draw 绘制圆形"></a>Draw 绘制圆形</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">(<span class="number">_</span> rect: CGRect)</span></span> &#123;</div><div class="line">   <span class="keyword">let</span> ctx:<span class="type">CGContext</span> = <span class="type">UIGraphicsGetCurrentContext</span>()!</div><div class="line">   <span class="keyword">let</span> endangle:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="type">M_PI</span>*<span class="number">2</span>)</div><div class="line">   ctx.addArc(center:<span class="type">CGPoint</span>(x:circleCenterX,y:circleCenterY),radius:viewRadius,startAngle:<span class="number">0</span>,endAngle:endangle,clockwise:<span class="literal">false</span>)</div><div class="line">   <span class="keyword">let</span> stockColor:<span class="type">UIColor</span> = targetAnimColor</div><div class="line">   stockColor.setStroke()</div><div class="line">   stockColor.setFill()</div><div class="line">   ctx.fillPath()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="定时器刷新模块"><a href="#定时器刷新模块" class="headerlink" title="定时器刷新模块"></a>定时器刷新模块</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">timeaction</span><span class="params">()</span></span>&#123;</div><div class="line">   countNum += <span class="number">1</span></div><div class="line">   </div><div class="line">   <span class="keyword">let</span> dismissTime:<span class="type">DispatchTime</span> = <span class="type">DispatchTime</span>.now() + <span class="type">Double</span>(<span class="type">Int64</span>(<span class="number">0</span>*<span class="type">NSEC_PER_SEC</span>)) / <span class="type">Double</span>(<span class="type">NSEC_PER_SEC</span>)</div><div class="line">   <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: dismissTime, execute: &#123;() <span class="keyword">in</span></div><div class="line">       <span class="keyword">self</span>.viewRadius += <span class="number">5</span></div><div class="line">       <span class="keyword">self</span>.setNeedsDisplay()</div><div class="line">       </div><div class="line">   &#125;)</div><div class="line">   <span class="keyword">if</span>(countNum&gt;<span class="number">50</span>)&#123;</div><div class="line">       countNum = <span class="number">0</span></div><div class="line">       viewRadius = <span class="number">0</span></div><div class="line">       timer?.invalidate()</div><div class="line">       <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: dismissTime, execute: &#123;() <span class="keyword">in</span></div><div class="line">           <span class="keyword">self</span>.viewRadius = <span class="number">0</span></div><div class="line">           <span class="keyword">self</span>.setNeedsDisplay()</div><div class="line">           </div><div class="line">       &#125;)</div><div class="line">       <span class="keyword">self</span>.isUserInteractionEnabled = <span class="literal">true</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="init-初始化方法和各参数的初始化"><a href="#init-初始化方法和各参数的初始化" class="headerlink" title="init 初始化方法和各参数的初始化"></a>init 初始化方法和各参数的初始化</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> viewRadius:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> countNum:<span class="type">Int</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> timer:<span class="type">Timer</span>?</div><div class="line"><span class="keyword">var</span> circleCenterX:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> circleCenterY:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> targetAnimColor:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">216.0</span> / <span class="number">255.0</span>, green: <span class="number">114.0</span> / <span class="number">255.0</span>, blue: <span class="number">213.0</span> / <span class="number">255.0</span>, alpha: <span class="number">0.8</span>)</div><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</div><div class="line">   <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">   <span class="keyword">self</span>.backgroundColor = <span class="type">UIColor</span>(red: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">   <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)!</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="在-ViewController-调用"><a href="#在-ViewController-调用" class="headerlink" title="在 ViewController 调用"></a>在 ViewController 调用</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> loginButton:<span class="type">MyButton</span> = <span class="type">MyButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">230</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>,height: <span class="number">50</span>))</div><div class="line">loginButton.setTitle(<span class="string">"登陆"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>())</div><div class="line">loginButton.addTarget(<span class="keyword">self</span>, action: #selector(<span class="type">ViewController</span>.loginAction(<span class="number">_</span>:event:)), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">loginAction</span><span class="params">(<span class="number">_</span> sender:UIButton,event:UIEvent)</span></span> &#123;</div><div class="line">   <span class="keyword">let</span> bt:<span class="type">MyButton</span> = sender <span class="keyword">as</span>! <span class="type">MyButton</span></div><div class="line">   bt.startButtonAnimation(sender, mevent: event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/2017062414983095544093.gif" alt="2017062414983095544093.gif"></p>
+<h3 id="按钮的渐进圆环动画"><a href="#按钮的渐进圆环动画" class="headerlink" title="按钮的渐进圆环动画"></a>按钮的渐进圆环动画</h3><p>按钮渐进动画分析</p>
+<p>第一阶段：按钮从长方形到圆角的圆角动画，颜色逐渐消失的颜色淡出动画，以及最后的长方形消失、圆弧显示出来的一系列过程。</p>
+<p>第二阶段：动画从圆弧显示开始出来，顺时针绘制圆弧，直至圆弧最终绘制完成。主要涉及到圆弧绘制动画，以及在绘制动画过程时的蓝色填充效果。</p>
+<p>第三阶段：从圆弧绘制完成到圆弧伸展成长方形，在伸展过程中，伴随着颜色的变化，圆角动画等基础动画效果。</p>
+<p>下面就这三个阶段的动画进行代码实现：</p>
+<h4 id="第一阶段动画"><a href="#第一阶段动画" class="headerlink" title="第一阶段动画"></a>第一阶段动画</h4><p>创建基于 UIView 的 ButtonView 类</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="type">FreshBlue</span>:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">25.0</span> / <span class="number">255.0</span>, green: <span class="number">155.0</span> / <span class="number">255.0</span>, blue: <span class="number">200.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line"><span class="keyword">let</span> <span class="type">FreshGreen</span>:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">150.0</span> / <span class="number">255.0</span>, green: <span class="number">203.0</span> / <span class="number">255.0</span>, blue: <span class="number">25.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line"><span class="keyword">var</span> view:<span class="type">UIView</span>?</div><div class="line"><span class="keyword">var</span> viewborder:<span class="type">UIView</span>?</div><div class="line"><span class="keyword">var</span> button_x:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> button_y:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> button_w:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> button_h:<span class="type">CGFloat</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> label:<span class="type">UILabel</span>?</div><div class="line"><span class="keyword">var</span> circleView:<span class="type">CircleView</span>?</div><div class="line"></div><div class="line"> <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</div><div class="line">   <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">   button_x = frame.origin.x;</div><div class="line">   button_y = frame.origin.y;</div><div class="line">   button_w = frame.size.width;</div><div class="line">   button_h = frame.size.height;</div><div class="line">   view = <span class="type">UIView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">   view!.backgroundColor = <span class="type">FreshBlue</span>;</div><div class="line">   viewborder = <span class="type">UIView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">   viewborder!.backgroundColor = <span class="type">UIColor</span>.clear</div><div class="line">   viewborder!.layer.borderColor = <span class="type">FreshBlue</span>.cgColor;</div><div class="line">   viewborder!.layer.borderWidth = <span class="number">3.0</span>;</div><div class="line">   <span class="keyword">self</span>.addSubview(view!)</div><div class="line">   <span class="keyword">self</span>.addSubview(viewborder!)</div><div class="line"></div><div class="line">   circleView = <span class="type">CircleView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">   circleView!.delegate = <span class="keyword">self</span> <span class="keyword">as</span> <span class="type">CircleDelegate</span></div><div class="line">   <span class="keyword">self</span>.addSubview(circleView!)</div><div class="line">   </div><div class="line">   label = <span class="type">UILabel</span>(frame:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">   label!.text = <span class="string">"UpLoad"</span></div><div class="line">   label!.textAlignment = <span class="type">NSTextAlignment</span>.center</div><div class="line">   label!.textColor = <span class="type">UIColor</span>.white</div><div class="line">   label!.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20.0</span>)</div><div class="line">   <span class="keyword">self</span> .addSubview(label!)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">startAnimation</span><span class="params">()</span></span>&#123;</div><div class="line">        </div><div class="line">   label?.removeFromSuperview()</div><div class="line">   <span class="keyword">let</span> animMakeBigger:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animMakeBigger.keyPath = <span class="string">"cornerRadius"</span></div><div class="line">   animMakeBigger.fromValue=<span class="number">5.0</span></div><div class="line">   animMakeBigger.toValue=button_h/<span class="number">2.0</span></div><div class="line">   <span class="keyword">let</span> animBounds:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animBounds.keyPath = <span class="string">"bounds"</span></div><div class="line">   animBounds.toValue = <span class="type">NSValue</span>(cgRect:<span class="type">CGRect</span>(x: button_x+(button_w-button_h)/<span class="number">2</span>, y: button_h, width: button_h, height: button_h))</div><div class="line">   <span class="keyword">let</span> animAlpha:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animAlpha.keyPath = <span class="string">"opacity"</span></div><div class="line">   animAlpha.toValue = <span class="number">0</span></div><div class="line">   <span class="keyword">let</span> animGroup:<span class="type">CAAnimationGroup</span> = <span class="type">CAAnimationGroup</span>()</div><div class="line">   animGroup.duration = <span class="number">1</span></div><div class="line">   animGroup.repeatCount = <span class="number">1</span></div><div class="line">   animGroup.isRemovedOnCompletion = <span class="literal">false</span></div><div class="line">   animGroup.fillMode=kCAFillModeForwards</div><div class="line">   animGroup.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">   animGroup.animations = [animMakeBigger,animBounds,animAlpha]</div><div class="line">   <span class="keyword">let</span> animborder:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animborder.keyPath = <span class="string">"borderColor"</span></div><div class="line">   animborder.toValue = <span class="type">UIColor</span>(red: <span class="number">224.0</span>/<span class="number">255</span>, green: <span class="number">224.0</span>/<span class="number">255</span>, blue: <span class="number">224.0</span>/<span class="number">255</span>, alpha: <span class="number">1.0</span>).cgColor</div><div class="line">   <span class="keyword">let</span> animGroupAll:<span class="type">CAAnimationGroup</span> = <span class="type">CAAnimationGroup</span>()</div><div class="line">   animGroupAll.duration = <span class="number">1</span></div><div class="line">   animGroupAll.repeatCount = <span class="number">1</span></div><div class="line">   animGroupAll.isRemovedOnCompletion = <span class="literal">false</span></div><div class="line">   animGroupAll.fillMode=kCAFillModeForwards ;</div><div class="line">   animGroupAll.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">   animGroupAll.animations = [animMakeBigger,animBounds,animborder]</div><div class="line">   animGroupAll.delegate = <span class="keyword">self</span></div><div class="line">   animGroupAll.setValue(<span class="string">"allMyAnimationsBoard"</span>, forKey: <span class="string">"groupborderkey"</span>)</div><div class="line">   <span class="type">CATransaction</span>.begin()</div><div class="line">   view?.layer.add(animGroup, forKey: <span class="string">"allMyAnimation"</span>)</div><div class="line">   viewborder?.layer.add(animGroupAll, forKey: <span class="string">"allMyAnimationsBoard"</span>)</div><div class="line">   <span class="type">CATransaction</span>.commit()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第二阶段动画"><a href="#第二阶段动画" class="headerlink" title="第二阶段动画"></a>第二阶段动画</h4><p>第二阶段动画主要为绘制圆环，在此创建一个类 CircleView</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">CircleDelegate</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">circleAnimationStop</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CircleView</span>: <span class="title">UIView</span>,<span class="title">CAAnimationDelegate</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> lineWidth:<span class="type">NSNumber</span> = <span class="number">3.0</span></div><div class="line">    <span class="keyword">var</span> strokeColor:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">25.0</span> / <span class="number">255.0</span>, green: <span class="number">155.0</span> / <span class="number">255.0</span>, blue: <span class="number">200.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">    <span class="keyword">var</span> circle:<span class="type">CAShapeLayer</span> = <span class="type">CAShapeLayer</span>()</div><div class="line">    <span class="keyword">var</span> delegate:<span class="type">CircleDelegate</span>?</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">        <span class="keyword">let</span> startAngle:<span class="type">CGFloat</span> = -<span class="number">90.0</span>/<span class="number">180.0</span> * <span class="type">CGFloat</span>(<span class="type">M_PI</span>)</div><div class="line">        <span class="keyword">let</span> endAngle:<span class="type">CGFloat</span> = -<span class="number">90.01</span>/<span class="number">180.0</span> * <span class="type">CGFloat</span>(<span class="type">M_PI</span>)</div><div class="line">        <span class="keyword">let</span> circlePath:<span class="type">UIBezierPath</span> = <span class="type">UIBezierPath</span>(arcCenter: <span class="type">CGPoint</span>(x: frame.size.width/<span class="number">2</span>,y: frame.size.height/<span class="number">2</span>), radius: frame.size.height/<span class="number">2</span>-<span class="number">2</span>, startAngle: startAngle, endAngle: endAngle, clockwise: <span class="literal">true</span>)</div><div class="line">        circle.path = circlePath.cgPath</div><div class="line">        circle.lineCap = kCALineCapRound</div><div class="line">        circle.fillColor = <span class="type">UIColor</span>.clear.cgColor</div><div class="line">        circle.lineWidth = lineWidth <span class="keyword">as</span> <span class="type">CGFloat</span></div><div class="line"></div><div class="line">        <span class="keyword">self</span>.layer.addSublayer(circle)</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">strokeChart</span><span class="params">()</span></span>&#123;</div><div class="line">        circle.lineWidth = lineWidth <span class="keyword">as</span> <span class="type">CGFloat</span></div><div class="line">        circle.strokeColor = strokeColor.cgColor</div><div class="line">        <span class="keyword">let</span> pathAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">        pathAnimation.keyPath = <span class="string">"strokeEnd"</span></div><div class="line">        pathAnimation.delegate = <span class="keyword">self</span></div><div class="line">        pathAnimation.duration = <span class="number">3.0</span></div><div class="line">        pathAnimation.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">        pathAnimation.fromValue = <span class="number">0.0</span></div><div class="line">        pathAnimation.toValue = <span class="number">1.0</span></div><div class="line">        pathAnimation .setValue(<span class="string">"strokeEndAnimationcircle"</span>, forKey: <span class="string">"groupborderkeycircle"</span>)</div><div class="line">        circle.add(pathAnimation, forKey: <span class="string">"strokeEndAnimationcircle"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">animationDidStop</span><span class="params">(<span class="number">_</span> anim: CAAnimation, finished flag: Bool)</span></span> &#123;</div><div class="line">        delegate!.circleAnimationStop()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这里代码已经实现了第二阶段，如果从第一阶段动画进入到第二阶段呢？在第一阶段的动画中已经设置了 delegate 回调对象，因此在第一阶段的动画结束后的回调方法中启动第二阶段动画。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">animationDidStop</span><span class="params">(<span class="number">_</span> anim: CAAnimation, finished flag: Bool)</span></span>&#123;</div><div class="line">   <span class="keyword">if</span>(flag)&#123;</div><div class="line">       <span class="keyword">let</span> animType = anim.value(forKey: <span class="string">"groupborderkey"</span>)</div><div class="line">       <span class="keyword">let</span> animType1 = anim.value(forKey: <span class="string">"groupborderkey1"</span>)</div><div class="line">       <span class="keyword">if</span>(animType != <span class="literal">nil</span>)&#123;</div><div class="line">           <span class="keyword">if</span> ((animType <span class="keyword">as</span>! <span class="type">NSString</span>).isEqual(to: <span class="string">"allMyAnimationsBoard"</span>))&#123;</div><div class="line">               circleView?.strokeChart()</div><div class="line">           &#125;</div><div class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span>(animType1 != <span class="literal">nil</span>)&#123;</div><div class="line">           <span class="keyword">if</span>((animType1 <span class="keyword">as</span>! <span class="type">NSString</span>).isEqual(to: <span class="string">"allMyAnimationsBoardspread1"</span>))&#123;</div><div class="line">               label = <span class="type">UILabel</span>(frame:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">               label!.text = <span class="string">"Complete"</span></div><div class="line">               label!.textAlignment = <span class="type">NSTextAlignment</span>.center</div><div class="line">               label!.textColor = <span class="type">UIColor</span>.white</div><div class="line">               label!.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>)</div><div class="line">               <span class="keyword">self</span>.addSubview(label!)</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="第三阶段动画"><a href="#第三阶段动画" class="headerlink" title="第三阶段动画"></a>第三阶段动画</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">startAnimationSpread</span><span class="params">()</span></span>&#123;</div><div class="line">   <span class="keyword">let</span> animMakeBigger:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animMakeBigger.keyPath = <span class="string">"cornerRadius"</span></div><div class="line">   animMakeBigger.fromValue=button_h/<span class="number">2.0</span></div><div class="line">   animMakeBigger.toValue=<span class="number">0</span></div><div class="line">   <span class="keyword">let</span> animBounds:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animBounds.keyPath = <span class="string">"bounds"</span></div><div class="line">   animBounds.fromValue = <span class="type">NSValue</span>(cgRect:<span class="type">CGRect</span>(x: button_x+(button_w-button_h)/<span class="number">2</span>, y: button_h, width: button_h, height: button_h))</div><div class="line">   animBounds.toValue = <span class="type">NSValue</span>(cgRect:<span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: button_w, height: button_h))</div><div class="line">   <span class="keyword">let</span> animAlpha:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animAlpha.keyPath = <span class="string">"opacity"</span>;</div><div class="line">   animAlpha.toValue = <span class="number">1.0</span></div><div class="line">   <span class="keyword">let</span> animBackground:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animBackground.keyPath = <span class="string">"backgroundColor"</span></div><div class="line">   animBackground.toValue = <span class="type">FreshGreen</span>.cgColor</div><div class="line">   <span class="keyword">let</span> group:<span class="type">CAAnimationGroup</span> = <span class="type">CAAnimationGroup</span>()</div><div class="line">   group.duration = <span class="number">1</span></div><div class="line">   group.repeatCount = <span class="number">1</span></div><div class="line">   group.isRemovedOnCompletion = <span class="literal">false</span></div><div class="line">   group.fillMode=kCAFillModeForwards</div><div class="line">   group.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">   group.animations = [animMakeBigger,animBounds,animAlpha,animBackground]</div><div class="line">   <span class="keyword">let</span> animBorder:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   animBorder.keyPath = <span class="string">"borderColor"</span></div><div class="line">   animBorder.toValue = <span class="type">FreshGreen</span>.cgColor</div><div class="line">   <span class="keyword">let</span> allGroup:<span class="type">CAAnimationGroup</span> = <span class="type">CAAnimationGroup</span>()</div><div class="line">   allGroup.duration = <span class="number">1</span></div><div class="line">   allGroup.repeatCount = <span class="number">1</span></div><div class="line">   allGroup.isRemovedOnCompletion = <span class="literal">false</span></div><div class="line">   allGroup.fillMode=kCAFillModeForwards</div><div class="line">   allGroup.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">   allGroup.animations = [animMakeBigger,animBounds,animAlpha,animBorder]</div><div class="line">   <span class="type">CATransaction</span>.begin()</div><div class="line">   view?.layer.add(group, forKey: <span class="string">"allMyAnimationspread1"</span>)</div><div class="line">   allGroup.setValue(<span class="string">"allMyAnimationsBoardspread1"</span>, forKey: <span class="string">"groupborderkey1"</span>)</div><div class="line">   allGroup.delegate = <span class="keyword">self</span></div><div class="line">   viewborder?.layer.add(allGroup, forKey: <span class="string">"allMyAnimationsBoardspread1"</span>)</div><div class="line">   <span class="type">CATransaction</span>.commit()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后在 ViewController 调用</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> singleTap1:<span class="type">UITapGestureRecognizer</span>?</div><div class="line"><span class="keyword">var</span> singleTap2:<span class="type">UITapGestureRecognizer</span>?</div><div class="line"><span class="keyword">var</span> singleTap3:<span class="type">UITapGestureRecognizer</span>?</div><div class="line"><span class="keyword">var</span> buttonview1:<span class="type">ButtonView</span>?</div><div class="line"><span class="keyword">var</span> buttonview2:<span class="type">ButtonView</span>?</div><div class="line"><span class="keyword">var</span> buttonview3:<span class="type">ButtonView</span>?</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   buttonview1 = <span class="type">ButtonView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">150</span>, width: <span class="number">210</span>, height: <span class="number">70</span>))</div><div class="line">   buttonview2 = <span class="type">ButtonView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">275</span>, width: <span class="number">210</span>, height: <span class="number">70</span>))</div><div class="line">   buttonview3 = <span class="type">ButtonView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">400</span>, width: <span class="number">210</span>, height: <span class="number">70</span>))</div><div class="line">   </div><div class="line">   singleTap1 = <span class="type">UITapGestureRecognizer</span>(target: <span class="keyword">self</span>, action: #selector(<span class="type">ViewController</span>.viewAction1))</div><div class="line">   singleTap2 = <span class="type">UITapGestureRecognizer</span>(target: <span class="keyword">self</span>, action: #selector(<span class="type">ViewController</span>.viewAction2))</div><div class="line">   singleTap3 = <span class="type">UITapGestureRecognizer</span>(target: <span class="keyword">self</span>, action: #selector(<span class="type">ViewController</span>.viewAction3))</div><div class="line">   </div><div class="line">   buttonview1?.addGestureRecognizer(singleTap1!)</div><div class="line">   buttonview2?.addGestureRecognizer(singleTap2!)</div><div class="line">   buttonview3?.addGestureRecognizer(singleTap3!)</div><div class="line">   </div><div class="line">   <span class="keyword">self</span>.view.addSubview(buttonview1!)</div><div class="line">   <span class="keyword">self</span>.view.addSubview(buttonview2!)</div><div class="line">   <span class="keyword">self</span>.view.addSubview(buttonview3!)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">viewAction1</span><span class="params">()</span></span>&#123;</div><div class="line">   buttonview1?.startAnimation()</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">viewAction2</span><span class="params">()</span></span>&#123;</div><div class="line">   buttonview2?.startAnimation()</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">viewAction3</span><span class="params">()</span></span>&#123;</div><div class="line">   buttonview3?.startAnimation()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170624149831082641559.gif" alt="20170624149831082641559.gif"></p>
+<p>以上代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E7%99%BB%E5%BD%95%E6%8C%89%E9%92%AE%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C" target="_blank" rel="external">点击查看</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/25/Swift-Animation07/" data-toggle="tooltip" data-placement="top" title="Swift Animation 内容层动画(三)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/24/Swift-Animation05/" data-toggle="tooltip" data-placement="top" title="Swift Animation 内容层动画(二)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/06/25/Swift-Animation06/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/06/25/Swift-Animation06/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

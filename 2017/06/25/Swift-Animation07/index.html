@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Swift Animation 内容层动画(三) - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://calvincheungcoder.github.io/2017/06/25/Swift-Animation07/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                    <h1>Swift Animation 内容层动画(三)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-25
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="CAEmitterCell-粒子动画"><a href="#CAEmitterCell-粒子动画" class="headerlink" title="CAEmitterCell 粒子动画"></a>CAEmitterCell 粒子动画</h3><p>在 iOS 系统中，粒子系统有2部分组成：CAEmitterLayer 和 CAEmitterCell。</p>
+<a id="more"></a>
+<p>(1)CAEmitterLayer 为粒子发射图层。该图层主要用于控制粒子展现范围、粒子发射位置、粒子发射形状、渲染模式等属性。通过 CAEmitterCell 构建的发射单元都受到 CAEmitterLayer 图层节制，可以说粒子展现必须在 CAEmitterLayer 图层上实现。</p>
+<p>(2)CAEmitterCell 粒子发射单元，用于对粒子系统中的单个粒子做更加精细的控制。比如控制粒子的移动速度、方向、范围。在 CAEmitterCell 类中提供类几十种粒子属性参数设置，所以结合这些属性可以制作各种炫酷的粒子特效动画。</p>
+<h3 id="粒子火焰效果"><a href="#粒子火焰效果" class="headerlink" title="粒子火焰效果"></a>粒子火焰效果</h3><p>1.birthRate：表示火焰效果中每秒粒子的组成个数，个数越多，火焰越大越逼真。<br>2.velocity：表明当前粒子速度信息，不同的粒子速度控制火焰的燃烧剧烈程度以及火焰的燃烧方向。</p>
+<p>还有很多的属性设置才能实现火焰的效果，下面直接贴上实现代码。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   <span class="keyword">self</span>.view.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> emitterCell = <span class="type">CAEmitterCell</span>()</div><div class="line">   emitterCell.name = <span class="string">"fire"</span></div><div class="line">   emitterCell.emissionLongitude  = <span class="type">CGFloat</span>(<span class="type">M_PI</span>)<span class="comment">// emissionLongitude:x-y 平面的 发 射方向</span></div><div class="line">   emitterCell.velocity			= -<span class="number">1</span><span class="comment">// 粒子速度 负数表明向上燃烧</span></div><div class="line">   emitterCell.velocityRange		= <span class="number">50</span><span class="comment">// 粒子速度范围</span></div><div class="line">   emitterCell.emissionRange		= <span class="number">1.1</span><span class="comment">//周围发射角度</span></div><div class="line">   emitterCell.yAcceleration		= -<span class="number">200</span><span class="comment">// 粒子y方向的加速度分量</span></div><div class="line">   emitterCell.scaleSpeed			= <span class="number">0.3</span><span class="comment">// 缩放比例 超大火苗</span></div><div class="line">   emitterCell.color = <span class="type">UIColor</span>(red: <span class="number">0</span> ,green: <span class="number">0.4</span> ,blue:<span class="number">0.2</span> ,alpha:<span class="number">0.1</span>).cgColor</div><div class="line">   emitterCell.contents = <span class="type">UIImage</span>(named: <span class="string">"fire.png"</span>)!.cgImage</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> emitterLayer = <span class="type">CAEmitterLayer</span>()</div><div class="line">   emitterLayer.position = <span class="keyword">self</span>.view.center<span class="comment">// 粒子发射位置</span></div><div class="line">   emitterLayer.emitterSize = <span class="type">CGSize</span>(width: <span class="number">50</span>, height: <span class="number">10</span>)<span class="comment">// 控制火苗大小</span></div><div class="line">   emitterLayer.renderMode = kCAEmitterLayerAdditive</div><div class="line">   emitterLayer.emitterMode = kCAEmitterLayerOutline<span class="comment">// 控制发射源模式 即形状</span></div><div class="line">   emitterLayer.emitterShape = kCAEmitterLayerLine</div><div class="line">   emitterLayer.emitterCells = [emitterCell]</div><div class="line"></div><div class="line">   <span class="keyword">self</span>.view.layer.addSublayer(emitterLayer)</div><div class="line">   </div><div class="line">   emitterLayer.setValue(<span class="number">500</span>, forKeyPath: <span class="string">"emitterCells.fire.birthRate"</span>)</div><div class="line">   emitterLayer.setValue(<span class="number">1</span>, forKeyPath: <span class="string">"emitterCells.fire.lifetime"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170625149838384979586.gif" alt="20170625149838384979586.gif"></p>
+<h3 id="霓虹效果实现"><a href="#霓虹效果实现" class="headerlink" title="霓虹效果实现"></a>霓虹效果实现</h3><p>霓虹效果实现和火焰燃烧类似，都是通过 iOS 粒子来进行描述的。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   <span class="keyword">self</span>.view.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> emitterCell = <span class="type">CAEmitterCell</span>()</div><div class="line">   </div><div class="line">   emitterCell.name = <span class="string">"nenolight"</span></div><div class="line">   emitterCell.emissionLongitude  = <span class="type">CGFloat</span>(<span class="type">M_PI</span>*<span class="number">2</span>)<span class="comment">// emissionLongitude:x-y 平面的 发 射方向</span></div><div class="line">   emitterCell.velocity = <span class="number">50</span><span class="comment">// 粒子速度</span></div><div class="line">   emitterCell.velocityRange = <span class="number">50</span><span class="comment">// 粒子速度范围</span></div><div class="line">   emitterCell.scaleSpeed = -<span class="number">0.2</span><span class="comment">// 缩放比例 超大火苗</span></div><div class="line">   emitterCell.scale = <span class="number">0.1</span></div><div class="line">   emitterCell.greenSpeed = -<span class="number">0.1</span></div><div class="line">   emitterCell.redSpeed = -<span class="number">0.2</span></div><div class="line">   emitterCell.blueSpeed = <span class="number">0.1</span></div><div class="line">   emitterCell.alphaSpeed = -<span class="number">0.2</span></div><div class="line">   emitterCell.birthRate = <span class="number">100</span></div><div class="line">   emitterCell.lifetime = <span class="number">4</span></div><div class="line">   emitterCell.color = <span class="type">UIColor</span>.white.cgColor</div><div class="line">   emitterCell.contents = <span class="type">UIImage</span>(named: <span class="string">"neonlight.png"</span>)!.cgImage</div><div class="line">   </div><div class="line">   <span class="keyword">let</span> emitterLayer = <span class="type">CAEmitterLayer</span>()</div><div class="line"></div><div class="line">   emitterLayer.position = <span class="keyword">self</span>.view.center<span class="comment">// 粒子发射位置</span></div><div class="line">   emitterLayer.emitterSize = <span class="type">CGSize</span>(width: <span class="number">2</span>, height: <span class="number">2</span>)<span class="comment">// 控制粒子大小</span></div><div class="line">   emitterLayer.renderMode = kCAEmitterLayerBackToFront</div><div class="line">   emitterLayer.emitterMode = kCAEmitterLayerOutline<span class="comment">// 控制发射源模式 即形状</span></div><div class="line">   emitterLayer.emitterShape = kCAEmitterLayerCircle</div><div class="line">   </div><div class="line">   emitterLayer.emitterCells = [emitterCell]</div><div class="line"></div><div class="line">   <span class="keyword">self</span>.view.layer.addSublayer(emitterLayer)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170625149838418551319.gif" alt="20170625149838418551319.gif"></p>
+<h3 id="CoreAnimation-CAGradientLayer"><a href="#CoreAnimation-CAGradientLayer" class="headerlink" title="CoreAnimation:CAGradientLayer"></a>CoreAnimation:CAGradientLayer</h3><h4 id="CAGradientLayer-追本溯源"><a href="#CAGradientLayer-追本溯源" class="headerlink" title="CAGradientLayer 追本溯源"></a>CAGradientLayer 追本溯源</h4><p>CAGradientLayer 可以拆解为3个主要部分：CA、Gradient、Layer。 </p>
+<ol>
+<li>CA 为 CoreAnimation 的缩写。</li>
+<li>Gradient 为梯度的意思，描述了当前动画的特点，实现一些梯度功能的动画效果。比如位置的梯度变化、颜色的梯度渐变等。</li>
+<li>Layer表明当前动画并非直接作用于 UIView 显示层上，而是作用在 Layer 内容层。</li>
+</ol>
+<h3 id="光波效果实现原理分析"><a href="#光波效果实现原理分析" class="headerlink" title="光波效果实现原理分析"></a>光波效果实现原理分析</h3><p>通过对动画的分解，基本上可以弄清楚动画的演变过程。</p>
+<ol>
+<li>光波的执行方向。</li>
+<li>光波的颜色梯度。</li>
+<li>光波的”彗星拖尾”效果。</li>
+</ol>
+<h4 id="光波方向"><a href="#光波方向" class="headerlink" title="光波方向"></a>光波方向</h4><p>光波从上到下的扫描效果：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 设置光波起始位置和终止位置坐标</span></div><div class="line">gradientLayer.startPoint = <span class="type">CGPoint</span>(x:<span class="number">0</span>,y:<span class="number">0</span>)</div><div class="line">gradientLayer.endPoint = <span class="type">CGPoint</span>(x:<span class="number">1</span>,y:<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h4 id="光波梯度"><a href="#光波梯度" class="headerlink" title="光波梯度"></a>光波梯度</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> color = <span class="type">UIColor</span>(red:<span class="number">216</span>/<span class="number">255.0</span>,green:<span class="number">114</span>/<span class="number">255.0</span>,blue:<span class="number">213</span>/<span class="number">255.0</span>,alpha:<span class="number">1.0</span>) <span class="comment">// 粉色</span></div><div class="line"><span class="keyword">let</span> color1 = <span class="type">UIColor</span>(red:<span class="number">61</span>/<span class="number">255.0</span>,green:<span class="number">226</span>/<span class="number">255.0</span>,blue:<span class="number">210</span>/<span class="number">255.0</span>,alpha:<span class="number">1.0</span>) <span class="comment">// 青色</span></div><div class="line"><span class="comment">// 设置光波颜色梯度</span></div><div class="line">gradientLayer:colors = [<span class="type">UIColor</span>.clear.cgColor,color1.cgColor,color.cgColor];</div></pre></td></tr></table></figure>
+<h4 id="光波”彗星拖尾”效果"><a href="#光波”彗星拖尾”效果" class="headerlink" title="光波”彗星拖尾”效果"></a>光波”彗星拖尾”效果</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> color = <span class="type">UIColor</span>(red:<span class="number">216</span>/<span class="number">255.0</span>,green:<span class="number">114</span>/<span class="number">255.0</span>,blue:<span class="number">213</span>/<span class="number">255.0</span>,alpha:<span class="number">1.0</span>) <span class="comment">// 粉色</span></div><div class="line"><span class="keyword">let</span> color1 = <span class="type">UIColor</span>(red:<span class="number">61</span>/<span class="number">255.0</span>,green:<span class="number">226</span>/<span class="number">255.0</span>,blue:<span class="number">210</span>/<span class="number">255.0</span>,alpha:<span class="number">1.0</span>) <span class="comment">// 青色</span></div><div class="line"><span class="comment">// 设置光波颜色梯度</span></div><div class="line">gradientLayer:colors = [<span class="type">UIColor</span>.clear.cgColor,color1.cgColor,color.cgColor];</div><div class="line">gradientLayer.locations = [<span class="number">0.0</span>,<span class="number">0.1</span>,<span class="number">0.2</span>]</div></pre></td></tr></table></figure>
+<p>其中 locations 为颜色渐变比例数组。</p>
+<h4 id="光波扫描效果"><a href="#光波扫描效果" class="headerlink" title="光波扫描效果"></a>光波扫描效果</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> gradientAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">gradientAnimation.keyPath = 'locations' <span class="comment">// 动画属性</span></div><div class="line">gradientAnimation.fromValue = [<span class="number">0.0</span>,<span class="number">0.1</span>,<span class="number">0.2</span>]; <span class="comment">// 动画属性变化起始状态</span></div><div class="line">gradientAnimation.toValue = [<span class="number">0.8</span>,<span class="number">0.9</span>,<span class="number">1.0</span>]; <span class="comment">// 动画属性变化终止状态值</span></div><div class="line">gradientAnimation.duration = <span class="number">3.0</span>; <span class="comment">// 动画执行周期</span></div><div class="line">gradientAnimation.repeatCount = <span class="number">10</span>; <span class="comment">// 动画执行重复次数</span></div><div class="line">gradientLayer.add(gradientAnimation,forKey:<span class="literal">nil</span>) <span class="comment">// 将基础动画添加到 Layer 图层</span></div></pre></td></tr></table></figure>
+<h3 id="指纹扫描动画"><a href="#指纹扫描动画" class="headerlink" title="指纹扫描动画"></a>指纹扫描动画</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   <span class="comment">// part1:设置指纹扫描背景图片</span></div><div class="line">   <span class="keyword">let</span> image:<span class="type">UIImage</span> = <span class="type">UIImage</span>(named: <span class="string">"unLock.jpg"</span>)!</div><div class="line">   <span class="keyword">let</span> imageView:<span class="type">UIImageView</span> = <span class="type">UIImageView</span>(image: image)</div><div class="line">   imageView.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line">   imageView.frame = <span class="keyword">self</span>.view.bounds</div><div class="line">   imageView.center = <span class="keyword">self</span>.view.center</div><div class="line">   <span class="keyword">self</span>.view.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">   <span class="keyword">self</span>.view.addSubview(imageView)</div><div class="line">   <span class="comment">// part2:设置Layer图层属性</span></div><div class="line">   <span class="keyword">let</span> gradientLayer:<span class="type">CAGradientLayer</span> = <span class="type">CAGradientLayer</span>()</div><div class="line">   gradientLayer.frame = <span class="type">CGRect</span>(x: <span class="number">105</span>, y: <span class="number">330</span>, width: <span class="number">200</span>,height: <span class="number">200</span>)</div><div class="line">   imageView.layer.addSublayer(gradientLayer)</div><div class="line">   gradientLayer.startPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</div><div class="line">   gradientLayer.endPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">1</span>)</div><div class="line">   gradientLayer.colors = [<span class="type">UIColor</span>.clear.cgColor,<span class="type">UIColor</span>.white.cgColor,<span class="type">UIColor</span>.clear.cgColor]</div><div class="line">   gradientLayer.locations = [<span class="number">0.0</span>,<span class="number">0.1</span>,<span class="number">0.2</span>]</div><div class="line">   <span class="comment">// part3:设置CABasicAnimation</span></div><div class="line">   <span class="keyword">let</span> gradientAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">   gradientAnimation.keyPath = <span class="string">"locations"</span></div><div class="line">   gradientAnimation.fromValue = [<span class="number">0.0</span>,<span class="number">0.1</span>,<span class="number">0.2</span>];</div><div class="line">   gradientAnimation.toValue = [<span class="number">0.8</span>,<span class="number">0.9</span>,<span class="number">1.0</span>];</div><div class="line">   gradientAnimation.duration = <span class="number">3.0</span>;</div><div class="line">   gradientAnimation.repeatCount = <span class="number">10</span>;</div><div class="line">   gradientLayer.add(gradientAnimation, forKey: <span class="literal">nil</span>)</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170625149838566182232.gif" alt="20170625149838566182232.gif"></p>
+<h3 id="音量条跳动效果"><a href="#音量条跳动效果" class="headerlink" title="音量条跳动效果"></a>音量条跳动效果</h3><p>设计思路：</p>
+<ol>
+<li>动画起始阶段：15根柱状 UIView 视图和一组随机颜色</li>
+<li>动画进行阶段</li>
+<li>动画结束阶段</li>
+</ol>
+<h4 id="动画起始阶段"><a href="#动画起始阶段" class="headerlink" title="动画起始阶段"></a>动画起始阶段</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setcolorArray</span><span class="params">()</span></span>&#123;</div><div class="line">   colorArray = <span class="type">NSMutableArray</span>()</div><div class="line">   <span class="keyword">let</span>  color1:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">255.0</span> / <span class="number">255.0</span>, green: <span class="number">127.0</span> / <span class="number">255.0</span>, blue: <span class="number">79.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color2:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">138.0</span> / <span class="number">255.0</span>, green: <span class="number">206.0</span> / <span class="number">255.0</span>, blue: <span class="number">245.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color3:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">216.0</span> / <span class="number">255.0</span>, green: <span class="number">114.0</span> / <span class="number">255.0</span>, blue: <span class="number">213.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color4:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">51.0</span> / <span class="number">255.0</span>, green: <span class="number">207.0</span> / <span class="number">255.0</span>, blue: <span class="number">48.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color5:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">102.0</span> / <span class="number">255.0</span>, green: <span class="number">150.0</span> / <span class="number">255.0</span>, blue: <span class="number">232.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color6:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">255.0</span> / <span class="number">255.0</span>, green: <span class="number">105.0</span> / <span class="number">255.0</span>, blue: <span class="number">177.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color7:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">187.0</span> / <span class="number">255.0</span>, green: <span class="number">56.0</span> / <span class="number">255.0</span>, blue: <span class="number">201.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color8:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">255.0</span> / <span class="number">255.0</span>, green: <span class="number">163.0</span> / <span class="number">255.0</span>, blue: <span class="number">0.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color9:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">203.0</span> / <span class="number">255.0</span>, green: <span class="number">93.0</span> / <span class="number">255.0</span>, blue: <span class="number">92.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color10:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">61.0</span> / <span class="number">255.0</span>, green: <span class="number">226.0</span> / <span class="number">255.0</span>, blue: <span class="number">210.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   <span class="keyword">let</span>  color11:<span class="type">UIColor</span> = <span class="type">UIColor</span>(red: <span class="number">25.0</span> / <span class="number">255.0</span>, green: <span class="number">146.0</span> / <span class="number">255.0</span>, blue: <span class="number">255.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">   colorArray.add(color1)</div><div class="line">   colorArray.add(color2)</div><div class="line">   colorArray.add(color3)</div><div class="line">   colorArray.add(color4)</div><div class="line">   colorArray.add(color5)</div><div class="line">   colorArray.add(color6)</div><div class="line">   colorArray.add(color7)</div><div class="line">   colorArray.add(color8)</div><div class="line">   colorArray.add(color9)</div><div class="line">   colorArray.add(color10)</div><div class="line">   colorArray.add(color11)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> audioBarNum:<span class="type">Int</span> = <span class="number">0</span></div><div class="line"><span class="keyword">var</span> gradientLayer:<span class="type">CAGradientLayer</span> = <span class="type">CAGradientLayer</span>()</div><div class="line"><span class="keyword">var</span> layerArray:<span class="type">NSMutableArray</span> = <span class="type">NSMutableArray</span>()</div><div class="line"><span class="keyword">var</span> colorArray:<span class="type">NSMutableArray</span> = <span class="type">NSMutableArray</span>()</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   setcolorArray()</div><div class="line">   <span class="keyword">self</span>.view.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">   audioBarNum = <span class="number">15</span>;</div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...audioBarNum &#123;</div><div class="line">       <span class="keyword">let</span> h:<span class="type">CGFloat</span> = <span class="number">150</span></div><div class="line">       <span class="keyword">let</span> w:<span class="type">CGFloat</span> = (<span class="keyword">self</span>.view.frame.size.width-<span class="number">10</span>)/<span class="type">CGFloat</span>(audioBarNum)</div><div class="line">       <span class="keyword">let</span> x:<span class="type">CGFloat</span> = <span class="number">20</span></div><div class="line">       <span class="keyword">let</span> y:<span class="type">CGFloat</span> = <span class="number">50</span></div><div class="line">       <span class="keyword">let</span> view:<span class="type">UIView</span> = <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: w*<span class="type">CGFloat</span>(i)+x, y: y, width: w-x, height: h))</div><div class="line">       <span class="keyword">self</span>.view.addSubview(view)</div><div class="line"></div><div class="line">       gradientLayer = <span class="type">CAGradientLayer</span>()</div><div class="line">       gradientLayer.frame = view.bounds;</div><div class="line">       gradientLayer.startPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>);</div><div class="line">       gradientLayer.endPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">1</span>);</div><div class="line">       view.layer.addSublayer(gradientLayer)</div><div class="line">       layerArray.add(gradientLayer)</div><div class="line">   &#125;</div><div class="line">   <span class="type">Timer</span>.scheduledTimer(timeInterval: <span class="number">0.4</span>, target: <span class="keyword">self</span>, selector: #selector(<span class="type">ViewController</span>.colorChange), userInfo: <span class="literal">nil</span>, repeats: <span class="literal">true</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="动画进行阶段"><a href="#动画进行阶段" class="headerlink" title="动画进行阶段"></a>动画进行阶段</h4><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...audioBarNum &#123;</div><div class="line">  <span class="keyword">let</span> h:<span class="type">CGFloat</span> = <span class="number">150</span></div><div class="line">  <span class="keyword">let</span> w:<span class="type">CGFloat</span> = (<span class="keyword">self</span>.view.frame.size.width-<span class="number">10</span>)/<span class="type">CGFloat</span>(audioBarNum)</div><div class="line">  <span class="keyword">let</span> x:<span class="type">CGFloat</span> = <span class="number">20</span></div><div class="line">  <span class="keyword">let</span> y:<span class="type">CGFloat</span> = <span class="number">50</span></div><div class="line">  <span class="keyword">let</span> view:<span class="type">UIView</span> = <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: w*<span class="type">CGFloat</span>(i)+x, y: y, width: w-x, height: h))</div><div class="line">  <span class="keyword">self</span>.view.addSubview(view)</div><div class="line"></div><div class="line">  gradientLayer = <span class="type">CAGradientLayer</span>()</div><div class="line">  gradientLayer.frame = view.bounds;</div><div class="line">  gradientLayer.startPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>);</div><div class="line">  gradientLayer.endPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">1</span>);</div><div class="line">  view.layer.addSublayer(gradientLayer)</div><div class="line">  layerArray.add(gradientLayer)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">colorChange</span><span class="params">()</span></span>&#123;</div><div class="line">   <span class="keyword">for</span> layer <span class="keyword">in</span> layerArray&#123;</div><div class="line">       <span class="keyword">let</span> index:<span class="type">Int</span> = <span class="type">Int</span>(arc4random_uniform(<span class="number">11</span>))</div><div class="line">       <span class="keyword">let</span> color:<span class="type">UIColor</span> = colorArray.object(at: index) <span class="keyword">as</span>! <span class="type">UIColor</span></div><div class="line">       <span class="keyword">let</span> colors = [</div><div class="line">           <span class="type">UIColor</span>.clear.cgColor,</div><div class="line">           color.cgColor</div><div class="line">       ]</div><div class="line">       <span class="keyword">let</span> layer = layer <span class="keyword">as</span>! <span class="type">CAGradientLayer</span></div><div class="line">       layer.colors = colors</div><div class="line">       layer.locations = [<span class="number">0</span>,<span class="number">1.0</span>]</div><div class="line">       <span class="keyword">let</span> gradientAnimation:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">       gradientAnimation.keyPath = <span class="string">"locations"</span></div><div class="line">       <span class="keyword">let</span> beginValue = <span class="type">Float</span>(arc4random_uniform(<span class="number">11</span>))/<span class="number">10.0</span></div><div class="line">       gradientAnimation.fromValue = [beginValue,beginValue]</div><div class="line">       gradientAnimation.toValue = [<span class="number">1.0</span>,<span class="number">1.0</span>]</div><div class="line">       gradientAnimation.duration = <span class="number">0.4</span></div><div class="line">       layer.add(gradientAnimation, forKey: <span class="literal">nil</span>)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="动画结束"><a href="#动画结束" class="headerlink" title="动画结束"></a>动画结束</h4><p>可以设置动画运行时间或者其他事件后关闭动画效果</p>
+<p>效果如下：</p>
+<p><img src="http://odab6qymb.bkt.clouddn.com/20170625149838628934794.gif" alt="20170625149838628934794.gif"></p>
+<p>本文代码1：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20CAEmitterCell/9.3_AnimationBegin%E9%AC%BC%E7%81%AB%E6%95%88%E6%9E%9C" target="_blank" rel="external">点击查看</a></p>
+<p>本文代码2：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%8D%81%E7%AB%A0CAGradientLayer" target="_blank" rel="external">点击查看</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/06/26/Swift-Animation08/" data-toggle="tooltip" data-placement="top" title="Swift Animation 内容层动画(四)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/06/25/Swift-Animation06/" data-toggle="tooltip" data-placement="top" title="Swift Animation 登录按钮动画">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#Animation" title="Animation">Animation</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://calvincheungcoder.github.io/2017/06/25/Swift-Animation07/";
+    var disqus_url = "http://calvincheungcoder.github.io/2017/06/25/Swift-Animation07/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2017 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 50.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://calvincheungcoder.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://calvincheungcoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
