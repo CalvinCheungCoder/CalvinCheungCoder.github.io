@@ -285,31 +285,184 @@
                 post-container">
 
                 <p>今天对开发的App进行了上架，其中这一版本支持了iPad，所以在打包上传时就需要上传iPad的icon以及launchImage，借此机会把App上架时所需的icon和launchImage的尺寸做一下总结<br><a id="more"></a></p>
-<h3 id="App-Store"><a href="#App-Store" class="headerlink" title="App Store"></a>App Store</h3><p>1024*1024，仅在<code>iTunes Connect</code>上传一张即可</p>
-<h3 id="桌面图标-app-icon"><a href="#桌面图标-app-icon" class="headerlink" title="桌面图标 (app icon)"></a>桌面图标 (app icon)</h3><p>for iPhone6 Plus(@3x):180 x 180  命名:<code>AppIcon60x60@2x</code></p>
-<p>for iPhone 6/5s/5/4s/4(@2x):120 x 120  命名:<code>AppIcon60x60@3x</code></p>
-<p>for iPad(@1x):76 x 76  命名:<code>AppIcon76x76~ipad</code></p>
-<p>for iPad(@2x):152 x 152  命名:<code>AppIcon76x76@2x~ipad</code></p>
-<p>for iPad Pro:167 x 167 命名:<code>AppIcon83.5x83.5@2x~ipad</code></p>
-<h3 id="系统搜索框图标-Spotlight-search-results-icon"><a href="#系统搜索框图标-Spotlight-search-results-icon" class="headerlink" title="系统搜索框图标 (Spotlight search results icon)"></a>系统搜索框图标 (Spotlight search results icon)</h3><p>for iPhone6 Plus(@3x):120 x 120  命名:<code>AppIcon40x40@3x</code></p>
-<p>for iPhone6/5s/5/4s/4(@2x):80 x 80  命名:<code>AppIcon40x40@2x</code></p>
-<p>for iPad (@1x):40 x 40 命名:<code>AppIcon40x40~ipad</code></p>
-<p>for iPad (@2x):80 x 80 命名:<code>AppIcon40x40@2x~ipad</code></p>
-<h3 id="系统设置图标-Settings-icon"><a href="#系统设置图标-Settings-icon" class="headerlink" title="系统设置图标 (Settings icon)"></a>系统设置图标 (Settings icon)</h3><p>for iPhone6 Plus(@3x):87 x 87  命名:<code>AppIcon29x29@3x</code></p>
-<p>for iPhone6/5s/5/4s/4(@2x):58 x 58  命名:<code>AppIcon29x29@2x</code></p>
-<p>for iPad (@1x):29 x 29 命名:<code>AppIcon29x29~ipad</code></p>
-<p>for iPad (@2x):58 x 58 命名:<code>AppIcon29x29@2x~ipad</code></p>
-<h3 id="通知栏图标-Notification"><a href="#通知栏图标-Notification" class="headerlink" title="通知栏图标 (Notification)"></a>通知栏图标 (Notification)</h3><p>for iPhone6 Plus(@3x):60 x 60  命名:<code>AppIcon20x20@3x</code></p>
-<p>for iPhone6/5s/5/4s/4(@2x):40 x 40  命名:<code>AppIcon20x20@2x</code></p>
-<p>for iPad (@1x):20 x 20 命名:<code>AppIcon20x20~ipad</code></p>
-<p>for iPad (@2x):40 x 40 命名:<code>AppIcon20x20@2x~ipad</code></p>
-<h3 id="启动图片-launch-image"><a href="#启动图片-launch-image" class="headerlink" title="启动图片 (launch image)"></a>启动图片 (launch image)</h3><p>普通屏幕（非Retina屏）:320 x 480  命名:<code>LaunchImage.png</code></p>
-<p>for iPhoen5s/5(@2x):640 x 1136 命名:<code>LaunchImage-700-568h@2x</code></p>
-<p>for iPhoen4s/4(@2x):640 x 960  命名:<code>LaunchImage@2x.png</code></p>
-<p>for iPhone 6(@2x):750 x 1334  命名:<code>LaunchImage-800-667h@2x.png</code></p>
-<p>for iPhone 6 Plus(@3x):1242 x 2208  命名:<code>LaunchImage-800-Portrait-736h@3x.png</code></p>
-<p>for iPad（@2x）:1536 x 2048 命名:<code>LaunchImage-700-Portrait@2x~ipad</code></p>
+<h3 id="App-Store"><a href="#App-Store" class="headerlink" title="App Store"></a>App Store</h3><p>1024*1024，在<code>iTunes Connect</code>上传一张，在项目资源中添加</p>
+<h3 id="桌面图标-app-icon"><a href="#桌面图标-app-icon" class="headerlink" title="桌面图标 (app icon)"></a>桌面图标 (app icon)</h3><table>
+<thead>
+<tr>
+<th>机型</th>
+<th>尺寸</th>
+<th>命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone6 Plus(@3x)</td>
+<td>180 x 180</td>
+<td>AppIcon60x60@3x</td>
+</tr>
+<tr>
+<td>iPhone 6/5s/5/4s/4(@2x)</td>
+<td>120 x 120</td>
+<td>AppIcon60x60@2x</td>
+</tr>
+<tr>
+<td>iPad(@1x)</td>
+<td>76 x 76</td>
+<td>AppIcon76x76~ipad</td>
+</tr>
+<tr>
+<td>iPad(@2x)</td>
+<td>152 x 152</td>
+<td>AppIcon76x76@2x~ipad</td>
+</tr>
+<tr>
+<td>iPad Pro</td>
+<td>167 x 167</td>
+<td>AppIcon83.5x83.5@2x~ipad</td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统搜索框图标-Spotlight-search-results-icon"><a href="#系统搜索框图标-Spotlight-search-results-icon" class="headerlink" title="系统搜索框图标 (Spotlight search results icon)"></a>系统搜索框图标 (Spotlight search results icon)</h3><table>
+<thead>
+<tr>
+<th>机型</th>
+<th>尺寸</th>
+<th>命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone6 Plus(@3x)</td>
+<td>120 x 120</td>
+<td>AppIcon40x40@3x</td>
+</tr>
+<tr>
+<td>iPhone6/5s/5/4s/4(@2x)</td>
+<td>80 x 80</td>
+<td>AppIcon40x40@2x</td>
+</tr>
+<tr>
+<td>iPad (@1x)</td>
+<td>40 x 40</td>
+<td>AppIcon40x40~ipad</td>
+</tr>
+<tr>
+<td>iPad (@2x)</td>
+<td>80 x 80</td>
+<td>AppIcon40x40@2x~ipad</td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统设置图标-Settings-icon"><a href="#系统设置图标-Settings-icon" class="headerlink" title="系统设置图标 (Settings icon)"></a>系统设置图标 (Settings icon)</h3><table>
+<thead>
+<tr>
+<th>机型</th>
+<th>尺寸</th>
+<th>命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone6 Plus(@3x)</td>
+<td>87 x 87</td>
+<td>AppIcon29x29@3x</td>
+</tr>
+<tr>
+<td>iPhone6/5s/5/4s/4(@2x)</td>
+<td>58 x 58</td>
+<td>AppIcon29x29@2x</td>
+</tr>
+<tr>
+<td>iPad (@1x)</td>
+<td>29 x 29</td>
+<td>AppIcon29x29~ipad</td>
+</tr>
+<tr>
+<td>iPad (@2x)</td>
+<td>58 x 58</td>
+<td>AppIcon29x29@2x~ipad</td>
+</tr>
+</tbody>
+</table>
+<h3 id="通知栏图标-Notification"><a href="#通知栏图标-Notification" class="headerlink" title="通知栏图标 (Notification)"></a>通知栏图标 (Notification)</h3><table>
+<thead>
+<tr>
+<th>机型</th>
+<th>尺寸</th>
+<th>命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone6 Plus(@3x)</td>
+<td>60 x 60</td>
+<td>AppIcon20x20@3x</td>
+</tr>
+<tr>
+<td>iPhone6/5s/5/4s/4(@2x)</td>
+<td>40 x 40</td>
+<td>AppIcon20x20@2x</td>
+</tr>
+<tr>
+<td>iPad (@1x)</td>
+<td>20 x 20</td>
+<td>AppIcon20x20~ipad</td>
+</tr>
+<tr>
+<td>iPad (@2x)</td>
+<td>40 x 40</td>
+<td>AppIcon20x20@2x~ipa</td>
+</tr>
+</tbody>
+</table>
+<h3 id="启动图片-launch-image"><a href="#启动图片-launch-image" class="headerlink" title="启动图片 (launch image)"></a>启动图片 (launch image)</h3><table>
+<thead>
+<tr>
+<th>机型</th>
+<th>尺寸</th>
+<th>命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通屏幕（非Retina屏）</td>
+<td>320 x 480</td>
+<td>LaunchImage.png</td>
+</tr>
+<tr>
+<td>iPhoen5s/5(@2x)</td>
+<td>640 x 1136</td>
+<td>LaunchImage-700-568h@2x</td>
+</tr>
+<tr>
+<td>iPhoen4s/4(@2x)</td>
+<td>640 x 960</td>
+<td>LaunchImage@2x.png</td>
+</tr>
+<tr>
+<td>iPhone 6(@2x)</td>
+<td>750 x 1334</td>
+<td>LaunchImage-800-667h@2x.png</td>
+</tr>
+<tr>
+<td>iPhone 6 Plus(@3x)</td>
+<td>1242 x 2208</td>
+<td>LaunchImage-800-Portrait-736h@3x.png</td>
+</tr>
+<tr>
+<td>iPad（@2x）</td>
+<td>1536 x 2048</td>
+<td>LaunchImage-700-Portrait@2x~ipad</td>
+</tr>
+<tr>
+<td>iPhone X</td>
+<td>1125 x 2436</td>
+<td>LaunchImage1125@3x.png</td>
+</tr>
+</tbody>
+</table>
 <p><a href="https://developer.apple.com/ios/human-interface-guidelines/overview/design-principles/#//apple_ref/doc/uid/TP40006556-CH22-SW1" target="_blank" rel="external">参考链接:iOS Human Interface Guidelines</a></p>
+<p>2017.11.11 更新</p>
 
 
                 <hr>
