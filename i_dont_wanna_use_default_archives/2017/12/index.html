@@ -13,11 +13,11 @@
 
     <title>
         
-          添加 RSS 订阅功能到 Hexo 博客 - DHTalk | DHTalk&#39;s Blog
+          DHTalk | DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/03/31/add-an-rss-feed/">
+    <link rel="canonical" href="http://CalvinCheung.coding.me/i_dont_wanna_use_default_archives/2017/12/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -240,168 +240,7 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg.jpg')
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
-                        
-                    </div>
-                    <h1>添加 RSS 订阅功能到 Hexo 博客</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Calvin on
-                        2017-03-31
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <p>首先，先安装 <a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="external">hexo-generator-feed</a> <a id="more"></a></p>
-<p>可以在Hexo根目录下运行如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ npm install hexo-generator-feed --save</div></pre></td></tr></table></figure>
-<p>等待安装完后，你会在<code>node_modules</code>文件夹内发现生成了一个<code>hexo-generator-feed</code>文件</p>
-<p>然后再配置根目录的<code>_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">plugin:</div><div class="line">- hexo-generator-feed</div><div class="line">#Feed Atom</div><div class="line">feed:</div><div class="line">type: atom</div><div class="line">path: atom.xml</div><div class="line">limit: 20</div></pre></td></tr></table></figure>
-<p>最后，配置主题目录下的_config.yml，添加RSS订阅链接即可,如下为next主题的配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># Set rss to false to disable feed link.</div><div class="line"># Leave rss as empty to use site&apos;s feed link.</div><div class="line"># Set rss to specific value if you have burned your feed already.</div><div class="line">rss: &quot;/atom.xml&quot;</div></pre></td></tr></table></figure>
-<p>配置成功后的个人页面</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/hexo_rss.png" alt=""></p>
-<p>点击RSS按钮的效果</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/hexo-rss-feed.png" alt=""></p>
-
-
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/04/02/southpaw/" data-toggle="tooltip" data-placement="top" title="那个情节俗套又深情的故事-铁拳">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2016/11/29/修改macOS终端中的名称/" data-toggle="tooltip" data-placement="top" title="修改 macOS 终端中的名称">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
-
-            </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-
-                    
-                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
-                    
-                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
-                    
-                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
-                    
-                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
-                    
-                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
-                    
-                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
-                    
-                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
-                    
-                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
-                    
-                </ul>
-                
-            </div>
-
-        </div>
-    </div>
-</article>
-
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "www-zhangdinghao-cn";
-    var disqus_identifier = "http://CalvinCheung.coding.me/2017/03/31/add-an-rss-feed/";
-    var disqus_url = "http://CalvinCheung.coding.me/2017/03/31/add-an-rss-feed/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-
+    <!-- Default Archive layout, we use archives instead. -->
 
     <!-- Footer -->
     <!-- Footer -->
