@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          再见，我的2017 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://CalvinCheung.coding.me/2018/01/01/goodbye2017/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                    <h1>再见，我的2017</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2018-01-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>2017 于我是极其特别的一年，这一年，我24岁。可能人就是这样，越是到一个敏感的时间节点，比如18岁、24岁、30岁等，越能让人变得敏感和深刻。这让我想起王小波在他的《黄金时代》中的一段话：</p>
+<blockquote>
+<p>那一天我二十一岁，在我一生的黄金时代，我有好多奢望。我想爱，想吃，还想在一瞬间变成天上半明半暗的云，后来我才知道，生活就是个缓慢受锤的过程，人一天天老下去，奢望也一天天消逝，最后变得像挨了锤的牛一样。可是我过二十一岁生日时没有预见到这一点。我觉得自己会永远生猛下去，什么也锤不了我。</p>
+</blockquote>
+<p>只是，我没有想到的是，我在 24 岁才开始理解生活是一个缓慢受锤的过程。</p>
+<h3 id="关于健康"><a href="#关于健康" class="headerlink" title="# 关于健康"></a><font color="red">#</font> 关于健康</h3><p>年后由于牙齿出现问题，去医院检查才发现已经很严重了，其实在此之前的大约2-3年时间里，我一直忽略了它的存在。牙疼的时候忍一忍就过去了，或者找找网上的偏方止痛一下。但是，随着时间的推移，到今年年初时，这颗牙齿基本已经不复存在了，检查过后经过考虑，还是决定对其进行治疗。</p>
+<p>就这样，在今年大概 3 月份开始，陆陆续续治疗了半年多的时间，期间忍受了多次的难以言说的痛苦，花费了一笔不小的开支，一颗牙齿总算治好了，只是从此以后跟随我的再也不是原本属于我的那一颗牙齿。时间就是这样子，你对它怎样，它也对你怎样。</p>
+<p>牙齿治疗好以后，我对待牙齿就变得很小心了。早晚刷牙，掌握刷牙技巧，漱口水，牙线，定期洗牙等，能用的坚决用上，时刻保持牙齿清洁，保护牙齿健康。人不都是这样吗？很多事情只有自己经历一次，才会记得那么刻骨铭心。而且，今年也在住处附近办了一张2年期的健身卡，虽然后来没怎么坚持，但是在 2018 年，一定要让自己坚持锻炼起来，毕竟身体才是革命的本钱啊。</p>
+<h3 id="关于工作"><a href="#关于工作" class="headerlink" title="# 关于工作"></a><font color="red">#</font> 关于工作</h3><p>今年上半年，对自己工作的环境一直不太满意，但是又感觉没有做好跳槽的准备，一直在公司待着。不过期间也做了一些事情，比如把之前的博客废弃了，迁移到了目前使用的这个，也陆陆续续写了几十篇文章，虽然文章的深度还不够，但总归是一个很好的开始。也在此期间帮助同事做了一款 App，帮助他把博客内容搬到了手机上，而且 App 的整体设计都是我来的，也加入了一些还算好玩的功能，也算是工作上的一点收获吧。</p>
+<p>下半年的时间里，由于之前的公司运营不下去，团队只好解散。于是，开始找工作之旅。还好在很快的时间里就确定了一家公司，初入公司后不久我也写了一篇博客记录工作的情况，可以参考 <a href="https://www.zhangdinghao.cn/2017/09/16/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%BF%91%E5%86%B5/" target="_blank" rel="external">记录一下近况 - DHTalk | DHTalk’s Blog</a>。</p>
+<p>让我感觉比较幸运的是，选择了这个 offer 可能算是我 2017 年做的比较不错的一个决定了。首先工作的氛围很好，公司主要业务是区块链技术方向，又因为自己加入时人员不是很多，所以前期开发的产品让自己掌握了很多区块链的技术，也完成了产品初期很多关于区块链技术的开发工作，对我来说，这是一个巨大的挑战也是一个自我提升的时间点。</p>
+<p>在 11 月开始，公司进入迅速发展的时期，人员迅速增加，产品功能也变得越来越多，所幸的是，来了很多很棒的同事，大家在一起开发产品配合默契，也使得我在他们身上可以学到很多更新鲜的东西。</p>
+<p>新的一年来临，希望新的一年自己能在工作中有更多的进步，不管是技术上还是在团队的配合沟通上。毕竟，技术扎实是根本，也是自己核心竞争力的体现；而团队配合、沟通也会是自己的加分项，我相信良好的沟通技巧肯定能提升大家的效率，节约大家的时间。只有这样，团队才得以有可能开发出更好、更棒的产品。</p>
+<h3 id="关于阅读、学习与时间管理"><a href="#关于阅读、学习与时间管理" class="headerlink" title="# 关于阅读、学习与时间管理"></a><font color="red">#</font> 关于阅读、学习与时间管理</h3><p>今年的阅读情况稍微比去年有所好转，但是整体来说自己还是不太满意。全年阅读书籍 26 本，再加上阮一峰老师未出版的 2 本新书，其中技术书籍占比很少，而且整体来说阅读的深度还是不够，没有能深入的对书籍内容进行领悟和掌握，这也是今年阅读的一个缺憾，希望 2018 年自己能弥补这方面的欠缺。具体的读书总结，可以参考此篇博客 <a href="https://www.zhangdinghao.cn/2017/12/30/2017-readBooks/" target="_blank" rel="external">2017 年读书总结 - DHTalk | DHTalk’s Blog</a></p>
+<p>学习方面，技术方面有些许提升，也在博客对之前很多的技术内容进行了填补，但是整体而言对自己非常不满意，Python 自学了一部分后就放弃了，Swift 方面也只是读书的时候进行了一些 coding。今年还参加了5门的自学考试，但是由于自己疏于学习和复习，只在考试前临时抱佛脚，导致5门的考试只通过了1门，虽然这些都是自己心知肚明的东西，但是现在回想起来，还是对自己学习方面感到深深的不满。</p>
+<p>之所以阅读、学习都让自己没有达到预期的目标，后来我发现是自己的时间管理方面出现了问题。由于没有翔实的学习与阅读计划，导致了学习与阅读效率的低下，在临近年尾的3个月时间里，我对自己的时间进行了一些合理的安排，发现效率很高，今年读书的很大一部分是在年尾的几个月完成的。其实，在做 2017 年计划时，自己也对目标进行了拆分，但是由于时间管理的问题，导致今年的计划完成度很低，这也是 2018 年要努力克服的问题。</p>
+<p>今年也是在得到 App 学习时间比较长的一年，2016 年底接触到了得到，今年一年的时间里在得到听了将近 1000 小时音频，订阅了 4 个专栏。但是，还是时间管理的问题，导致学习的效率和收获都很低下。当到做总结的时候才发现，一切的问题还是由于自己内心太过浮躁，没有能静心总结和学习。</p>
+<h3 id="关于生活"><a href="#关于生活" class="headerlink" title="# 关于生活"></a><font color="red">#</font> 关于生活</h3><p>今年购入了几个新的电子设备，beats X 耳机、iPad Pro 10.5、Smartisan T1、iPhone 8 Plus、iPhone SE等，也在一定程度上提升了自己的生活幸福度。</p>
+<p>今年也和她的关系有了更深的进展，大家互相见了双方父母，定了亲，不出意外，2018 年上半年将是结婚的时间，希望我们能在未来的生活道路上越走越好。</p>
+<p>今年理财方面算是自己的一个败笔，下半年遭遇了几个很不幸的事件，虽然结果都很不好，但是也算是让自己对人生有了更多、更深刻的理解，虽然也心有不甘，但是很多坏的事情还是越年轻体验越好，也希望自己能在未来心理更轻大，这也是为什么说，生活就是个缓慢受锤的过程，而我到 24 岁才开始真正的理解它。</p>
+<h3 id="关于-2018"><a href="#关于-2018" class="headerlink" title="# 关于 2018"></a><font color="red">#</font> 关于 2018</h3><p>不管过去的一年经历了什么，过去的总归要过去，或许有一些收获，有一些失去，但是唯有在失去和收获中更好的总结经验，才能使得未来的生活过成自己想要的样子。对于2017，过去的就不再遗憾，失去的看淡些，得到的也很满意。对于 2018，希望自己能在以下几个方面做好</p>
+<ol>
+<li>阅读书籍能够更深入，读书总结不可少</li>
+<li>技术方面要提升，总结，阅读至少4本书籍</li>
+<li>做好自己的时间管理，提升工作和学习效率</li>
+<li>自学考试要做好计划，争取今年考过8-10门课程</li>
+<li>英语口语要提升，今年8-9月份能够掌握基础的口语对话</li>
+<li>理财方面总结 2017 年教训，18 年能够平稳安全的提升个人财务水平</li>
+</ol>
+<p>2017年，再见。2018年，继续努力。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/12/30/2017-readBooks/" data-toggle="tooltip" data-placement="top" title="2017 年读书总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://CalvinCheung.coding.me/2018/01/01/goodbye2017/";
+    var disqus_url = "http://CalvinCheung.coding.me/2018/01/01/goodbye2017/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
+					
+					<!-- 2018 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 56.3k 字 </span>
+					<br>
+					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+                </p>
+				
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
