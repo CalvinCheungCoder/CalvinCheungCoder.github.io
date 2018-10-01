@@ -13,11 +13,11 @@
 
     <title>
         
-          DHTalk | DHTalk&#39;s Blog
+          在 Mac 上使用 pyenv 安装管理多版本 Python - DHTalk | DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/categories/杂想集/">
+    <link rel="canonical" href="http://CalvinCheung.coding.me/2018/04/01/install-python-on-mac/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -240,7 +240,167 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Mac" title="Mac">Mac</a>
+                        
+                    </div>
+                    <h1>在 Mac 上使用 pyenv 安装管理多版本 Python</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2018-04-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>首先通过<code>homebrew</code>安装<code>pyenv</code>，之后的所有<code>Python</code>安装和管理通过<code>pyenv</code>进行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ brew install pyenv</div></pre></td></tr></table></figure>
+<p><code>pyenv</code>安装完以后，就可以选择性的进行<code>Python</code>环境安装了。下面已安装<code>Python2.7</code>为例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pyenv install 2.7.5</div></pre></td></tr></table></figure>
+<p>此外，你还可以通过<code>pyenv</code>查看目前系统中已经安装过的<code>Python</code>版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pyenv versions</div></pre></td></tr></table></figure>
+<p>如果需要在不同版本的<code>Python</code>间进行切换的话，使用以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pyenv global 3.3.1</div></pre></td></tr></table></figure>
+<p>当然，你也可以让版本切换只对当前目录生效</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pyenv local 2.7.5</div></pre></td></tr></table></figure>
+<p>参考链接：<a href="https://stackoverflow.com/questions/18671253/how-can-i-use-homebrew-to-install-both-python-2-and-3-on-mac" target="_blank" rel="external">How can I use Homebrew to install both Python 2 and 3 on Mac?</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/01/01/goodbye2017/" data-toggle="tooltip" data-placement="top" title="再见，我的2017">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Mac" title="Mac">Mac</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://CalvinCheung.coding.me/2018/04/01/install-python-on-mac/";
+    var disqus_url = "http://CalvinCheung.coding.me/2018/04/01/install-python-on-mac/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
 
     <!-- Footer -->
     <!-- Footer -->
