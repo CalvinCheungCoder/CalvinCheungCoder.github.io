@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -274,6 +274,28 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/04/08/custom-log/">
+        <h2 class="post-title">
+            iOS 封装自定义打印方法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            封装自定义打印宏并在预编译文件中引用
+#ifdef DEBUG#define MyLog(FORMAT, ...) fprintf(stderr,"%s: 第%d行\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithF......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-08
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -532,13 +554,13 @@ $ npm install hexo-generator-feed --save
                     <div class="tags">
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="2">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#ObjC" title="ObjC" rel="22">ObjC</a>
                             
                         
+                            
+                        
+                            
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="2">读书笔记</a>
                             
                         
                             
@@ -547,8 +569,6 @@ $ npm install hexo-generator-feed --save
                         
                             
                             <a href="/tags/#Animation" title="Animation" rel="10">Animation</a>
-                            
-                        
                             
                         
                             
@@ -566,11 +586,17 @@ $ npm install hexo-generator-feed --save
                             
                         
                             
+                        
+                            
                             <a href="/tags/#PM" title="PM" rel="2">PM</a>
                             
                         
                             
+                        
+                            
                             <a href="/tags/#3D Touch" title="3D Touch" rel="2">3D Touch</a>
+                            
+                        
                             
                         
                             
@@ -772,7 +798,7 @@ $ npm install hexo-generator-feed --save
                         src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
 					<br>
-					<span class="post-count"> 本站目前共计 56.3k 字 </span>
+					<span class="post-count"> 本站目前共计 56.4k 字 </span>
 					<br>
 					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
                 </p>
