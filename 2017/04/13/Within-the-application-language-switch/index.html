@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -290,24 +290,24 @@
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取版本号：Bundle Short Version</span></div><div class="line"><span class="built_in">NSString</span> *shortVersion = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleShortVersionString"</span>];</div><div class="line"><span class="comment">// 获取版本号：Bundle version</span></div><div class="line"><span class="built_in">NSString</span> *version = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleVersion"</span>];</div><div class="line"><span class="comment">// 获取应用标识：Bundle identifier</span></div><div class="line"><span class="built_in">NSString</span> *bundleIdentifier = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleIdentifier"</span>];</div><div class="line"><span class="comment">// 获取应用名称：Bundle display name</span></div><div class="line"><span class="built_in">NSString</span> *bundleDisplayName = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleDisplayName"</span>];</div><div class="line"><span class="comment">// 获取Bundle name</span></div><div class="line"><span class="built_in">NSString</span> *bundleName = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleDisplayName"</span>];</div><div class="line"><span class="comment">// 获取 app 包路径</span></div><div class="line"><span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] bundlePath];</div><div class="line"><span class="comment">// 获取 app 资源目录路径</span></div><div class="line"><span class="built_in">NSString</span> *resPath = [[<span class="built_in">NSBundle</span> mainBundle] resourcePath];</div></pre></td></tr></table></figure>
 <h3 id="App名称国际化"><a href="#App名称国际化" class="headerlink" title="App名称国际化"></a>App名称国际化</h3><h4 id="配置-Project"><a href="#配置-Project" class="headerlink" title="配置 Project"></a>配置 Project</h4><p>点击 <code>PROJECT -&gt; info -&gt; Localizations</code> 这里默认只有 <code>English</code> 点击下方的加号可以添加你想要的语言。其中，<code>zh-Hans</code> 是简体中文， <code>zh-Hant</code> 是繁体中文。</p>
 <p>如图所示：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206183440037.png" alt="20170413149206183440037.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206183440037.png" alt="20170413149206183440037.png"></p>
 <h4 id="新建-strings-文件"><a href="#新建-strings-文件" class="headerlink" title="新建 .strings 文件"></a>新建 .strings 文件</h4><p>在与 <code>info.plist</code> 文件同级目录下创建 <code>.strings</code> 文件，<code>Command + N</code> 新建 <code>Strings File</code> 文件，命令为 <code>InfoPlist.strings</code>。</p>
 <p>如图所示：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206202285102.png" alt="20170413149206202285102.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206202285102.png" alt="20170413149206202285102.png"></p>
 <h4 id="配置-strings-文件"><a href="#配置-strings-文件" class="headerlink" title="配置 .strings 文件"></a>配置 .strings 文件</h4><p>创建成功后选中 <code>InfoPlist.strings</code> 文件，点击 <code>Localize...</code> 按钮，左侧弹框中选择语言。</p>
 <p>如图所示：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206218824740.png" alt="20170413149206218824740.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206218824740.png" alt="20170413149206218824740.png"></p>
 <p>选中后再次勾选上你想要的其他语言</p>
 <p>如图所示：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206223443381.png" alt="20170413149206223443381.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206223443381.png" alt="20170413149206223443381.png"></p>
 <p>勾选成功后在左侧 <code>InfoPlist.strings</code> 中创建了几个文件，如图：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206232317524.png" alt="20170413149206232317524.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206232317524.png" alt="20170413149206232317524.png"></p>
 <p>分别在各自的文件内写入如下代码,其中 <code>iWords</code> 是我的App在英语环境下显示的名称，你只需要在对应的文件内写入对应的名称即可，这样当手机语言变化时，就会显示这些对应文件内的 App 名称。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CFBundleDisplayName</span> = <span class="string">"iWords"</span>;</div></pre></td></tr></table></figure>
 <p>到此为止，App 名称的国际化完成。切记创建 <code>.strings</code> 文件时一定要命名为 <code>InfoPlist.strings</code>。</p>
 <h3 id="App-内部实现语言切换"><a href="#App-内部实现语言切换" class="headerlink" title="App 内部实现语言切换"></a>App 内部实现语言切换</h3><h4 id="新建并配置-strings-文件"><a href="#新建并配置-strings-文件" class="headerlink" title="新建并配置 .strings 文件"></a>新建并配置 .strings 文件</h4><p>内部实现语言切换和 App 名称国际化基本一致，首先创建 <code>.strings</code> 配置文件，这里我命名为：<code>DHLocalizable.strings</code>。</p>
 <p>创建成功后依然点击右侧的 <code>Localize...</code> 按钮，并手动勾选其他语言，勾选完成后左侧依旧生成对于的<code>.strings</code>文件，如图：</p>
-<p><img src="http://odab6qymb.bkt.clouddn.com/20170413149206282572841.png" alt="20170413149206282572841.png"></p>
+<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170413149206282572841.png" alt="20170413149206282572841.png"></p>
 <h4 id="创建多语言切换工具类"><a href="#创建多语言切换工具类" class="headerlink" title="创建多语言切换工具类"></a>创建多语言切换工具类</h4><p>创建继承于 <code>NSObject</code> 的工具类，命名为：<code>DHLanguageTool</code></p>
 <p>其中 <code>DHLanguageTool.h</code> 中声明基本的方法，包括初始化App语言，当前的语言，设置语言等。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#define DHLocalizedString(key)  [[DHLanguageTool bundle] localizedStringForKey:(key) value:@<span class="meta-string">""</span> table:@<span class="meta-string">"DHLocalizable"</span>]</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHLanguageKey @<span class="meta-string">"userLanguage"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHSimplifiedChinese @<span class="meta-string">"zh-Hans"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHTraditionalChinese @<span class="meta-string">"zh-Hant"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHEnglish @<span class="meta-string">"en"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DHLanguageTool</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *  获取当前资源文件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">+ (<span class="built_in">NSBundle</span> *)bundle;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *  初始化语言文件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">+ (<span class="keyword">void</span>)initUserLanguage;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *  获取应用当前语言</span></div><div class="line"><span class="comment"> */</span></div><div class="line">+ (<span class="built_in">NSString</span> *)userLanguage;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *  设置当前语言</span></div><div class="line"><span class="comment"> */</span></div><div class="line">+ (<span class="keyword">void</span>)setUserlanguage:(<span class="built_in">NSString</span> *)language;</div></pre></td></tr></table></figure>
