@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -303,14 +303,14 @@
 <p>添加逐帧动画的素材并初始化定时器</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Img</span> = <span class="type">UIImageView</span>()</div><div class="line"><span class="type">Img</span>?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line"><span class="type">Img</span>?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="type">Img</span>!)</div><div class="line">   </div><div class="line">index = <span class="number">0</span></div><div class="line">timer = <span class="type">Timer</span>.scheduledTimer(timeInterval:<span class="number">0.1</span>,target:<span class="keyword">self</span>,selector:#selector(<span class="type">ViewController</span>.refushImage),userInfo:<span class="literal">nil</span>,repeats:<span class="literal">true</span>)</div></pre></td></tr></table></figure>
 <p>实现定时器事件</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\(index)</span>.png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       timer?.invalidate()</div><div class="line">       index -= <span class="number">1</span></div><div class="line">       <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\(index)</span>.png"</span>)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       timer?.invalidate()</div><div class="line">       index -= <span class="number">1</span></div><div class="line">       <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上代码表示逐帧展示，若希望动画能够实现循环，则在最后一帧动画时初始化第一帧</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\(index)</span>.png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       index == <span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       index == <span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果如下：</p>
 <p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170622149813708941531.gif" alt="20170622149813708941531.gif"></p>
 <h4 id="基于-CADisplayLink-的逐帧动画"><a href="#基于-CADisplayLink-的逐帧动画" class="headerlink" title="基于 CADisplayLink 的逐帧动画"></a>基于 CADisplayLink 的逐帧动画</h4><p>iOS 设备的屏幕刷新频率默认是 60Hz，而 CADisplayLink 可以保持和屏幕频率相同的频率将内容渲染到屏幕上，因此它的精度非常高。 CADisplayLink 在使用时需要注册到 runloop 中，每当刷帧频率达到的时候 runloop 就会向 CADisplayLink 指定的 target 发送一次指定的 selector 消息，相应的 selector 中的方法就会调用一次。</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Img</span> = <span class="type">UIImageView</span>()</div><div class="line"><span class="type">Img</span>?.frame = <span class="type">UIScreen</span>.main.bounds</div><div class="line"><span class="type">Img</span>?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="type">Img</span>!)</div><div class="line">   </div><div class="line">index = <span class="number">0</span></div><div class="line">displaylink = <span class="type">CADisplayLink</span>.<span class="keyword">init</span>(target: <span class="keyword">self</span>, selector: #selector(<span class="type">ViewController</span>.refushImage))</div><div class="line">displaylink?.preferredFramesPerSecond = <span class="number">60</span></div><div class="line">displaylink?.add(to: <span class="type">RunLoop</span>.current, forMode: <span class="type">RunLoopMode</span>.defaultRunLoopMode)</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   </div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\(index)</span>.png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       </div><div class="line">       index = <span class="number">0</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">refushImage</span><span class="params">()</span></span> &#123;</div><div class="line">   </div><div class="line">   <span class="type">Img</span>?.image = <span class="type">UIImage</span>(named: <span class="string">"\(index).png"</span>)</div><div class="line">   index += <span class="number">1</span></div><div class="line">   <span class="keyword">if</span>(index == <span class="number">67</span>)&#123;</div><div class="line">       </div><div class="line">       index = <span class="number">0</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="基于-draw-方法的逐帧动画"><a href="#基于-draw-方法的逐帧动画" class="headerlink" title="基于 draw 方法的逐帧动画"></a>基于 draw 方法的逐帧动画</h4><p>在 UiView 中还有一个非常重要的方法: draw() 方法。当创建一个新的 View 时,其自动生成了一个 draw() 方法，且此方法可以被重写，一旦 draw() 方法被调用, Cocoa 就会为我们创建一个图形上下文，在图形上下文中的所有操作最终都会反应在当前的 UiView 界面上。按照这个思路，如果定期调用 draw() 方法绘制新的内容，那么就可以实现逐帧动画的效果。</p>
 <p>总结一下 draw() 触发的机制</p>
 <p>（1）使用 addSubView 会触发 layoutSubviews。<br>（2）使用 view 的 frame 属性会触发 layoutSubviews（frame更新）。<br>（3）直接调用 setLayoutSubviews 方法会触发 layoutSubviews。</p>
@@ -496,7 +496,7 @@
                 <p class="copyright text-muted">
                     Copyright &copy; DHTalk&#39;s Blog 2016 - 2017
 					
-					<!-- 2018 -->
+					<!-- 2019 -->
                     
 					<br>
                     Theme by <a href="http://huangxuan.me">Hux</a> 
@@ -514,7 +514,7 @@
                         src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
 					<br>
-					<span class="post-count"> 本站目前共计 63.3k 字 </span>
+					<span class="post-count"> 本站目前共计 64.5k 字 </span>
 					<br>
 					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
                 </p>
