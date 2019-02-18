@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -274,6 +274,31 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/04/14/iOS-DeviceModel/">
+        <h2 class="post-title">
+            iOS 封装获取机型工具类
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            日常开发中我们常需要根据机型来做一些特殊的处理，本文针对此种需求，将此功能抽离出来，封装成工具类，能够极大方便日常的开发。
+Tool.h 暴露接口
++ (NSString *)getCurrentDeviceModel;
+Tool.m 实现
++ (NSString *)getCurrentDeviceModel&#123;    int mib[2];    size_t len;    c......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-14
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -489,30 +514,6 @@ iPhone6 Plus(@......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/05/textfield-encapsulation/">
-        <h2 class="post-title">
-            iOS 禁止 Textfield 使用复制粘贴菜单栏
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在日常开发工作中，有很多涉及密码的文本框，处于安全考虑我们一般都是不让用户使用复制和粘贴功能的，也就是长按文本框内容时禁止弹出文本复制、粘贴等菜单栏，接下来简单说一下这种需求怎么实现。
-1、创建基于 UITextfield 的 BaseTextfield
-2、在 BaseTextfield.m 中写入如下代码
-- (BOOL)canPerformAction:(SEL)action with......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-05
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -552,6 +553,8 @@ iPhone6 Plus(@......
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="3">读书笔记</a>
                             
                         
@@ -586,6 +589,12 @@ iPhone6 Plus(@......
                             
                         
                             
+                        
+                            
+                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                            
+                        
+                            
                             <a href="/tags/#3D Touch" title="3D Touch" rel="2">3D Touch</a>
                             
                         
@@ -594,19 +603,13 @@ iPhone6 Plus(@......
                             
                         
                             
-                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                        
                             
                         
                             
                         
                             
                             <a href="/tags/#Python" title="Python" rel="2">Python</a>
-                            
-                        
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -804,7 +807,7 @@ iPhone6 Plus(@......
                         src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
 					<br>
-					<span class="post-count"> 本站目前共计 66.4k 字 </span>
+					<span class="post-count"> 本站目前共计 68.2k 字 </span>
 					<br>
 					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
                 </p>

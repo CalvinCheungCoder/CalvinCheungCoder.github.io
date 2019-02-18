@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -277,6 +277,30 @@
 
 <div class="post-preview">
 
+    <a href="/2017/04/05/textfield-encapsulation/">
+        <h2 class="post-title">
+            iOS 禁止 Textfield 使用复制粘贴菜单栏
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            在日常开发工作中，有很多涉及密码的文本框，处于安全考虑我们一般都是不让用户使用复制和粘贴功能的，也就是长按文本框内容时禁止弹出文本复制、粘贴等菜单栏，接下来简单说一下这种需求怎么实现。
+1、创建基于 UITextfield 的 BaseTextfield
+2、在 BaseTextfield.m 中写入如下代码
+- (BOOL)canPerformAction:(SEL)action with......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/04/02/southpaw/">
         <h2 class="post-title">
             那个情节俗套又深情的故事-铁拳
@@ -416,6 +440,8 @@ $ npm install hexo-generator-feed --save
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="3">读书笔记</a>
                             
                         
@@ -450,6 +476,12 @@ $ npm install hexo-generator-feed --save
                             
                         
                             
+                        
+                            
+                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                            
+                        
+                            
                             <a href="/tags/#3D Touch" title="3D Touch" rel="2">3D Touch</a>
                             
                         
@@ -458,19 +490,13 @@ $ npm install hexo-generator-feed --save
                             
                         
                             
-                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                        
                             
                         
                             
                         
                             
                             <a href="/tags/#Python" title="Python" rel="2">Python</a>
-                            
-                        
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -668,7 +694,7 @@ $ npm install hexo-generator-feed --save
                         src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
 					<br>
-					<span class="post-count"> 本站目前共计 66.4k 字 </span>
+					<span class="post-count"> 本站目前共计 68.2k 字 </span>
 					<br>
 					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
                 </p>

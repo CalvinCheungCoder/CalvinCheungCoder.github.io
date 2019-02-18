@@ -97,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -274,6 +274,36 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/05/04/iOS-dhSearchView/">
+        <h2 class="post-title">
+            一步一步实现 iOS App 的搜索功能
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            先看下 App 中实现的搜索效果图：
+
+左侧为搜索初始页面，右侧为搜索的结果列表页面，现在说一下实现的思路和步骤： 
+
+点击搜索按钮跳转到搜索页面（包含头部热门搜索视图以及搜索历史视图和清空搜索历史功能）
+搜索框输入内容开始搜索并展示搜索结果列表
+点击搜索列表的某一行跳转到下级页面，并记录搜索历史数据
+如果清空搜索框内的内容，再次展示搜索页面
+
+搜索页面创建 基于 UIViewControl......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-05-04
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -482,31 +512,6 @@ UIWebView 有一个可选的代理方法：- (BOOL)webView:(UIWebView *)webView 
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/14/iOS-DeviceModel/">
-        <h2 class="post-title">
-            iOS 封装获取机型工具类
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            日常开发中我们常需要根据机型来做一些特殊的处理，本文针对此种需求，将此功能抽离出来，封装成工具类，能够极大方便日常的开发。
-Tool.h 暴露接口
-+ (NSString *)getCurrentDeviceModel;
-Tool.m 实现
-+ (NSString *)getCurrentDeviceModel&#123;    int mib[2];    size_t len;    c......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -546,6 +551,8 @@ Tool.m 实现
                     <div class="tags">
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="3">读书笔记</a>
                             
                         
@@ -580,6 +587,12 @@ Tool.m 实现
                             
                         
                             
+                        
+                            
+                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                            
+                        
+                            
                             <a href="/tags/#3D Touch" title="3D Touch" rel="2">3D Touch</a>
                             
                         
@@ -588,19 +601,13 @@ Tool.m 实现
                             
                         
                             
-                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                        
                             
                         
                             
                         
                             
                             <a href="/tags/#Python" title="Python" rel="2">Python</a>
-                            
-                        
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -798,7 +805,7 @@ Tool.m 实现
                         src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
 					<br>
-					<span class="post-count"> 本站目前共计 66.4k 字 </span>
+					<span class="post-count"> 本站目前共计 68.2k 字 </span>
 					<br>
 					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
                 </p>

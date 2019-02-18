@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          EOS 错误码整理 - DHTalk | DHTalk&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://CalvinCheung.coding.me/2019/02/18/eos-errorlist/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#EOS" title="EOS">EOS</a>
+                        
+                    </div>
+                    <h1>EOS 错误码整理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2019-02-18
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>EOS 目前大约有180种错误类型，虽然有错误码，但是还是很笼统的，具体的报错信息还得看detail里面的内容</p>
+<h3 id="一、常见的错误码以及issue上对应的错误记录"><a href="#一、常见的错误码以及issue上对应的错误记录" class="headerlink" title="一、常见的错误码以及issue上对应的错误记录"></a>一、常见的错误码以及issue上对应的错误记录</h3><p>3010001 Invalid name<br>账户名格式1-12位（a-z，1-5，“.” ) 且”.”不能在首尾<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010001" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010001</a></p>
+<p>3010004 Invalid authority<br>检查 authorization”: [{<br>“actor”: “accountname1”,<br>“permission”: “active”<br>}] 参数是否填写正确<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010004" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010004</a></p>
+<p>3010008 Invalid block ID<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010008" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010008</a></p>
+<p>3010010 Invalid packed transaction<br>一般报这个错误就是打包交易的参数传的不正确<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010010" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010010</a></p>
+<p>3010011 Invalid asset<br>检查资产格式是否正确<br>如”stake_net_quantity”:”0.0001 EOS” 1.确保正确的精度 空格加Symbol<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010011" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3010011</a></p>
+<p>3030000 Block exception<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030000" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030000</a></p>
+<p>3030001 Unlinkable block<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030001" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030001</a></p>
+<p>3030002 Transaction outputs in block do not match transaction outputs from applying block<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030002" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030002</a></p>
+<p>3030003 Block does not guarantee concurrent execution without conflicts<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030003" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030003</a></p>
+<p>3030008 Block is not signed with expected key<br>检查是否对块信息签名<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030008" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3030008</a></p>
+<p>3040000 Transaction exception<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040000" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040000</a></p>
+<p>3040002 Transaction should have at least one normal action<br>查看action是否添加，是否正确<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040002" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040002</a></p>
+<p>3040005 Expired Transaction<br>交易过期，过期时间可以设置长一点<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040005" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3040005</a></p>
+<p>3040006 Transaction Expiration Too Far<br>过期时间设置太长</p>
+<p>3040007 Invalid Reference Block<br>引用块无效或不匹配，节点间不同有关<br><a href="https://github.com/EOSIO/eos/issues/4659" target="_blank" rel="external">https://github.com/EOSIO/eos/issues/4659</a></p>
+<p>3050000 Action validate exception<br>检查Action是否正确<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3050000" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3050000</a></p>
+<p>3050001 Account name already exists<br>账户名已存在</p>
+<p>3050002 Invalid Action Arguments<br>检查Action参数<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3050002" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3050002</a></p>
+<p>3050003 eosio_assert_message assertion failure<br>账户不存在，资产金额不正确等</p>
+<p>3060003 Contract Table Query Exception<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3060003" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3060003</a></p>
+<p>3060004 Contract Query Exception<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3060004" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3060004</a></p>
+<p>3070002 Runtime Error Processing WASM<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3070002" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3070002</a></p>
+<p>3080001 Account using more than allotted RAM usage<br>内存不足，买些内存</p>
+<p>3080002 Transaction exceeded the current network usage limit imposed on the transaction<br>网络资源不足，抵押一些资源</p>
+<p>3080004 Transaction exceeded the current CPU usage limit imposed on the transaction<br>CPU不足，抵押一些CPU</p>
+<p>3080006 Transaction took too long<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3080006+" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3080006+</a></p>
+<p>3081001 Transaction reached the deadline set due to leeway on account CPU limits<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3081001" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3081001</a></p>
+<p>3090003 Provided keys, permissions, and delays do not satisfy declared authorizations<br>检查权限，签名等是否正确<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3090003" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3090003</a></p>
+<p>3090004 Missing required authority<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3090004" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3090004</a></p>
+<p>3110001 Missing Chain API Plugin<br><a href="https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3110001" target="_blank" rel="external">https://github.com/EOSIO/eos/issues?utf8=%E2%9C%93&amp;q=3110001</a></p>
+<h3 id="二、EOS-错误码大全"><a href="#二、EOS-错误码大全" class="headerlink" title="二、EOS 错误码大全"></a>二、EOS 错误码大全</h3><p>3000000 blockchain exception<br>3010001 Invalid name<br>3010002 Invalid public key<br>3010003 Invalid private key<br>3010004 Invalid authority<br>3010005 Invalid action<br>3010006 Invalid transaction<br>3010007 Invalid ABI<br>3010008 Invalid block ID<br>3010009 Invalid transaction ID<br>3010010 Invalid packed transaction<br>3010011 Invalid asset<br>3010012 Invalid chain ID<br>3010013 Invalid fixed key<br>3010014 Invalid symbol<br>3020000 Fork database exception<br>3020001 Block can not be found<br>3030000 Block exception<br>3030001 Unlinkable block<br>3030002 Transaction outputs in block do not match transaction outputs from applying block 交易不匹配<br>3030003 Block does not guarantee concurrent execution without conflicts<br>3030004 Shard locks in block are incorrect or mal-formed<br>3030005 Block exhausted allowed resources<br>3030006 Block is too old to push<br>3030007 Block is from the future<br>3030008 Block is not signed with expected key<br>3030009 Block is not signed by expected producer<br>3040000 Transaction exception<br>3040001 Error decompressing transaction<br>3040002 Transaction should have at least one normal action<br>3040003 Transaction should have at least one required authority<br>3040004 Context-free action should have no required authority<br>3040005 Expired Transaction<br>3040006 Transaction Expiration Too Far<br>3040007 Invalid Reference Block<br>3040008 Duplicate transaction<br>3040009 Duplicate deferred transaction<br>3040010 Context free action is not allowed inside generated Transaction<br>3040011 The transaction can not be found<br>3040012 Pushing too many transactions at once<br>3040013 Transaction is too big<br>3040014 Unknown transaction compression<br>3050000 Action validate exception<br>3050001 Account name already exists<br>3050002 Invalid Action Arguments<br>3050003 eosio_assert_message assertion failure<br>3050004 eosio_assert_code assertion failure<br>3050005 Action can not be found<br>3050006 Mismatch between action data and its struct<br>3050007 Attempt to use unaccessible API<br>3050008 Abort Called<br>3050009 Inline Action exceeds maximum size limit<br>3060000 Database exception<br>3060001 Permission Query Exception<br>3060002 Account Query Exception<br>3060003 Contract Table Query Exception<br>3060004 Contract Query Exception<br>3060100 Database exception<br>3060101 Database usage is at unsafe levels<br>3060102 Reversible block log usage is at unsafe levels<br>3070000 WASM Exception<br>3070001 Error in WASM page memory<br>3070002 Runtime Error Processing WASM<br>3070003 Serialization Error Processing WASM<br>3070004 memcpy with overlapping memory<br>3070005 binaryen exception<br>3080000 Resource exhausted exception<br>3080001 Account using more than allotted RAM usage<br>3080002 Transaction exceeded the current network usage limit imposed on the transaction<br>3080003 Transaction network usage is too much for the remaining allowable usage of the current block<br>3080004 Transaction exceeded the current CPU usage limit imposed on the transaction<br>3080005 Transaction CPU usage is too much for the remaining allowable usage of the current block<br>3080006 Transaction took too long<br>3080007 Transaction exceeded the current greylisted account network usage limit<br>3081001 Transaction reached the deadline set due to leeway on account CPU limits<br>3090000 Authorization exception<br>3090001 Duplicate signature included<br>3090002 Irrelevant signature included<br>3090003 Provided keys, permissions, and delays do not satisfy declared authorizations<br>3090004 Missing required authority<br>3090005 Irrelevant authority included<br>3090006 Insufficient delay<br>3090007 Invalid Permission<br>3090008 The action is not allowed to be linked with minimum permission<br>3090009 The parent permission is invalid<br>3100000 Miscellaneous exception<br>3100001 Internal state is no longer consistent<br>3100002 Unknown bloc<br>3100003 Unknown transaction<br>3100004 Corrupted reversible block database was fixed<br>3100005 Extracted genesis state from blocks.log<br>3100006 Subjective exception thrown during block production<br>3100007 Multiple voter info detected<br>3100008 Feature is currently unsupported<br>3100009 Node management operation successfully executed<br>3110000 Plugin exception<br>3110001 Missing Chain API Plugin<br>3110002 Missing Wallet API Plugin<br>3110003 Missing History API Plugin<br>3110004 Missing Net API Plugin<br>3110005 Missing Chain Plugin<br>3110006 Incorrect plugin configuration<br>3120000 Wallet exception<br>3120001 Wallet already exists<br>3120002 Nonexistent wallet<br>3120003 Locked wallet<br>3120004 Missing public key<br>3120005 Invalid wallet password<br>3120006 No available wallet<br>3120007 Already unlocked<br>3120008 Key already exists<br>3120009 Nonexistent key<br>3120010 Unsupported key type<br>3120011 Wallet lock timeout is invalid<br>3120012 Secure Enclave Exception<br>3130000 Actor or contract whitelist/blacklist exception<br>3130001 Authorizing actor of transaction is not on the whitelist<br>3130002 Authorizing actor of transaction is on the blacklist<br>3130003 Contract to execute is not on the whitelist<br>3130004 Contract to execute is on the blacklist<br>3130005 Action to execute is on the blacklist<br>3130006 Public key in authority is on the blacklist<br>3140000 Exceptions that are allowed to bubble out of emit calls in controller<br>3140001 Block does not match checkpoint<br>3150000 ABI exception<br>3150001 No ABI found<br>3150002 Invalid Ricardian Clause<br>3150003 Invalid Ricardian Action<br>3150004 The type defined in the ABI is invalid<br>3150005 Duplicate type definition in the ABI<br>3150006 Duplicate struct definition in the ABI<br>3150007 Duplicate action definition in the ABI<br>3150008 uplicate table definition in the ABI<br>3150009 Duplicate error message definition in the ABI<br>3150010 ABI serialization time has exceeded the deadline<br>3150011 ABI recursive definition has exceeded the max recursion depth<br>3150012 Circular definition is detected in the ABI<br>3150013 Unpack data exception<br>3150014 Pack data exception<br>3160000 Contract exception<br>3160001 The payer of the table data is invalid<br>3160002 Table access violation<br>3160003 Invalid table iterator<br>3160004 Table can not be found inside the cache<br>3160005 The table operation is not allowed<br>3160006 Invalid contract vm type<br>3160007 Invalid contract vm version<br>3160008 Contract is already running this version of code<br>3160009 No wast file found<br>3160010 No abi file found<br>3170000 Producer exception<br>3170001 Producer private key is not available<br>3170002 Pending block state is missing<br>3170003 Producer is double confirming known rang<br>3170004 Producer schedule exception<br>3170006 The producer is not part of current schedule<br>3180000 Reversible Blocks exception<br>3180001 Invalid reversible blocks directory<br>3180002 Backup directory for reversible blocks already existg<br>3180003 Gap in the reversible blocks database<br>3190000 Block log exception<br>3190001 unsupported version of block log<br>3190002 fail to append block to the block log<br>3190003 block log can not be found<br>3190004 block log backup dir already exists<br>3200000 http exception<br>3200001 invalid http client root certificate<br>3200002 invalid http response<br>3200003 service resolved to multiple ports<br>3200004 fail to resolve host<br>3200005 http request fail<br>3200006 invalid http request<br>3210000 Resource limit exception<br>3220000 Mongo DB exception<br>3220001 Fail to insert new data to Mongo DB<br>3220002 Fail to update existing data in Mongo DB<br>3230000 Contract API exception<br>3230001 Crypto API Exception<br>3230002 Database API Exception<br>3230003 Arithmetic Exception</p>
+<p><a href="http://blog.eosdata.io/index.php/2018/07/20/eos_errorcode/" target="_blank" rel="external">原文链接</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/02/16/2019-in-the-uk/" data-toggle="tooltip" data-placement="top" title="2019 🇬🇧英国之行">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#EOS" title="EOS">EOS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-zhangdinghao-cn";
+    var disqus_identifier = "http://CalvinCheung.coding.me/2019/02/18/eos-errorlist/";
+    var disqus_url = "http://CalvinCheung.coding.me/2019/02/18/eos-errorlist/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DHTalk&#39;s Blog 2016 - 2019
+					
+					<!-- 2019 -->
+                    
+					<br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    
+					<!-- 
+					<span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    
+					Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | -->
+					
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+					<br>
+					<span class="post-count"> 本站目前共计 68.2k 字 </span>
+					<br>
+					<span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+                </p>
+				
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = '';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
