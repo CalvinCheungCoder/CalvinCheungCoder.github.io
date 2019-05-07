@@ -13,11 +13,11 @@
 
     <title>
         
-          iOS 3D Touch 开发(二) Peek &amp; Pop - DHTalk | DHTalk&#39;s Blog
+          Hexo 博客常用指令 - DHTalk | DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/04/20/ios-3dtouch-peek-pop/">
+    <link rel="canonical" href="http://CalvinCheung.coding.me/2019/05/08/hexo-commands/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -251,14 +251,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
-                        
                     </div>
-                    <h1>iOS 3D Touch 开发(二) Peek &amp; Pop</h1>
+                    <h1>Hexo 博客常用指令</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Calvin on
-                        2017-04-20
+                        2019-05-08
                     </span>
                 </div>
             </div>
@@ -277,33 +275,119 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>上篇文章写了 3D Touch 的 Quick Actions(快捷菜单)，如果你也在添加 3D Touch 功能到 App 中，请点击<a href="http://zhangdinghao.cn/2017/04/19/iOS-3D-Touch/" target="_blank" rel="external">『文章链接』</a>查看 3D Touch 开发的第一篇文章，接下来我们来谈谈 Peek 和 Pop 的实现。<a id="more"></a></p>
-<p>先上一张效果图：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/2017042014926558317018.jpg" alt="2017042014926558317018.jpg"></p>
-<p>如图从左至右展示了 Peek 和 Pop 的三个阶段：</p>
-<p>（1）提示用户这里有 3D Touch 的交互，会使交互控件周围模糊。<br>（2）继续深按，会出现预览视图。<br>（3）通过视图上的交互控件进行进一步交互。</p>
-<h3 id="Peek-实现"><a href="#Peek-实现" class="headerlink" title="Peek 实现"></a>Peek 实现</h3><p>因为我是在 UITableViewCell 中长按实现的此功能，接下来上代码：</p>
-<p>1、首先检测 3D Touch 是否可用，可以使用的话注册代理和视图</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *homeTwoCell = <span class="string">@"HomeOneCell"</span>;</div><div class="line"><span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:homeTwoCell];</div><div class="line"><span class="keyword">if</span> (!cell) &#123;</div><div class="line">   cell = [[<span class="built_in">UITableViewCell</span> alloc]initWithStyle:<span class="built_in">UITableViewCellStyleValue1</span> reuseIdentifier:homeTwoCell];</div><div class="line">&#125;</div><div class="line">cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</div><div class="line">cell.textLabel.text = <span class="string">@"3D Touch"</span>;</div><div class="line">    </div><div class="line"><span class="comment">// 检测3D Touch可用性 并注册</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.traitCollection.forceTouchCapability == <span class="built_in">UIForceTouchCapabilityAvailable</span>) &#123;</div><div class="line">   </div><div class="line">   [<span class="keyword">self</span> registerForPreviewingWithDelegate:<span class="keyword">self</span> sourceView:cell];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2、实现 Peek 代理方法</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- peek手势</span></div><div class="line">- (<span class="keyword">nullable</span> <span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext viewControllerForLocation:(<span class="built_in">CGPoint</span>)location</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 转化坐标</span></div><div class="line">    location = [<span class="keyword">self</span>.tableView convertPoint:location fromView:[previewingContext sourceView]];</div><div class="line">    <span class="comment">// 根据locaton获取位置</span></div><div class="line">    <span class="built_in">NSIndexPath</span> *path = [<span class="keyword">self</span>.tableView indexPathForRowAtPoint:location];</div><div class="line">    <span class="comment">// 根据位置获取字典数据传传入控制器</span></div><div class="line">    DetailViewController *detail = [DetailViewController new];</div><div class="line">    detail.titleStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%ld"</span>,(<span class="keyword">long</span>)path.row];</div><div class="line">    <span class="keyword">return</span> detail;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>至此已经实现了点击 Cell 出现 Peek，当然此时点击 Cell 出现的 Peek 视图的大小是系统默认的(如上图所示，Peek 视图的尺寸是系统默认的)。</p>
-<p>如果我们想自定义 Peek 视图的大小该如何设置呢？</p>
-<hr>
-<p>『 04.21 更正』</p>
-<p>如果在 Peek 页面想要自定义 PeekView 大小的时候，只需要在上面的代码中添加如下代码即可，设置好自己想要的预览试图的大小，添加此代码不影响 Peek 的3个阶段展示：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">detail.preferredContentSize = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,ScreenHeight<span class="number">-160</span>);</div></pre></td></tr></table></figure>
-<p>设置以后的视图效果如图所示：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
-<h3 id="Pop-实现"><a href="#Pop-实现" class="headerlink" title="Pop 实现"></a>Pop 实现</h3><p>当出现 Peek 视图后，用户继续长按会有 Pop 视图，即进入到详情页面。因为我们已经实现了 Peek 视图的代理方法，所以在此实现一下 Pop 视图的代理方法即可。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- pop手势</span></div><div class="line"></div><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment">   *previewingContext：被预览的视图控制器的内容对象 == 上面代理方法中的previewingContext，内存中是同一个对象</span></div><div class="line"><span class="comment">   *viewControllerToCommit：被present（pop）的视图控制器 == 上面代理方法中返回的控制器，内存中是同一个对象</span></div><div class="line"><span class="comment">   *调用时间：pop阶段调用这个方法</span></div><div class="line"><span class="comment">   *作用：配置并且present一个commit（pop）视图控制器。</span></div><div class="line"><span class="comment">*/</span></div><div class="line">- (<span class="keyword">void</span>)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext commitViewController:(<span class="built_in">UIViewController</span> *)viewControllerToCommit&#123;</div><div class="line">    </div><div class="line">    viewControllerToCommit.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</div><div class="line">    [<span class="keyword">self</span>.navigationController pushViewController:viewControllerToCommit animated:<span class="literal">YES</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Peek-quick-action-Peek-视图下的快捷菜单"><a href="#Peek-quick-action-Peek-视图下的快捷菜单" class="headerlink" title="Peek quick action(Peek 视图下的快捷菜单)"></a>Peek quick action(Peek 视图下的快捷菜单)</h3><p>部分应用在 Peek 视图是有一些快捷菜单的，如图：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
-<p>如何设置 Peek 视图菜单呢？</p>
-<p>在即将进入的 DetailView 中声明菜单数组：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *previewActionItems;</div></pre></td></tr></table></figure>
-<p>懒加载数组并在每个 Action 中实现事件:</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;<span class="built_in">UIPreviewActionItem</span>&gt;&gt; *)previewActionItems&#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 分享</span></div><div class="line">    <span class="built_in">UIPreviewAction</span> *itemOne = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"点赞"</span> style:<span class="built_in">UIPreviewActionStyleDefault</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</div><div class="line">        <span class="comment">// 实现分享</span></div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    <span class="comment">// 点赞</span></div><div class="line">    <span class="built_in">UIPreviewAction</span> *itemTwo = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"分享"</span> style:<span class="built_in">UIPreviewActionStyleDestructive</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</div><div class="line">        <span class="comment">// 实现点赞</span></div><div class="line">    &#125;];</div><div class="line">    <span class="keyword">return</span> @[itemOne,itemTwo];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样在 Peek 界面中就会出现对应的菜单，并做出对应的处理。</p>
-<p>至此，3D Touch 的 Peek 和 Pop 实现已经基本完毕，如果后续有更新再继续添加。</p>
-<p>附：<a href="https://github.com/CalvinCheungCoder/3DTouchDemo" target="_blank" rel="external">『源码下载』</a></p>
+                <p>原文链接：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/commands.html</a></p>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo init [folder]</div></pre></td></tr></table></figure>
+<p>新建一个网站。如果没有设置 <a href="">folder</a> ，Hexo 默认在目前的文件夹建立网站。</p>
+<p>###new</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
+<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="external">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new &quot;post title with whitespace&quot;</div></pre></td></tr></table></figure>
+<p>###generate</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>生成静态文件。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d, –deploy</td>
+<td>文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td>-w, –watch</td>
+<td>监视文件变动</td>
+</tr>
+</tbody>
+</table>
+<p>该命令可以简写为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
+<p>###publish</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo publish [layout] &lt;filename&gt;</div></pre></td></tr></table></figure>
+<p>发表草稿。</p>
+<p>###server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code>。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p, –port</td>
+<td>重设端口</td>
+</tr>
+<tr>
+<td>-s, –static</td>
+<td>只使用静态文件</td>
+</tr>
+<tr>
+<td>-l, –log</td>
+<td>启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody>
+</table>
+<p>###deploy<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
+<p>部署网站。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-g, –generate</td>
+<td>部署之前预先生成静态文件</td>
+</tr>
+</tbody>
+</table>
+<p>该命令可以简写为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
+<p>###render<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo render &lt;file1&gt; [file2] ...</div></pre></td></tr></table></figure></p>
+<p>渲染文件。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-o, –output</td>
+<td>设置输出路径</td>
+</tr>
+</tbody>
+</table>
+<p>###migrate<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo migrate &lt;type&gt;</div></pre></td></tr></table></figure></p>
+<p>从其他博客系统 <a href="https://hexo.io/zh-cn/docs/migration" target="_blank" rel="external">迁移内容</a>。</p>
+<p>###clean<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure></p>
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<p>###list<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo list &lt;type&gt;</div></pre></td></tr></table></figure></p>
+<p>列出网站资料。</p>
+<p>###version<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure></p>
+<p>显示 Hexo 版本。</p>
+<p>###选项</p>
+<p>###安全模式<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --safe</div></pre></td></tr></table></figure></p>
+<p>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
+<p>###调试模式<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --debug</div></pre></td></tr></table></figure></p>
+<p>在终端中显示调试信息并记录到 <code>debug.log</code>。当您碰到问题时，可以尝试用调试模式重新执行一次，<a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo%2Fissues%2Fnew" target="_blank" rel="external">并提交调试信息到 GitHub</a>。</p>
+<p>###简洁模式<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --silent</div></pre></td></tr></table></figure></p>
+<p>隐藏终端信息。</p>
+<p>###自定义配置文件的路径<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --config custom.yml</div></pre></td></tr></table></figure></p>
+<p>自定义配置文件的路径，执行后将不再使用 <code>_config.yml</code>。</p>
+<p>###显示草稿<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --draft</div></pre></td></tr></table></figure></p>
+<p>显示 <code>source/_drafts</code> 文件夹中的草稿文章。</p>
+<p>###自定义 CWD<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --cwd /path/to/cwd</div></pre></td></tr></table></figure></p>
+<p>自定义当前工作目录（Current working directory）的路径。</p>
 
 
                 <hr>
@@ -312,13 +396,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/04/20/ios-tableView-leftSlid/" data-toggle="tooltip" data-placement="top" title="iOS 8 以上实现 TableViewCell 左滑菜单功能">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/04/19/iOS-3D-Touch/" data-toggle="tooltip" data-placement="top" title="iOS 3D Touch 开发(一) Quick Actions">下一篇 &rarr;</a>
+                            <a href="/2019/02/19/mysql-use-emoji/" data-toggle="tooltip" data-placement="top" title="MySQL 支持 emoji 图标存储">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -345,8 +425,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
-                        
                     </div>
                 </section>
                 
