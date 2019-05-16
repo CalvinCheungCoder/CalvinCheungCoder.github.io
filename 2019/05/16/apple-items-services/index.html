@@ -13,7 +13,7 @@
 
     <title>
         
-          使用 items-services 安装 iOS App - DHTalk | DHTalk&#39;s Blog
+          使用 items-services 协议直接安装 iOS App - DHTalk | DHTalk&#39;s Blog
         
     </title>
 
@@ -254,7 +254,7 @@
                           <a class="tag" href="/tags/#tips" title="tips">tips</a>
                         
                     </div>
-                    <h1>使用 items-services 安装 iOS App</h1>
+                    <h1>使用 items-services 协议直接安装 iOS App</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Calvin on
@@ -284,8 +284,8 @@
 </ol>
 <h4 id="主要操作步骤如下："><a href="#主要操作步骤如下：" class="headerlink" title="主要操作步骤如下："></a>主要操作步骤如下：</h4><ol>
 <li>个人/公司开发者账号打包时先将需要测试的设备 <code>UUID</code> 加入到开发者中心的设备列表里，一个开发者账号限制为 100 台设备。企业开发者账号无需此操作。</li>
-<li>打包时使用 <code>developer profile</code> 或 <code>adhoc distribution profile</code> 进行 <code>archive</code>，由于该 IPA 不是用于发布到 App Store，所以打包时切记不要使用 <code>distribution profile</code> 选项。</li>
-<li>打包完成后生成 <code>ipa</code> 和 <code>plist</code> 文件，IPA 文件为 iOS 系统的软件安装包，<code>plist</code> 文件是 Apple 通过 <code>items-services</code> 协议访问的文件。</li>
+<li>打包时使用 <code>developer profile</code> 或 <code>adhoc distribution profile</code> 进行 <code>archive</code>，由于该 <code>IPA</code> 不是用于发布到 App Store，所以打包时切记不要使用 <code>distribution profile</code> 选项。</li>
+<li>打包完成后生成 <code>ipa</code> 和 <code>plist</code> 文件，<code>IPA</code> 文件为 iOS 系统的软件安装包，<code>plist</code> 文件是 Apple 通过 <code>items-services</code> 协议访问的文件。</li>
 <li>将打包好的 <code>IPA</code> 文件上传至下载服务器，并将该 <code>IPA</code> 的下载链接🔗正确配置到 <code>plist</code> 文件中，<code>plist</code> 文件内容和格式如下</li>
 <li>将配置好的 <code>plist</code> 文件上传至服务器，并获取其链接，然后在产品官网或者公司内部测试网站配置 <code>items-services</code> 协议，协议链接为 <code>itms-services://?action=download-manifest&amp;url=‘plist文件访问地址’</code>，只需要在产品下载按钮触发时打开此链接，iOS 系统自带 Safari 浏览器就会直接提示用户安装产品了。</li>
 </ol>
