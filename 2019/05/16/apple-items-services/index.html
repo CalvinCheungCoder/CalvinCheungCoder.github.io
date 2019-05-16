@@ -13,11 +13,11 @@
 
     <title>
         
-          使用 Google Cloud 搭建 BBR+SS/SSR 科学上网 - DHTalk | DHTalk&#39;s Blog
+          使用 items-services 安装 iOS App - DHTalk | DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2018/12/23/create-ss-using-google-cloud/">
+    <link rel="canonical" href="http://CalvinCheung.coding.me/2019/05/16/apple-items-services/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -251,14 +251,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#科学上网" title="科学上网">科学上网</a>
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
                         
                     </div>
-                    <h1>使用 Google Cloud 搭建 BBR+SS/SSR 科学上网</h1>
+                    <h1>使用 items-services 安装 iOS App</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Calvin on
-                        2018-12-23
+                        2019-05-16
                     </span>
                 </div>
             </div>
@@ -277,32 +277,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>近期又折腾了几次科学上网，每次设置都需要上网寻找教程，看到了一篇还不错的，索性转载并根据自己的情况稍作修改自留。<a href="https://cyhour.com/520/" target="_blank" rel="external">原文链接：小试 Google Cloud 搭建 BBR+S$ 科学上网</a>，如有侵权请告知，我会做删除处理。</p>
-<p>Google Cloud 其实就是个 VPS，VPS 能干的它都能实现。Google Cloud 赠送 300 刀可以使用 1 年，也就是说如无意外，我们可以免费使用 1 年速度还不错的 SS/SSR 科学上网。</p>
-<p><a href="https://console.cloud.google.com/freetrial" target="_blank" rel="external">Google Cloud 试用地址</a>，自备 Visa 信用卡。申请不成功自行放狗或者找度娘。</p>
-<h3 id="1、计算引擎中创建VM实例"><a href="#1、计算引擎中创建VM实例" class="headerlink" title="1、计算引擎中创建VM实例"></a>1、计算引擎中创建VM实例</h3><p>选个乞丐配置就好。<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/ssr1.png" alt="1"></p>
-<h3 id="2、申请保留静态-IP"><a href="#2、申请保留静态-IP" class="headerlink" title="2、申请保留静态 IP"></a>2、申请保留静态 IP</h3><p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/ssr2.png" alt="2"></p>
-<h3 id="3、修改防火墙"><a href="#3、修改防火墙" class="headerlink" title="3、修改防火墙"></a>3、修改防火墙</h3><p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/ssr3.png" alt="3"></p>
-<h3 id="4、安装-BBR-内核"><a href="#4、安装-BBR-内核" class="headerlink" title="4、安装 BBR 内核"></a>4、安装 BBR 内核</h3><p>SSH 登录，sudo -i 切换到 root 用户。<a href="https://teddysun.com/489.html" target="_blank" rel="external">方法源自秋水逸冰</a></p>
-<p>运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div><div class="line">chmod +x bbr.sh</div><div class="line">./bbr.sh</div></pre></td></tr></table></figure>
-<p>安装完成后，脚本会提示需要重启 VPS，输入 y 并回车后重启。</p>
-<p>重启完成后，进入 VPS，验证一下是否成功安装最新内核并开启 TCP BBR，输入以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
-<p>查看内核版本，含有 4.11 就表示 OK 了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sysctl net.ipv4.tcp_available_congestion_control</div></pre></td></tr></table></figure>
-<p>返回值一般为：<br>net.ipv4.tcp_available_congestion_control = bbr cubic reno</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sysctl net.ipv4.tcp_congestion_control</div></pre></td></tr></table></figure>
-<p>返回值一般为：<br>net.ipv4.tcp_congestion_control = bbr</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sysctl net.core.default_qdisc</div></pre></td></tr></table></figure>
-<p>返回值一般为：<br>net.core.default_qdisc = fq</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">lsmod | grep bbr</div></pre></td></tr></table></figure>
-<p>返回值有 tcp_bbr 模块即说明bbr已启动。</p>
-<h3 id="5、安装-SS-SSR"><a href="#5、安装-SS-SSR" class="headerlink" title="5、安装 SS/SSR"></a>5、安装 SS/SSR</h3><p>这里使用秋水逸冰提供的一键脚本，脚本代码如下，<a href="https://teddysun.com/486.html" target="_blank" rel="external">脚本原文链接：Shadowsocks 一键安装脚本（四合一）</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo -i</div><div class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</div><div class="line">chmod +x shadowsocks-all.sh</div><div class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</div></pre></td></tr></table></figure>
-<p>运行过程中关于 SS/SSR 的配置不明白的地方，请查看 <a href="https://github.com/Ehco1996/django-sspanel/wiki/ShadowsocksR-%E6%8E%A8%E8%8D%90%E5%8D%8F%E8%AE%AE%E6%B7%B7%E6%B7%86%E8%AE%BE%E7%BD%AE" target="_blank" rel="external">此篇文章</a></p>
-<p>配置完成后效果如下：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/ssr4.png" alt="4"></p>
-<h3 id="6、油管速度"><a href="#6、油管速度" class="headerlink" title="6、油管速度"></a>6、油管速度</h3><p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/ss-youtube.png" alt="5"></p>
+                <p>Android 用户在使用 App 时比较方便，很多时候可以直接在 App 对应官网下载 APK 并安装就可以使用了；而 iOS 由于其系统的封闭性，普通用户安装使用 App 时只有 App Store 一个渠道，尤其很多应用无法在大陆 App Store 安装很不方便。现在就介绍下 Apple 的 <code>items-services</code> 协议，使用此协议就可以不使用 App Store 安装 iOS 应用了；当然，此协议的使用主要分为 2 部分。</p>
+<ol>
+<li>个人或者公司开发者账号打包 App 给内部测试人员使用。</li>
+<li>企业级开发者账号分发，部分行业产品无法上架 App Store 时多采用此方法。</li>
+</ol>
+<h4 id="主要操作步骤如下："><a href="#主要操作步骤如下：" class="headerlink" title="主要操作步骤如下："></a>主要操作步骤如下：</h4><ol>
+<li>个人/公司开发者账号打包时先将需要测试的设备 <code>UUID</code> 加入到开发者中心的设备列表里，一个开发者账号限制为 100 台设备。企业开发者账号无需此操作。</li>
+<li>打包时使用 <code>developer profile</code> 或 <code>adhoc distribution profile</code> 进行 <code>archive</code>，由于该 IPA 不是用于发布到 App Store，所以打包时切记不要使用 <code>distribution profile</code> 选项。</li>
+<li>打包完成后生成 <code>ipa</code> 和 <code>plist</code> 文件，IPA 文件为 iOS 系统的软件安装包，<code>plist</code> 文件是 Apple 通过 <code>items-services</code> 协议访问的文件。</li>
+<li>将打包好的 <code>IPA</code> 文件上传至下载服务器，并将该 <code>IPA</code> 的下载链接🔗正确配置到 <code>plist</code> 文件中，<code>plist</code> 文件内容和格式如下</li>
+<li>将配置好的 <code>plist</code> 文件上传至服务器，并获取其链接，然后在产品官网或者公司内部测试网站配置 <code>items-services</code> 协议，协议链接为 <code>itms-services://?action=download-manifest&amp;url=‘plist文件访问地址’</code>，只需要在产品下载按钮触发时打开此链接，iOS 系统自带 Safari 浏览器就会直接提示用户安装产品了。</li>
+</ol>
+<figure class="highlight plist"><table><tr><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </div><div class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>items<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">dict</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">key</span>&gt;</span>assets<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">array</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">dict</span>&gt;</span>  </div><div class="line">                    <span class="tag">&lt;<span class="name">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                    <span class="tag">&lt;<span class="name">string</span>&gt;</span>software-package<span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">                    <span class="tag">&lt;<span class="name">key</span>&gt;</span>url<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                    <span class="tag">&lt;<span class="name">string</span>&gt;</span> IPA 文件下载地址 <span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;/<span class="name">dict</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;/<span class="name">array</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">key</span>&gt;</span>metadata<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">dict</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">key</span>&gt;</span>bundle-identifier<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">string</span>&gt;</span> 包名 <span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">key</span>&gt;</span>bundle-version<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">string</span>&gt;</span> 版本号 <span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">string</span>&gt;</span>software<span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">key</span>&gt;</span>title<span class="tag">&lt;/<span class="name">key</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">string</span>&gt;</span> 项目名 <span class="tag">&lt;/<span class="name">string</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;/<span class="name">dict</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">dict</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -311,13 +298,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/12/30/2018-readBooks/" data-toggle="tooltip" data-placement="top" title="2018 年读书总结">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/01/install-python-on-mac/" data-toggle="tooltip" data-placement="top" title="在 Mac 上使用 pyenv 安装管理多版本 Python">下一篇 &rarr;</a>
+                            <a href="/2019/05/06/hexo-commands/" data-toggle="tooltip" data-placement="top" title="Hexo 博客常用指令">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -344,7 +327,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#科学上网" title="科学上网">科学上网</a>
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
                         
                     </div>
                 </section>
