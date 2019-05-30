@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/04/19/iOS-3D-Touch/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/04/19/iOS-3D-Touch/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -303,11 +303,11 @@
 <p>选填：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItemSubtitle</span> <span class="comment">// 设置标签的副标题</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconType</span> <span class="comment">// 设置标签Icon类型</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconFile</span> <span class="comment">// 设置标签的Icon文件</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemUserInfo</span> <span class="comment">// 设置信息字典(用于传值)</span></div></pre></td></tr></table></figure>
 <p>如图所示，使用 info.plist 创建一个菜单，只设置了必填项：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170419149257266880875.jpg" alt="20170419149257266880875.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170419149257266880875.jpg" alt="20170419149257266880875.jpg"></p>
 <h4 id="动态创建"><a href="#动态创建" class="headerlink" title="动态创建"></a>动态创建</h4><p>在 RootViewController 的 - (void)viewDidLoad 方法中添加如下代码：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItem</span> *item = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"two"</span> localizedTitle:<span class="string">@"个人中心"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeLove</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line"><span class="built_in">UIApplicationShortcutItem</span> * itemTwo = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"three"</span> localizedTitle:<span class="string">@"查看课件"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithTemplateImageName:<span class="string">@"kejian@2x.png"</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line">[<span class="built_in">UIApplication</span> sharedApplication].shortcutItems = @[item, itemTwo];</div></pre></td></tr></table></figure>
 <p>创建2个菜单，分别使用系统图标和自定义图标。加上静态创建的1个菜单，现在应该有3个菜单了，看下效果图：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170419149257307316163.jpg" alt="20170419149257307316163.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170419149257307316163.jpg" alt="20170419149257307316163.jpg"></p>
 <h3 id="Quick-Actions-的回调"><a href="#Quick-Actions-的回调" class="headerlink" title="Quick Actions 的回调"></a>Quick Actions 的回调</h3><p>UIApplication 提供了一个回调方法：<br><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler NS_AVAILABLE_IOS(9_0);</code></p>
 <p>我们依据这个回调中的<code>shortcutItem</code>的<code>type</code>和<code>userinfo</code>来做出不同的事件处理，代码如下：</p>
 <p>可以根据我们设置的唯一标识或者 title 进行判断</p>
@@ -513,7 +513,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -577,7 +577,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

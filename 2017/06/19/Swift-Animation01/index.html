@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/06/19/Swift-Animation01/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/06/19/Swift-Animation01/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -285,35 +285,35 @@
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 方法一:闭包</span></div><div class="line"><span class="type">UIView</span>.animate(withDuration: <span class="number">1</span>) &#123; </div><div class="line">  <span class="keyword">self</span>.loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 方法二:方法形式</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间设置</span></div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)<span class="comment">// 按钮位置变化</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 提交动画// 方法二:方法形式</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间设置</span></div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="keyword">self</span>.loginButton!.frame.origin.y, width: <span class="keyword">self</span>.loginButton!.frame.width, height: <span class="keyword">self</span>.loginButton!.frame.height)<span class="comment">// 按钮位置变化</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 提交动画</span></div></pre></td></tr></table></figure>
 <p>如图所示：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149785461320448.gif" alt="20170619149785461320448.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149785461320448.gif" alt="20170619149785461320448.gif"></p>
 <h3 id="几何形状动画"><a href="#几何形状动画" class="headerlink" title="几何形状动画"></a>几何形状动画</h3><p>几何形状动画：即让视图改变其视图形状。例如：我们实现让登录页面的登录按钮由两侧向中间收拢的效果。</p>
 <p>1.初始化按钮</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.改变按钮的宽为之前的0.7倍，高度为之前的1.2倍，动画时间2s</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 几何形状动画</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.bounds = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: loginButton!.frame.size.width*<span class="number">0.7</span>, height: loginButton!.frame.size.height*<span class="number">1.2</span>)</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>如图所示：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149785916847478.gif" alt="20170619149785916847478.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149785916847478.gif" alt="20170619149785916847478.gif"></p>
 <h3 id="位置-形状动画"><a href="#位置-形状动画" class="headerlink" title="位置+形状动画"></a>位置+形状动画</h3><p>在登录页面，设置登录按钮的位置和形状大小的改变</p>
 <p>1.初始化按钮</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.进行形状和位置的改变</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 位置 + 形状动画</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.bounds = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">210</span>, width: loginButton!.frame.size.width*<span class="number">0.7</span>, height: loginButton!.frame.size.height*<span class="number">1.2</span>)</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149786175784160.gif" alt="20170619149786175784160.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149786175784160.gif" alt="20170619149786175784160.gif"></p>
 <h3 id="淡入淡出动画"><a href="#淡入淡出动画" class="headerlink" title="淡入淡出动画"></a>淡入淡出动画</h3><p>淡入淡出动画通过改变视图的透明度来实现。例如：实现登录按钮的背景由淡到深的变化。</p>
 <p>1.初始化按钮并设置透明度为0</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line">loginButton!.alpha = <span class="number">0</span><span class="comment">// 透明度</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.实现透明度由0至1的变化，时间为1s</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 淡入淡出</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.alpha = <span class="number">1</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下:</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149786216851548.gif" alt="20170619149786216851548.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149786216851548.gif" alt="20170619149786216851548.gif"></p>
 <h3 id="颜色渐变动画"><a href="#颜色渐变动画" class="headerlink" title="颜色渐变动画"></a>颜色渐变动画</h3><p>颜色渐变，顾名思义，就是指视图颜色在一定时间内逐渐变化的动画。例如：登录按钮颜色的变化</p>
 <p>1.初始化按钮</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.设置动画时间以及变化的颜色</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>.gray</div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149787840835975.gif" alt="20170619149787840835975.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149787840835975.gif" alt="20170619149787840835975.gif"></p>
 <h3 id="缩放动画：基于-UIView-的-transform-属性"><a href="#缩放动画：基于-UIView-的-transform-属性" class="headerlink" title="缩放动画：基于 UIView 的 transform 属性"></a>缩放动画：基于 UIView 的 transform 属性</h3><p>UIView 有一个非常重要的动画属性 transform，该属性继承于 CGAffineTransform,”CG”实际上是 CoreGraphics 框架的缩写。</p>
 <p>现在实现一下缩放动画</p>
 <p>1.初始化登录按钮</p>
@@ -321,20 +321,20 @@
 <p>2.设置动画时间和缩放比例</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 缩放，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(scaleX: <span class="number">0.5</span>, y: <span class="number">1.2</span>)<span class="comment">// 缩放比，&gt;1为扩大，&lt;1为缩放</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149787878141732.gif" alt="20170619149787878141732.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149787878141732.gif" alt="20170619149787878141732.gif"></p>
 <h3 id="旋转动画：基于-UIView-的-transform-属性"><a href="#旋转动画：基于-UIView-的-transform-属性" class="headerlink" title="旋转动画：基于 UIView 的 transform 属性"></a>旋转动画：基于 UIView 的 transform 属性</h3><p>实现登录按钮 45° 旋转</p>
 <p>1.初始化登录按钮</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.实现旋转效果</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 旋转动画，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line"><span class="keyword">let</span> angel:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="type">M_PI_4</span>)</div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(rotationAngle: angel)<span class="comment">// rotationAngle 是以弧度为单位旋转的</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149787916448100.gif" alt="20170619149787916448100.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149787916448100.gif" alt="20170619149787916448100.gif"></p>
 <h3 id="位移动画：基于-UIView-的-transform-属性"><a href="#位移动画：基于-UIView-的-transform-属性" class="headerlink" title="位移动画：基于 UIView 的 transform 属性"></a>位移动画：基于 UIView 的 transform 属性</h3><p>1.初始化按钮</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">loginButton = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">210</span>, width: <span class="keyword">self</span>.view.frame.width-<span class="number">20</span>*<span class="number">2</span>, height: <span class="number">50</span>))</div><div class="line">loginButton!.backgroundColor = <span class="type">UIColor</span>(colorLiteralRed: <span class="number">50</span>/<span class="number">255.0</span>, green: <span class="number">185</span>/<span class="number">255.0</span>, blue: <span class="number">170</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">loginButton!.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">loginButton!.layer.cornerRadius = <span class="number">3</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(loginButton!)</div></pre></td></tr></table></figure>
 <p>2.实现位移</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 位移动画，基于 UIView 的 transform 属性</span></div><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)<span class="comment">// 动画开始</span></div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">1</span>)<span class="comment">// 动画时间</span></div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(translationX: -<span class="number">20</span>, y: <span class="number">100</span>)<span class="comment">// translation 在 X 和 Y 移动的大小</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()<span class="comment">// 动画提交</span></div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149787940669710.gif" alt="20170619149787940669710.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149787940669710.gif" alt="20170619149787940669710.gif"></p>
 <h3 id="组合动画效果"><a href="#组合动画效果" class="headerlink" title="组合动画效果"></a>组合动画效果</h3><p>基于以上几种初级动画效果，下面来一个大组合，使之实现更复杂和高级的效果。</p>
 <p>整个动画过程为：点击登录按钮后，登录按钮一边旋转，一边缩放，同时向登录界面右上角移动，在移动的同时按钮的透明度也在逐渐减弱。最后整个登录按钮消失在登录界面的右上角。</p>
 <p>整个动画涉及到的效果</p>
@@ -350,7 +350,7 @@
 <p>2.实现点击事件的动画效果</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)</div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">2</span>)</div><div class="line"><span class="keyword">let</span> angel:<span class="type">CGFloat</span> = <span class="type">CGFloat</span>(<span class="type">M_PI</span>)</div><div class="line">loginButton!.transform = <span class="type">CGAffineTransform</span>(rotationAngle: angel)</div><div class="line">loginButton!.frame = <span class="type">CGRect</span>(x: <span class="number">400</span>, y: <span class="number">0</span>, width: loginButton!.frame.width*<span class="number">0.1</span>, height: loginButton!.frame.height*<span class="number">0.1</span>)</div><div class="line">loginButton!.alpha = <span class="number">0</span></div><div class="line"><span class="type">UIView</span>.commitAnimations()</div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170619149787966613737.gif" alt="20170619149787966613737.gif"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170619149787966613737.gif" alt="20170619149787966613737.gif"></p>
 <h3 id="动画常用属性及回调方法"><a href="#动画常用属性及回调方法" class="headerlink" title="动画常用属性及回调方法"></a>动画常用属性及回调方法</h3><p>常用的 UIView 动画属性设置方法：</p>
 <ol>
 <li>setAnimationDelay</li>
@@ -570,7 +570,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -634,7 +634,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

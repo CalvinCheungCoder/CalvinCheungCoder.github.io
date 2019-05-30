@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2016/09/30/qr-code-scanning/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2016/09/30/qr-code-scanning/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -293,7 +293,7 @@
 <h3 id="通过代理方法拿到摄像头扫描的二维码信息"><a href="#通过代理方法拿到摄像头扫描的二维码信息" class="headerlink" title="通过代理方法拿到摄像头扫描的二维码信息"></a>通过代理方法拿到摄像头扫描的二维码信息</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- 获取二维码</span></div><div class="line">-(<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureOutput</span> *)captureOutput didOutputMetadataObjects:(<span class="built_in">NSArray</span> *)metadataObjects fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (metadataObjects.count &gt; <span class="number">0</span>) &#123;</div><div class="line">        </div><div class="line">        [_session stopRunning];</div><div class="line">        <span class="built_in">AVMetadataMachineReadableCodeObject</span> *metadataObject = [metadataObjects objectAtIndex : <span class="number">0</span> ];</div><div class="line">        <span class="comment">// 二维码信息</span></div><div class="line">        <span class="built_in">NSString</span> *str = metadataObject.stringValue;</div><div class="line">        <span class="built_in">UIAlertView</span> *alert = [[<span class="built_in">UIAlertView</span> alloc]initWithTitle:<span class="string">@"二维码信息："</span> message:str delegate:<span class="keyword">self</span> cancelButtonTitle:<span class="string">@"取消"</span> otherButtonTitles:<span class="string">@"确定"</span>, <span class="literal">nil</span>];</div><div class="line">        [alert show];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最后拿到扫描到的二维码信息并展示，当然你也可以做其它处理。其中加入了一些动画，主要是扫描界面的遮罩。当然，别忘记在 info.plis 文件中添加 <code>Privacy - Camera Usage Description</code> 字段和描述。</p>
 <p>附上：<a href="https://github.com/CalvinCheungCoder/QRScan" target="_blank" rel="external">代码地址</a></p>
-<p>扫描效果图：<img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/scanning.jpg" alt=""></p>
+<p>扫描效果图：<img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/scanning.jpg" alt=""></p>
 
 
                 <hr>
@@ -487,7 +487,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -551,7 +551,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

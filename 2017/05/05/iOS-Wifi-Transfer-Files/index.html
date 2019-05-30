@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/05/05/iOS-Wifi-Transfer-Files/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/05/05/iOS-Wifi-Transfer-Files/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -279,15 +279,15 @@
 
                 <p>我经常使用「多看」和「掌阅」App 看书，其中有一个共同的功能就是 WiFi 传书，根据 App 的提示在电脑浏览器打开指定的地址，传入文件就可以直接发送到手机上阅读了。</p>
 <p>虽然这个功能需求不是很多，但是也对其进行了一下研究，使用 CocoaHTTPServer 框架对其进行实现。</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170505149397043244115.jpg" width="500" height="444" alt="效果图1"><br>「多看」和「掌阅」的 WiFi 传书页面<br><a id="more"></a></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170505149397043244115.jpg" width="500" height="444" alt="效果图1"><br>「多看」和「掌阅」的 WiFi 传书页面<br><a id="more"></a></p>
 <p>先看下最后的实现结果：</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170505149397077190413.jpg" width="500" height="298" alt="效果图1"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170505149397077190413.jpg" width="500" height="298" alt="效果图1"></p>
 <p>进入 App 内展示传输数据，默认是没有传输任何文件的，当点击添加按钮在浏览器进行文件传输后，关闭弹框就会发现传入的 2 个文件了。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>CocoaHTTPServer 框架能够在 iOS 上建立起一个本地服务器，只要电脑和移动设备连入同一局域网，即可使用电脑访问 iOS 服务器的指定页面，利用 POST 实现文件的上传。</p>
 <h3 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h3><h4 id="导入-CocoaHTTPServer-框架"><a href="#导入-CocoaHTTPServer-框架" class="headerlink" title="导入 CocoaHTTPServer 框架"></a>导入 CocoaHTTPServer 框架</h4><p>这里推荐大家使用 cocospods 进行集成，只需在 “Podfile” 填写以下代码：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><div class="line">pod 'CocoaHTTPServer'</div></pre></td></tr></table></figure>
 <p>如图所示，导入成功</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170505149397075130489.png" alt="20170505149397075130489.png"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170505149397075130489.png" alt="20170505149397075130489.png"></p>
 <h4 id="配置-HttpConnectManager-类"><a href="#配置-HttpConnectManager-类" class="headerlink" title="配置 HttpConnectManager 类"></a>配置 HttpConnectManager 类</h4><p>创建基于 HTTPConnection 的 MyHTTPConnection 类，用来管理 HttpConnection。</p>
 <p>找到 <code>- (void) processStartOfPartWithHeader:(MultipartMessageHeader*) header</code> 方法，修改传入文件的地址为 Document 文件夹</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *uploadDirPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastObject];</div></pre></td></tr></table></figure>
@@ -505,7 +505,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -569,7 +569,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

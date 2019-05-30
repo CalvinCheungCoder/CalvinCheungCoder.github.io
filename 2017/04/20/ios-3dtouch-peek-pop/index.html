@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/04/20/ios-3dtouch-peek-pop/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/04/20/ios-3dtouch-peek-pop/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -278,7 +278,7 @@
                 post-container">
 
                 <p>上篇文章写了 3D Touch 的 Quick Actions(快捷菜单)，如果你也在添加 3D Touch 功能到 App 中，请点击<a href="http://zhangdinghao.cn/2017/04/19/iOS-3D-Touch/" target="_blank" rel="external">『文章链接』</a>查看 3D Touch 开发的第一篇文章，接下来我们来谈谈 Peek 和 Pop 的实现。<a id="more"></a></p>
-<p>先上一张效果图：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/2017042014926558317018.jpg" alt="2017042014926558317018.jpg"></p>
+<p>先上一张效果图：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/2017042014926558317018.jpg" alt="2017042014926558317018.jpg"></p>
 <p>如图从左至右展示了 Peek 和 Pop 的三个阶段：</p>
 <p>（1）提示用户这里有 3D Touch 的交互，会使交互控件周围模糊。<br>（2）继续深按，会出现预览视图。<br>（3）通过视图上的交互控件进行进一步交互。</p>
 <h3 id="Peek-实现"><a href="#Peek-实现" class="headerlink" title="Peek 实现"></a>Peek 实现</h3><p>因为我是在 UITableViewCell 中长按实现的此功能，接下来上代码：</p>
@@ -292,10 +292,10 @@
 <p>『 04.21 更正』</p>
 <p>如果在 Peek 页面想要自定义 PeekView 大小的时候，只需要在上面的代码中添加如下代码即可，设置好自己想要的预览试图的大小，添加此代码不影响 Peek 的3个阶段展示：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">detail.preferredContentSize = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,ScreenHeight<span class="number">-160</span>);</div></pre></td></tr></table></figure>
-<p>设置以后的视图效果如图所示：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
+<p>设置以后的视图效果如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
 <h3 id="Pop-实现"><a href="#Pop-实现" class="headerlink" title="Pop 实现"></a>Pop 实现</h3><p>当出现 Peek 视图后，用户继续长按会有 Pop 视图，即进入到详情页面。因为我们已经实现了 Peek 视图的代理方法，所以在此实现一下 Pop 视图的代理方法即可。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- pop手势</span></div><div class="line"></div><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment">   *previewingContext：被预览的视图控制器的内容对象 == 上面代理方法中的previewingContext，内存中是同一个对象</span></div><div class="line"><span class="comment">   *viewControllerToCommit：被present（pop）的视图控制器 == 上面代理方法中返回的控制器，内存中是同一个对象</span></div><div class="line"><span class="comment">   *调用时间：pop阶段调用这个方法</span></div><div class="line"><span class="comment">   *作用：配置并且present一个commit（pop）视图控制器。</span></div><div class="line"><span class="comment">*/</span></div><div class="line">- (<span class="keyword">void</span>)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext commitViewController:(<span class="built_in">UIViewController</span> *)viewControllerToCommit&#123;</div><div class="line">    </div><div class="line">    viewControllerToCommit.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</div><div class="line">    [<span class="keyword">self</span>.navigationController pushViewController:viewControllerToCommit animated:<span class="literal">YES</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Peek-quick-action-Peek-视图下的快捷菜单"><a href="#Peek-quick-action-Peek-视图下的快捷菜单" class="headerlink" title="Peek quick action(Peek 视图下的快捷菜单)"></a>Peek quick action(Peek 视图下的快捷菜单)</h3><p>部分应用在 Peek 视图是有一些快捷菜单的，如图：<br><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
+<h3 id="Peek-quick-action-Peek-视图下的快捷菜单"><a href="#Peek-quick-action-Peek-视图下的快捷菜单" class="headerlink" title="Peek quick action(Peek 视图下的快捷菜单)"></a>Peek quick action(Peek 视图下的快捷菜单)</h3><p>部分应用在 Peek 视图是有一些快捷菜单的，如图：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170420149265672386501.jpg" alt="20170420149265672386501.jpg"></p>
 <p>如何设置 Peek 视图菜单呢？</p>
 <p>在即将进入的 DetailView 中声明菜单数组：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *previewActionItems;</div></pre></td></tr></table></figure>
@@ -501,7 +501,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -565,7 +565,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

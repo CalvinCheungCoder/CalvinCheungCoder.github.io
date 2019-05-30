@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheung.coding.me/2017/04/12/iOS-navigation-tabbar/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/04/12/iOS-navigation-tabbar/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -235,7 +235,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -289,7 +289,7 @@
 <p> New behavior on iOS 7.<br> Default is YES.<br> You may force an opaque background by setting the property to NO.<br> If the navigation bar has a custom background image, the default is inferred<br> from the alpha values of the image—YES if it has any pixel with alpha &lt; 1.0<br> If you send setTranslucent:YES to a bar with an opaque custom background image<br> it will apply a system opacity less than 1.0 to the image.<br> If you send setTranslucent:NO to a bar with a translucent custom background image<br> it will provide an opaque background for the image using the bar’s barTintColor if defined, or black<br> for UIBarStyleBlack or white for UIBarStyleDefault if barTintColor is nil.</p>
 </blockquote>
 <h4 id="关于-navigationController-底部细线"><a href="#关于-navigationController-底部细线" class="headerlink" title="关于 navigationController 底部细线"></a>关于 navigationController 底部细线</h4><p>细心的同学会发现在iOS默认的navigationController的底部有一根细线，仔细查看下图</p>
-<p><img src="http://zhangdinghao-blog.test.upcdn.net/blog-img/20170412149197025824881.jpg" alt="20170412149197025824881.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170412149197025824881.jpg" alt="20170412149197025824881.jpg"></p>
 <p>如图所示，我们可以修改navigationController的属性来达到保留或者去掉黑线的目的。</p>
 <h4 id="如果开发时设置了背景颜色，可以使用如下代码去除黑线"><a href="#如果开发时设置了背景颜色，可以使用如下代码去除黑线" class="headerlink" title="如果开发时设置了背景颜色，可以使用如下代码去除黑线"></a>如果开发时设置了背景颜色，可以使用如下代码去除黑线</h4><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span>.navigationController.navigationBar setBackgroundImage:[[<span class="built_in">UIImage</span> alloc] init] forBarMetrics:<span class="built_in">UIBarMetricsDefault</span>];</div><div class="line">[<span class="keyword">self</span>.navigationController.navigationBar setShadowImage:[[<span class="built_in">UIImage</span> alloc] init]];</div></pre></td></tr></table></figure>
 <h4 id="不管在开发时设置了背景颜色或者是背景图片，都可以使用下面的方法去除黑线"><a href="#不管在开发时设置了背景颜色或者是背景图片，都可以使用下面的方法去除黑线" class="headerlink" title="不管在开发时设置了背景颜色或者是背景图片，都可以使用下面的方法去除黑线"></a>不管在开发时设置了背景颜色或者是背景图片，都可以使用下面的方法去除黑线</h4><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.navigationController.navigationBar.barStyle = <span class="built_in">UIBaselineAdjustmentNone</span>;</div></pre></td></tr></table></figure>
@@ -496,7 +496,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -560,7 +560,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
