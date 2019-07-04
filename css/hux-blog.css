@@ -233,6 +233,7 @@ pre code {
   #huxblog_navbar a {
     font-size: 13px;
     line-height: 28px;
+    color: #404040;
   }
   #huxblog_navbar .navbar-collapse {
     height: 0px;
