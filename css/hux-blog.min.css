@@ -166,8 +166,23 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: 700
 }
 
+h1 {
+	font-size: 22px
+}
+h2 {
+	font-size: 21px;
+}
+h3 {
+	font-size: 20px;
+	color: #0085a1
+}
 h4 {
-	font-size: 21px
+	font-size: 19px;
+	color: #0085a1
+}
+h5 {
+	font-size: 17px;
+	color: #0085a1
 }
 
 a {
