@@ -225,7 +225,8 @@ br+small.img-hint {
 }
 
 img.shadow {
-	box-shadow: rgba(0,0,0,.258824) 0 2px 5px 0
+	box-shadow: rgba(0,0,0,.15) 0 2px 5px 0
+	
 }
 
 select {
@@ -1047,7 +1048,20 @@ img::-moz-selection {
 	display: block;
 	max-width: 100%;
 	height: auto;
-	margin: 1.5em auto 1.6em auto
+	margin: 1.5em auto 1.6em auto;
+
+  -webkit-border-radius:0.3em;
+  -moz-border-radius:0.3em;
+  -ms-border-radius:0.3em;
+  -o-border-radius:0.3em;
+  border-radius:0.3em;
+  -webkit-box-shadow:rgba(0,0,0,0.15) 0 1px 4px;
+  -moz-box-shadow:rgba(0,0,0,0.15) 0 1px 4px;
+  box-shadow:rgba(0,0,0,0.15) 0 1px 4px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  border:#fff 0.5em solid
 }
 
 .navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover {
