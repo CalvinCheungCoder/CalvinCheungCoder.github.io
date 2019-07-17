@@ -13,11 +13,11 @@
 
     <title>
         
-          iOS 设置系统 SearchBar logo 和 placeholder 居左 - DHTalk | DHTalk&#39;s Blog
+          DHTalk | DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/04/06/设置SearchBar-logo和placeholder居左/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/page/7/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -233,113 +233,217 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg.jpg')
-    }
-</style>
-<header class="intro-header" >
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
-                        
-                    </div>
-                    <h1>iOS 设置系统 SearchBar logo 和 placeholder 居左</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Calvin on
-                        2017-04-06
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>DHTalk&#39;s Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">Stay hungry Stay foolish.</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
 
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <p>我们在开发时使用系统的SearchBar时，搜索的logo和placeholder都是默认距中的，但是有些产品需要搜索框的搜索logo和placeholder从左侧开始展示，现在就这个小需求进行一下实现。<a id="more"></a></p>
-<p>1、首先创建一个<code>UISearchBar</code>的<code>category</code>，命名为<code>Placeholder</code>。创建成功后会出现<code>UISearchBar+Placeholder.h</code>和<code>UISearchBar+Placeholder.m</code>文件</p>
-<p>2、在<code>UISearchBar+Placeholder.h</code>文件中添加<code>-(void)changeLeftPlaceholder:(NSString *)placeholder;</code>，在<code>UISearchBar+Placeholder.m</code>文件中进行实现，代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)changeLeftPlaceholder:(<span class="built_in">NSString</span> *)placeholder &#123;</div><div class="line">    <span class="keyword">self</span>.placeholder = placeholder;</div><div class="line">    SEL centerSelector = <span class="built_in">NSSelectorFromString</span>([<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@%@"</span>, <span class="string">@"setCenter"</span>, <span class="string">@"Placeholder:"</span>]);</div><div class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:centerSelector]) &#123;</div><div class="line">        <span class="built_in">BOOL</span> centeredPlaceholder = <span class="literal">NO</span>;</div><div class="line">        <span class="built_in">NSMethodSignature</span> *signature = [[<span class="built_in">UISearchBar</span> <span class="keyword">class</span>] instanceMethodSignatureForSelector:centerSelector];</div><div class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:signature];</div><div class="line">        [invocation setTarget:<span class="keyword">self</span>];</div><div class="line">        [invocation setSelector:centerSelector];</div><div class="line">        [invocation setArgument:&amp;centeredPlaceholder atIndex:<span class="number">2</span>];</div><div class="line">        [invocation invoke];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3、调用。</p>
-<p>在需要使用SearchBar logo和Placeholder居左的类中导入头文件<code>UISearchBar+Placeholder.h</code></p>
-<p>示例如下：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UISearchBar</span> *searchBar = [[<span class="built_in">UISearchBar</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">90</span>, <span class="number">20</span>, ScreenWidth<span class="number">-100</span>, <span class="number">40</span>)];</div><div class="line">searchBar.delegate = <span class="keyword">self</span>;</div><div class="line">[searchBar changeLeftPlaceholder:<span class="string">@"搜索你想看的文章"</span>];</div><div class="line">searchBar.barTintColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">searchBar.tintColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">searchBar.backgroundImage = [<span class="built_in">UIImage</span> new];</div><div class="line">[naviView addSubview:searchBar];</div></pre></td></tr></table></figure>
-<p>4、最终效果：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170406149147948075107.png" alt="20170406149147948075107.png"></p>
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
 
 
-                <hr>
+<div class="post-preview">
 
-                
+    <a href="/2016/09/30/qr-code-scanning/">
+        <h2 class="post-title">
+            使用 iOS 原生 API 实现二维码扫描
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用系统的AVCaptureSessionAPI 实现的二维码扫描功能，添加有扫描动画。在以前项目中使用到的，由于之前的博客舍弃了，所以现在在新博客重新整理一下。 
+主要内容如下：
 
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/04/06/design-resources/" data-toggle="tooltip" data-placement="top" title="作为程序员，应该以多视角来开发一款产品">&larr; 上一篇</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2017/04/05/GCD-countdown/" data-toggle="tooltip" data-placement="top" title="iOS 使用 GCD 实现按钮的倒计时效果">下一篇 &rarr;</a>
-                        </li>
-                    
-                </ul>
+导入 &lt;AVFoundation/AVFoundation.h&gt;
+添加 AVCaptureMetadataOutputObjectsDelegate
+设置扫描......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2016-09-30
+    </p>
 
-                
+</div>
+<hr>
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/6/">&larr; 上一页</a>
+        </li>
+    
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
                 
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
     <!-- Sidebar Container -->
-
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                       
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                            
+                            <a href="/tags/#ObjC" title="ObjC" rel="25">ObjC</a>
+                            
+                        
+                            
+                            <a href="/tags/#Swift" title="Swift" rel="11">Swift</a>
+                            
+                        
+                            
+                            <a href="/tags/#tips" title="tips" rel="6">tips</a>
+                            
+                        
+                            
+                            <a href="/tags/#Hexo" title="Hexo" rel="2">Hexo</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Python" title="Python" rel="2">Python</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                         
                     </div>
                 </section>
                 
 
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.jpg" />
+                        
+
+                        
+                            <p>Stay hungry Stay foolish.</p>
+                        
+
+                        <!-- SNS Link -->
+
+                        <ul class="list-inline">
+                            
+                                <li>
+                                    <a href="/atom.xml">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                                <li>
+                                    <a target="_blank" href="https://twitter.com/zhangdinghao">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -366,32 +470,9 @@
                 </ul>
                 
             </div>
-
-        </div>
+        
     </div>
-</article>
-
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "www-zhangdinghao-cn";
-    var disqus_identifier = "http://CalvinCheungCoder.github.io/2017/04/06/设置SearchBar-logo和placeholder居左/";
-    var disqus_url = "http://CalvinCheungCoder.github.io/2017/04/06/设置SearchBar-logo和placeholder居左/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
+</div>
 
 
     <!-- Footer -->
