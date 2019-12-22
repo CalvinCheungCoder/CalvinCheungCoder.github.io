@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Stay hungry Stay foolish.">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -294,8 +294,8 @@
 <p>或者你会用一些在线视频网站提取的网站之类的方法。</p>
 <p>如果你已经会这项技能那就没有必要看了，除非你想更有B格的下载视频。</p>
 <p>查看 you-get</p>
-<p><a href="https://you-get.org/" target="_blank" rel="external">you-get官方网站</a>      <a href="https://github.com/soimort/you-get" target="_blank" rel="external">GitHub地址</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="Step1-安装-Python-3"><a href="#Step1-安装-Python-3" class="headerlink" title="Step1 安装 Python 3"></a>Step1 安装 Python 3</h4><p><a href="https://www.python.org/downloads/release/python-343/" target="_blank" rel="external">Python 3官方下载地址</a></p>
+<p><a href="https://you-get.org/" target="_blank" rel="noopener">you-get官方网站</a>      <a href="https://github.com/soimort/you-get" target="_blank" rel="noopener">GitHub地址</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="Step1-安装-Python-3"><a href="#Step1-安装-Python-3" class="headerlink" title="Step1 安装 Python 3"></a>Step1 安装 Python 3</h4><p><a href="https://www.python.org/downloads/release/python-343/" target="_blank" rel="noopener">Python 3官方下载地址</a></p>
 <p>下载好客户端以后点击安装。</p>
 <h4 id="Step2-安装-you-get"><a href="#Step2-安装-you-get" class="headerlink" title="Step2 安装 you-get"></a>Step2 安装 you-get</h4><p>Mac 用户打开终端输入 </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo pip3 install you-get</div></pre></td></tr></table></figure>
@@ -312,10 +312,35 @@
 <p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170504149388591042624.png" alt="20170504149388591042624.png"></p>
 <p>我下载的为优酷加密视频，在输入视频地址后终端提示我输入加密视频的密码，输入成功后则开始下载，而且显示了下载进度和视频信息。</p>
 <p>怎么样，以后不用担心在网上看到好看的视频却无法下载了吧。</p>
-<p><a href="http://liyaodong.com/2015/07/26/using-you-get-to-download-the-video/" target="_blank" rel="external">原文链接</a></p>
+<p><a href="http://liyaodong.com/2015/07/26/using-you-get-to-download-the-video/" target="_blank" rel="noopener">原文链接</a></p>
 
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
 
                 <hr>
+
+                <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'C7j5MaptGRcVHb8ygntnnyNz-gzGzoHsz',
+            appKey: '8SVFzx2DMy2Mr4C7fOTuE1ND'
+        })
+    </script>
 
                 
 
@@ -396,6 +421,8 @@
         </div>
     </div>
 </article>
+
+
 
 
 
@@ -565,7 +592,7 @@
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-104503948-1';
-    var _gaDomain = '';
+    var _gaDomain = 'null';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

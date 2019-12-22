@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Stay hungry Stay foolish.">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -284,7 +284,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>首先，登录<a href="https://developer.apple.com/" target="_blank" rel="external">苹果开发者</a>中心网站。然后点击<code>Certificates,Identifiers &amp; Profiles</code><br><a id="more"></a><br>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155468110831.jpg" alt="20170407149155468110831.jpg"></p>
+                <p>首先，登录<a href="https://developer.apple.com/" target="_blank" rel="noopener">苹果开发者</a>中心网站。然后点击<code>Certificates,Identifiers &amp; Profiles</code><br><a id="more"></a><br>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155468110831.jpg" alt="20170407149155468110831.jpg"></p>
 <p>然后点击<code>Identifiers -&gt; App IDs</code>，编辑需要制作Push证书的应用，勾选Push服务</p>
 <p>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155487538683.jpg" alt="20170407149155487538683.jpg"></p>
 <p>其中，<code>Development SSL Certificate</code>是开发环境，<code>Production SSL Certificate</code>是生产环境。</p>
@@ -301,7 +301,32 @@
 <p>此时你会看到和p12文件相同的文件夹下生成了对应的<code>CertificateName.pem</code>证书，将证书上传到信鸽则可以进行消息推送。</p>
 
 
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
                 <hr>
+
+                <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'C7j5MaptGRcVHb8ygntnnyNz-gzGzoHsz',
+            appKey: '8SVFzx2DMy2Mr4C7fOTuE1ND'
+        })
+    </script>
 
                 
 
@@ -382,6 +407,8 @@
         </div>
     </div>
 </article>
+
+
 
 
 
@@ -551,7 +578,7 @@
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-104503948-1';
-    var _gaDomain = '';
+    var _gaDomain = 'null';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

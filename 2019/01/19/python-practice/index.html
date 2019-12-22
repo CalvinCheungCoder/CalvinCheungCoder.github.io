@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Stay hungry Stay foolish.">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -294,9 +294,9 @@
 <li><code>pdfkit</code> 生成 PDF</li>
 </ul>
 <h3 id="1、API-抓取和分析"><a href="#1、API-抓取和分析" class="headerlink" title="1、API 抓取和分析"></a>1、API 抓取和分析</h3><p>使用 <code>Charles</code> 抓取其产品 <code>API</code> 接口，因为现在的 <code>API</code> 大多是 <code>https</code> 类型，所以此处需要配置了一个 <code>Charles CA</code>证书，然后正常抓取并分析了其产品几个主要 <code>API</code>，包括课程分类、课程分类下的课程、课程的内容列表、课程中每节课对应的详情。</p>
-<h3 id="2、Python-代码编写并保存课程数据至数据库"><a href="#2、Python-代码编写并保存课程数据至数据库" class="headerlink" title="2、Python 代码编写并保存课程数据至数据库"></a>2、Python 代码编写并保存课程数据至数据库</h3><p>因为只有在查看单节课程详情时才验证用户身份（查看课程详情需要会员身份），所以我把课程分类数据存入了本地的 <code>.json</code> 文件，通过 <code>Python</code> 程序直接读取对应文件请求课程内容列表等基础数据并存入数据库。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_sourse2.py" target="_blank" rel="external">点此查看此部分代码</a><br>把所有课程基本数据存入到数据库后，通过 <code>Charles</code> 提取出我的个人信息 (我是此 <code>App</code> 的会员用户，可以查看所有内容) 并模拟 <code>App</code> 进行网络请求，把单节课程的源数据请求并以 <code>json</code> 字符串的形式 <code>update</code> 到数据库。然后解析 <code>json</code> 文件提取出课程的音频链接。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_course.py" target="_blank" rel="external">点此查看此部分代码</a> 此处代码删减了我会员身份相关的信息。</p>
-<h3 id="3、批量下载其音频文件"><a href="#3、批量下载其音频文件" class="headerlink" title="3、批量下载其音频文件"></a>3、批量下载其音频文件</h3><p>因为已经拿到了源数据并分析出了产品的音频链接，所以直接按照链接下载并按照指定路径和名称把 <code>mp3</code> 文件保存到本地即可。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_download_audio.py" target="_blank" rel="external">点此查看此部分代码</a></p>
-<h3 id="4、处理文稿数据并生成-PDF-文件"><a href="#4、处理文稿数据并生成-PDF-文件" class="headerlink" title="4、处理文稿数据并生成 PDF 文件"></a>4、处理文稿数据并生成 PDF 文件</h3><p>有了音频文件接下来要处理文稿数据，因为毕竟听音频配合文稿才最合适嘛。因为此产品的文稿数据是分段拼接而成，此处需要根据 <code>App</code> 内的文稿格式分析其 <code>json</code> 结构并按照一定顺序拼接。<br>拼接好文稿后使用 <code>pdfkit</code> 生成对应的 <code>PDF</code> 文件，因为 pdfkit 可以直接解析 <code>HTML</code> 字符串并按照其格式生成 <code>PDF</code>，所以此处我使用了 <code>HTML + CSS</code> 进行简单排版导出到指定路径，按照课程名称生成 <code>PDF</code> 文件，至此数据抓取和下载已经全部完成。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_createPDF.py" target="_blank" rel="external">点此查看此部分代码</a></p>
+<h3 id="2、Python-代码编写并保存课程数据至数据库"><a href="#2、Python-代码编写并保存课程数据至数据库" class="headerlink" title="2、Python 代码编写并保存课程数据至数据库"></a>2、Python 代码编写并保存课程数据至数据库</h3><p>因为只有在查看单节课程详情时才验证用户身份（查看课程详情需要会员身份），所以我把课程分类数据存入了本地的 <code>.json</code> 文件，通过 <code>Python</code> 程序直接读取对应文件请求课程内容列表等基础数据并存入数据库。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_sourse2.py" target="_blank" rel="noopener">点此查看此部分代码</a><br>把所有课程基本数据存入到数据库后，通过 <code>Charles</code> 提取出我的个人信息 (我是此 <code>App</code> 的会员用户，可以查看所有内容) 并模拟 <code>App</code> 进行网络请求，把单节课程的源数据请求并以 <code>json</code> 字符串的形式 <code>update</code> 到数据库。然后解析 <code>json</code> 文件提取出课程的音频链接。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_course.py" target="_blank" rel="noopener">点此查看此部分代码</a> 此处代码删减了我会员身份相关的信息。</p>
+<h3 id="3、批量下载其音频文件"><a href="#3、批量下载其音频文件" class="headerlink" title="3、批量下载其音频文件"></a>3、批量下载其音频文件</h3><p>因为已经拿到了源数据并分析出了产品的音频链接，所以直接按照链接下载并按照指定路径和名称把 <code>mp3</code> 文件保存到本地即可。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_download_audio.py" target="_blank" rel="noopener">点此查看此部分代码</a></p>
+<h3 id="4、处理文稿数据并生成-PDF-文件"><a href="#4、处理文稿数据并生成-PDF-文件" class="headerlink" title="4、处理文稿数据并生成 PDF 文件"></a>4、处理文稿数据并生成 PDF 文件</h3><p>有了音频文件接下来要处理文稿数据，因为毕竟听音频配合文稿才最合适嘛。因为此产品的文稿数据是分段拼接而成，此处需要根据 <code>App</code> 内的文稿格式分析其 <code>json</code> 结构并按照一定顺序拼接。<br>拼接好文稿后使用 <code>pdfkit</code> 生成对应的 <code>PDF</code> 文件，因为 pdfkit 可以直接解析 <code>HTML</code> 字符串并按照其格式生成 <code>PDF</code>，所以此处我使用了 <code>HTML + CSS</code> 进行简单排版导出到指定路径，按照课程名称生成 <code>PDF</code> 文件，至此数据抓取和下载已经全部完成。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_createPDF.py" target="_blank" rel="noopener">点此查看此部分代码</a></p>
 <h3 id="5、后记"><a href="#5、后记" class="headerlink" title="5、后记"></a>5、后记</h3><ol>
 <li>在使用我的账户抓取课程详情内容时，因为 <code>API</code> 接口调用会过多，我隐约担心账户会被封，但是我在 10 分钟内连续调用了 2000 余次 API 账号并无任何被封迹象，可见该产品在其安全性设计上存在一些缺陷。</li>
 <li><code>Python</code> 真的很强大，因为我刚开始写 Python 水平还不是很高，但是整个过程下来代码不足 300 行，真的是很简洁。而且 <code>Python</code> 语言下的第三方库很多，比如说 <code>pdfkit</code>，你可以传入一个网页地址生成 <code>PDF</code>，也可以自己编写 <code>HTML</code> 代码使其按照你想要的样式生成丰富的 <code>PDF</code> 文件，不得不说真的很方便，当然类似的库还有很多。</li>
@@ -307,7 +307,32 @@
 </ol>
 
 
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
                 <hr>
+
+                <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'C7j5MaptGRcVHb8ygntnnyNz-gzGzoHsz',
+            appKey: '8SVFzx2DMy2Mr4C7fOTuE1ND'
+        })
+    </script>
 
                 
 
@@ -390,6 +415,8 @@
         </div>
     </div>
 </article>
+
+
 
 
 
@@ -559,7 +586,7 @@
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-104503948-1';
-    var _gaDomain = '';
+    var _gaDomain = 'null';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

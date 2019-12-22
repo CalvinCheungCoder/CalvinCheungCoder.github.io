@@ -1193,3 +1193,59 @@ img::-moz-selection {
 .page-fullscreen footer .copyright a:hover {
 	color: #ddd
 }
+
+/* 赞赏 */
+#rewardContainer {
+  padding: 10px 0;
+  margin: 20px auto;
+  width: 90%;
+  text-align: center;
+}
+#rewardButton {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  overflow: visible;
+}
+#rewardButton span {
+  display: inline-block;
+  font-weight: 400;
+  background: #e26d6d;
+  height: 34px;
+  width: 80px;
+  border-radius: 4px;
+  line-height: 34px;
+  text-align: center;
+  color: #fff;
+  font-style: normal;
+  font-variant: normal;
+  font-stretch: normal;
+  font-family: "Microsoft Yahei";
+  font-size: 14px;
+  cursor: pointer;
+}
+#rewardButton span:hover {
+  background: #f7877f;
+}
+#QR {
+  padding-top: 20px;
+}
+#QR img {
+  width: 180px;
+  max-width: 100%;
+  display: inline-block;
+  margin: 0.8em 2em 0 2em;
+}
+img[data-action=zoom] {
+  cursor: pointer;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+  height: auto;
+}

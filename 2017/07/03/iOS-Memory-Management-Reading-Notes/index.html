@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Stay hungry Stay foolish.">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -332,7 +332,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>在 <code>Cocoa</code> 框架中，相当于程序主循环的 <code>NSRunLoop</code> 或者在其他程序可运行的地方，对 <code>NSAutoreleasePool</code> 对象进行生成、持有和废弃处理。因此，程序开发者不一定非得使用 <code>NSAutoreleasePool</code> 对象进行开发工作。</p>
 <p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170626149846494350491.png" alt="20170626149846494350491.png"></p>
 <p>尽管如此，但在大量产生 <code>autorelease</code> 的对象时，只要不废弃 <code>NSAutoreleasePool</code> 对象，那么生成的对象就不能释放，因此有时会产生内存不足的现象。典型的例子是读入大量图像的同时改变其尺寸。图像文件读入到 <code>NSData</code> 对象，并从中生成 <code>UIImage</code> 对象，改变其尺寸后生成新的 <code>UIImage</code> 对象。这种情况下，就会大量产生 <code>autorelease</code> 对象。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; 图像数;++i)&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    读入图像</span></div><div class="line"><span class="comment">    大量产生 autorelease 的对象</span></div><div class="line"><span class="comment">    由于没有废弃 NSAutoreleasePool 对象</span></div><div class="line"><span class="comment">    最终导致内存不足</span></div><div class="line"><span class="comment">    */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; 图像数;++i)&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    读入图像</div><div class="line">    大量产生 autorelease 的对象</div><div class="line">    由于没有废弃 NSAutoreleasePool 对象</div><div class="line">    最终导致内存不足</div><div class="line">    */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在此情况下，有必要在适当的地方生成、持有或废弃 <code>NSAutoreleasePool</code> 对象。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; 图像数;++i)&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSAutoreleasePool</span> *pool = [[<span class="built_in">NSAutoreleasePool</span> alloc]init];</div><div class="line">    <span class="comment">// 读入图像，大量产生 autorelease 的对象</span></div><div class="line">    </div><div class="line">    [pool drain];</div><div class="line">    </div><div class="line">    <span class="comment">// 通过 [pool drain]，autorelease 的对象被一起 release</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>另外，<code>Cocoa</code> 框架中也有很多类似方法用于返回 <code>autorelease</code> 的对象。比如 <code>NSMutableArray</code> 类的 <code>arrayWithCapacity</code> 类方法。</p>
@@ -360,7 +360,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <h4 id="autorelease-NSAutoreleasePool-对象"><a href="#autorelease-NSAutoreleasePool-对象" class="headerlink" title="autorelease NSAutoreleasePool 对象"></a>autorelease NSAutoreleasePool 对象</h4><p>提问：如果 autorelease NSAutoreleasePool 对象会如何？</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSAutoreleasePool</span> *pool = [[<span class="built_in">NSAutoreleasePool</span> alloc] init];</div><div class="line"></div><div class="line">[pool autorelease];</div></pre></td></tr></table></figure>
 <p>回答：发生异常</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">*** Terminating app due to uncaught exception 'NSInvalidArgumentException'</div><div class="line"></div><div class="line">reason: '*** -(NSAutoreleasePool autorelease]:</div><div class="line">    Cannot autorelease an autorelease pool<span class="string">'</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">*** Terminating app due to uncaught exception 'NSInvalidArgumentException'</div><div class="line"></div><div class="line">reason: '*** -(NSAutoreleasePool autorelease]:</div><div class="line">    Cannot autorelease an autorelease pool'</div></pre></td></tr></table></figure>
 <p>通常在使用 Objective-C,也就是 Foundation 框架时，无论调用哪一个对象的 autorelease 实例方法，实现上是调用的都是 NSObject 类的 autorelease 实例方法。但是对于 NSAutoreleasePool 类，autorelease 实例方法已被该类重载，因此运行时就会出错。</p>
 <hr>
 <h3 id="ARC-规则"><a href="#ARC-规则" class="headerlink" title="ARC 规则"></a>ARC 规则</h3><p>实际上”引用计数式内存管理”的本质部分在 ARC 中并没有改变。就像”自动引用计数”这个名称表示的那样，ARC 只是自动地帮组我们处理”引用计数”部分。</p>
@@ -415,7 +415,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>以下为循环引用。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> test0 = [[Test alloc] init];</div><div class="line">    <span class="keyword">id</span> test1 = [[Test alloc] init];</div><div class="line">    [testO setObject:test1];</div><div class="line">    [test1 setObject:testO];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>为便于理解，下面写出了生成并持有对象的状态。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    *	test0持有Test对象A的强引用</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">id</span> test0 = [[Test alloc] init];<span class="comment">/*对象A */</span></div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    *	test1持有Test对象B的强引用</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">id</span> test1 = [[Test alloc] init];<span class="comment">/*对象B */</span></div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    * Test对象A的obj_成员变置持有Test对象B的强引用。</span></div><div class="line"><span class="comment">    * 此时，持有Test对象B的强引用的变量为Test 对象 A 的 obj_和test1。</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    [test0 setObject:test1];</div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    * Test 对象 B 的 obj_ 成员变置持有 Test 对象 A 的强引用。</span></div><div class="line"><span class="comment">    * 此时，持有 Test 对象 A 的强引用的变置为 Test 对象 B 的 obj_ 和test0。</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    [testl setObject:test0];</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">* 因为 test0 变置超出其作用域，强引用失效,</span></div><div class="line"><span class="comment">* 所以自动释放 Test 对象 A。</span></div><div class="line"><span class="comment">* 因为 testl 变置超出其作用域，强引用失效,</span></div><div class="line"><span class="comment">* 所以自动释放 Test 对象 B。</span></div><div class="line"><span class="comment">* 此时，持有 Test 对象 A 的强引用的变置为 Test 对象 B 的 obj_。</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">* 此时，持有 Test 对象 B 的强引用的变置为 Test 对象 A 的 obj_。</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">* 发生内存泄漏！</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    *	test0持有Test对象A的强引用</div><div class="line">    */</div><div class="line">    <span class="keyword">id</span> test0 = [[Test alloc] init];<span class="comment">/*对象A */</span></div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">    *	test1持有Test对象B的强引用</div><div class="line">    */</div><div class="line">    <span class="keyword">id</span> test1 = [[Test alloc] init];<span class="comment">/*对象B */</span></div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">    * Test对象A的obj_成员变置持有Test对象B的强引用。</div><div class="line">    * 此时，持有Test对象B的强引用的变量为Test 对象 A 的 obj_和test1。</div><div class="line">    */</div><div class="line">    [test0 setObject:test1];</div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">    * Test 对象 B 的 obj_ 成员变置持有 Test 对象 A 的强引用。</div><div class="line">    * 此时，持有 Test 对象 A 的强引用的变置为 Test 对象 B 的 obj_ 和test0。</div><div class="line">    */</div><div class="line">    [testl setObject:test0];</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">* 因为 test0 变置超出其作用域，强引用失效,</div><div class="line">* 所以自动释放 Test 对象 A。</div><div class="line">* 因为 testl 变置超出其作用域，强引用失效,</div><div class="line">* 所以自动释放 Test 对象 B。</div><div class="line">* 此时，持有 Test 对象 A 的强引用的变置为 Test 对象 B 的 obj_。</div><div class="line">*</div><div class="line">* 此时，持有 Test 对象 B 的强引用的变置为 Test 对象 A 的 obj_。</div><div class="line">*</div><div class="line">* 发生内存泄漏！</div><div class="line">*/</div></pre></td></tr></table></figure>
 <p>循环引用容易发生内存泄漏。所谓内存泄漏就是应当废弃的对象在超出其生存周期后继续存在。此代码的本意是赋予变量 test0 的对象 A 和赋予变量 test1 的对象 B 在超出其变量作用域时被释放，即在对象不被任何变量持有的状态下予以废弃。但是，循环引用使得对象不能被再次废弃。</p>
 <p>像下面这种情况，虽然只有一个对象，但在该对象持有其自身时，也会发生循环引用（自引用）。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">id</span> test = [[Test alloc] init];</div><div class="line">[test setObject:test];</div></pre></td></tr></table></figure>
@@ -427,7 +427,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>此源代码将自己生成并持有的对象赋值给附有 <code>_weak</code> 修饰符的变量 <code>obj</code>。即变量 <code>obj</code> 持有对持有对象的弱引用。因此，为了不以自己持有的状态来保存自己生成并持有的对象，生成的对象会立即被释放。编译器对此会给出警告。如果像下面这样，将对象赋值给附有 <code>_strong</code> 修饰符的变量之后再赋值给附有 <code>_weak</code> 修饰符的变量，就不会发生警告了。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj0 = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj1 = obj0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面确认对象的持有状况。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 自己生成并持有对象</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj0 = [[<span class="built_in">NSObject</span> alloc]init];</div><div class="line">    </div><div class="line">    <span class="comment">// 因为 obj0 变量为强引用，所以自己持有对象。</span></div><div class="line">    </div><div class="line">    <span class="comment">// obj1 变量持有生成对象的弱引用</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj1 = obj0;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">    因为 obj0 变量超出其作用域，强引用失效，所以自动释放其持有的对象。</span></div><div class="line"><span class="comment">    因为对象的所有者不存在，所以废弃该对象。</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 自己生成并持有对象</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj0 = [[<span class="built_in">NSObject</span> alloc]init];</div><div class="line">    </div><div class="line">    <span class="comment">// 因为 obj0 变量为强引用，所以自己持有对象。</span></div><div class="line">    </div><div class="line">    <span class="comment">// obj1 变量持有生成对象的弱引用</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj1 = obj0;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">    因为 obj0 变量超出其作用域，强引用失效，所以自动释放其持有的对象。</div><div class="line">    因为对象的所有者不存在，所以废弃该对象。</div><div class="line">*/</div></pre></td></tr></table></figure>
 <p>因为带 <code>_weak</code> 修饰符的变量（即弱引用）不持有对象，所以在超出其变最作用域时，对象即被释放。如果像下面这样将先前可能发生循环引用的类成员变量改成附有 <code>_weak</code> 修饰符的成员变量的话，该现象便可避免。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Test</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj_;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)setObject:(<span class="keyword">id</span> _<span class="keyword">strong</span>)obj;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149906419276443.png" alt="20170703149906419276443.png"></p>
@@ -452,7 +452,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">id</span> obj = [<span class="built_in">NSObject</span> alloc];</div></pre></td></tr></table></figure>
 <p>但是就如 GNUstep 的 alloc 实现所示，实际上是通过直接调用 <code>NSAllocateObject</code> 函数来生成并持有对象的。</p>
 <p>在 ARC 环境时，禁止使用 <code>NSAllocateObject</code> 函数。同 <code>retain</code> 等方法一样，如果使用便会引起编译错误。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">error: 'NSAllocateObject is unavailable:</div><div class="line">not available <span class="keyword">in</span> automatic reference counting mode</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">error: 'NSAllocateObject is unavailable:</div><div class="line">not available in automatic reference counting mode</div></pre></td></tr></table></figure>
 <p>同样地，也禁止使用用于释放对象的 <code>NSDeallocateObject</code> 函数。</p>
 <h4 id="须遵守内存管理的方法命名规则"><a href="#须遵守内存管理的方法命名规则" class="headerlink" title="须遵守内存管理的方法命名规则"></a>须遵守内存管理的方法命名规则</h4><p>在 MRC 环境时，用于对象生成/持有的方法必须遵守以下的命名规则。</p>
 <ul>
@@ -522,7 +522,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>在声明 id 型 obj 成员变量时，像下面这样，定义其属性声明为weak。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span> obj;</div></pre></td></tr></table></figure>
 <p>编译器出现如下错误。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">error: existing ivar 'obj' for _weak property 'obj' must be _weak</div><div class="line">    <span class="keyword">@synthesize</span> obj;</div><div class="line">    </div><div class="line">    note: property declared here</div><div class="line">    <span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span> obj;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">error: existing ivar 'obj' for _weak property 'obj' must be _weak</div><div class="line">    @synthesize obj;</div><div class="line">    </div><div class="line">    note: property declared here</div><div class="line">    @property (nonatomic, weak) id obj;</div></pre></td></tr></table></figure>
 <p>此时，成员变量的声明中需要附加 __weak 修饰符。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">id</span> __<span class="keyword">weak</span> obj;</div></pre></td></tr></table></figure>
 <p>或者使用 <code>strong</code> 属性来代替 <code>weak</code> 属性。</p>
@@ -557,11 +557,36 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>同初始化时的注意事项相反，即使用 memset 等函数将内存填充为0也不会释放所赋值的对象。这非常危险，只会引起内存泄漏。对于编译器，必须明确地使用赋值给附有 <code>_strong</code> 修饰符变量的源代码。所以请注意，必须将 nil 赋值给所有数组元素。</p>
 <p>另外，使用 <code>memcpy</code> 函数拷贝数组元素以及 <code>realloc</code> 函数重新分配内存块也会有危险，由于数组元素所赋值的对象有可能被保留在内存中或是重复被废弃，所以这两个函数也禁止使用。</p>
 <p>再者，我们也可以像使用 <code>_strong</code> 修饰符那样使用附有 <code>_weak</code> 修饰符变量的动态数组。在 <code>_autoreleasing</code> 修饰符的情况下，因为与设想的使用方法有差异，所以最好不要使用动态数组。由于<code>_unsafe_unretained</code> 修饰符在编译器的内存管理对象之外，所以它与 void* 类型一样，只能作为C语言的指针类型来使用。</p>
-<p>本文是根据<a href="https://book.douban.com/subject/24720270/" target="_blank" rel="external">Objective-C高级编程</a>第一章整理，作学习和参考之用</p>
-<p>关于内存管理可以查看一下唐巧大神博客的讲解：<br><a href="http://blog.devtang.com/2016/07/30/ios-memory-management/" target="_blank" rel="external">理解 iOS 的内存管理-唐巧</a></p>
+<p>本文是根据<a href="https://book.douban.com/subject/24720270/" target="_blank" rel="noopener">Objective-C高级编程</a>第一章整理，作学习和参考之用</p>
+<p>关于内存管理可以查看一下唐巧大神博客的讲解：<br><a href="http://blog.devtang.com/2016/07/30/ios-memory-management/" target="_blank" rel="noopener">理解 iOS 的内存管理-唐巧</a></p>
 
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
 
                 <hr>
+
+                <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'C7j5MaptGRcVHb8ygntnnyNz-gzGzoHsz',
+            appKey: '8SVFzx2DMy2Mr4C7fOTuE1ND'
+        })
+    </script>
 
                 
 
@@ -642,6 +667,8 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
         </div>
     </div>
 </article>
+
+
 
 
 
@@ -811,7 +838,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-104503948-1';
-    var _gaDomain = '';
+    var _gaDomain = 'null';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
