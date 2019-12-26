@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>DHTalk&#39;s Blog</title>
   <subtitle>Stay hungry Stay foolish.</subtitle>
-  <link href="/blog/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
   <link href="http://calvincheung.coding.me/"/>
   <updated>2019-09-21T06:34:50.001Z</updated>
