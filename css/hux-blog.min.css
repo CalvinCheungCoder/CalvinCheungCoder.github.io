@@ -208,7 +208,7 @@ article {
 }
 
 blockquote {
-	font-style:normal;
+	/*font-style:normal;
 	font-size:.95em;
 	color: #616E7A;
 	line-height:1.6em;
@@ -217,11 +217,11 @@ blockquote {
 	solid #E0E7ED;
 	margin-left: 0;
     margin-right: 0;
-    margin-bottom: 1rem;
-	/*color: gray;
-	font-style: italic;
+    margin-bottom: 1rem;*/
+	color: gray;
+	font-style: normal;
 	font-size: .95em;
-	margin: 20px 0 20px*/
+	margin: 20px 0 20px
 }
 
 blockquote p {
