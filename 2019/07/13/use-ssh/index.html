@@ -284,19 +284,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1、使用-Google-Cloud-网页版-ssh-登录，切换到-root-账户并修改密码"><a href="#1、使用-Google-Cloud-网页版-ssh-登录，切换到-root-账户并修改密码" class="headerlink" title="1、使用 Google Cloud 网页版 ssh 登录，切换到 root 账户并修改密码"></a>1、使用 Google Cloud 网页版 ssh 登录，切换到 root 账户并修改密码</h3><p><img src="https://i.loli.net/2019/07/12/5d2833c80565a49417.png" alt=""></p>
+                <h3 id="1、使用-Google-Cloud-网页版-ssh-登录，切换到-root-账户并修改密码"><a href="#1、使用-Google-Cloud-网页版-ssh-登录，切换到-root-账户并修改密码" class="headerlink" title="1、使用 Google Cloud 网页版 ssh 登录，切换到 root 账户并修改密码"></a>1、使用 Google Cloud 网页版 ssh 登录，切换到 root 账户并修改密码</h3><p><img src="/blogimg/20190712_google_01.png" alt="20190712_google_01.png"></p>
 <p>切换到 root 账户<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo -i</div></pre></td></tr></table></figure></p>
 <p>修改当前用户密码<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo passwd $&#123;whoami&#125;</div></pre></td></tr></table></figure></p>
 <p>修改 root 用户密码<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo passwd root</div></pre></td></tr></table></figure></p>
 <h3 id="2、修改-ssh-配置文件，允许第三方客户端登录"><a href="#2、修改-ssh-配置文件，允许第三方客户端登录" class="headerlink" title="2、修改 ssh 配置文件，允许第三方客户端登录"></a>2、修改 ssh 配置文件，允许第三方客户端登录</h3><p>修改 ssh 配置文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
 <p>修改以下的内容</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">PermitRootLogin yes</div><div class="line">PasswordAuthentication yes</div></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2019/07/12/5d2833c82589a96536.png" alt=""></p>
+<p><img src="/blogimg/20190712_google_02.png" alt="20190712_google_02.png"></p>
 <p>重启 ssh</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">service sshd restart</div></pre></td></tr></table></figure>
 <h3 id="3、使用第三方-ssh-客户端登录-Google-Cloud，如-iTerm"><a href="#3、使用第三方-ssh-客户端登录-Google-Cloud，如-iTerm" class="headerlink" title="3、使用第三方 ssh 客户端登录 Google Cloud，如 iTerm"></a>3、使用第三方 ssh 客户端登录 Google Cloud，如 iTerm</h3><p>添加服务器 root 账户</p>
-<p><img src="https://i.loli.net/2019/07/12/5d2833c871ab841084.png" alt=""></p>
-<p>登录<br><img src="https://i.loli.net/2019/07/12/5d2833c8609f160150.png" alt=""></p>
+<p><img src="/blogimg/20190712_google_03.png" alt="20190712_google_03.png"></p>
+<p>登录<br><img src="/blogimg/20190712_google_04.png" alt="20190712_google_04.png"></p>
 
 
                 <div id="rewardContainer">

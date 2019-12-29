@@ -284,7 +284,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>在<code>MySLQ</code>中 <code>UPDATA</code> 和 <code>INSERT</code> 数据的时候，如果数据上面带有<code>emoji</code>图标，例如：?、?、? 很容易更新或者插入不成功，导致报错。</p>
+                <p>在<code>MySLQ</code>中 <code>UPDATA</code> 和 <code>INSERT</code> 数据的时候，如果数据上面带有<code>emoji</code>图标，例如：😂😂 很容易更新或者插入不成功，导致报错。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Error: ER_TRUNCATED_WRONG_VALUE_FOR_FIELD: </div><div class="line">Incorrect string value: &apos;\xF0\x9F\x91\xBD\xF0\x9F...&apos; for column &apos;name&apos; at row</div></pre></td></tr></table></figure>
 <p>都快崩溃了，但是还好终于解决了这种鬼问题。资料显示原因是，<code>MYSQL 5.5</code> 之前， <code>UTF8</code> 编码只支持1-3个字节，只支持<code>BMP</code>这部分的<code>unicode</code>编码区，而<code>emoji</code>图标恰好是4个字节的编码进行存储。从<code>MYSQL5.5</code>开始，可支持4个字节<code>UTF</code>编码<code>utf8mb4</code>，一个字符最多能有4字节，所以能支持更多的字符集。所以要解决问题，必需把数据库表字符编码全部改成<code>utf8mb4</code>。</p>
 <h3 id="常用字符集"><a href="#常用字符集" class="headerlink" title="常用字符集"></a>常用字符集</h3><ul>
