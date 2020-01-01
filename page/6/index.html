@@ -13,11 +13,11 @@
 
     <title>
         
-          DHTalk | DHTalk&#39;s Blog
+          DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://calvincheung.coding.me/page/6/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/page/6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -271,9 +271,57 @@
                 col-xs-12
                 post-container
             ">
-            
+
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/04/15/umeng-share-question/">
+        <h2 class="post-title">
+            iOS 友盟分享到第三方 App 后无法返回的问题
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            App 分享到 QQ、微信、微博等成功后无法返回到自己 App 的问题。
+1、检查是否实现了系统回调方法
+//#define __IPHONE_10_0    100000#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt; 100000- (BOOL)application:(UIApplication *)app ope......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-15
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/04/14/iOS-DeviceModel/">
+        <h2 class="post-title">
+            iOS 封装获取机型工具类
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            日常开发中我们常需要根据机型来做一些特殊的处理，本文针对此种需求，将此功能抽离出来，封装成工具类，能够极大方便日常的开发。
+Tool.h 暴露接口
++ (NSString *)getCurrentDeviceModel;
+Tool.m 实现
++ (NSString *)getCurrentDeviceModel&#123;    int mib[2];......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-14
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -459,53 +507,6 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/05/GCD-countdown/">
-        <h2 class="post-title">
-            iOS 使用 GCD 实现按钮的倒计时效果
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在用户注册页面时，大部分需要用户输入手机号并获取验证码，而常见的处理方式是，点击了获取验证码按钮后，按钮会显示倒计时数字并且不可点击，当倒计时结束后按钮可以再次点击并再次获取验证码。接下来使用 GCD 实现这个小需求。
-当用户点击获取验证码按钮后，调用以下方法
-#pragma mark -- 开启倒计时效果-(void)openCountdown&#1......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/04/05/textfield-encapsulation/">
-        <h2 class="post-title">
-            iOS 禁止 Textfield 使用复制粘贴菜单栏
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在日常开发工作中，有很多涉及密码的文本框，处于安全考虑我们一般都是不让用户使用复制和粘贴功能的，也就是长按文本框内容时禁止弹出文本复制、粘贴等菜单栏，接下来简单说一下这种需求怎么实现。
-1、创建基于 UITextfield 的 BaseTextfield
-2、在 BaseTextfield.m 中写入如下代码
-- (BOOL)canPerformAct......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-05
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -569,6 +570,8 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
                             
                         
                             
+                            <a href="/tags/#年终总结" title="年终总结" rel="2">年终总结</a>
+                            
                         
                             
                             <a href="/tags/#Python" title="Python" rel="2">Python</a>
@@ -579,7 +582,7 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="6">读书笔记</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="7">读书笔记</a>
                             
                         
                             
@@ -768,9 +771,9 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 
                 </ul>
                 <p class="copyright text-muted">
-                    &copy; 2016 -  2019 Calvin, All rights reserved.
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
 					<br>
-					<span class="post-count"> 本站共计 92.5k 字 </span>
+					<span class="post-count"> 本站共计 97.5k 字 </span>
                 </p>
             </div>
         </div>
@@ -822,7 +825,7 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://calvincheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -886,7 +889,7 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 
 
 <!-- Image to hack wechat -->
-<img src="http://calvincheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

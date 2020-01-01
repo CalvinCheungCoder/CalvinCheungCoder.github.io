@@ -13,11 +13,11 @@
 
     <title>
         
-          iOS 开发之 Block - DHTalk | DHTalk&#39;s Blog
+          iOS 开发之 Block - DHTalk&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://calvincheung.coding.me/2017/07/06/iOS-Block/">
+    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/07/06/iOS-Block/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -242,7 +242,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://calvincheung.coding.me/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -345,6 +345,7 @@
 
                 <hr>
 
+
                 
 
                 <ul class="pager">
@@ -363,11 +364,30 @@
                 
 
                 
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = true == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: 'ヾﾉ≧∀≦)o快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
                 
 
             </div>
@@ -428,22 +448,6 @@
 
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "www-zhangdinghao-cn";
-    var disqus_identifier = "http://calvincheung.coding.me/2017/07/06/iOS-Block/";
-    var disqus_url = "http://calvincheung.coding.me/2017/07/06/iOS-Block/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
 
 
 
@@ -516,9 +520,9 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    &copy; 2016 -  2019 Calvin, All rights reserved.
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
 					<br>
-					<span class="post-count"> 本站共计 92.5k 字 </span>
+					<span class="post-count"> 本站共计 97.5k 字 </span>
                 </p>
             </div>
         </div>
@@ -570,7 +574,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://calvincheung.coding.me/js/jquery.tagcloud.js",function(){
+        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -634,7 +638,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://calvincheung.coding.me/img/icon_wechat.png" width="0" height="0" />
+<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
