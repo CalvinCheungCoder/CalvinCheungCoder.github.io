@@ -4,9 +4,9 @@
   <subtitle>Stay hungry Stay foolish.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://CalvinCheungCoder.github.io/"/>
+  <link href="http://CalvinCheung.coding.me/Blog/"/>
   <updated>2020-01-01T16:41:44.744Z</updated>
-  <id>http://CalvinCheungCoder.github.io/</id>
+  <id>http://CalvinCheung.coding.me/Blog/</id>
   
   <author>
     <name>Calvin</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>2019 年年终总结</title>
-    <link href="http://CalvinCheungCoder.github.io/2020/01/01/goodbye2019/"/>
-    <id>http://CalvinCheungCoder.github.io/2020/01/01/goodbye2019/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2020/01/01/goodbye2019/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2020/01/01/goodbye2019/</id>
     <published>2020-01-01T11:29:42.000Z</published>
     <updated>2020-01-01T16:41:44.744Z</updated>
     
@@ -51,17 +51,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="年终总结" scheme="http://CalvinCheungCoder.github.io/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+      <category term="年终总结" scheme="http://CalvinCheung.coding.me/Blog/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>2019 年读书总结</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/12/30/2019-readBooks/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/12/30/2019-readBooks/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/12/30/2019-readBooks/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/12/30/2019-readBooks/</id>
     <published>2019-12-29T16:04:45.000Z</published>
     <updated>2020-01-01T15:33:09.547Z</updated>
     
@@ -97,17 +97,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>你当像鸟飞往你的山</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/12/29/educated/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/12/29/educated/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/12/29/educated/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/12/29/educated/</id>
     <published>2019-12-29T05:35:26.000Z</published>
     <updated>2019-12-29T10:08:16.000Z</updated>
     
@@ -160,17 +160,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>走进比尔：解码比尔·盖茨</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/09/21/billgates/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/09/21/billgates/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/09/21/billgates/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/09/21/billgates/</id>
     <published>2019-09-21T06:17:17.000Z</published>
     <updated>2019-12-29T12:22:04.000Z</updated>
     
@@ -237,14 +237,14 @@
     </summary>
     
     
-      <category term="Movie" scheme="http://CalvinCheungCoder.github.io/tags/Movie/"/>
+      <category term="Movie" scheme="http://CalvinCheung.coding.me/Blog/tags/Movie/"/>
     
   </entry>
   
   <entry>
     <title>读书笔记 -《理财就是理生活》</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/09/15/readnote0915/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/09/15/readnote0915/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/09/15/readnote0915/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/09/15/readnote0915/</id>
     <published>2019-09-15T08:15:29.000Z</published>
     <updated>2019-09-15T09:39:50.000Z</updated>
     
@@ -294,17 +294,17 @@
     
     </summary>
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>匿名币 Grin 节点搭建与 Grin Wallet 创建和转账</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/07/17/GrinWallet/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/07/17/GrinWallet/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/07/17/GrinWallet/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/07/17/GrinWallet/</id>
     <published>2019-07-17T15:33:03.000Z</published>
     <updated>2019-07-17T15:34:26.000Z</updated>
     
@@ -406,8 +406,8 @@
   
   <entry>
     <title>使用 SSH 客户端登录 Google Cloud / VPS</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/07/13/use-ssh/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/07/13/use-ssh/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/07/13/use-ssh/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/07/13/use-ssh/</id>
     <published>2019-07-13T14:12:42.000Z</published>
     <updated>2019-12-29T12:24:23.000Z</updated>
     
@@ -433,14 +433,14 @@
     </summary>
     
     
-      <category term="tips" scheme="http://CalvinCheungCoder.github.io/tags/tips/"/>
+      <category term="tips" scheme="http://CalvinCheung.coding.me/Blog/tags/tips/"/>
     
   </entry>
   
   <entry>
     <title>2019 上半年读书总结</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/07/07/2019-read-notes-1/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/07/07/2019-read-notes-1/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/07/07/2019-read-notes-1/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/07/07/2019-read-notes-1/</id>
     <published>2019-07-07T15:29:44.000Z</published>
     <updated>2020-01-04T15:57:12.286Z</updated>
     
@@ -613,17 +613,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>使用 items-services 协议直接安装 iOS App</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/05/16/apple-items-services/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/05/16/apple-items-services/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/05/16/apple-items-services/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/05/16/apple-items-services/</id>
     <published>2019-05-16T14:51:34.000Z</published>
     <updated>2019-05-16T15:25:30.000Z</updated>
     
@@ -649,14 +649,14 @@
     </summary>
     
     
-      <category term="tips" scheme="http://CalvinCheungCoder.github.io/tags/tips/"/>
+      <category term="tips" scheme="http://CalvinCheung.coding.me/Blog/tags/tips/"/>
     
   </entry>
   
   <entry>
     <title>Hexo 博客常用指令</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/05/06/hexo-commands/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/05/06/hexo-commands/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/05/06/hexo-commands/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/05/06/hexo-commands/</id>
     <published>2019-05-05T16:12:02.000Z</published>
     <updated>2019-05-07T16:26:21.000Z</updated>
     
@@ -778,14 +778,14 @@
     </summary>
     
     
-      <category term="Hexo" scheme="http://CalvinCheungCoder.github.io/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://CalvinCheung.coding.me/Blog/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>MySQL 支持 emoji 图标存储</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/02/19/mysql-use-emoji/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/02/19/mysql-use-emoji/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/02/19/mysql-use-emoji/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/02/19/mysql-use-emoji/</id>
     <published>2019-02-19T14:13:43.000Z</published>
     <updated>2019-12-29T11:54:42.000Z</updated>
     
@@ -835,17 +835,17 @@
     
     </summary>
     
-      <category term="DevTips" scheme="http://CalvinCheungCoder.github.io/categories/DevTips/"/>
+      <category term="DevTips" scheme="http://CalvinCheung.coding.me/Blog/categories/DevTips/"/>
     
     
-      <category term="MySQL" scheme="http://CalvinCheungCoder.github.io/tags/MySQL/"/>
+      <category term="MySQL" scheme="http://CalvinCheung.coding.me/Blog/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>EOS 错误码整理</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/02/18/eos-errorlist/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/02/18/eos-errorlist/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/02/18/eos-errorlist/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/02/18/eos-errorlist/</id>
     <published>2019-02-18T14:24:12.000Z</published>
     <updated>2019-02-18T14:24:58.000Z</updated>
     
@@ -891,17 +891,17 @@
     
     </summary>
     
-      <category term="DevTips" scheme="http://CalvinCheungCoder.github.io/categories/DevTips/"/>
+      <category term="DevTips" scheme="http://CalvinCheung.coding.me/Blog/categories/DevTips/"/>
     
     
-      <category term="EOS" scheme="http://CalvinCheungCoder.github.io/tags/EOS/"/>
+      <category term="EOS" scheme="http://CalvinCheung.coding.me/Blog/tags/EOS/"/>
     
   </entry>
   
   <entry>
     <title>2019 🇬🇧英国之行</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/02/16/2019-in-the-uk/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/02/16/2019-in-the-uk/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/02/16/2019-in-the-uk/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/02/16/2019-in-the-uk/</id>
     <published>2019-02-16T05:06:10.000Z</published>
     <updated>2020-01-04T16:03:59.079Z</updated>
     
@@ -958,17 +958,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="旅行" scheme="http://CalvinCheungCoder.github.io/tags/%E6%97%85%E8%A1%8C/"/>
+      <category term="旅行" scheme="http://CalvinCheung.coding.me/Blog/tags/%E6%97%85%E8%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>Python 新手的爬虫实战</title>
-    <link href="http://CalvinCheungCoder.github.io/2019/01/19/python-practice/"/>
-    <id>http://CalvinCheungCoder.github.io/2019/01/19/python-practice/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2019/01/19/python-practice/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2019/01/19/python-practice/</id>
     <published>2019-01-19T13:45:06.000Z</published>
     <updated>2019-01-19T15:08:18.000Z</updated>
     
@@ -999,19 +999,19 @@
     
     </summary>
     
-      <category term="Python" scheme="http://CalvinCheungCoder.github.io/categories/Python/"/>
+      <category term="Python" scheme="http://CalvinCheung.coding.me/Blog/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://CalvinCheungCoder.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://CalvinCheung.coding.me/Blog/tags/Python/"/>
     
-      <category term="爬虫" scheme="http://CalvinCheungCoder.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://CalvinCheung.coding.me/Blog/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>2018 年读书总结</title>
-    <link href="http://CalvinCheungCoder.github.io/2018/12/30/2018-readBooks/"/>
-    <id>http://CalvinCheungCoder.github.io/2018/12/30/2018-readBooks/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2018/12/30/2018-readBooks/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2018/12/30/2018-readBooks/</id>
     <published>2018-12-30T13:34:37.000Z</published>
     <updated>2020-01-01T13:31:45.000Z</updated>
     
@@ -1088,17 +1088,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>使用 Google Cloud 搭建 BBR+SS/SSR 科学上网</title>
-    <link href="http://CalvinCheungCoder.github.io/2018/12/23/create-ss-using-google-cloud/"/>
-    <id>http://CalvinCheungCoder.github.io/2018/12/23/create-ss-using-google-cloud/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2018/12/23/create-ss-using-google-cloud/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2018/12/23/create-ss-using-google-cloud/</id>
     <published>2018-12-23T12:05:09.000Z</published>
     <updated>2020-01-04T15:57:13.043Z</updated>
     
@@ -1136,17 +1136,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="科学上网" scheme="http://CalvinCheungCoder.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+      <category term="科学上网" scheme="http://CalvinCheung.coding.me/Blog/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
   <entry>
     <title>在 Mac 上使用 pyenv 安装管理多版本 Python</title>
-    <link href="http://CalvinCheungCoder.github.io/2018/04/01/install-python-on-mac/"/>
-    <id>http://CalvinCheungCoder.github.io/2018/04/01/install-python-on-mac/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2018/04/01/install-python-on-mac/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2018/04/01/install-python-on-mac/</id>
     <published>2018-04-01T08:27:10.000Z</published>
     <updated>2019-03-02T11:05:54.000Z</updated>
     
@@ -1170,17 +1170,17 @@
     
     </summary>
     
-      <category term="DevTips" scheme="http://CalvinCheungCoder.github.io/categories/DevTips/"/>
+      <category term="DevTips" scheme="http://CalvinCheung.coding.me/Blog/categories/DevTips/"/>
     
     
-      <category term="Python" scheme="http://CalvinCheungCoder.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://CalvinCheung.coding.me/Blog/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>再见，我的2017</title>
-    <link href="http://CalvinCheungCoder.github.io/2018/01/01/goodbye2017/"/>
-    <id>http://CalvinCheungCoder.github.io/2018/01/01/goodbye2017/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2018/01/01/goodbye2017/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2018/01/01/goodbye2017/</id>
     <published>2018-01-01T12:51:02.000Z</published>
     <updated>2019-03-02T11:03:34.000Z</updated>
     
@@ -1224,17 +1224,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="年终总结" scheme="http://CalvinCheungCoder.github.io/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+      <category term="年终总结" scheme="http://CalvinCheung.coding.me/Blog/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>2017 年读书总结</title>
-    <link href="http://CalvinCheungCoder.github.io/2017/12/30/2017-readBooks/"/>
-    <id>http://CalvinCheungCoder.github.io/2017/12/30/2017-readBooks/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2017/12/30/2017-readBooks/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2017/12/30/2017-readBooks/</id>
     <published>2017-12-30T10:14:57.000Z</published>
     <updated>2020-01-04T16:02:10.309Z</updated>
     
@@ -1329,17 +1329,17 @@
     
     </summary>
     
-      <category term="闲言碎语" scheme="http://CalvinCheungCoder.github.io/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
+      <category term="闲言碎语" scheme="http://CalvinCheung.coding.me/Blog/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
     
     
-      <category term="读书笔记" scheme="http://CalvinCheungCoder.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://CalvinCheung.coding.me/Blog/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>Cocoapods 安装和基本使用</title>
-    <link href="http://CalvinCheungCoder.github.io/2017/10/11/installationCocoapods/"/>
-    <id>http://CalvinCheungCoder.github.io/2017/10/11/installationCocoapods/</id>
+    <link href="http://CalvinCheung.coding.me/Blog/2017/10/11/installationCocoapods/"/>
+    <id>http://CalvinCheung.coding.me/Blog/2017/10/11/installationCocoapods/</id>
     <published>2017-10-11T13:33:22.000Z</published>
     <updated>2019-03-02T11:04:33.000Z</updated>
     
@@ -1384,10 +1384,10 @@
     
     </summary>
     
-      <category term="iOSDev" scheme="http://CalvinCheungCoder.github.io/categories/iOSDev/"/>
+      <category term="iOSDev" scheme="http://CalvinCheung.coding.me/Blog/categories/iOSDev/"/>
     
     
-      <category term="ObjC" scheme="http://CalvinCheungCoder.github.io/tags/ObjC/"/>
+      <category term="ObjC" scheme="http://CalvinCheung.coding.me/Blog/tags/ObjC/"/>
     
   </entry>
   
