@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -287,9 +287,9 @@
                 <p>近期又折腾了几次科学上网，每次设置都需要上网寻找教程，看到了一篇还不错的，索性转载并根据自己的情况稍作修改自留。<a href="https://cyhour.com/520/" target="_blank" rel="noopener">原文链接：小试 Google Cloud 搭建 BBR+S$ 科学上网</a>，如有侵权请告知，我会做删除处理。</p>
 <p>Google Cloud 其实就是个 VPS，VPS 能干的它都能实现。Google Cloud 赠送 300 刀可以使用 1 年，也就是说如无意外，我们可以免费使用 1 年速度还不错的 SS/SSR 科学上网。</p>
 <p><a href="https://console.cloud.google.com/freetrial" target="_blank" rel="noopener">Google Cloud 试用地址</a>，自备 Visa 信用卡。申请不成功自行放狗或者找度娘。</p>
-<h3 id="1、计算引擎中创建VM实例"><a href="#1、计算引擎中创建VM实例" class="headerlink" title="1、计算引擎中创建VM实例"></a>1、计算引擎中创建VM实例</h3><p>选个乞丐配置就好。<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/ssr1.png" alt="1"></p>
-<h3 id="2、申请保留静态-IP"><a href="#2、申请保留静态-IP" class="headerlink" title="2、申请保留静态 IP"></a>2、申请保留静态 IP</h3><p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/ssr2.png" alt="2"></p>
-<h3 id="3、修改防火墙"><a href="#3、修改防火墙" class="headerlink" title="3、修改防火墙"></a>3、修改防火墙</h3><p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/ssr3.png" alt="3"></p>
+<h3 id="1、计算引擎中创建VM实例"><a href="#1、计算引擎中创建VM实例" class="headerlink" title="1、计算引擎中创建VM实例"></a>1、计算引擎中创建VM实例</h3><p>选个乞丐配置就好。<br><img src="/blogimg/ssr1.png" alt="1"></p>
+<h3 id="2、申请保留静态-IP"><a href="#2、申请保留静态-IP" class="headerlink" title="2、申请保留静态 IP"></a>2、申请保留静态 IP</h3><p><img src="/blogimg/ssr2.png" alt="2"></p>
+<h3 id="3、修改防火墙"><a href="#3、修改防火墙" class="headerlink" title="3、修改防火墙"></a>3、修改防火墙</h3><p><img src="/blogimg/ssr3.png" alt="3"></p>
 <h3 id="4、安装-BBR-内核"><a href="#4、安装-BBR-内核" class="headerlink" title="4、安装 BBR 内核"></a>4、安装 BBR 内核</h3><p>SSH 登录，sudo -i 切换到 root 用户。<a href="https://teddysun.com/489.html" target="_blank" rel="noopener">方法源自秋水逸冰</a></p>
 <p>运行以下命令：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div><div class="line">chmod +x bbr.sh</div><div class="line">./bbr.sh</div></pre></td></tr></table></figure>
@@ -308,8 +308,8 @@
 <h3 id="5、安装-SS-SSR"><a href="#5、安装-SS-SSR" class="headerlink" title="5、安装 SS/SSR"></a>5、安装 SS/SSR</h3><p>这里使用秋水逸冰提供的一键脚本，脚本代码如下，<a href="https://teddysun.com/486.html" target="_blank" rel="noopener">脚本原文链接：Shadowsocks 一键安装脚本（四合一）</a></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo -i</div><div class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</div><div class="line">chmod +x shadowsocks-all.sh</div><div class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</div></pre></td></tr></table></figure>
 <p>运行过程中关于 SS/SSR 的配置不明白的地方，请查看 <a href="https://github.com/Ehco1996/django-sspanel/wiki/ShadowsocksR-%E6%8E%A8%E8%8D%90%E5%8D%8F%E8%AE%AE%E6%B7%B7%E6%B7%86%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">此篇文章</a></p>
-<p>配置完成后效果如下：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/ssr4.png" alt="4"></p>
-<h3 id="6、油管速度"><a href="#6、油管速度" class="headerlink" title="6、油管速度"></a>6、油管速度</h3><p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/ss-youtube.png" alt="5"></p>
+<p>配置完成后效果如下：<br><img src="/blogimg/ssr4.png" alt="4"></p>
+<h3 id="6、油管速度"><a href="#6、油管速度" class="headerlink" title="6、油管速度"></a>6、油管速度</h3><p><img src="/blogimg/ss-youtube.png" alt="5"></p>
 
 
                 <div id="rewardContainer">

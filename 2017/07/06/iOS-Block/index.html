@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -294,7 +294,7 @@
 <li>block 被 Objective-C 看成是对象处理</li>
 </ol>
 <h3 id="Block-特性"><a href="#Block-特性" class="headerlink" title="Block 特性"></a>Block 特性</h3><h4 id="认识-Block"><a href="#认识-Block" class="headerlink" title="认识 Block"></a>认识 Block</h4><p>Block 代码结构如下：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170706149931057994690.jpg" alt="20170706149931057994690.jpg"></p>
+<p><img src="/blogimg/20170706149931057994690.jpg" alt="20170706149931057994690.jpg"></p>
 <p>先来看一个简单的block吧：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> (^isInputEven)(<span class="keyword">int</span>) = ^(<span class="keyword">int</span> input) &#123;</div><div class="line">	<span class="keyword">if</span> (input % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>以上定义了一个 block 变量，block 本身就是一个程序段，因此有返回值有输入参数，这里这个 block 返回的类型为 <code>BOOL</code>。<code>^</code>符号表示 block 定义的开始，block 的名称紧跟在<code>^</code>符号之后，这里block的名称是 <code>isInputEven</code>。这段 block 接受一个 <code>int</code> 型的参数，而在等号后面的 <code>int input</code> 是对这个传入 int 参数的说明：在该 block 内，将使用 inpu t这个名字来指代传入的 int 参数。</p>
@@ -324,7 +324,7 @@
 <p>这样我们就可以在想要获取数据回调的地方，也就 RootViewController 的视图中调用 block：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)btnClicked&#123;</div><div class="line">    </div><div class="line">    SecViewController *sec = [[SecViewController alloc]init];</div><div class="line">    <span class="comment">// 弱引用转换,为了防止循环引用</span></div><div class="line">    __<span class="keyword">weak</span> RootViewController *weakSelf = <span class="keyword">self</span>;</div><div class="line">    sec.myBlock = ^(<span class="built_in">NSString</span> *value) &#123;</div><div class="line">        weakSelf.label.text = value;        </div><div class="line">    &#125;;</div><div class="line">    [<span class="keyword">self</span> presentViewController:sec animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/2017070614993130281040.gif" alt="2017070614993130281040.gif"></p>
+<p><img src="/blogimg/2017070614993130281040.gif" alt="2017070614993130281040.gif"></p>
 
 
                 <div id="rewardContainer">

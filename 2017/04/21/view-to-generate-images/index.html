@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -293,7 +293,7 @@
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)BtnClicked</div><div class="line">&#123;</div><div class="line">    <span class="built_in">UIImage</span> *img = [<span class="keyword">self</span> createViewImage:<span class="keyword">self</span>.shareView];</div><div class="line">    <span class="built_in">UIImageWriteToSavedPhotosAlbum</span>(img, <span class="keyword">self</span>, <span class="keyword">@selector</span>(image:didFinishSavingWithError:contextInfo:), <span class="literal">nil</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>UIView 生成 UIImage 代码方法：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIImage</span> *)createViewImage:(<span class="built_in">UIView</span> *)shareView &#123;</div><div class="line">    </div><div class="line">    <span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(shareView.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale);</div><div class="line">    [shareView.layer renderInContext:<span class="built_in">UIGraphicsGetCurrentContext</span>()];</div><div class="line">    <span class="built_in">UIImage</span> * image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">    <span class="keyword">return</span> image;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>效果如下：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170421149275886595354.jpg" alt="20170421149275886595354.jpg"></p>
+<p>效果如下：<br><img src="/blogimg/20170421149275886595354.jpg" alt="20170421149275886595354.jpg"></p>
 <p>因为我的手机是 iPhone 6s，所以生成的尺寸是 750x1374。当然图片的大小和内容是根据代码进行设置的。</p>
 <p>生成图片以后进行分享或者保存就很随意了。</p>
 <p><a href="https://github.com/CalvinCheungCoder/UIViewToUIImage" target="_blank" rel="noopener">『 Demo 下载 』</a></p>

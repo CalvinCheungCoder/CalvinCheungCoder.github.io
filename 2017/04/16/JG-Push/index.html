@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -297,7 +297,7 @@
 <li>设置 Search Paths 下的 User Header Search Paths 和 Library Search Paths，比如SDK文件夹（默认为lib）与工程文件在同一级目录下，则都设置为”$(SRCROOT)/{静态库所在文件夹名称}”即可。</li>
 </ul>
 <p>如使用 Xcode8 及以上环境开发，请开启 Application Target的Capabilities-&gt;Push Notifications 选项，如图：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170416149233637219018.jpg" alt="20170416149233637219018.jpg"></p>
+<p><img src="/blogimg/20170416149233637219018.jpg" alt="20170416149233637219018.jpg"></p>
 <h5 id="允许-Xcode7-支持-Http-传输方法"><a href="#允许-Xcode7-支持-Http-传输方法" class="headerlink" title="允许 Xcode7 支持 Http 传输方法"></a>允许 Xcode7 支持 Http 传输方法</h5><p>如果使用的是 2.1.9 及以上的版本则不需要配置此步骤</p>
 <p>选择1：根据域名配置</p>
 <ul>
@@ -306,7 +306,7 @@
 <li>把需要的支持的域添加給NSExceptionDomains。其中jpush.cn作为Key，类型为字典类型。</li>
 <li>每个域下面需要设置2个属性：NSIncludesSubdomains、NSExceptionAllowsInsecureHTTPLoads。 两个属性均为Boolean类型，值分别为YES、YES。</li>
 </ul>
-<p>如图：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170416149233646697605.jpg" alt="20170416149233646697605.jpg"></p>
+<p>如图：<br><img src="/blogimg/20170416149233646697605.jpg" alt="20170416149233646697605.jpg"></p>
 <p>选择2：全局配置</p>
 <figure class="highlight"><table><tr><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt; </div><div class="line">&lt;dict&gt; </div><div class="line">  &lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt; </div><div class="line">  &lt;true/&gt; </div><div class="line">&lt;/dict&gt;</div></pre></td></tr></table></figure>
 <h4 id="添加头文件"><a href="#添加头文件" class="headerlink" title="添加头文件"></a>添加头文件</h4><p>AppDelegate.m 引用头文件</p>

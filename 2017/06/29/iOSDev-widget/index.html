@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -285,15 +285,15 @@
                 post-container">
 
                 <h3 id="添加-Today-Extension-工程"><a href="#添加-Today-Extension-工程" class="headerlink" title="添加 Today Extension 工程"></a>添加 Today Extension 工程</h3><p>在原有的项目基础上，想要使用 <code>Today Extension</code>，即 <code>Widget</code>。我们需要创建一个新的 <code>target</code>，点击<code>File--&gt;New--&gt;Target--&gt;Today Extention</code>，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149873901496022.png" alt="20170629149873901496022.png"></p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/2017062914987390541464.png" alt="2017062914987390541464.png"></p>
+<p><img src="/blogimg/20170629149873901496022.png" alt="20170629149873901496022.png"></p>
+<p><img src="/blogimg/2017062914987390541464.png" alt="2017062914987390541464.png"></p>
 <a id="more"></a>
 <p>创建成功后如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149873913639399.png" alt="20170629149873913639399.png"></p>
+<p><img src="/blogimg/20170629149873913639399.png" alt="20170629149873913639399.png"></p>
 <p>此时直接运行项目，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149873922219531.png" alt="20170629149873922219531.png"></p>
+<p><img src="/blogimg/20170629149873922219531.png" alt="20170629149873922219531.png"></p>
 <h3 id="Widget-UI-简单实现"><a href="#Widget-UI-简单实现" class="headerlink" title="Widget UI 简单实现"></a>Widget UI 简单实现</h3><p>本人习惯使用纯代码布局，所以我删除了默认创建的 <code>MainInterface.storyboard</code>，并在<code>info.plist</code> 中删除 <code>NSExtensionMainStoryboard</code> 字段，添加<code>NSExtensionPrincipalClass</code> 为 <code>TodayViewController</code>，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/2017062914987393879662.png" alt="2017062914987393879662.png"></p>
+<p><img src="/blogimg/2017062914987393879662.png" alt="2017062914987393879662.png"></p>
 <p>当然，如果你习惯使用 <code>xib</code> 或者 <code>storyboard</code> 布局的话，可以直接在 <code>MainInterface.storyboard</code> 文件中进行 UI 实现。</p>
 <p>实现下面的协议，配置 <code>widget</code> 的边距，否则你会发现 UI 的位置会与左侧边界有一定距离。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIEdgeInsets</span>)widgetMarginInsetsForProposedMarginInsets:(<span class="built_in">UIEdgeInsets</span>)defaultMarginInsets &#123;</div><div class="line">    <span class="comment">// 配置边距为0</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -313,27 +313,27 @@
 <h3 id="点击-Widget-进入-App"><a href="#点击-Widget-进入-App" class="headerlink" title="点击 Widget 进入 App"></a>点击 Widget 进入 App</h3><p>刚才我们在 <code>widget</code> 中添加了一个充满折叠视图的 <code>UILabel</code>，并想在用户点击时直接打开 App 的登录页面。</p>
 <p>这里我们要设置一下 <code>URL Schemes</code> ,<code>URL Schemes</code> 主要作用是 App 之间相互调用打开，包括我们在实现第三方分享、第三方登录时都需要用到 <code>URL Schemes</code>。</p>
 <p>如图所示，在 <code>info -&gt; URL Types</code> 里设置好 <code>Schemes</code> 后</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874119223815.png" alt="20170629149874119223815.png"></p>
+<p><img src="/blogimg/20170629149874119223815.png" alt="20170629149874119223815.png"></p>
 <p>再在 <code>Today Extention</code>  对应的 <code>info.plist</code> 里设置 <code>Schemes</code>,如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874139991858.png" alt="20170629149874139991858.png"></p>
+<p><img src="/blogimg/20170629149874139991858.png" alt="20170629149874139991858.png"></p>
 <p>设置好 Schemes 后，实现 UILabel 的点击事件：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 通过 openURL 的方式启 APP</span></div><div class="line">- (<span class="keyword">void</span>)openURLContainingAPP</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">self</span>.extensionContext openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"xiaozhumi://"</span>]</div><div class="line">                 completionHandler:^(<span class="built_in">BOOL</span> success) &#123;</div><div class="line">                     <span class="built_in">NSLog</span>(<span class="string">@"open url result:%d"</span>,success);</div><div class="line">                 &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>此时我们可以处理点击事件，让用户点击后直接打开 App 的登录页面并登录。</p>
 <p>当用户登录成功后再次查看 widget 时，这时候如果继续显示登录的提示显然是不妥的，此时根据业务需求，我需要在用户登录账号成功后再次查看 widget 时，widget 展示用户的个人积分。</p>
 <h3 id="App-和-Widget-的数据共享"><a href="#App-和-Widget-的数据共享" class="headerlink" title="App 和 Widget 的数据共享"></a>App 和 Widget 的数据共享</h3><p>由于沙盒机制，拓展应用是不允许访问宿主应用的沙盒路径的，因此上述用法是不对的，需要搭配 app group完成实例化 UserDefaults。</p>
 <p>首先需要去苹果开发者中心 <code>Identifiers -&gt; APP Groups</code> 中创建一个 <code>APP Group</code>，命名方式 <code>group.com.companyName.xxx</code>，如下图</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874199157137.png" alt="20170629149874199157137.png"></p>
+<p><img src="/blogimg/20170629149874199157137.png" alt="20170629149874199157137.png"></p>
 <p>当创建好 <code>App Group</code> 后，分别在 主项目和 <code>Today</code> 的 <code>Capabilities</code> 设置选项中打开 <code>App Group</code> 选项，并选中在苹果开发者中心设置的 <code>App Group</code>。</p>
 <p>如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874227325941.png" alt="20170629149874227325941.png"></p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874228068268.png" alt="20170629149874228068268.png"></p>
+<p><img src="/blogimg/20170629149874227325941.png" alt="20170629149874227325941.png"></p>
+<p><img src="/blogimg/20170629149874228068268.png" alt="20170629149874228068268.png"></p>
 <p>此时，Todey 就可以和主项目进行数据共享了。</p>
 <h4 id="通过-NSUserDefaults-共享数据"><a href="#通过-NSUserDefaults-共享数据" class="headerlink" title="通过 NSUserDefaults 共享数据"></a>通过 NSUserDefaults 共享数据</h4><p>当用户登录成功后，保存用户的积分到本地供 Widget 读取并展示。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 保存积分供 Widget 使用</span></div><div class="line"> <span class="built_in">NSUserDefaults</span> *shared = [[<span class="built_in">NSUserDefaults</span> alloc] initWithSuiteName:<span class="string">@"group.com.xiaozhumi.today"</span>];</div><div class="line"> [shared setObject:jf forKey:<span class="string">@"UserJF"</span>];</div><div class="line"> [shared synchronize];</div></pre></td></tr></table></figure>
 <p>widget 读取积分</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSUserDefaults</span> *shared = [[<span class="built_in">NSUserDefaults</span> alloc] initWithSuiteName:<span class="string">@"group.com.xiaozhumi.today"</span>];</div><div class="line"><span class="built_in">NSString</span> *value = [shared valueForKey:<span class="string">@"UserJF"</span>];</div></pre></td></tr></table></figure>
 <p>展示结果如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170629149874261861798.png" alt="20170629149874261861798.png"></p>
+<p><img src="/blogimg/20170629149874261861798.png" alt="20170629149874261861798.png"></p>
 <h4 id="通过-NSFileManager-共享数据"><a href="#通过-NSFileManager-共享数据" class="headerlink" title="通过 NSFileManager 共享数据"></a>通过 NSFileManager 共享数据</h4><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)saveDataByNSFileManager</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</div><div class="line">    <span class="built_in">NSURL</span> *containerURL = [[<span class="built_in">NSFileManager</span> defaultManager] containerURLForSecurityApplicationGroupIdentifier:<span class="string">@"group.com.xxx.xxx"</span>];</div><div class="line">    containerURL = [containerURL URLByAppendingPathComponent:<span class="string">@"Library/Caches/test"</span>];</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *value = <span class="string">@"test"</span>;</div><div class="line">    <span class="built_in">BOOL</span> result = [value writeToURL:containerURL atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</div><div class="line">    <span class="keyword">if</span> (!result) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"save value:%@ success."</span>,value);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)readDataByNSFileManager</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</div><div class="line">    <span class="built_in">NSURL</span> *containerURL = [[<span class="built_in">NSFileManager</span> defaultManager] containerURLForSecurityApplicationGroupIdentifier:<span class="string">@"group.com.xxx.xxx"</span>];</div><div class="line">    containerURL = [containerURL URLByAppendingPathComponent:<span class="string">@"Library/Caches/test"</span>];</div><div class="line">    <span class="built_in">NSString</span> *value = [<span class="built_in">NSString</span> stringWithContentsOfURL:containerURL encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>至此，基本已经实现了 widget 的基本功能。由于本文是在实际项目中截图记录的，所以暂不提供Demo查看。</p>
 

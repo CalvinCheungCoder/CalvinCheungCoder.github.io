@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -248,7 +248,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170921150599921935480.png')
+        background-image: url('/blogimg/20170921150599921935480.png')
     }
 </style>
 <header class="intro-header" >
@@ -288,7 +288,7 @@
 <p>今年 iPhone 变化最大的当属 iPhone X 了，由于屏幕使用全面屏，并且额头保留了『刘海』以及『耳朵』，导致大部分 App 必须对它进行适配。所幸 iPhone X 使用的图片依旧是 @3x，在适配时仅需要设置部分单独的图片并且处理一下顶部和底部的显示就好了。</p>
 <p><a href="https://developer.apple.com/ios/human-interface-guidelines/overview/iphone-x/" target="_blank" rel="noopener">Apple 官方人机交互指南 iPhone X 部分</a> 详细介绍了 iPhone X 的分辨率、安全显示区域等，想更好适配的可以仔细研读一下。</p>
 <h3 id="App-直接在-iPhone-X-运行"><a href="#App-直接在-iPhone-X-运行" class="headerlink" title="# App 直接在 iPhone X 运行"></a><font color="red">#</font> App 直接在 iPhone X 运行</h3><p>先看一下在 iPhone X 直接运行 App 的效果</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/201709211506000654153.png" alt="201709211506000654153.png"></p>
+<p><img src="/blogimg/201709211506000654153.png" alt="201709211506000654153.png"></p>
 <p>之所以出现 App 顶部和底部大面积变黑的原因是因为没有设置对应机型的启动图片。为了让 App 充满整个屏幕。我们先设置一张启动图。</p>
 <h3 id="设置-iPhone-X-启动图"><a href="#设置-iPhone-X-启动图" class="headerlink" title="# 设置 iPhone X 启动图"></a><font color="red">#</font> 设置 iPhone X 启动图</h3><p>iPhone X 的分辨率为 1125 * 2436，所以先准备一张这个尺寸的启动图。</p>
 <p>如果项目启动页使用的是 LaunchImage，可以直接修改 Contents.json 文件，添加一条 iPhone X 启动图的设置。（注意json格式）如下所示：</p>
@@ -304,7 +304,7 @@
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="string">@"iPhone10,1"</span> : <span class="string">@"iPhone 8"</span>,</div><div class="line"><span class="string">@"iPhone10,4"</span> : <span class="string">@"iPhone 8"</span>,</div><div class="line"><span class="string">@"iPhone10,2"</span> : <span class="string">@"iPhone 8 Plus"</span>,</div><div class="line"><span class="string">@"iPhone10,5"</span> : <span class="string">@"iPhone 8 Plus"</span>,</div><div class="line"><span class="string">@"iPhone10,3"</span> : <span class="string">@"iPhone X"</span>,</div><div class="line"><span class="string">@"iPhone10,6"</span> : <span class="string">@"iPhone X"</span>,</div></pre></td></tr></table></figure>
 <p>2、部分项目对 UITabBar 进行了自定义，也有可能出现问题。</p>
 <p>比如『图拉鼎』同学的奇点App，由于自定义了 TabBar，出现了如图的问题</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170921150600169732035.png" alt="20170921150600169732035.png"></p>
+<p><img src="/blogimg/20170921150600169732035.png" alt="20170921150600169732035.png"></p>
 <p>这个问题的解决，可以移步 <a href="https://imtx.me/archives/2374.html" target="_blank" rel="noopener">图拉鼎同学的博客</a> 查看。</p>
 <h3 id="使用-MJRefresh-下拉刷新问题"><a href="#使用-MJRefresh-下拉刷新问题" class="headerlink" title="# 使用 MJRefresh 下拉刷新问题"></a><font color="red">#</font> 使用 MJRefresh 下拉刷新问题</h3><p>网上部分在开发者在进行 iOS 11 适配的时候出现的问题，但是后来发现是由于 iOS 11 API 变化导致。</p>
 <p>iOS11 弃用了 <code>automaticallyAdjustsScrollViewInsets</code> 属性，新增<code>contentInsetAdjustmentBehavior</code> 来替代。</p>
@@ -315,7 +315,7 @@
 <h3 id="小结"><a href="#小结" class="headerlink" title="# 小结"></a><font color="red">#</font> 小结</h3><p>由于适配项目目前结构比较简单，所以在 iPhone X 上并未出现太多问题。主要处理的位置有2块，一部分是顶部 statusBar 和 NavigationBar 的单独处理，以及底部超出安全区域页面的处理。</p>
 <p>因为 iPhone X 的 Safe area，我们需要对一些页面做一下处理，关于 Safe area 的详细可以参考上文的苹果人机开发指南。</p>
 <p>因为我主要使用官方控件并做一些简单自定义，最后适配问题很少，也很快完成，发一张部分页面的效果图</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/2017092115060025749206.png" alt="2017092115060025749206.png"></p>
+<p><img src="/blogimg/2017092115060025749206.png" alt="2017092115060025749206.png"></p>
 <p>如果项目页面比较复杂而且自定义控件比较多的话，可能还需要花费一些时间，尤其是安全区域的处理，以及屏幕方向切换等等问题。仔细写的话就比较多了，而且很多细节性的处理不具有代表性，在这里仅做大致的功能适配记录以供参考。</p>
 
 

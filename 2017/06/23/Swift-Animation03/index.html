@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -294,7 +294,7 @@
 <a id="more"></a>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 读取 GIF 文件并将其转换为 NSData 类型</span></div><div class="line"><span class="keyword">let</span> gifPath:<span class="type">NSString</span> = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"plane"</span>, ofType: <span class="string">"gif"</span>)! <span class="keyword">as</span> <span class="type">NSString</span></div><div class="line"><span class="keyword">let</span> gifData:<span class="type">Data</span> = <span class="keyword">try</span>!<span class="type">Data</span>(contentsOf: <span class="type">URL</span>(fileURLWithPath: (gifPath <span class="keyword">as</span> <span class="type">NSString</span>) <span class="keyword">as</span> <span class="type">String</span>))</div><div class="line"></div><div class="line"><span class="comment">// 将 NSData 转换为 ImageIO 可以直接处理的数据类型 CGImageSource</span></div><div class="line"><span class="keyword">let</span> gifDataSource:<span class="type">CGImageSource</span> = <span class="type">CGImageSourceCreateWithData</span>(gifData <span class="keyword">as</span> <span class="type">CFData</span>, <span class="literal">nil</span>)!</div><div class="line"><span class="comment">// 获取 GIF 的分帧个数</span></div><div class="line"><span class="keyword">let</span> gifImageCount:<span class="type">Int</span> = <span class="type">CGImageSourceGetCount</span>(gifDataSource)</div><div class="line">   </div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...gifImageCount-<span class="number">1</span> &#123;</div><div class="line">  <span class="keyword">let</span> imageref:<span class="type">CGImage</span>? = <span class="type">CGImageSourceCreateImageAtIndex</span>(gifDataSource, i, <span class="literal">nil</span>)</div><div class="line">  <span class="keyword">let</span> image:<span class="type">UIImage</span> = <span class="type">UIImage</span>(cgImage: imageref!, scale:<span class="type">UIScreen</span>.main.scale, orientation:<span class="type">UIImageOrientation</span>.up )</div><div class="line">  <span class="keyword">let</span> imageData:<span class="type">Data</span> = <span class="type">UIImagePNGRepresentation</span>(image)!</div><div class="line">  <span class="keyword">var</span> docs = <span class="type">NSSearchPathForDirectoriesInDomains</span>(.documentDirectory, .userDomainMask, <span class="literal">true</span>)</div><div class="line">  <span class="keyword">let</span> documentsDirectory = docs[<span class="number">0</span>] <span class="keyword">as</span> <span class="type">String</span></div><div class="line">  <span class="keyword">let</span> imagePath = documentsDirectory+<span class="string">"/\(i)"</span>+<span class="string">".png"</span></div><div class="line">  <span class="keyword">try</span>? imageData .write(to: <span class="type">URL</span>(fileURLWithPath: imagePath), options: [.atomic])</div><div class="line">  <span class="built_in">print</span>(<span class="string">"\(imagePath)"</span>)</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>分解后的图像：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170624149830402534492.png" alt="20170624149830402534492.png"></p>
+<p><img src="/blogimg/20170624149830402534492.png" alt="20170624149830402534492.png"></p>
 <h3 id="序列图像合成-GIF-图像"><a href="#序列图像合成-GIF-图像" class="headerlink" title="序列图像合成 GIF 图像"></a>序列图像合成 GIF 图像</h3><ol>
 <li>加载待处理的67张原始数据源</li>
 <li>在 Document 目录下构建 GIF 文件</li>

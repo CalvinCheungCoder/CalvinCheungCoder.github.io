@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -306,14 +306,14 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p><code>_CFDoExtemRefOperation</code> 函数按 <code>retainCount/retain/release</code> 操作进行分发，调用不同的函数。NSObject 类的 <code>retainCount/retain/release</code> 实例方法也许如下面代码所示：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">-(<span class="built_in">NSUInteger</span>)retainCount</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="built_in">NSUInteger</span>) _CFDoExternRefOperation (OPERATION_retainCount, <span class="keyword">self</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">id</span>)<span class="keyword">retain</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">id</span>) _CFDoExternRefOperation (OPERATION_retain, <span class="keyword">self</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)release</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> _CFDoExternRefOperation(OPERATION_release, <span class="keyword">self</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>可以从 <code>_CFDoExternRefOperation</code> 函数以及由此函数调用的各个函数名看出，苹果的实现大概就是采用散列表（引用计数表）来管理引用计数。如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149905265688152.png" alt="20170703149905265688152.png"></p>
+<p><img src="/blogimg/20170703149905265688152.png" alt="20170703149905265688152.png"></p>
 <p>通过引用计数表管理引用计数的好处如下:</p>
 <ul>
 <li>对象用内存块的分配无需考虑内存块头部。</li>
 <li>引用计数表各记录中存有内存块地址，可从各个记录追溯到各对象的内存块。</li>
 </ul>
 <p>这里特别要说的是，第二条这一特性在调试时有着举足轻重的作用。即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置。如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149905287931529.png" alt="20170703149905287931529.png"></p>
+<p><img src="/blogimg/20170703149905287931529.png" alt="20170703149905287931529.png"></p>
 <p>另外，在利用工具检测内存泄漏时，引用计数表的各记录也有助于检测各对象的持有者是否存在。</p>
 <p>通过以上解说即可理解苹果的实现。</p>
 <h3 id="autorelease"><a href="#autorelease" class="headerlink" title="autorelease"></a>autorelease</h3><p>autorelease 就是自动释放，这看上去很像 ARC，但实际上更类似于 C 语言中的自动变量的特性。</p>
@@ -324,13 +324,13 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <li>调用已分配对象的 autorelease 方法</li>
 <li>废弃 NSAutoreleasePool 对象</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170626149845880678893.png" alt="20170626149845880678893.png"></p>
+<p><img src="/blogimg/20170626149845880678893.png" alt="20170626149845880678893.png"></p>
 <p>NSAutoreleasePool 对象的生命周期相当于 C 语言变量的作用域。对于所有调用过 autorelease 实例方法的对象，在废弃 NSAutoreleasePool 对象时，都将调用 release 实例方法。</p>
 <p>用源码表示如下：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSAutoreleasePool</span> *pool = [[<span class="built_in">NSAutoreleasePool</span> alloc]init];</div><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc]init];</div><div class="line">[obj autorelease];</div><div class="line">[pool drain];</div></pre></td></tr></table></figure>
 <p>上述代码中的 <code>[pool drain]</code> 相当于 <code>[obj release]</code>。</p>
 <p>在 <code>Cocoa</code> 框架中，相当于程序主循环的 <code>NSRunLoop</code> 或者在其他程序可运行的地方，对 <code>NSAutoreleasePool</code> 对象进行生成、持有和废弃处理。因此，程序开发者不一定非得使用 <code>NSAutoreleasePool</code> 对象进行开发工作。</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170626149846494350491.png" alt="20170626149846494350491.png"></p>
+<p><img src="/blogimg/20170626149846494350491.png" alt="20170626149846494350491.png"></p>
 <p>尽管如此，但在大量产生 <code>autorelease</code> 的对象时，只要不废弃 <code>NSAutoreleasePool</code> 对象，那么生成的对象就不能释放，因此有时会产生内存不足的现象。典型的例子是读入大量图像的同时改变其尺寸。图像文件读入到 <code>NSData</code> 对象，并从中生成 <code>UIImage</code> 对象，改变其尺寸后生成新的 <code>UIImage</code> 对象。这种情况下，就会大量产生 <code>autorelease</code> 对象。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; 图像数;++i)&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    读入图像</div><div class="line">    大量产生 autorelease 的对象</div><div class="line">    由于没有废弃 NSAutoreleasePool 对象</div><div class="line">    最终导致内存不足</div><div class="line">    */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在此情况下，有必要在适当的地方生成、持有或废弃 <code>NSAutoreleasePool</code> 对象。</p>
@@ -347,7 +347,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>另外，可通过 <code>NSAutoreleasePool</code> 类中的调试用非公开类方法 <code>showPools</code> 来确认己被 <code>autorelease</code> 的对象的状况。<code>showPools</code> 会将现在的 <code>NSAutoreleasePool</code> 的状况输出到控制台。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">[<span class="built_in">NSAutoreleasePool</span> showPools];</div></pre></td></tr></table></figure>
 <p><code>NSAutoreleasePool</code> 类的 <code>showPools</code> 类方法只能在 iOS 中使用，作为替代，在现在的运行时系统中我们使用调试用非公开函数 _objc_autoreleasePoolPrint( )。</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149905378046358.png" alt="20170703149905378046358.png"></p>
+<p><img src="/blogimg/20170703149905378046358.png" alt="20170703149905378046358.png"></p>
 <hr>
 <h4 id="提高调用Objective-C方法的速度"><a href="#提高调用Objective-C方法的速度" class="headerlink" title="提高调用Objective-C方法的速度"></a>提高调用Objective-C方法的速度</h4><p><code>GNUstep</code> 中的 <code>autorelease</code> 实际上是用一种特殊的方法来实现的。这种方法能够高效地运行0S X、iOS 用应用程序中频繁调用的 <code>autorelease</code> 方法，它被称为”IMP Caching”。</p>
 <p>在进行方法调用时，为了解决类名/方法名以及取得方法运行时的函数指针，要在框架初始化时对其结果值进行缓存。</p>
@@ -408,7 +408,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <p>因为 id 类型和对象类型的所有权修饰符默认为 <code>_strong</code> 修饰符，所以不需要写上 “__strong”。使ARC 环境及简单的编程遵循了 Objective-C 内存管理的思考方式。</p>
 <h5 id="weak修饰符"><a href="#weak修饰符" class="headerlink" title="_weak修饰符"></a>_weak修饰符</h5><p>看起来好像通过 <code>_strong</code> 修饰符编译器就能够完美地进行内存管理。但是遗憾的是，仅通过 <code>_strong</code> 修饰符是不能解决有些重大问题的。</p>
 <p>这里提到的重大问题就是引用计数式内存管理中必然会发生”循环引用”的问题。</p>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149905469057068.png" alt="20170703149905469057068.png"></p>
+<p><img src="/blogimg/20170703149905469057068.png" alt="20170703149905469057068.png"></p>
 <p>例如，前面出现的带有 <code>_strong</code> 修饰符的成员变量在持有对象时，很容易发生循环引用。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">©interface Test : <span class="built_in">NSObject</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj_;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)setObject:(<span class="keyword">id</span> _<span class="keyword">strong</span>)obj;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Test</span></span></div><div class="line">-(<span class="keyword">id</span>)init</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)setObject:(<span class="keyword">id</span> _<span class="keyword">strong</span>)obj</div><div class="line">&#123;</div><div class="line">    obj_ = obj;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
@@ -430,7 +430,7 @@ createlnstance</code> 函数，最后通过调用 <code>calloc</code> 来分配�
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 自己生成并持有对象</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj0 = [[<span class="built_in">NSObject</span> alloc]init];</div><div class="line">    </div><div class="line">    <span class="comment">// 因为 obj0 变量为强引用，所以自己持有对象。</span></div><div class="line">    </div><div class="line">    <span class="comment">// obj1 变量持有生成对象的弱引用</span></div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj1 = obj0;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">    因为 obj0 变量超出其作用域，强引用失效，所以自动释放其持有的对象。</div><div class="line">    因为对象的所有者不存在，所以废弃该对象。</div><div class="line">*/</div></pre></td></tr></table></figure>
 <p>因为带 <code>_weak</code> 修饰符的变量（即弱引用）不持有对象，所以在超出其变最作用域时，对象即被释放。如果像下面这样将先前可能发生循环引用的类成员变量改成附有 <code>_weak</code> 修饰符的成员变量的话，该现象便可避免。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Test</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">weak</span> obj_;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)setObject:(<span class="keyword">id</span> _<span class="keyword">strong</span>)obj;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170703149906419276443.png" alt="20170703149906419276443.png"></p>
+<p><img src="/blogimg/20170703149906419276443.png" alt="20170703149906419276443.png"></p>
 <p><code>_weak</code> 修饰符还有另一优点。在持有某对象的弱引用时，若该对象被废弃，则此弱引用将自动失效且处于nil 被赋值的状态（空弱应用）。如以下代码所示。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">id</span> _<span class="keyword">weak</span> obj1 = <span class="literal">nil</span>;</div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> _<span class="keyword">strong</span> obj0 = [[<span class="built_in">NSObject</span> alloc]init];</div><div class="line">    objl = obj0;</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"A: %@"</span>, obj1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"B: %@"</span>, obj1);</div></pre></td></tr></table></figure>
 <p>此源代码执行结果如下：</p>

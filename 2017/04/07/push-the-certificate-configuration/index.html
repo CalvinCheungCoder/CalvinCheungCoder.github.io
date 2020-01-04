@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -284,15 +284,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>首先，登录<a href="https://developer.apple.com/" target="_blank" rel="noopener">苹果开发者</a>中心网站。然后点击<code>Certificates,Identifiers &amp; Profiles</code><br><a id="more"></a><br>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155468110831.jpg" alt="20170407149155468110831.jpg"></p>
+                <p>首先，登录<a href="https://developer.apple.com/" target="_blank" rel="noopener">苹果开发者</a>中心网站。然后点击<code>Certificates,Identifiers &amp; Profiles</code><br><a id="more"></a><br>如图所示：<br><img src="/blogimg/20170407149155468110831.jpg" alt="20170407149155468110831.jpg"></p>
 <p>然后点击<code>Identifiers -&gt; App IDs</code>，编辑需要制作Push证书的应用，勾选Push服务</p>
-<p>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155487538683.jpg" alt="20170407149155487538683.jpg"></p>
+<p>如图所示：<br><img src="/blogimg/20170407149155487538683.jpg" alt="20170407149155487538683.jpg"></p>
 <p>其中，<code>Development SSL Certificate</code>是开发环境，<code>Production SSL Certificate</code>是生产环境。</p>
 <p>点击对应环境的<code>Create Certificate…</code>按钮，需要选择CSR文件，CSR文件可以在钥匙串内创建并在此选择，选择成功后创建对应环境的证书。</p>
 <p>创建成功证书后可以在<code>Certificates -&gt; All</code>查看</p>
-<p>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155515439195.jpg" alt="20170407149155515439195.jpg"></p>
+<p>如图所示：<br><img src="/blogimg/20170407149155515439195.jpg" alt="20170407149155515439195.jpg"></p>
 <p>点击下载证书到本地并打开，然后在钥匙串内选中对于的证书并导出p12文件。</p>
-<p>如图所示：<br><img src="https://raw.githubusercontent.com/CalvinCheungCoder/Blog/master/blog-img/20170407149155550255816.png" alt="20170407149155550255816.png"></p>
+<p>如图所示：<br><img src="/blogimg/20170407149155550255816.png" alt="20170407149155550255816.png"></p>
 <p>导出p12证书后，打开终端，进入到p12文件所在的文件夹下执行以下命令。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">openssl pkcs12 -<span class="keyword">in</span> CertificateName.p12 -<span class="keyword">out</span> CertificateName.pem -nodes</div></pre></td></tr></table></figure>
 <ul>
