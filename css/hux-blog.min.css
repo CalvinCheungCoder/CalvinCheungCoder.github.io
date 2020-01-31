@@ -1075,7 +1075,7 @@ img::-moz-selection {
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
-  border:#fff 2px solid
+  border:#fff 0px solid
 }
 
 .navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover {
