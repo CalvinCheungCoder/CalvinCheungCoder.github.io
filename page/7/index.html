@@ -276,6 +276,28 @@
 
 <div class="post-preview">
 
+    <a href="/2017/04/08/custom-log/">
+        <h2 class="post-title">
+            iOS 封装自定义打印方法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            封装自定义打印宏并在预编译文件中引用
+#ifdef DEBUG#define MyLog(FORMAT, ...) fprintf(stderr,"%s: 第%d行\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-08
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/04/07/push-the-certificate-configuration/">
         <h2 class="post-title">
             iOS 推送证书配置并为腾讯信鸽生成 pem 文件
@@ -526,9 +548,9 @@ $ npm install hexo-generator-feed --save
                     <div class="tags">
                         
                             
-                            <a href="/tags/#ObjC" title="ObjC" rel="26">ObjC</a>
-                            
                         
+                            
+                            <a href="/tags/#ObjC" title="ObjC" rel="26">ObjC</a>
                             
                         
                             
@@ -546,9 +568,9 @@ $ npm install hexo-generator-feed --save
                             
                         
                             
-                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
-                            
                         
+                            
+                            <a href="/tags/#PM" title="PM" rel="2">PM</a>
                             
                         
                             
@@ -574,7 +596,7 @@ $ npm install hexo-generator-feed --save
                             
                         
                             
-                            <a href="/tags/#清零" title="清零" rel="2">清零</a>
+                            <a href="/tags/#清零" title="清零" rel="3">清零</a>
                             
                         
                     </div>
@@ -628,15 +650,6 @@ $ npm install hexo-generator-feed --save
                                 </li>
                             
 
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
                             
 
                             
@@ -750,15 +763,6 @@ $ npm install hexo-generator-feed --save
                 
 
                 
-                    <li>
-                        <a target="_blank" href="http://weibo.com/zhangdinghaoforever">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
 
                 
 
@@ -779,7 +783,7 @@ $ npm install hexo-generator-feed --save
                 <p class="copyright text-muted">
                     &copy; 2016 -  2020 Calvin, All rights reserved.
 					<br>
-					<span class="post-count"> 本站共计 103.9k 字 </span>
+					<span class="post-count"> 本站共计 106.4k 字 </span>
                 </p>
             </div>
         </div>
