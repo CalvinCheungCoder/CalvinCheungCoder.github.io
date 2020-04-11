@@ -17,7 +17,7 @@
                 
     </title>
 
-    <link rel="canonical" href="http://CalvinCheungCoder.github.io/2017/04/16/JG-Push/">
+    <link rel="canonical" href="https://zhangdinghao.cn/2017/04/16/JG-Push/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -241,7 +241,7 @@
     <!-- Main Content -->
     
 <!-- Image to hack wechat -->
-<!-- <img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
@@ -285,7 +285,7 @@
 
                 <p>前段时间时间写了一篇配置腾讯信鸽推送证书的文章，本来打算在项目内集成一下信鸽推送，但后来看了文档和极光做了对比后，还是打算使用极光推送，现在就项目内添加极光推送做一下总结 <a id="more"></a></p>
 <p>这里先不对 APNs 做过多赘述，写一下极光推送的集成。</p>
-<h3 id="创建应用并上传对应的证书"><a href="#创建应用并上传对应的证书" class="headerlink" title="创建应用并上传对应的证书"></a>创建应用并上传对应的证书</h3><p>关于证书的制作可以参考之前的文章：<a href="http://zhangdinghao.cn/2017/04/07/push-the-certificate-configuration/" target="_blank" rel="noopener">iOS 推送证书配置并为腾讯信鸽生成pem文件</a></p>
+<h3 id="创建应用并上传对应的证书"><a href="#创建应用并上传对应的证书" class="headerlink" title="创建应用并上传对应的证书"></a>创建应用并上传对应的证书</h3><p>关于证书的制作可以参考之前的文章：<a href="http://zhangdinghao.cn/2017/04/07/push-the-certificate-configuration/">iOS 推送证书配置并为腾讯信鸽生成pem文件</a></p>
 <p>腾讯信鸽需要制作好 .p12 证书后再生成对应的 .pem 证书，而极光相对简单，只需要导出 .p12 证书后上传并生成对应的 AppKey 即可。</p>
 <h3 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h3><h4 id="导入-SDK"><a href="#导入-SDK" class="headerlink" title="导入 SDK"></a>导入 SDK</h4><p>导入极光 SDK 推荐使用 Cocoapods，相对于手动导入更简单便捷。</p>
 <figure class="highlight"><table><tr><td class="code"><pre><div class="line">pod 'JPush'</div></pre></td></tr></table></figure>
@@ -638,7 +638,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://CalvinCheungCoder.github.io/js/jquery.tagcloud.js",function(){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -702,7 +702,7 @@
 
 
 <!-- Image to hack wechat -->
-<img src="http://CalvinCheungCoder.github.io/img/icon_wechat.png" width="0" height="0" />
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
