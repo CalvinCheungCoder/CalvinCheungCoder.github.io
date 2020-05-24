@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-05-12T16:31:52.764Z</updated>
+  <updated>2020-05-24T09:20:07.387Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -14,6 +14,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARTS 01 - 为什么写作在远程工作中那么重要？</title>
+    <link href="https://zhangdinghao.cn/2020/05/24/arts01/"/>
+    <id>https://zhangdinghao.cn/2020/05/24/arts01/</id>
+    <published>2020-05-24T09:02:26.000Z</published>
+    <updated>2020-05-24T09:20:07.387Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/palindrome-number/" target="_blank" rel="noopener">9.回文数</a></p>
+<p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<p>C 实现：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">long</span> res = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> tmp = x;</div><div class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (x != <span class="number">0</span>)&#123;</div><div class="line">        res = res * <span class="number">10</span> + x % <span class="number">10</span>;</div><div class="line">        x /= <span class="number">10</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)res == tmp ? <span class="literal">true</span> : <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Python 实现：<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, x: int)</span> -&gt; bool:</span></div><div class="line">        <span class="keyword">if</span> x &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        num = x</div><div class="line">        cur = <span class="number">0</span></div><div class="line">        <span class="keyword">while</span> num !=<span class="number">0</span>:</div><div class="line">            cur = cur*<span class="number">10</span> + num%<span class="number">10</span></div><div class="line">            num //=<span class="number">10</span></div><div class="line">        <span class="keyword">return</span> cur == x</div></pre></td></tr></table></figure></p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://www.hackingwithswift.com/articles/218/whats-new-in-swift-5-3" target="_blank" rel="noopener">What’s new in Swift 5.3?</a></p>
+<p>Swift 5.3 即将发布，本文介绍了 Swift 5.3 的新特性。比如<code>多重异常捕获（Multi-pattern catch clauses）</code></p>
+<p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0276-multi-pattern-catch-clauses.md" target="_blank" rel="noopener">SE-0276</a> 介绍了在单个 <code>catch</code>  块中捕获多个错误的功能，这能使我们消灭掉错误处理中的某一些重复项。</p>
+<p>例如，我们可能有些代码定义了 2 个枚举的错误情况：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TemperatureError</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> tooCold, tooHot</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当读取某物的温度时，我们可以抛出这些错误中的一个，或者返回 OK</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getReactorTemperature</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="number">90</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkReactorOperational</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">    <span class="keyword">let</span> temp = getReactorTemperature()</div><div class="line"></div><div class="line">    <span class="keyword">if</span> temp &lt; <span class="number">10</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">TemperatureError</span>.tooCold</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> temp &gt; <span class="number">90</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">TemperatureError</span>.tooHot</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"OK"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当涉及到捕捉抛出的错误时，SE-0276 文档让我们以同样的方式处理 tooHot 和 tooCold，用逗号将它们分开。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">try</span> checkReactorOperational()</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Result: \(result)"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">TemperatureError</span>.tooHot, <span class="type">TemperatureError</span>.tooCold &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Shut down the reactor!"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"An unknown error occurred."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以处理任意数量的错误情况，甚至可以根据需要绑定错误中的值。</p>
+<p>当然这只是这篇文章中的一部分，如果你对 Swift 5.3 新特性感兴趣，可以阅读一下这篇文章或者翻阅苹果官方文档。</p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p>Linux 下常见的压缩包格式有 5 种: <code>zip</code> <code>tar.gz</code> <code>tar.bz2</code> <code>tar.xz</code> <code>tar.Z</code>，接下来说一说解压缩。</p>
+<p>其中 <code>tar</code> 是种打包格式, <code>gz</code> 和 <code>bz2</code> 等后缀才是指代压缩方式: <code>gzip</code> 和 <code>bzip2</code></p>
+<h3 id="xxx-zip-的解压"><a href="#xxx-zip-的解压" class="headerlink" title="xxx.zip 的解压:"></a>xxx.zip 的解压:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">unzip xxx.zip</div></pre></td></tr></table></figure>
+<h3 id="xxx-tar-gz-的解压"><a href="#xxx-tar-gz-的解压" class="headerlink" title="xxx.tar.gz 的解压:"></a>xxx.tar.gz 的解压:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -zxvf xxx.tar.gz</div></pre></td></tr></table></figure>
+<p>其中 zxvf 含义分别如下</p>
+<p>z: 　　g<strong>z</strong>ip  　　　　　　　　    压缩格式</p>
+<p>x: 　　e<strong>x</strong>tract　　　　　　　　  解压</p>
+<p>v:　　 <strong>v</strong>erbose　　　　　　　　详细信息</p>
+<p>f: 　　<strong>f</strong>ile(file=archieve)　　　　文件</p>
+<h3 id="xxx-tar-bz2-的解压"><a href="#xxx-tar-bz2-的解压" class="headerlink" title="xxx.tar.bz2 的解压:"></a>xxx.tar.bz2 的解压:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -jxvf xxx.tar.bz2</div></pre></td></tr></table></figure>
+<p>j: 　　bzip2　　　　　　　　　 压缩格式</p>
+<p>其它选项和 <code>tar.gz</code> 解压含义相同</p>
+<h3 id="xxx-tar-xz-的解压"><a href="#xxx-tar-xz-的解压" class="headerlink" title="xxx.tar.xz 的解压:"></a>xxx.tar.xz 的解压:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -Jxvf xxx.tar.xz</div></pre></td></tr></table></figure>
+<p>注意 J 大写</p>
+<h3 id="xxx-tar-Z-的解压"><a href="#xxx-tar-Z-的解压" class="headerlink" title="xxx.tar.Z 的解压:"></a>xxx.tar.Z 的解压:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -Zxvf xxx.tar.Z</div></pre></td></tr></table></figure>
+<p>注意 Z 大写</p>
+<p>关于 <code>tar</code> 的详细命令可以</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar --help</div></pre></td></tr></table></figure>
+<p>事实上, 从 1.15 版本开始 <code>tar</code> 就可以自动识别压缩的格式, 故不需人为区分压缩格式就能正确解压。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">tar -xvf xxx.tar.gz</div><div class="line">tar -xvf xxx.tar.bz2</div><div class="line">tar -xvf xxx.tar.xz</div><div class="line">tar -xvf xxx.tar.Z</div></pre></td></tr></table></figure>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="http://www.timcasasola.com/blog/writing" target="_blank" rel="noopener">Why does writing matter in remote work?</a></p>
+<p>作者在文章中通过几点来说明为什么写作在远程工作中很重要。</p>
+<h3 id="1、写作可以节省时间"><a href="#1、写作可以节省时间" class="headerlink" title="1、写作可以节省时间"></a>1、写作可以节省时间</h3><p>作者以他自己为例，在一个分散的团队中，大部分成员住在旧金山，但也有伦敦和马尼拉的同事，由于时区的问题，开会尤其是重要的会议变得特别困难。每次会议需要都需要花费数小时的时间，如果会议组织者能够在非常重要的会议上做笔记，则可以节省三个小时。</p>
+<h3 id="2、写作使会议成为最后的选择"><a href="#2、写作使会议成为最后的选择" class="headerlink" title="2、写作使会议成为最后的选择"></a>2、写作使会议成为最后的选择</h3><p>在远程工作中，你没办法很快的将团队成员拉在一起解决问题，如果遇到的问题很多而将团队拉在一起解决又不现实。</p>
+<p>这时候使用 Slack 帖子或者文档的形式提出问题，团队成员可以合理安排自己的时间看帖子/文档来解决问题，这种”异步通信”的做法可以减少团队每个成员的时间浪费。</p>
+<p>这样就可以把帖子/文档当做解决问题的一个方式，而实时的会议则成为了最后一个选择。</p>
+<h3 id="3、写作消除了外向的偏见"><a href="#3、写作消除了外向的偏见" class="headerlink" title="3、写作消除了外向的偏见"></a>3、写作消除了外向的偏见</h3><p>职场中很多内向的人在开会这种需要现场表达的场合是不占优势的，由于性格内向很有可能不敢表达或者表达不出自己想要表达的内容。</p>
+<p>而写作则是内向者的一个工具，书面讨论使大家有时间思考一个话题并深思熟虑他们想要说的话。如果你是一个内向的人，请利用好写作这一技能。</p>
+<h3 id="4、写作提出了其他观点"><a href="#4、写作提出了其他观点" class="headerlink" title="4、写作提出了其他观点"></a>4、写作提出了其他观点</h3><p>写作也在促进写作者的深入思考，这样的团队的协作和交流过程中就更容易发现更深层次的问题，也能提出更好的想法和思路。</p>
+<h3 id="5、如何写的更好"><a href="#5、如何写的更好" class="headerlink" title="5、如何写的更好"></a>5、如何写的更好</h3><p>如何把文章写的更好作者也提出了自己的一些想法。主要还是提炼自己想要表达的内容，例如如果你给一个陌生人写文章，这时候就需要你精简语言，找到要表达的重点，使的一个陌生人读到你的文字就能很快明白你想要表达的内容。当然文章中尽量不要使用缩写等等。</p>
+<h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>写作能力确实是对每个职场人都很重要的一个能力，小到职场中的一份邮件，大到写报告等等，都需要写作者拥有组织语言，提炼主干的能力，如何能够更加精确、有条理、有逻辑的表达是大家应该学习的东西。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>第一次写 ARTS，所以 Leetcode 选择了一个简单级别的题目，算是练练手。</p>
+<p>阅读英文文章不是大事，但是如何将英文文章读明白，甚至是点评，这和简单阅读不是一个级别的事情。你需要理解文章，甚至在点评或者翻译时需要考虑文章意思的正确表达，以及如何使用中文表达的更加优雅。</p>
+<p>第一次尝试翻译和点评英文文章，这方面的能力还差很多，继续学习。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
+    
+    </summary>
+    
+      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
+    
+    
+      <category term="Swift" scheme="https://zhangdinghao.cn/tags/Swift/"/>
+    
+      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
+    
+      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
+    
+  </entry>
   
   <entry>
     <title>你知道，这是牛市！</title>
@@ -1386,49 +1467,6 @@
     
     
       <category term="旅行" scheme="https://zhangdinghao.cn/tags/%E6%97%85%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 新手的爬虫实战</title>
-    <link href="https://zhangdinghao.cn/2019/01/19/python-practice/"/>
-    <id>https://zhangdinghao.cn/2019/01/19/python-practice/</id>
-    <published>2019-01-19T13:45:06.000Z</published>
-    <updated>2019-01-19T15:08:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在学完了 <code>Python</code> 基础、网络编程和数据库之后，我使用某 <code>App</code> (某知识付费产品) 进行了爬虫实践，以下是爬虫的具体操作步骤：<br>1、使用 <code>Charles</code> 抓取并解析 <code>API</code> 接口。<br>2、<code>Python</code> 代码编写并进行 <code>API</code> 源数据抓取存入本地数据库。<br>3、解析源数据并使用 <code>Python</code> 程序批量下载其音频文件。<br>4、处理音频对应的文稿数据，按照指定规则生成对应的 <code>PDF</code> 文件。</p>
-<p>其中使用到的第三方库如下：</p>
-<ul>
-<li><code>urllib</code> 网络库</li>
-<li><code>pymysql</code> 数据库</li>
-<li><code>pdfkit</code> 生成 PDF</li>
-</ul>
-<h3 id="1、API-抓取和分析"><a href="#1、API-抓取和分析" class="headerlink" title="1、API 抓取和分析"></a>1、API 抓取和分析</h3><p>使用 <code>Charles</code> 抓取其产品 <code>API</code> 接口，因为现在的 <code>API</code> 大多是 <code>https</code> 类型，所以此处需要配置了一个 <code>Charles CA</code>证书，然后正常抓取并分析了其产品几个主要 <code>API</code>，包括课程分类、课程分类下的课程、课程的内容列表、课程中每节课对应的详情。</p>
-<h3 id="2、Python-代码编写并保存课程数据至数据库"><a href="#2、Python-代码编写并保存课程数据至数据库" class="headerlink" title="2、Python 代码编写并保存课程数据至数据库"></a>2、Python 代码编写并保存课程数据至数据库</h3><p>因为只有在查看单节课程详情时才验证用户身份（查看课程详情需要会员身份），所以我把课程分类数据存入了本地的 <code>.json</code> 文件，通过 <code>Python</code> 程序直接读取对应文件请求课程内容列表等基础数据并存入数据库。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_sourse2.py" target="_blank" rel="noopener">点此查看此部分代码</a><br>把所有课程基本数据存入到数据库后，通过 <code>Charles</code> 提取出我的个人信息 (我是此 <code>App</code> 的会员用户，可以查看所有内容) 并模拟 <code>App</code> 进行网络请求，把单节课程的源数据请求并以 <code>json</code> 字符串的形式 <code>update</code> 到数据库。然后解析 <code>json</code> 文件提取出课程的音频链接。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_course.py" target="_blank" rel="noopener">点此查看此部分代码</a> 此处代码删减了我会员身份相关的信息。</p>
-<h3 id="3、批量下载其音频文件"><a href="#3、批量下载其音频文件" class="headerlink" title="3、批量下载其音频文件"></a>3、批量下载其音频文件</h3><p>因为已经拿到了源数据并分析出了产品的音频链接，所以直接按照链接下载并按照指定路径和名称把 <code>mp3</code> 文件保存到本地即可。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_download_audio.py" target="_blank" rel="noopener">点此查看此部分代码</a></p>
-<h3 id="4、处理文稿数据并生成-PDF-文件"><a href="#4、处理文稿数据并生成-PDF-文件" class="headerlink" title="4、处理文稿数据并生成 PDF 文件"></a>4、处理文稿数据并生成 PDF 文件</h3><p>有了音频文件接下来要处理文稿数据，因为毕竟听音频配合文稿才最合适嘛。因为此产品的文稿数据是分段拼接而成，此处需要根据 <code>App</code> 内的文稿格式分析其 <code>json</code> 结构并按照一定顺序拼接。<br>拼接好文稿后使用 <code>pdfkit</code> 生成对应的 <code>PDF</code> 文件，因为 pdfkit 可以直接解析 <code>HTML</code> 字符串并按照其格式生成 <code>PDF</code>，所以此处我使用了 <code>HTML + CSS</code> 进行简单排版导出到指定路径，按照课程名称生成 <code>PDF</code> 文件，至此数据抓取和下载已经全部完成。<br><a href="https://github.com/CalvinCheungCoder/Python/blob/master/Python_ylyk/ylyk_createPDF.py" target="_blank" rel="noopener">点此查看此部分代码</a></p>
-<h3 id="5、后记"><a href="#5、后记" class="headerlink" title="5、后记"></a>5、后记</h3><ol>
-<li>在使用我的账户抓取课程详情内容时，因为 <code>API</code> 接口调用会过多，我隐约担心账户会被封，但是我在 10 分钟内连续调用了 2000 余次 API 账号并无任何被封迹象，可见该产品在其安全性设计上存在一些缺陷。</li>
-<li><code>Python</code> 真的很强大，因为我刚开始写 Python 水平还不是很高，但是整个过程下来代码不足 300 行，真的是很简洁。而且 <code>Python</code> 语言下的第三方库很多，比如说 <code>pdfkit</code>，你可以传入一个网页地址生成 <code>PDF</code>，也可以自己编写 <code>HTML</code> 代码使其按照你想要的样式生成丰富的 <code>PDF</code> 文件，不得不说真的很方便，当然类似的库还有很多。</li>
-<li>面对各种各样的网络爬虫的存在，现在的 <code>App</code> 安全性相对还是较弱的，尤其是涉及到商业利益的核心数据，按理说用户读取这些数据必须验证其真实身份并进行读取次数限制。正是因为 App 这样的漏洞存在，像『得到』『喜马拉雅』『樊登读书会』等内容付费 <code>App</code> 中的课程被盗版的才会如此猖獗。</li>
-<li>因为其抓取内容涉及到商业数据，所以此处代码仅展示抓取数据的思路，并没有展示我的个人账户信息，如果有幸被你查看了我的代码，也只能使用该代码获取公开的基础数据。</li>
-<li>因为我有此产品的会员资格，所以此次数据抓取仅做技术实践，不做其他的商业用途，抓取的数据没有在网络上进行传播，我也删除了抓取的全部数据。</li>
-<li>此处仅作一些技术思路的分享和自我记录，如果有侵权行为请及时告知，我会对文章/代码等进行删除处理。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在学完了 &lt;code&gt;Python&lt;/code&gt; 基础、网络编程和数据库之后，我使用某 &lt;code&gt;App&lt;/code&gt; (某知识付费产品) 进行了爬虫实践，以下是爬虫的具体操作步骤：&lt;br&gt;1、使用 &lt;code&gt;Charles&lt;/code&gt; 抓取并解析 &lt;code&gt;API
-    
-    </summary>
-    
-      <category term="Python" scheme="https://zhangdinghao.cn/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://zhangdinghao.cn/tags/Python/"/>
-    
-      <category term="爬虫" scheme="https://zhangdinghao.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
