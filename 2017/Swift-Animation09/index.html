@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stay hungry Stay foolish.">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            Swift Animation 3D动画 - DHTalk&#39;s Blog
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2017/Swift-Animation09/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+                <!-- ga & ba script hoook -->
+                <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                    </div>
+                    <h1>Swift Animation 3D动画</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-06-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="锚点的基本概念"><a href="#锚点的基本概念" class="headerlink" title="锚点的基本概念"></a>锚点的基本概念</h3><p>要想实现一些复杂的 3D 动画，首先要先搞清楚锚点的概念。AnchorPoint 是一个 CGPoint 类型的值，该值指定了一个基于 bounds 的坐标系位置。也就是说锚点指定了 bounds 相对于 position 的值，同时也是变化时候的中心点。</p>
+<p>一般情况下，锚点的默认值是(0.5，0.5)，取值范围为0~1之间。当锚点值为(0,0)时，那么在进行 2D、3D 变幻时都围绕着图层的左上角点进行变幻。当锚点值为(1,0)时，那么在 2D、3D 变幻时都围绕着图层的右上角进行变幻。</p>
+<a id="more"></a>
+<h3 id="矩阵变换的基本原理"><a href="#矩阵变换的基本原理" class="headerlink" title="矩阵变换的基本原理"></a>矩阵变换的基本原理</h3><p>iOS 中利用 CATransform3D 实现 3D 变换效果。CATransform3D 其实质是定义了一个三维变换（4X4 CGFloat 值的矩阵），利用该矩阵可以实现图层的旋转、缩放、偏移、歪斜和视图透视等效果。</p>
+<p>先看看 CATransform3D 所描述的矩阵有哪些功能</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CATransform3D</span></span></div><div class="line">&#123;</div><div class="line">    <span class="type">CGFloat</span> m11(x 缩放),m12(y 切变),m13(),m14();</div><div class="line">    <span class="type">CGFloat</span> m21(x 切变),m22(y 缩放),m23(),m24();</div><div class="line">    <span class="type">CGFloat</span> m31(),m32(),m33(),m34(透视);</div><div class="line">    <span class="type">CGFloat</span> m41(x 平移),m42(y 平移),m43(z 平移),m44();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该矩阵是一个 4x4 的矩阵，矩阵中每一个值都会在变幻中起到一定的作用。那么如何让理解它们呢？假设原来图层的位置是 x、y、z、1。同样定义为一个矩阵，不过这个矩阵的行列是一个 1x4 的矩阵（表示一行四列）。该矩阵与 CATransform3D 相乘最终会得到一个新的矩阵[newx,newy,newz,1]。如下图所示：</p>
+<p><img src="/blogimg/2017062614984843499640.png" alt="2017062614984843499640.png"></p>
+<h3 id="3D旋转效果"><a href="#3D旋转效果" class="headerlink" title="3D旋转效果"></a>3D旋转效果</h3><p>了解了锚点和矩阵的基本知识，现在举个例子实现图像的旋转。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> imageView:<span class="type">UIImageView</span>?</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   imageView = <span class="type">UIImageView</span>()</div><div class="line">   imageView?.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">400</span>, height: <span class="number">300</span>)</div><div class="line">   imageView?.center = <span class="keyword">self</span>.view.center</div><div class="line">   imageView?.image = <span class="type">UIImage</span>(named: <span class="string">"image.jpg"</span>)</div><div class="line">   imageView?.contentMode = <span class="type">UIViewContentMode</span>.scaleAspectFit</div><div class="line">   imageView!.layer.anchorPoint = <span class="type">CGPoint</span>(x: <span class="number">0.5</span>, y: <span class="number">0.5</span>)</div><div class="line">   <span class="keyword">self</span>.view.addSubview(imageView!)</div><div class="line">   </div><div class="line">   <span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)</div><div class="line">   <span class="type">UIView</span>.setAnimationDuration(<span class="number">4</span>)</div><div class="line">   <span class="keyword">var</span> transform:<span class="type">CATransform3D</span> = <span class="type">CATransform3DIdentity</span></div><div class="line">   transform.m22 = <span class="number">0.5</span></div><div class="line">   imageView!.layer.transform = <span class="type">CATransform3DMakeRotation</span>(<span class="type">CGFloat</span>(<span class="type">M_PI</span>/<span class="number">2.0</span>), <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</div><div class="line">   <span class="type">UIView</span>.commitAnimations()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/blogimg/20170626149848471325132.gif" alt="20170626149848471325132.gif"></p>
+<p>CATransform3DMakeRotation 该方法实现动画的 3D 旋转</p>
+<ol>
+<li>angle：CGFloat 表明动画的旋转角度</li>
+<li>_x：CGFloat 表明动画旋转时的旋转轴心</li>
+<li>_y：CGFloat 表明动画旋转时的旋转轴心</li>
+<li>_z：CGFloat 表明动画旋转时的旋转轴心</li>
+</ol>
+<p>如果修改 CATransform3DMakeRotation 代码为：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">imageView!.layer.transform = <span class="type">CATransform3DMakeRotation</span>(<span class="type">CGFloat</span>(<span class="type">M_PI</span>/<span class="number">2.0</span>), <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/blogimg/20170626149848484194652.gif" alt="20170626149848484194652.gif"></p>
+<p>修改锚点位置和旋转轴如下：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">imageView!.layer.anchorPoint = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</div><div class="line">imageView!.layer.transform = <span class="type">CATransform3DMakeRotation</span>(<span class="type">CGFloat</span>(<span class="type">M_PI</span>/<span class="number">2.0</span>), <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/blogimg/20170626149848495745391.gif" alt="20170626149848495745391.gif"></p>
+<p>除了 CATransform3DMakeRotation 方法之外还有一些方法比较常用，比如用于移动的 CATransform3DMakeTranslation 方法，用于缩放的 CATransform3DMakeScale 方法。这些方法使用起来都比较简单，不是直接作用在矩阵上而是将矩阵变幻进行了2次封装。</p>
+<p>我们将部分代码修改为如下：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">UIView</span>.beginAnimations(<span class="literal">nil</span>, context: <span class="literal">nil</span>)</div><div class="line"><span class="type">UIView</span>.setAnimationDuration(<span class="number">4</span>)</div><div class="line"><span class="keyword">var</span> transform:<span class="type">CATransform3D</span> = <span class="type">CATransform3DIdentity</span></div><div class="line">transform.m22 = <span class="number">0.5</span></div><div class="line">imageView!.layer.transform = <span class="type">CATransform3DScale</span>(transform, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</div><div class="line"><span class="type">UIView</span>.commitAnimations()</div><div class="line">``` </div><div class="line"></div><div class="line">效果如下：</div><div class="line"></div><div class="line">![<span class="number">20170626149848529521512</span>.gif](/blogimg/<span class="number">20170626149848529521512</span>.gif)</div><div class="line"></div><div class="line">### <span class="type">Cover</span> <span class="type">Flow</span> 3D 效果</div><div class="line"></div><div class="line">先初始化视图</div><div class="line"></div><div class="line">```<span class="type">Swift</span></div><div class="line"><span class="keyword">var</span> imageViewArray:<span class="type">NSMutableArray</span>?</div><div class="line"><span class="keyword">let</span> imageView1:<span class="type">UIImageView</span> = <span class="type">UIImageView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">200</span>, height: <span class="number">250</span>))</div><div class="line"><span class="keyword">let</span> imageView2:<span class="type">UIImageView</span> = <span class="type">UIImageView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">200</span>, height: <span class="number">250</span>))</div><div class="line"><span class="keyword">let</span> imageView3:<span class="type">UIImageView</span> = <span class="type">UIImageView</span>(frame:<span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">150</span>, width: <span class="number">300</span>, height: <span class="number">200</span>))</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="keyword">super</span>.viewDidLoad()</div><div class="line">   view.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">   imageViewArray = [imageView1,imageView2,imageView3]</div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...(imageViewArray?.<span class="built_in">count</span>)!-<span class="number">1</span>&#123;</div><div class="line">       <span class="keyword">let</span> imageView:<span class="type">UIImageView</span> = imageViewArray?.object(at: i) <span class="keyword">as</span>! <span class="type">UIImageView</span></div><div class="line">       <span class="keyword">let</span> imageName:<span class="type">String</span> = <span class="string">"\(i).jpg"</span></div><div class="line">       imageView.image = <span class="type">UIImage</span>(named: imageName)</div><div class="line">       imageView.layer.anchorPoint.y = <span class="number">0.0</span></div><div class="line">       view.addSubview(imageView)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实现 Cover Flow</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</div><div class="line">        </div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...(imageViewArray?.<span class="built_in">count</span>)!-<span class="number">1</span>&#123;</div><div class="line">       </div><div class="line">       <span class="keyword">var</span> imageTransform = <span class="type">CATransform3DIdentity</span></div><div class="line">       imageTransform.m34 = -<span class="number">0.005</span>;</div><div class="line">       imageTransform = <span class="type">CATransform3DTranslate</span>(</div><div class="line">           imageTransform, <span class="number">0.0</span>, <span class="number">50.0</span>, <span class="number">0.0</span>)</div><div class="line">       imageTransform = <span class="type">CATransform3DScale</span>(</div><div class="line">           imageTransform, <span class="number">0.95</span>, <span class="number">0.6</span>, <span class="number">1.0</span>)</div><div class="line">       </div><div class="line">       <span class="keyword">if</span> i==<span class="number">0</span> &#123;</div><div class="line">           imageTransform = <span class="type">CATransform3DRotate</span>(</div><div class="line">               imageTransform, <span class="type">CGFloat</span>(<span class="type">M_PI_4</span>/<span class="number">2</span>), <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>)</div><div class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> i==<span class="number">1</span>&#123;</div><div class="line">           imageTransform = <span class="type">CATransform3DRotate</span>(</div><div class="line">               imageTransform, <span class="type">CGFloat</span>(-<span class="type">M_PI_4</span>/<span class="number">2</span>), <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>)</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="keyword">let</span> imageView:<span class="type">UIImageView</span> = imageViewArray?.object(at: i) <span class="keyword">as</span>! <span class="type">UIImageView</span></div><div class="line">       <span class="keyword">let</span> animation = <span class="type">CABasicAnimation</span>(keyPath: <span class="string">"transform"</span>)</div><div class="line">       animation.fromValue = <span class="type">NSValue</span>(caTransform3D:</div><div class="line">           imageView.layer.transform)</div><div class="line">       animation.toValue = <span class="type">NSValue</span>(caTransform3D: imageTransform)</div><div class="line">       animation.duration = <span class="number">3</span></div><div class="line">       </div><div class="line">       </div><div class="line">       <span class="keyword">let</span> animBounds:<span class="type">CABasicAnimation</span> = <span class="type">CABasicAnimation</span>()</div><div class="line">       animBounds.keyPath = <span class="string">"position"</span></div><div class="line">       animBounds.duration = <span class="number">3</span></div><div class="line">       <span class="keyword">if</span> i==<span class="number">0</span> &#123;</div><div class="line">           animBounds.toValue = <span class="type">NSValue</span>(cgPoint:<span class="type">CGPoint</span>(x: <span class="number">100</span>, y: <span class="number">10</span>))</div><div class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> i==<span class="number">1</span>&#123;</div><div class="line">           animBounds.toValue = <span class="type">NSValue</span>(cgPoint:<span class="type">CGPoint</span>(x: <span class="number">300</span>, y: <span class="number">10</span>))</div><div class="line">       &#125;<span class="keyword">else</span>&#123;</div><div class="line">           animBounds.toValue = <span class="type">NSValue</span>(cgPoint:<span class="type">CGPoint</span>(x: <span class="number">200</span>, y: <span class="number">20</span>))</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="keyword">let</span> animGroup:<span class="type">CAAnimationGroup</span> = <span class="type">CAAnimationGroup</span>()</div><div class="line">       animGroup.duration = <span class="number">3</span></div><div class="line">       animGroup.repeatCount = <span class="number">1</span></div><div class="line">       animGroup.isRemovedOnCompletion = <span class="literal">false</span></div><div class="line">       animGroup.fillMode=kCAFillModeForwards</div><div class="line">       animGroup.timingFunction = <span class="type">CAMediaTimingFunction</span>(name:kCAMediaTimingFunctionEaseInEaseOut)</div><div class="line">       animGroup.animations = [animation,animBounds]</div><div class="line">       imageView.layer.add(animGroup, forKey: <span class="string">"\(i)"</span>)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/blogimg/20170626149848554481158.gif" alt="20170626149848554481158.gif"></p>
+<p>本文代码：<a href="https://github.com/CalvinCheungCoder/SwiftAnimation/tree/master/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%203D%E5%8A%A8%E7%94%BB" target="_blank" rel="noopener">点击查看</a></p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/iOSDev-widget/" data-toggle="tooltip" data-placement="top" title="iOS 开发之 Widget 的实现">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/Swift-Animation08/" data-toggle="tooltip" data-placement="top" title="Swift Animation 内容层动画(四)">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 115.5k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stay hungry Stay foolish.">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            iOS App 国际化以及应用内的语言切换 - DHTalk&#39;s Blog
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2017/Within-the-application-language-switch/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+                <!-- ga & ba script hoook -->
+                <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                    <h1>iOS App 国际化以及应用内的语言切换</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-04-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>因为个人在开发英语相关的App，所以为了以后更好的用户体验，准备加入语言切换功能，以及App国际化。实现应用内切换语言后无需退出应用即可生效，新安装App时根据用户的手机语言显示对应的App名字以及App内的语言。现在就这一需求进行实现。<a id="more"></a></p>
+<h3 id="关于-NSBundle"><a href="#关于-NSBundle" class="headerlink" title="关于 NSBundle"></a>关于 NSBundle</h3><p>Bundle 是一个目录，其中包含了在程序会使用到的资源，包含了如图像、声音、程序中需要用到的文件，甚至是编译好的代码等等。而在实现软件内配置语言的时候就是通过 Bundle 的路径去获取配置文件，根据这个配置文件取出对应的字体渲染到 View 上。</p>
+<p>当然，配置程序语言只是 Bundle 的一种用途。还可以用 Bundle 去获取工程中 info.plist 的详细信息，比如</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取版本号：Bundle Short Version</span></div><div class="line"><span class="built_in">NSString</span> *shortVersion = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleShortVersionString"</span>];</div><div class="line"><span class="comment">// 获取版本号：Bundle version</span></div><div class="line"><span class="built_in">NSString</span> *version = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleVersion"</span>];</div><div class="line"><span class="comment">// 获取应用标识：Bundle identifier</span></div><div class="line"><span class="built_in">NSString</span> *bundleIdentifier = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleIdentifier"</span>];</div><div class="line"><span class="comment">// 获取应用名称：Bundle display name</span></div><div class="line"><span class="built_in">NSString</span> *bundleDisplayName = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleDisplayName"</span>];</div><div class="line"><span class="comment">// 获取Bundle name</span></div><div class="line"><span class="built_in">NSString</span> *bundleName = [[[<span class="built_in">NSBundle</span> mainBundle] infoDictionary] objectForKey:<span class="string">@"CFBundleDisplayName"</span>];</div><div class="line"><span class="comment">// 获取 app 包路径</span></div><div class="line"><span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] bundlePath];</div><div class="line"><span class="comment">// 获取 app 资源目录路径</span></div><div class="line"><span class="built_in">NSString</span> *resPath = [[<span class="built_in">NSBundle</span> mainBundle] resourcePath];</div></pre></td></tr></table></figure>
+<h3 id="App名称国际化"><a href="#App名称国际化" class="headerlink" title="App名称国际化"></a>App名称国际化</h3><h4 id="配置-Project"><a href="#配置-Project" class="headerlink" title="配置 Project"></a>配置 Project</h4><p>点击 <code>PROJECT -&gt; info -&gt; Localizations</code> 这里默认只有 <code>English</code> 点击下方的加号可以添加你想要的语言。其中，<code>zh-Hans</code> 是简体中文， <code>zh-Hant</code> 是繁体中文。</p>
+<p>如图所示：</p>
+<p><img src="/blogimg/20170413149206183440037.png" alt="20170413149206183440037.png"></p>
+<h4 id="新建-strings-文件"><a href="#新建-strings-文件" class="headerlink" title="新建 .strings 文件"></a>新建 .strings 文件</h4><p>在与 <code>info.plist</code> 文件同级目录下创建 <code>.strings</code> 文件，<code>Command + N</code> 新建 <code>Strings File</code> 文件，命令为 <code>InfoPlist.strings</code>。</p>
+<p>如图所示：</p>
+<p><img src="/blogimg/20170413149206202285102.png" alt="20170413149206202285102.png"></p>
+<h4 id="配置-strings-文件"><a href="#配置-strings-文件" class="headerlink" title="配置 .strings 文件"></a>配置 .strings 文件</h4><p>创建成功后选中 <code>InfoPlist.strings</code> 文件，点击 <code>Localize...</code> 按钮，左侧弹框中选择语言。</p>
+<p>如图所示：</p>
+<p><img src="/blogimg/20170413149206218824740.png" alt="20170413149206218824740.png"></p>
+<p>选中后再次勾选上你想要的其他语言</p>
+<p>如图所示：</p>
+<p><img src="/blogimg/20170413149206223443381.png" alt="20170413149206223443381.png"></p>
+<p>勾选成功后在左侧 <code>InfoPlist.strings</code> 中创建了几个文件，如图：</p>
+<p><img src="/blogimg/20170413149206232317524.png" alt="20170413149206232317524.png"></p>
+<p>分别在各自的文件内写入如下代码,其中 <code>iWords</code> 是我的App在英语环境下显示的名称，你只需要在对应的文件内写入对应的名称即可，这样当手机语言变化时，就会显示这些对应文件内的 App 名称。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CFBundleDisplayName</span> = <span class="string">"iWords"</span>;</div></pre></td></tr></table></figure>
+<p>到此为止，App 名称的国际化完成。切记创建 <code>.strings</code> 文件时一定要命名为 <code>InfoPlist.strings</code>。</p>
+<h3 id="App-内部实现语言切换"><a href="#App-内部实现语言切换" class="headerlink" title="App 内部实现语言切换"></a>App 内部实现语言切换</h3><h4 id="新建并配置-strings-文件"><a href="#新建并配置-strings-文件" class="headerlink" title="新建并配置 .strings 文件"></a>新建并配置 .strings 文件</h4><p>内部实现语言切换和 App 名称国际化基本一致，首先创建 <code>.strings</code> 配置文件，这里我命名为：<code>DHLocalizable.strings</code>。</p>
+<p>创建成功后依然点击右侧的 <code>Localize...</code> 按钮，并手动勾选其他语言，勾选完成后左侧依旧生成对于的<code>.strings</code>文件，如图：</p>
+<p><img src="/blogimg/20170413149206282572841.png" alt="20170413149206282572841.png"></p>
+<h4 id="创建多语言切换工具类"><a href="#创建多语言切换工具类" class="headerlink" title="创建多语言切换工具类"></a>创建多语言切换工具类</h4><p>创建继承于 <code>NSObject</code> 的工具类，命名为：<code>DHLanguageTool</code></p>
+<p>其中 <code>DHLanguageTool.h</code> 中声明基本的方法，包括初始化App语言，当前的语言，设置语言等。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#define DHLocalizedString(key)  [[DHLanguageTool bundle] localizedStringForKey:(key) value:@<span class="meta-string">""</span> table:@<span class="meta-string">"DHLocalizable"</span>]</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHLanguageKey @<span class="meta-string">"userLanguage"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHSimplifiedChinese @<span class="meta-string">"zh-Hans"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHTraditionalChinese @<span class="meta-string">"zh-Hant"</span></span></div><div class="line"></div><div class="line"><span class="meta">#define DHEnglish @<span class="meta-string">"en"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DHLanguageTool</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  获取当前资源文件</div><div class="line"> */</div><div class="line">+ (<span class="built_in">NSBundle</span> *)bundle;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  初始化语言文件</div><div class="line"> */</div><div class="line">+ (<span class="keyword">void</span>)initUserLanguage;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  获取应用当前语言</div><div class="line"> */</div><div class="line">+ (<span class="built_in">NSString</span> *)userLanguage;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  设置当前语言</div><div class="line"> */</div><div class="line">+ (<span class="keyword">void</span>)setUserlanguage:(<span class="built_in">NSString</span> *)language;</div></pre></td></tr></table></figure>
+<p><code>DHLanguageTool.m</code> 文件中对其进行实现，我这里一共可以设置3种语言，其中包括简体中文，繁体中文以及英文。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DHLanguageTool.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"MainTabBar.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">static</span> DHLanguageTool *currentLanguage;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DHLanguageTool</span></span></div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSBundle</span> *bundle = <span class="literal">nil</span>;</div><div class="line"></div><div class="line"><span class="comment">// 获取当前资源文件</span></div><div class="line">+ (<span class="built_in">NSBundle</span> *)bundle&#123;</div><div class="line">    <span class="keyword">return</span> bundle;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 初始化语言文件</span></div><div class="line">+ (<span class="keyword">void</span>)initUserLanguage&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *languageString = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] valueForKey:DHLanguageKey];</div><div class="line">    <span class="keyword">if</span>(languageString.length == <span class="number">0</span>)&#123;</div><div class="line">        <span class="comment">// 获取系统当前语言版本</span></div><div class="line">        <span class="built_in">NSArray</span> *languagesArray = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"AppleLanguages"</span>];</div><div class="line">        languageString = languagesArray.firstObject;</div><div class="line">        [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setValue:languageString forKey:<span class="string">@"userLanguage"</span>];</div><div class="line">        [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] synchronize];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 避免缓存会出现 zh-Hans-CN 及其他语言的的情况</span></div><div class="line">    <span class="keyword">if</span> ([[DHLanguageTool SimplifiedChinese] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool SimplifiedChinese] firstObject]; <span class="comment">// 中文</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([[DHLanguageTool english] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool english] firstObject]; <span class="comment">// 英文</span></div><div class="line">        </div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> ([[DHLanguageTool TraditionalChinese] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool TraditionalChinese] firstObject]; <span class="comment">// 繁体中文</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        languageString = [[DHLanguageTool SimplifiedChinese] firstObject]; <span class="comment">// 其他默认为中文</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 获取文件路径</span></div><div class="line">    <span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:languageString ofType:<span class="string">@"lproj"</span>];</div><div class="line">    <span class="comment">// 生成bundle</span></div><div class="line">    bundle = [<span class="built_in">NSBundle</span> bundleWithPath:path];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 英文类型数组</span></div><div class="line">+ (<span class="built_in">NSArray</span> *)english &#123;</div><div class="line">    <span class="keyword">return</span> @[<span class="string">@"en"</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 简体中文类型数组</span></div><div class="line">+ (<span class="built_in">NSArray</span> *)SimplifiedChinese&#123;</div><div class="line">    <span class="keyword">return</span> @[<span class="string">@"zh-Hans"</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 繁体中文类型数组</span></div><div class="line">+ (<span class="built_in">NSArray</span> *)TraditionalChinese&#123;</div><div class="line">    <span class="keyword">return</span> @[<span class="string">@"zh-Hant"</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 获取应用当前语言</span></div><div class="line">+ (<span class="built_in">NSString</span> *)userLanguage &#123;</div><div class="line">    <span class="built_in">NSString</span> *languageString = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] valueForKey:DHLanguageKey];</div><div class="line">    <span class="keyword">return</span> languageString;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 设置当前语言</span></div><div class="line">+ (<span class="keyword">void</span>)setUserlanguage:(<span class="built_in">NSString</span> *)language &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>([[<span class="keyword">self</span> userLanguage] isEqualToString:language]) <span class="keyword">return</span>;</div><div class="line">    <span class="comment">// 改变bundle的值</span></div><div class="line">    <span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:language ofType:<span class="string">@"lproj"</span>];</div><div class="line">    bundle = [<span class="built_in">NSBundle</span> bundleWithPath:path];</div><div class="line">    <span class="comment">// 持久化</span></div><div class="line">    [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setValue:language forKey:DHLanguageKey];</div><div class="line">    [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] synchronize];</div><div class="line">    </div><div class="line">    [<span class="built_in">UIApplication</span> sharedApplication].keyWindow.rootViewController = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">if</span> ([<span class="built_in">UIApplication</span> sharedApplication].keyWindow.rootViewController == <span class="literal">nil</span>) &#123;</div><div class="line">        MainTabBar *tabBar = [[MainTabBar alloc] init];</div><div class="line">        tabBar.selectedIndex = <span class="number">2</span>;</div><div class="line">        [<span class="built_in">UIApplication</span> sharedApplication].keyWindow.rootViewController = tabBar;</div><div class="line">        </div><div class="line">        setToast(<span class="string">@"语言切换成功"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>工具类定义完成后在预编译文件内导入该工具类的头文件。</p>
+<h4 id="配置多语言切换-strings-文件"><a href="#配置多语言切换-strings-文件" class="headerlink" title="配置多语言切换 .strings 文件"></a>配置多语言切换 .strings 文件</h4><p>在刚才创建的 <code>DHLocalizable.strings</code> 下展开并在对应的语言文件内填写需要进行语言切换的字段。如：我的英文文件和中文文件内填写如下：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="string">"查单词"</span> = <span class="string">"Search"</span>;</div><div class="line"><span class="string">"记单词"</span> = <span class="string">"Write"</span>;</div><div class="line"><span class="string">"我"</span> = <span class="string">"Me"</span>;</div><div class="line"><span class="string">"邀请好友"</span> = <span class="string">"Invite friends"</span>;</div><div class="line"><span class="string">"给我好评"</span> = <span class="string">"To evaluate"</span>;</div><div class="line"><span class="string">"使用帮助"</span> = <span class="string">"Help center"</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="string">"查单词"</span> = <span class="string">"查单词"</span>;</div><div class="line"><span class="string">"记单词"</span> = <span class="string">"记单词"</span>;</div><div class="line"><span class="string">"我"</span> = <span class="string">"我"</span>;</div><div class="line"><span class="string">"邀请好友"</span> = <span class="string">"邀请好友"</span>;</div><div class="line"><span class="string">"给我好评"</span> = <span class="string">"给我好评"</span>;</div></pre></td></tr></table></figure>
+<p>注意：其中前边对应 键(key) ，后边对各个语言的值(value).</p>
+<h4 id="开始使用并初始化"><a href="#开始使用并初始化" class="headerlink" title="开始使用并初始化"></a>开始使用并初始化</h4><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.title = DHLocalizedString(<span class="string">@"语言切换"</span>);</div></pre></td></tr></table></figure>
+<p>因为我们的工具类中已经定义了宏，所以在需要进行语言切换的控件进行这样的书写，书写的内容为各个语言文件中的 key。</p>
+<p>设置完成所有字段后，在 <code>AppDelegate</code> 的 <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> 方法里先初始化语言。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 初始化语言</span></div><div class="line">[DHLanguageTool initUserLanguage];</div></pre></td></tr></table></figure>
+<p>当用户手机设置了简体中文、繁体中文或者英文后，点击App进入后会显示对应的语言，但如果用户设置了其他语言的话，就默认显示中文了。这里并不是唯一的，具体要适配哪种语言，可以根据实际情况进行设定。</p>
+<h4 id="更改其他语言"><a href="#更改其他语言" class="headerlink" title="更改其他语言"></a>更改其他语言</h4><p>在切换语言的点击事件内调用以下方法：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 设置简体中文</span></div><div class="line">[DHLanguageTool setUserlanguage:DHSimplifiedChinese];</div><div class="line"><span class="comment">// 设置繁体中文</span></div><div class="line">[DHLanguageTool setUserlanguage:DHTraditionalChinese];</div><div class="line"><span class="comment">// 设置英文</span></div><div class="line">[DHLanguageTool setUserlanguage:DHEnglish];</div></pre></td></tr></table></figure>
+<h3 id="多语言切换的坑"><a href="#多语言切换的坑" class="headerlink" title="多语言切换的坑"></a>多语言切换的坑</h3><h4 id="更改语言后页面的加载逻辑"><a href="#更改语言后页面的加载逻辑" class="headerlink" title="更改语言后页面的加载逻辑"></a>更改语言后页面的加载逻辑</h4><p>1、重新载入rootViewController</p>
+<p>这个方法应该是编码成本最低的方法了，只需要把原有的rootViewController移除并清空，然后重新设置一遍rootViewController就行了。但是这种实现方式会重新加载已经原来已经加载好的所有界面。</p>
+<p>2、语言改变发送通知</p>
+<p>在用户切换语言的时候，发送一个通知，然后在各个界面接收通知，更新所有需要更新的文本即可。这种方法适合新建的项目，在代码编写之初就预留好更新文本的方法，收到通知后调用此方法就行。如果已经是一个已上线项目，则改动成本比较高，需要改动的地方比较多。</p>
+<p>3、.h暴露一个更新文字的方法</p>
+<p>在用户切换语言的时候，遍历所有已经加载的界面，调用更新文字的方法。这种实现也是比较适合新建的项目，在代码编写之初就预留好更新文本的方法。如果项目已上线，则改动成本较高。</p>
+<p>注：为了方便，我使用的方法1。</p>
+<h4 id="关于本地化语言的宏定义-DHLocalizedString-lt-key-gt"><a href="#关于本地化语言的宏定义-DHLocalizedString-lt-key-gt" class="headerlink" title="关于本地化语言的宏定义 DHLocalizedString(&lt;#key#&gt;)"></a>关于本地化语言的宏定义 DHLocalizedString(&lt;#key#&gt;)</h4><p>系统自带的方法是：<code>NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;)</code>，这也是一份宏定义：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#define NSLocalizedString(key, comment) \</span></div><div class="line">	    [<span class="built_in">NSBundle</span>.mainBundle localizedStringForKey:(key) value:<span class="string">@""</span> table:<span class="literal">nil</span>]</div></pre></td></tr></table></figure>
+<p>能看到它调用的是 <code>NSBundle.mainBundle</code> ，而我们在更改语言的工具类里的 <code>bundle</code> 已经更改了。<br>所以系统的 <code>NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;)</code> 已经失效，必须重写一份宏定义：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#define DHLocalizedString(key)  [[DHLanguageTool bundle] localizedStringForKey:(key) value:@<span class="meta-string">""</span> table:@<span class="meta-string">"DHLocalizable"</span>]</span></div></pre></td></tr></table></figure>
+<p>1、必须使用自己的类名来调用类方法 <code>[DHLocalizableController bundle]</code> 以获取自己的 <code>bundle</code>。</p>
+<p>2、table 后的参数为 .strings 文件的文件名，若你创建的文件名为 <code>Localizable.strings</code> ，则该参数可为 nil ，系统默认按 <code>Localizable.strings</code> 查找。否则必须配置文件名，且只是文件名，不加 .stringd 后缀。</p>
+<h4 id="关于初始化语言-DHLocalizableController-initUserLanguage"><a href="#关于初始化语言-DHLocalizableController-initUserLanguage" class="headerlink" title="关于初始化语言 [DHLocalizableController initUserLanguage]"></a>关于初始化语言 [DHLocalizableController initUserLanguage]</h4><p>在 <code>initUserLanguage</code> 方法中有这样一段代码来做判断</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> ([[DHLanguageTool SimplifiedChinese] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool SimplifiedChinese] firstObject]; <span class="comment">// 中文</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([[DHLanguageTool english] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool english] firstObject]; <span class="comment">// 英文</span></div><div class="line">        </div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> ([[DHLanguageTool TraditionalChinese] containsObject:languageString]) &#123;</div><div class="line">        languageString = [[DHLanguageTool TraditionalChinese] firstObject]; <span class="comment">// 繁体中文</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        languageString = [[DHLanguageTool SimplifiedChinese] firstObject]; <span class="comment">// 其他默认为中文</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>各位可能会对这个判断比较疑惑，在这之前已经有判断了：先获取用户设置的语言，有则使用用户设置的语言，没有则使用系统语言。</p>
+<p>然而因为某些原因用户设置过的语言（如：zh-Hans）会在另一个相同工程运行之后将该语言更改为zh-Hans-CZ；或者用户将系统语言设置为日本语或其他语言。</p>
+<p>出现以上情况时 DHLocalizedString(&lt;#key#&gt;) 这个方法从 .strings 配置文件里是去不到对应的字体，就会返回空。</p>
+<p>后果轻则页面一片空白了，重则直接 crash ，如：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *arr = @[DHLocalizedString(<span class="string">@"语言切换"</span>),DHLocalizedString(<span class="string">@"意见反馈"</span>),DHLocalizedString(<span class="string">@"加入群组"</span>)];</div></pre></td></tr></table></figure>
+<h4 id="如果坚持使用-NSLocalizedString-lt-key-gt-lt-comment-gt-方法"><a href="#如果坚持使用-NSLocalizedString-lt-key-gt-lt-comment-gt-方法" class="headerlink" title="如果坚持使用 NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;) 方法"></a>如果坚持使用 NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;) 方法</h4><p>1、有一种极端情况，比如：软件需要配置多国语言，很多很多的那一种。在 .strings 文件里配置了许多国家的语言。然而在软件内部只提供中文、英文等某几种语言，其他语言根据系统语言自适应。不想在 <code>initUserLanguage</code> 方法里做一大堆的乱七八糟的判断。只要在 <code>initUserLanguage</code> 的判断方法 <code>else</code> 里使用系统语言：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	languageString = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"AppleLanguages"</span>][<span class="number">0</span>]; <span class="comment">// 其他默认为系统语言</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2、比如：就想使用 <code>NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;)</code> 方法。</p>
+<p>总归还是有方法使用 <code>NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;)</code> 的。</p>
+<p>使用 <code>Category</code> 为 <code>NSBundle</code> 类扩展一个设置语言的方法，并且使用 <code>runtime</code> 为 <code>NSBundle</code> 动态添加一个关于 <code>bundle</code> 的属性，重载 <code>NSBundle.mainBundle</code> 的 <code>localizedStringForKey</code> 方法。目的就是将更改的字体传给 <code>NSLocalizedString(&lt;#key#&gt;, &lt;#comment#&gt;)</code> 映射的 <code>localizedStringForKey</code> 方法返回的 <code>bundle</code> ，使得更改的字体应用到系统上。</p>
+<p>好吧，show you the code:</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"NSBundle+DHLanguage.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">NSString</span> *DHBundleKey = <span class="string">@"DHLanguageKey"</span>;</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">BundleEx</span> : <span class="title">NSBundle</span></span></div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">BundleEx</span></span></div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)localizedStringForKey:(<span class="built_in">NSString</span> *)key value:(<span class="built_in">NSString</span> *)value table:(<span class="built_in">NSString</span> *)tableName &#123;</div><div class="line">    <span class="built_in">NSBundle</span> *bundle = objc_getAssociatedObject(<span class="keyword">self</span>, &amp;RDBundleKey);</div><div class="line">    <span class="keyword">if</span> (bundle) &#123;</div><div class="line">        <span class="keyword">return</span> [bundle localizedStringForKey:key value:value table:tableName];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> [<span class="keyword">super</span> localizedStringForKey:key value:value table:tableName];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSBundle</span> (<span class="title">DHLanguage</span>)</span></div><div class="line"></div><div class="line">+ (<span class="keyword">void</span>)setLanguage:(<span class="built_in">NSString</span> *)language &#123;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        object_setClass([<span class="built_in">NSBundle</span> mainBundle], [BundleEx <span class="keyword">class</span>]);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">id</span> value = language ? [<span class="built_in">NSBundle</span> bundleWithPath:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:language ofType:<span class="string">@"lproj"</span>]] : <span class="literal">nil</span>;</div><div class="line">    objc_setAssociatedObject([<span class="built_in">NSBundle</span> mainBundle], &amp;RDBundleKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>1、<code>objc_getAssociatedObject</code> 和 <code>objc_setAssociatedObject</code> 是一对 <code>getter</code>、<code>setter</code> 方法，目的是为了给 <code>NSBundle</code> 类动态添加一个属性。</p>
+<p>2、<code>object_setClass</code>在 <code>BundleEx</code> 里实现一个 <code>localizedStringForKey</code> 方法，然后将 <code>BundleEx</code> 这个类设置给 <code>[NSBundle mainBundle]</code> 。目的就是相当于重载 <code>[NSBundle mainBundle]</code> 的 <code>localizedStringForKey</code> 方法。</p>
+<p>再说本篇文章，该类别新增方法的使用：</p>
+<p>在 <code>DHLocalizableController</code> 类的 <code>+ (void)setUserlanguage:(NSString *)language</code> 方法里，本地化存储语言之后调用如下方法：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line">[<span class="built_in">NSBundle</span> setLanguage:language];</div></pre></td></tr></table></figure>
+<p>之后，关于 <code>DHLocalizableController</code> 类里边关于 <code>bundle</code> 的操作就可以舍弃了。</p>
+<blockquote>
+<p>注意：使用这种方法要确保你的 <code>.strings</code> 的文件名为 <code>Localizable.strings</code><br>否则还是要重新设置宏定义。</p>
+</blockquote>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p><a href="http://gonghonglou.com/2016/10/29/setlanguage" target="_blank" rel="noopener">参考链接1</a></p>
+<p><a href="http://xiaolei0808.com/2016/04/24/Localized-iOS/" target="_blank" rel="noopener">参考链接2</a></p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/use-sys-mail/" data-toggle="tooltip" data-placement="top" title="iOS 使用系统邮箱实现个人 App 意见反馈功能">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/iOS-navigation-tabbar/" data-toggle="tooltip" data-placement="top" title="iOS NavigationController 和 TabBar 详细解析以及用法说明">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 115.5k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
