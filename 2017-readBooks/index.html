@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stay hungry Stay foolish.">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            2017 年读书总结 - DHTalk&#39;s Blog
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2017-readBooks/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+                <!-- ga & ba script hoook -->
+                <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/blogimg/20171230151462959830471.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>2017 年读书总结</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2017-12-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>即将过去的 2017 年里读了 26 本书，由于种种原因，没有完成年初的每周阅读一本书的目标。在做读书总结时，我也在问自己每周阅读一本书是否真的有必要？自己消化和吸收的又有多少？于是，做完今年的阅读总结，2018 年阅读的计划，随心而定，根据自己的时间安排和喜好来读。</p>
+<p>今年读书类目比较杂，有小说、工具类、传记、人文等，还有阮一峰老师未出版的2本书，大概按照时间顺序对每本书进行一下复盘与回顾，也能避免未来阅读时的选书错误，为 2018 年更好、更深层次的阅读打下基础。</p>
+<p>先列下今年的阅读的书籍清单：</p>
+<p><img src="/blogimg/20171230151463671535006.png" alt="20171230151463671535006.png"></p>
+<h4 id="《成为乔布斯》"><a href="#《成为乔布斯》" class="headerlink" title="《成为乔布斯》"></a>《成为乔布斯》</h4><p>绝对的5分好评，全本能够很好的了解乔布斯不为人们所熟悉的一面。比如乔布斯如何被自己招来的 CEO 赶出苹果；在离开苹果的那些岁月里，乔布斯的创业历程并不美好，但是他被皮克斯工作室所影响，皮克斯教会了乔布斯成长；乔布斯又是如何重返苹果后带领苹果起死回生。</p>
+<p>这一系列的故事奠定了苹果发展的基础，这也是乔布斯能够被人们所熟知的原因。如果要有一段话来推荐这本书的话，我会选择苹果的一则广告语，也是本书提及到的部分，★★★★★ 推荐</p>
+<blockquote>
+<p>向那些疯狂的家伙们致敬，他们特立独行，他们桀骜不驯，他们惹是生非，他们格格不入。<br>他们用与众不同的眼光看待事物，他们不喜欢墨守成规，他们也不愿安于现状。你可以赞美他们，引用他们，反对他们，质疑他们，颂扬或是诋毁他们。<br>但唯独不能漠视他们。因为他们改变了事物。他们发明，他们想象，他们治愈，他们探索，他们创造，他们启迪，他们推动人类向前发展。<br>也许，他们已经疯了。<br>你能盯着白纸，就看到美妙的画作么？你能静静坐着，就听见美妙的歌曲么？你能凝视火星，就想到神奇的太空轮么？<br>我们为这些家伙制造良“机”。<br>或许他们是别人眼里的疯子，但他们却是我们眼中的天才。因为只有那些疯狂到以为自己能够改变世界的人，才能真正地改变世界。</p>
+</blockquote>
+<h4 id="《iOS动画–核心技术与案例实战》"><a href="#《iOS动画–核心技术与案例实战》" class="headerlink" title="《iOS动画–核心技术与案例实战》"></a>《iOS动画–核心技术与案例实战》</h4><p>一本很不错的关于 iOS 动画的书籍，是用 Swift 语言编写的，全书分为 4 个部分对 iOS 动画做了深入的讲解，还附带了实例代码。★★★★ 推荐</p>
+<h4 id="《东方快车谋杀案》《罗杰疑案》"><a href="#《东方快车谋杀案》《罗杰疑案》" class="headerlink" title="《东方快车谋杀案》《罗杰疑案》"></a>《东方快车谋杀案》《罗杰疑案》</h4><p>1、一场突如其来的大雪，一列特殊的乘客搭乘的东方快车，午夜出现了一场谋杀案，一个美国人死在了他的包厢里，被刺了十二刀，可他包厢的门却是反锁的。</p>
+<p>大侦探波洛随即进行了侦查并对车厢内人员进行逐一问询，案情扑簌迷离，情节构思巧妙，可以满足你对侦探小说的全部幻想，最终的结果是出人意料的。车厢内的每个人都是凶手，除了波洛。</p>
+<p>结局的最后让人不禁发问，究竟什么是正义？谁又有权利来确保正义？今年，根据本书改编的电影也上映了，拍的也很不错。★★★★★ 推荐</p>
+<p>2、今年读的阿婆的第二本书，代入感很强，推理过程层层推进，当你跟随作者进行推理时，忽然发觉原来这才是结局。这也是我第一次阅读这类写作手法的书。★★★★★ 推荐</p>
+<h4 id="《白夜行》"><a href="#《白夜行》" class="headerlink" title="《白夜行》"></a>《白夜行》</h4><p>东野圭吾的书不同于阿加莎，如果你非要从文字中读出一个所以然来，恐怕要让你失望了。本书被问及最多的问题莫过于以下几个：</p>
+<ol>
+<li>雪穗爱亮司吗？</li>
+<li>亮司爱雪穗吗？</li>
+<li>雪穗爱一成吗？</li>
+<li>雪穗出于什么原因要加害江利子？</li>
+<li>亮司是否付出了太多而雪穗是否在利用亮司？</li>
+<li>雪穗和亮司想要的是什么？</li>
+</ol>
+<p>或许每个人都有不同的理解，只有深入阅读才能给自己一个满意的答案。★★★★ 推荐</p>
+<p>书中金句：</p>
+<blockquote>
+<p>“我的天空里没有太阳，总是黑夜，但并不暗，因为有东西代替了太阳。虽然没有太阳那么明亮，但对我来说已经足够。凭借着这份光，我便能把黑夜当成白天。你明白吧？我从来就没有太阳，所以不怕失去。”<br>“代替太阳的东西是什么呢？”<br>“你说呢？也许夏美以后会有明白的一天。”说着，雪穗朝着前方调整坐姿，“好了，我们走吧。”</p>
+</blockquote>
+<h4 id="《黑客与画家》"><a href="#《黑客与画家》" class="headerlink" title="《黑客与画家》"></a>《黑客与画家》</h4><p>技术人员都会推荐阅读的一本书。★★★★★ 推荐</p>
+<h4 id="《经济学通识》《小岛经济学》"><a href="#《经济学通识》《小岛经济学》" class="headerlink" title="《经济学通识》《小岛经济学》"></a>《经济学通识》《小岛经济学》</h4><p>《经济学通识》是今年订阅了薛兆丰的北大经济学课专栏后阅读的，配合专栏文章读此书，让人对这个世界的很多事情有了更多层面，更深层次的认识。《小岛经济学》是后续发现，读了一遍，属于经济学入门读物，书中也有大量插画和形象的比喻，能够让经济学小白很好的入门。或许这就是经济学的神奇之处，你可能并不打算成为一个经济学家，但却有必要掌握经济学的思考方法。 ★★★★★ 推荐</p>
+<h4 id="《了不起的盖茨比》"><a href="#《了不起的盖茨比》" class="headerlink" title="《了不起的盖茨比》"></a>《了不起的盖茨比》</h4><p>在没看过得到解读后，只是单纯的当成一本小说来读，经过得到解读，又对本书有了更深层次的了解。★★★★ 推荐</p>
+<h4 id="《Producter-让产品从0到1》"><a href="#《Producter-让产品从0到1》" class="headerlink" title="《Producter 让产品从0到1》"></a>《Producter 让产品从0到1》</h4><p>1992 年作者周楷雯的书，全书讲解了他的 小记 开发历程，全书包含设计、编程、改进、营销很多方面，对技术人员或者是产品设计师都是很不错的书籍，使读者能够了解一款产品诞生与发展的台前幕后所有工作。 ★★★★★ 推荐</p>
+<h4 id="《浪潮之巅全2册》"><a href="#《浪潮之巅全2册》" class="headerlink" title="《浪潮之巅全2册》"></a>《浪潮之巅全2册》</h4><p>简述了很多科技公司的历史以及成功和失败的教训，虽然有些“马后炮”的意味，不过能从这些高科技公司的发展中总结出一套经验和教训来也是值得一读的。尤其是互联网或者 IT 从业者应该读一下，或许可以在以后借鉴反思，避免犯错。★★★★ 推荐</p>
+<h4 id="《硅谷革命：成就苹果公司的疯狂往事》"><a href="#《硅谷革命：成就苹果公司的疯狂往事》" class="headerlink" title="《硅谷革命：成就苹果公司的疯狂往事》"></a>《硅谷革命：成就苹果公司的疯狂往事》</h4><p>今年读过的为数不多的好书之一，全书讲述了苹果公司开发 Macintosh 的历史，关于团队，关于苹果，关于乔布斯，本书都能让你从不同的视角对其有更多的了解。★★★★★ 推荐 </p>
+<p>附 <a href="https://www.zhangdinghao.cn/readNote-Apple/" target="_blank" rel="noopener">读书笔记 -《硅谷革命：成就苹果公司的疯狂往事》</a></p>
+<h4 id="《我们的后人类未来》"><a href="#《我们的后人类未来》" class="headerlink" title="《我们的后人类未来》"></a>《我们的后人类未来》</h4><p>第一次读福山的书，感觉一般了，人类伦理和技术进步有问题存在，但在本书中更多的是流水账，文人式的忧虑较多。不做推荐。</p>
+<h4 id="《艾伦图灵传》"><a href="#《艾伦图灵传》" class="headerlink" title="《艾伦图灵传》"></a>《艾伦图灵传》</h4><p>图灵研究思维，可思维却是那样神秘，这位解密大师，最终败给了自己内心的谜。所谓道可道，非常道，尽管图灵没有这种哲学家的超脱，但他的生命实在是不可言说。他本想张口，却哑口失言。推荐技术人员阅读。</p>
+<h4 id="《爆裂-未来社会的9大生存原则》"><a href="#《爆裂-未来社会的9大生存原则》" class="headerlink" title="《爆裂:未来社会的9大生存原则》"></a>《爆裂:未来社会的9大生存原则》</h4><p>九大原则标题起的很好，但是每章的例子真的不怎么好，论点不错，但是论据很多方面不对题，罗胖还在极力推荐，简直就是在打脸。稍微读书量多点的人，看看目录，自己根据目录做个总结，也算自我的一点总结和认知提升了。本人读完觉得一般，不做过多推荐。</p>
+<h4 id="《深度工作》《刻意练习》"><a href="#《深度工作》《刻意练习》" class="headerlink" title="《深度工作》《刻意练习》"></a>《深度工作》《刻意练习》</h4><p>《深度工作》全书分为了2大部分，深度工作的理论和实践。作者给出了如何深度工作的方法，也列举了深度工作的局限性以及深度工作的一些原则。作者自己本人也是深度学习的受益者，关于如何去深度工作，如何学习深度工作，让自己的时间让有效利用，提高效率，这本书值得一读。</p>
+<p>《刻意练习》全书列举了很多天才的案例，分析了其成功的原因，发现没有人天生就是天才，长久有效的刻意练习才是取得成绩，获得成功的关键。有效的练习，及时的反馈机制，牛人的指导，三大关键步骤更能帮助你更快成长，获得成功。</p>
+<h4 id="《灰犀牛》"><a href="#《灰犀牛》" class="headerlink" title="《灰犀牛》"></a>《灰犀牛》</h4><p>看到豆瓣6分的评分我也心安了，整体感觉书的内容一般。一个概念竟然能拼凑出来这么多字，也是服了。</p>
+<h4 id="《小顾聊绘画全2册》"><a href="#《小顾聊绘画全2册》" class="headerlink" title="《小顾聊绘画全2册》"></a>《小顾聊绘画全2册》</h4><p>艺术史简明入门书，和严伯钧的西方艺术史专栏差不多，不过这2本书，内容更轻快。</p>
+<h4 id="《软技能-代码之外的生存指南》《编写可读代码的艺术》"><a href="#《软技能-代码之外的生存指南》《编写可读代码的艺术》" class="headerlink" title="《软技能:代码之外的生存指南》《编写可读代码的艺术》"></a>《软技能:代码之外的生存指南》《编写可读代码的艺术》</h4><p>《软技能:代码之外的生存指南》，作者没有从编程入手，而是涉及到了职业规划，个人影响力提升，学习，理财，健身等各个方面。章节很多，但是每个章节内容很少，也就没有办法进行深入表述，不过很多看似浅显的道理还是需要长时间去实践才能变成自己的收获。总之，很多程序员不善于表达，理财，学习，也没注意过健身，可能只是在重复造轮子，码代码，本书对类似我们这样的程序员还是有很多的帮助的。</p>
+<p>《编写可读代码的艺术》，怎么写出简洁易懂的代码，如何注释等。本书都给出了不错的实例和说明。很不错的一本书。</p>
+<h4 id="《未来简史》"><a href="#《未来简史》" class="headerlink" title="《未来简史》"></a>《未来简史》</h4><p>年初阅读本书还颇有感触，对作者的一些观点也没有很详细的理解和分辨的能力。待到今年年末，再观察书中的对未来的一些设想等感觉太过悲观，我认为数据不应该成功未来主宰整个社会的力量。但是，由于罗胖的推荐，加上上一本书《人类简史》的热度，今年火一把也没办法了，至少书中关于人类过去、人为主义等都是很不错的，有很多不错的观点和认知。</p>
+<h4 id="《高手》"><a href="#《高手》" class="headerlink" title="《高手》"></a>《高手》</h4><p>精英日课第一季的文章节选，读完以后还是有很多收获的。比如承认运气的存在可能让你更受欢迎，如何决策，如何成为有智识的人，高手和普通人有什么区别，以及如何从一个更加长远和宏观的视角来看待现在。第二季现在每天都在听，可能对很多人觉得书里的内容很杂乱，但是每章都有新思想。推荐阅读。照抄书中几个不错的段落分享：</p>
+<blockquote>
+<p>听说一两条负面消息就对世界绝望了，那是无知。认为什么信息都没有意义，那是麻木。知道什么重要什么不重要，该信什么不该信什么，才能对世界有个 “educated guess”</p>
+<p>— 高手 P148</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>三个方面考察一个人的智慧水平<br>1、智识上的谦逊—我知道我需要更多的信息，才能合理评估这件事，我知道未来可能还有不确定性。<br>2、超越自我—我知道我身在这个事件当中可能会当局者迷，如果能从旁观者的视角看问题，也许更好。<br>3、考虑他人的观点，达成妥协—我知道不同观点的利弊，能理解这个事件的参与各方的想法和立场。我不仅仅考虑自己的利益，也考虑跟别人的关系。</p>
+<p>谦逊谨慎，旁观者清，达成妥协，这些都是能让我们生活的更好的品质。能在日常生活中经常做到这三点，就是有智慧的人。</p>
+<p>— 高手 P158</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>【三个智慧】</p>
+<p>我们希望每一天都活在当下，可是从数学的角度来说，你预期停留的时间越长，探索新事物的价值就越高，基廷斯指数也就越高。</p>
+<p>如果我们把期限设定为人的一生，这就意味着年轻人应该多探索，到了后期就要专注于收获。</p>
+<p>因此，对于理性的人来说，要想过好这一生，意味着三件事。</p>
+<p>1、年青时代要大胆探索。<br>2、随着年龄的增长，要学会慢慢利用已有的信息，专注于收获。<br>3、在慢慢变老的过程中，我们的生活其实是越来越好的。</p>
+<p>— 高手 P170</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>如果参与游戏的各方都是”老司机”—每个人都非常聪明，谁也糊弄不了谁，那么游戏就会达到一个各方都满意，或者各方都无奈的局面，任何一方想要采取一个什么行动让自己的局面比现在更好都不可能了，这个局面就叫「纳什均衡」。</p>
+<p>— 高手P182</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>给自己讲一个好故事，找到工作和生活的意义，保持乐观的精神，这是能坚持下来的前提条件。然后，你再把大目标分解成为各种小任务，把每个任务都游戏化，随时奖励自己，获得掌控感，用一个个小胜利慢慢积累进步，这就是通往成功之路。</p>
+<p>— 高手P217</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>WOOP方法</p>
+<p>1、Wish。你想要干什么，比如你想要一个好工作，想到 Google 工作。<br>2、Outcome。把结果具体化，比如去 Google，最理想的职位是资深工程师。<br>3、Obstacle。这是面对现实的一步，看看现在距离这个结果有什么障碍。如果你现在的技术水平已经很厉害了，那么你的障碍就是让 Google 的人知道你。但如果你现在什么技术都没有，那么你的障碍就会很大。<br>4、Plan。制定计划，解决各种障碍。</p>
+<p>— 高手P221</p>
+</blockquote>
+<h4 id="《枪炮、病菌与钢铁》"><a href="#《枪炮、病菌与钢铁》" class="headerlink" title="《枪炮、病菌与钢铁》"></a>《枪炮、病菌与钢铁》</h4><p>这是讲述人类社会发展的另一种解释的书，作者的观点也很新颖，全书基本上属于人类的一部进化史了。资料很详实，文字严谨，观点明确，脉络清晰。推论出人类社会的发展以及现在世界格局的形成，可谓是醍醐灌顶。之所以对这本书有那么多好感，对作者的观点比较认同，因为本人就是环境决定论的最大感知者之一。5星力荐。</p>
+<h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><p>整体来说 2017 年的阅读计划将将及格，往年没有做读书总结的习惯，第一年做这个才发现很多书籍阅读的还是不够深入，对书籍的了解还不够深入。所以，2018 的阅读计划就不在数量上做任何限制了，主要目标是尽可能的利用时间读好书，深度阅读。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/goodbye2017/" data-toggle="tooltip" data-placement="top" title="再见，我的2017">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/installationCocoapods/" data-toggle="tooltip" data-placement="top" title="Cocoapods 安装和基本使用">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 115.5k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

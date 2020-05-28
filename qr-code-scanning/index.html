@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stay hungry Stay foolish.">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            使用 iOS 原生 API 实现二维码扫描 - DHTalk&#39;s Blog
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/qr-code-scanning/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+                <!-- ga & ba script hoook -->
+                <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                    <h1>使用 iOS 原生 API 实现二维码扫描</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2016-09-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>使用系统的<code>AVCaptureSession</code>API 实现的二维码扫描功能，添加有扫描动画。在以前项目中使用到的，由于之前的博客舍弃了，所以现在在新博客重新整理一下。 <a id="more"></a></p>
+<p>主要内容如下：</p>
+<ul>
+<li>导入 <code>&lt;AVFoundation/AVFoundation.h&gt;</code></li>
+<li>添加 <code>AVCaptureMetadataOutputObjectsDelegate</code></li>
+<li>设置扫描区域的View</li>
+<li>设置摄像头的识别区域，即可扫描的区域</li>
+<li>开始扫描并拿到扫描后的二维码信息</li>
+</ul>
+<h3 id="设置扫描区域底部遮罩"><a href="#设置扫描区域底部遮罩" class="headerlink" title="设置扫描区域底部遮罩"></a>设置扫描区域底部遮罩</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 遮罩</span></div><div class="line">_maskView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">_maskView.layer.borderColor = [<span class="built_in">UIColor</span> colorWithRed:<span class="number">0</span> green:<span class="number">0</span> blue:<span class="number">0</span> alpha:<span class="number">0.7</span>].CGColor;</div><div class="line">_maskView.layer.borderWidth = kBorderW;</div><div class="line">_maskView.bounds = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, Width + kBorderW + kMargin, Width + kBorderW + kMargin);</div><div class="line">_maskView.center = <span class="keyword">self</span>.view.center;</div><div class="line">[<span class="keyword">self</span>.view addSubview:_maskView];</div><div class="line">    </div><div class="line"><span class="comment">// 补充遮罩</span></div><div class="line"><span class="built_in">UIView</span> *mask = [[<span class="built_in">UIView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, _maskView.frame.origin.y + _maskView.frame.size.height, Width, kBorderW + <span class="number">100</span>)];</div><div class="line">mask.backgroundColor=[<span class="built_in">UIColor</span> colorWithRed:<span class="number">0</span> green:<span class="number">0</span> blue:<span class="number">0</span> alpha:<span class="number">0.7</span>];</div><div class="line">[<span class="keyword">self</span>.view addSubview:mask];</div><div class="line">    </div><div class="line"><span class="built_in">UIView</span> *mask2 = [[<span class="built_in">UIView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, Width, kBorderW - <span class="number">19</span>)];</div><div class="line">mask2.backgroundColor=[<span class="built_in">UIColor</span> colorWithRed:<span class="number">0</span> green:<span class="number">0</span> blue:<span class="number">0</span> alpha:<span class="number">0.7</span>];</div><div class="line">[<span class="keyword">self</span>.view addSubview:mask2];</div><div class="line">    </div><div class="line"><span class="comment">// 操作提示</span></div><div class="line">tipLabel = [[<span class="built_in">UILabel</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, Height - kBorderW*<span class="number">2</span>, <span class="keyword">self</span>.view.bounds.size.width, kBorderW)];</div><div class="line">tipLabel.text = <span class="string">@"将取景框对准二维码，即可自动扫描"</span>;</div><div class="line">tipLabel.textColor = [<span class="built_in">UIColor</span> colorWithRed:<span class="number">252</span> green:<span class="number">206</span> blue:<span class="number">74</span> alpha:<span class="number">1</span>];</div><div class="line">tipLabel.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</div><div class="line">tipLabel.lineBreakMode = <span class="built_in">NSLineBreakByWordWrapping</span>;</div><div class="line">tipLabel.numberOfLines = <span class="number">2</span>;</div><div class="line">tipLabel.font=[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14</span>];</div><div class="line">tipLabel.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">[<span class="keyword">self</span>.view addSubview:tipLabel];</div></pre></td></tr></table></figure>
+<h3 id="设置顶部导航栏"><a href="#设置顶部导航栏" class="headerlink" title="设置顶部导航栏"></a>设置顶部导航栏</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 返回</span></div><div class="line"><span class="built_in">UIButton</span> *backBtn = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</div><div class="line">backBtn.frame = <span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">30</span>, <span class="number">20</span>, <span class="number">20</span>);</div><div class="line">[backBtn setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"qrcode_scan_titlebar_back_nor"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">backBtn.contentMode=<span class="built_in">UIViewContentModeScaleAspectFit</span>;</div><div class="line">[backBtn addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(disMiss) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">[<span class="keyword">self</span>.view addSubview:backBtn];</div><div class="line">    </div><div class="line"><span class="comment">// 闪光灯</span></div><div class="line">flashBtn = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</div><div class="line">flashBtn.frame = <span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>, <span class="number">60</span>, <span class="number">78</span>);</div><div class="line">flashBtn.center = <span class="built_in">CGPointMake</span>(Width/<span class="number">2</span>, Height - <span class="number">100</span>);</div><div class="line">[flashBtn setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"qrcode_scan_btn_flash_down"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[flashBtn setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"qrcode_scan_btn_scan_off"</span>] forState:<span class="built_in">UIControlStateSelected</span>];</div><div class="line">flashBtn.contentMode = <span class="built_in">UIViewContentModeScaleAspectFit</span>;</div><div class="line">[flashBtn addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(openFlash:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">[<span class="keyword">self</span>.view addSubview:flashBtn];</div></pre></td></tr></table></figure>
+<h3 id="扫描二维码扫描区域"><a href="#扫描二维码扫描区域" class="headerlink" title="扫描二维码扫描区域"></a>扫描二维码扫描区域</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> scanWindowH = Width - kMargin * <span class="number">2</span>;</div><div class="line"><span class="built_in">CGFloat</span> scanWindowW = Width - kMargin * <span class="number">2</span>;</div><div class="line">_scanWindow = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>, scanWindowW, scanWindowH)];</div><div class="line">_scanWindow.center = <span class="keyword">self</span>.view.center;</div><div class="line">_scanWindow.clipsToBounds = <span class="literal">YES</span>;</div><div class="line">[<span class="keyword">self</span>.view addSubview:_scanWindow];</div><div class="line">    </div><div class="line">_scanNetImageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"scan_net"</span>]];</div><div class="line">_scanNetImageView.frame = _scanWindow.frame;</div><div class="line">_scanNetImageView.center = <span class="keyword">self</span>.view.center;</div><div class="line"><span class="built_in">CGFloat</span> buttonWH = <span class="number">18</span>;</div><div class="line">[_scanWindow addSubview:_scanNetImageView];</div><div class="line">    </div><div class="line"><span class="built_in">UIButton</span> *topLeft = [[<span class="built_in">UIButton</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">1</span>, <span class="number">0</span>, buttonWH, buttonWH)];</div><div class="line">[topLeft setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"scan_1"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[_scanWindow addSubview:topLeft];</div><div class="line">    </div><div class="line"><span class="built_in">UIButton</span> *topRight = [[<span class="built_in">UIButton</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(scanWindowW - buttonWH - <span class="number">1</span>, <span class="number">0</span>, buttonWH, buttonWH)];</div><div class="line">[topRight setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"scan_2"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[_scanWindow addSubview:topRight];</div><div class="line">    </div><div class="line"><span class="built_in">UIButton</span> *bottomLeft = [[<span class="built_in">UIButton</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">1</span>, scanWindowH - buttonWH, buttonWH, buttonWH)];</div><div class="line">[bottomLeft setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"scan_3"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[_scanWindow addSubview:bottomLeft];</div><div class="line">    </div><div class="line"><span class="built_in">UIButton</span> *bottomRight = [[<span class="built_in">UIButton</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(topRight.frame.origin.x, bottomLeft.frame.origin.y, buttonWH, buttonWH)];</div><div class="line">[bottomRight setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"scan_4"</span>] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[_scanWindow addSubview:bottomRight];</div></pre></td></tr></table></figure>
+<h3 id="开始扫描"><a href="#开始扫描" class="headerlink" title="开始扫描"></a>开始扫描</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma mark -</span></div><div class="line"><span class="meta">#pragma mark - 开始扫描</span></div><div class="line">- (<span class="keyword">void</span>)beginScanning&#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 获取摄像设备</span></div><div class="line">    <span class="built_in">AVCaptureDevice</span> *device = [<span class="built_in">AVCaptureDevice</span> defaultDeviceWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</div><div class="line">    <span class="comment">// 创建输入流</span></div><div class="line">    <span class="built_in">AVCaptureDeviceInput</span> *input = [<span class="built_in">AVCaptureDeviceInput</span> deviceInputWithDevice:device error:<span class="literal">nil</span>];</div><div class="line">    <span class="keyword">if</span> (!input) <span class="keyword">return</span>;</div><div class="line">    <span class="comment">// 创建输出流</span></div><div class="line">    <span class="built_in">AVCaptureMetadataOutput</span> *output = [[<span class="built_in">AVCaptureMetadataOutput</span> alloc]init];</div><div class="line">    <span class="comment">// 设置代理 在主线程里刷新</span></div><div class="line">    [output setMetadataObjectsDelegate:<span class="keyword">self</span> queue:dispatch_get_main_queue()];</div><div class="line">    <span class="comment">// 设置有效扫描区域</span></div><div class="line">    <span class="built_in">CGRect</span> scanCrop = [<span class="keyword">self</span> getScanCrop:_scanWindow.bounds readerViewBounds:<span class="keyword">self</span>.view.frame];</div><div class="line">    output.rectOfInterest = scanCrop;</div><div class="line">    <span class="comment">// 初始化链接对象</span></div><div class="line">    _session = [[<span class="built_in">AVCaptureSession</span> alloc]init];</div><div class="line">    <span class="comment">// 高质量采集率</span></div><div class="line">    [_session setSessionPreset:<span class="built_in">AVCaptureSessionPresetHigh</span>];</div><div class="line">    </div><div class="line">    [_session addInput:input];</div><div class="line">    [_session addOutput:output];</div><div class="line">    <span class="comment">// 设置扫码支持的编码格式(如下设置条形码和二维码兼容)</span></div><div class="line">    output.metadataObjectTypes = @[<span class="built_in">AVMetadataObjectTypeQRCode</span>,<span class="built_in">AVMetadataObjectTypeEAN13Code</span>, <span class="built_in">AVMetadataObjectTypeEAN8Code</span>, <span class="built_in">AVMetadataObjectTypeCode128Code</span>];</div><div class="line">    </div><div class="line">    <span class="built_in">AVCaptureVideoPreviewLayer</span> *layer = [<span class="built_in">AVCaptureVideoPreviewLayer</span> layerWithSession:_session];</div><div class="line">    layer.videoGravity = <span class="built_in">AVLayerVideoGravityResizeAspectFill</span>;</div><div class="line">    layer.frame = <span class="keyword">self</span>.view.layer.bounds;</div><div class="line">    [<span class="keyword">self</span>.view.layer insertSublayer:layer atIndex:<span class="number">0</span>];</div><div class="line">    <span class="comment">// 开始捕获</span></div><div class="line">    [_session startRunning];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- 获取扫描区域的比例关系</span></div><div class="line">-(<span class="built_in">CGRect</span>)getScanCrop:(<span class="built_in">CGRect</span>)rect readerViewBounds:(<span class="built_in">CGRect</span>)readerViewBounds</div><div class="line">&#123;</div><div class="line">    <span class="built_in">CGFloat</span> x,y,width,height;</div><div class="line">    x = (<span class="built_in">CGRectGetHeight</span>(readerViewBounds)-<span class="built_in">CGRectGetHeight</span>(rect))/<span class="number">2</span>/<span class="built_in">CGRectGetHeight</span>(readerViewBounds);</div><div class="line">    y = (<span class="built_in">CGRectGetWidth</span>(readerViewBounds)-<span class="built_in">CGRectGetWidth</span>(rect))/<span class="number">2</span>/<span class="built_in">CGRectGetWidth</span>(readerViewBounds);</div><div class="line">    width = <span class="built_in">CGRectGetHeight</span>(rect)/<span class="built_in">CGRectGetHeight</span>(readerViewBounds);</div><div class="line">    height = <span class="built_in">CGRectGetWidth</span>(rect)/<span class="built_in">CGRectGetWidth</span>(readerViewBounds);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="built_in">CGRectMake</span>(x, y, width, height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="通过代理方法拿到摄像头扫描的二维码信息"><a href="#通过代理方法拿到摄像头扫描的二维码信息" class="headerlink" title="通过代理方法拿到摄像头扫描的二维码信息"></a>通过代理方法拿到摄像头扫描的二维码信息</h3><figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma mark --</span></div><div class="line"><span class="meta">#pragma mark -- 获取二维码</span></div><div class="line">-(<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureOutput</span> *)captureOutput didOutputMetadataObjects:(<span class="built_in">NSArray</span> *)metadataObjects fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (metadataObjects.count &gt; <span class="number">0</span>) &#123;</div><div class="line">        </div><div class="line">        [_session stopRunning];</div><div class="line">        <span class="built_in">AVMetadataMachineReadableCodeObject</span> *metadataObject = [metadataObjects objectAtIndex : <span class="number">0</span> ];</div><div class="line">        <span class="comment">// 二维码信息</span></div><div class="line">        <span class="built_in">NSString</span> *str = metadataObject.stringValue;</div><div class="line">        <span class="built_in">UIAlertView</span> *alert = [[<span class="built_in">UIAlertView</span> alloc]initWithTitle:<span class="string">@"二维码信息："</span> message:str delegate:<span class="keyword">self</span> cancelButtonTitle:<span class="string">@"取消"</span> otherButtonTitles:<span class="string">@"确定"</span>, <span class="literal">nil</span>];</div><div class="line">        [alert show];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后拿到扫描到的二维码信息并展示，当然你也可以做其它处理。其中加入了一些动画，主要是扫描界面的遮罩。当然，别忘记在 info.plis 文件中添加 <code>Privacy - Camera Usage Description</code> 字段和描述。</p>
+<p>附上：<a href="https://github.com/CalvinCheungCoder/QRScan" target="_blank" rel="noopener">代码地址</a></p>
+<p>扫描效果图：<img src="/blogimg/scanning.jpg" alt=""></p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/修改macOS终端中的名称/" data-toggle="tooltip" data-placement="top" title="修改 macOS 终端中的名称">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 115.5k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4b23bf7f2774bbd61b8967fb89ed56be';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
