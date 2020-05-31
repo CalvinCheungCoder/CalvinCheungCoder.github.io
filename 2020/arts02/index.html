@@ -13,11 +13,11 @@
 
     <title>
         
-            iOS 3D Touch 开发(一) Quick Actions - DHTalk&#39;s Blog
+            ARTS 02 - Google 如何做 Code Review - DHTalk&#39;s Blog
                 
     </title>
 
-    <link rel="canonical" href="https://zhangdinghao.cn/2017/iOS-3D-Touch/">
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/arts02/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -247,7 +247,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('/img/archive-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -257,14 +257,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
                         
                     </div>
-                    <h1>iOS 3D Touch 开发(一) Quick Actions</h1>
+                    <h1>ARTS 02 - Google 如何做 Code Review</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Calvin on
-                        2017-04-19
+                        2020-05-31
                     </span>
                 </div>
             </div>
@@ -283,45 +287,37 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p> 3D Touch的触控技术，被苹果称为新一代多点触控技术。和 15 款 MacBookPro 上采用的 Force Touch 差不多，屏幕可感应不同的感压力度触控。现在，iPhone 6s 以后的机型支持了 3D Touch 功能，拿支付宝来说，平时超时购物直接长按一下图标，点击付款，App 直接打开并跳转到付款页面，省时省事。现在就这一功能进行实现并总结。<a id="more"></a></p>
-<h3 id="3D-Touch的三大功能"><a href="#3D-Touch的三大功能" class="headerlink" title="3D Touch的三大功能"></a>3D Touch的三大功能</h3><ul>
-<li><p>Pressure Sensitivity：压力灵敏度。主要为 UITouch 类新增一些新属性，例如 estimatedProperties（当前触摸对象估计的触摸特性），updatedProperties（当前触摸对象已经更新的触摸特性）等，新增的API，主要集中在获取 X/Y 坐标时的精度部分，如 – PreciseLocationInView:（当前触摸对象的坐标），- PrecisePreviousLocationInView:（当前触摸对象的前置坐标）等，UIForceTouchCapability，功能可用性检测。</p>
-</li>
-<li><p>Peek and Pop：Peek (预览)和 Pop (详阅)为新引入的手势，主要可以让用户预览内容，甚至进行操作。分三阶段：</p>
-<p>  （1）提示用户这里有 3D Touch 的交互，会使交互控件周围模糊。<br>  （2）继续深按，会出现预览视图。<br>  （3）通过视图上的交互控件进行进一步交互。</p>
-</li>
-<li><p>Quick Actions：快捷菜单，完整名称是Home Screen Quick Actions，类似于电脑中的右键菜单，按压主屏幕的应用Icon，呼出的菜单，有静态、动态两种方式。</p>
-</li>
-</ul>
-<h3 id="Quick-Actions-快捷菜单-的创建"><a href="#Quick-Actions-快捷菜单-的创建" class="headerlink" title="Quick Actions (快捷菜单) 的创建"></a>Quick Actions (快捷菜单) 的创建</h3><ul>
-<li><p>静态方式在 info.plist 中进行配置</p>
-</li>
-<li><p>动态则通过 UIApplicationShortcutItem 等 API 进行代码动态处理</p>
-</li>
-<li><p>系统默认会优先展示静态的 Actions。若 App 安装后从未打开时，则默认只会展示静态 Actions，只有至少完整启动一次之后，动态 Actions 才会出现</p>
-</li>
-<li><p>最多可以创建四个菜单，静态 + 动态</p>
-</li>
-</ul>
-<h4 id="静态创建"><a href="#静态创建" class="headerlink" title="静态创建"></a>静态创建</h4><p>在 <code>info.plist</code> 文件中添加一个<code>UIApplicationShortcutItems</code>的数组，数组中添加的元素就是对应的静态标签</p>
-<p>必填：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItemType</span> <span class="comment">// 设置一个快捷通道类型的字符串</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemTitle</span> <span class="comment">// 设置标签的标题</span></div></pre></td></tr></table></figure>
-<p>选填：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItemSubtitle</span> <span class="comment">// 设置标签的副标题</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconType</span> <span class="comment">// 设置标签Icon类型</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemIconFile</span> <span class="comment">// 设置标签的Icon文件</span></div><div class="line"></div><div class="line"><span class="built_in">UIApplicationShortcutItemUserInfo</span> <span class="comment">// 设置信息字典(用于传值)</span></div></pre></td></tr></table></figure>
-<p>如图所示，使用 info.plist 创建一个菜单，只设置了必填项：</p>
-<p><img src="/blogimg/20170419149257266880875.jpg" alt="20170419149257266880875.jpg"></p>
-<h4 id="动态创建"><a href="#动态创建" class="headerlink" title="动态创建"></a>动态创建</h4><p>在 RootViewController 的 - (void)viewDidLoad 方法中添加如下代码：</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIApplicationShortcutItem</span> *item = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"two"</span> localizedTitle:<span class="string">@"个人中心"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeLove</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line"><span class="built_in">UIApplicationShortcutItem</span> * itemTwo = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"three"</span> localizedTitle:<span class="string">@"查看课件"</span> localizedSubtitle:<span class="literal">nil</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithTemplateImageName:<span class="string">@"kejian@2x.png"</span>] userInfo:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line">[<span class="built_in">UIApplication</span> sharedApplication].shortcutItems = @[item, itemTwo];</div></pre></td></tr></table></figure>
-<p>创建2个菜单，分别使用系统图标和自定义图标。加上静态创建的1个菜单，现在应该有3个菜单了，看下效果图：</p>
-<p><img src="/blogimg/20170419149257307316163.jpg" alt="20170419149257307316163.jpg"></p>
-<h3 id="Quick-Actions-的回调"><a href="#Quick-Actions-的回调" class="headerlink" title="Quick Actions 的回调"></a>Quick Actions 的回调</h3><p>UIApplication 提供了一个回调方法：<br><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler NS_AVAILABLE_IOS(9_0);</code></p>
-<p>我们依据这个回调中的<code>shortcutItem</code>的<code>type</code>和<code>userinfo</code>来做出不同的事件处理，代码如下：</p>
-<p>可以根据我们设置的唯一标识或者 title 进行判断</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 根据我们设置的唯一标识判断</span></div><div class="line"><span class="keyword">if</span>([shortcutItem.type isEqualToString:<span class="string">@"one"</span>])&#123;</div><div class="line">   </div><div class="line">   MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">   tabbar.selectedIndex = <span class="number">1</span>;</div><div class="line">   <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"><span class="comment">// 根据我们设置的 title 判断</span></div><div class="line"><span class="keyword">if</span> ([shortcutItem.localizedTitle isEqual: <span class="string">@"个人中心"</span>]) &#123;</div><div class="line">   </div><div class="line">   MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">   tabbar.selectedIndex = <span class="number">2</span>;</div><div class="line">   <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里有一点需要注意：我们在app的入口函数：<br><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;</code> 也需要进行一下判断，在<code>launchOptions</code>中有<code>UIApplicationLaunchOptionsShortcutItemKey</code>这样一个键，通过它，我们可以区别是否是从标签进入的app，如果是则处理结束逻辑后，返回NO，防止处理逻辑被反复回调。 </p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (launchOptions[<span class="string">@"UIApplicationLaunchOptionsShortcutItemKey"</span>] == <span class="literal">nil</span>) &#123;</div><div class="line">  </div><div class="line">  <span class="keyword">self</span>.window.rootViewController = [MainTabBarViewController new];</div><div class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">  </div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    <span class="built_in">UIApplicationShortcutItem</span> *item = [launchOptions valueForKey:<span class="built_in">UIApplicationLaunchOptionsShortcutItemKey</span>];</div><div class="line">    </div><div class="line">    <span class="comment">// 根据我们设置的唯一标识判断</span></div><div class="line">    <span class="keyword">if</span>([item.type isEqualToString:<span class="string">@"one"</span>])&#123;</div><div class="line">       </div><div class="line">       MainTabBarViewController *tabbar = [MainTabBarViewController new];</div><div class="line">       tabbar.selectedIndex = <span class="number">3</span>;</div><div class="line">       <span class="keyword">self</span>.window.rootViewController = tabbar;</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在接下来的文章中做一下 Peek、Pop 的实现。</p>
-<p><a href="https://github.com/CalvinCheungCoder/3DTouchDemo" target="_blank" rel="noopener">『Demo 下载』</a></p>
+                <h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   2</div><div class="line"> / \ / \</div><div class="line">3  4 4  3</div></pre></td></tr></table></figure>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  1</div><div class="line"> / \</div><div class="line">2   2</div><div class="line"> \   \</div><div class="line"> 3    3</div></pre></td></tr></table></figure>
+<p>Python 递归代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(node1, node2)</span>:</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">and</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> node1 <span class="keyword">or</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> node1.val != node2.val:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            <span class="keyword">return</span> check(node1.left, node2.right) <span class="keyword">and</span> check(node1.right, node2.left)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> check(root, root)</div></pre></td></tr></table></figure>
+<p>C++ 代码：<br><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode *p, TreeNode *q)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!p &amp;&amp; !q) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">if</span> (!p || !q) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> p-&gt;val == q-&gt;val &amp;&amp; check(p-&gt;left, q-&gt;right) &amp;&amp; check(p-&gt;right, q-&gt;left);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> check(root, root);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode-cn.com/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/" target="_blank" rel="noopener">Leetcode 对称二叉树题解视频</a></p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h3 id="How-To-Use-Utm-Parameters-To-Grow-Your-Audience"><a href="#How-To-Use-Utm-Parameters-To-Grow-Your-Audience" class="headerlink" title="How To Use Utm Parameters To Grow Your Audience"></a>How To Use Utm Parameters To Grow Your Audience</h3><p>文章链接：<a href="https://smashnotes.com/updates/how-to-use-utm-parameters-to-grow-your-audience" target="_blank" rel="noopener">How To Use Utm Parameters To Grow Your Audience</a></p>
+<p>很多网址包含 utm 参数，比如utm_source和utm_campaign，这主要是为了让统计引擎确定访问的来源。本文解释这些参数的含义。</p>
+<h3 id="The-Future-of-Swift-on-the-Server"><a href="#The-Future-of-Swift-on-the-Server" class="headerlink" title="The Future of Swift on the Server"></a>The Future of Swift on the Server</h3><p>文章链接：<a href="https://www.timc.dev/posts/future-of-server-side-swift/" target="_blank" rel="noopener">The Future of Swift on the Server</a></p>
+<p>自从 IBM 在 Swift 上打了退堂鼓后，Server-side Swift 社区受到了不小的打击。大家纷纷猜测会不会这个命题已经不再成立。</p>
+<p>这篇文章带来了不少的好消息，甚至认为 2020 将会是 Server-side Swift 的利好年，其中最主要就是 Swift6 的 feature 中绝大多数都直接或间接的和 Server-side 有关或者利好。</p>
+<p>还有 Swift 的核心团队迎来了 Tom Doron 和 Saleem Abdulrasool, 一个是 SwiftNIO 的负责人，一个在尝试把 Swift 移植到 Windows，这些迹象都说明 Swift 的核心团队对于让 Swift 跳出 Apple 生态的决心。</p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="Linux-进程"><a href="#Linux-进程" class="headerlink" title="Linux 进程"></a>Linux 进程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ps -ef | grep httpd</div></pre></td></tr></table></figure>
+<p><strong>TERM 信号</strong> 给父进程发送一个 TERM 信号，试图杀死它和它的子进程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">kill -TERM PPID</div></pre></td></tr></table></figure></p>
+<p><strong>killall 命令</strong> killall 命令杀死同一进程组内的所有进程。其允许指定要终止的进程的名称，而非 PID<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">killall httpd</div></pre></td></tr></table></figure></p>
+<p> <strong>停止和重启进程</strong> 有时候只想简单的停止和重启进程。如下： # kill -HUP PID 该命令让 Linux 和缓的执行进程关闭，然后立即重启。在配置应用程序的时候，这个命令很方便，在对配置文件修改后需要重启进程时就可以执行此命令。</p>
+<hr>
+<p> <strong>强杀 kill -9 PID</strong> 同样 kill -s SIGKILL 这个强大和危险的命令迫使进程在运行时突然终止，进程在结束后不能自我清理。危害是导致系统资源无法正常释放，一般不推荐使用，除非其他办法都无效。 当使用此命令时，一定要通过 ps -ef 确认没有剩下任何僵尸进程。只能通过终止父进程来消除僵尸进程。如果僵尸进程被 init 收养，问题就比较严重了。杀死 init 进程意味着关闭系统。 如果系统中有僵尸进程，并且其父进程是 init，而且僵尸进程占用了大量的系统资源，那么就需要在某个时候重启机器以清除进程表了。</p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://google.github.io/eng-practices/review/reviewer/" target="_blank" rel="noopener">How to do a code review</a></p>
+<p>这是谷歌开发实践的一篇文章，如何做 Code Review，这里是中文版链接：<a href="https://jimmysong.io/eng-practices/" target="_blank" rel="noopener">谷歌工程实践文档</a></p>
+<p>Google 有许多通用工程实践，几乎涵盖所有语言和项目。此文档为长期积累的最佳实践，是集体经验的结晶。我们尽可能地将其公之于众，您的组织和开源项目也会从中受益。</p>
+<p>Google 代码审查指南，实则两套指南：<code>代码审查者指南</code>和<code>代码开发者指南</code>，通过文章我们可以学习 Google 在工程化中如何保证质量，比如代码的功能是否与作者的意图相同？代码能够更精简吗？代码是否具有正确且设计良好的自动化测试？开发人员是否为变量、类、方法等选择了明确的名称？</p>
+<p>通过这篇文章，你能找到这些问题的所有答案，推荐每个技术人/技术团队阅读。</p>
 
 
                 <div id="rewardContainer">
@@ -347,13 +343,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/ios-3dtouch-peek-pop/" data-toggle="tooltip" data-placement="top" title="iOS 3D Touch 开发(二) Peek & Pop">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/webView-TypeLinkClicked/" data-toggle="tooltip" data-placement="top" title="iOS UIWebView 获取点击链接后进行再处理">下一篇 &rarr;</a>
+                            <a href="/2020/arts01/" data-toggle="tooltip" data-placement="top" title="ARTS 01 - 为什么写作在远程工作中那么重要？">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -406,7 +398,11 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#ObjC" title="ObjC">ObjC</a>
+                          <a class="tag" href="/tags/#Swift" title="Swift">Swift</a>
+                        
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
                         
                     </div>
                 </section>

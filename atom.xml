@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-05-24T09:20:07.000Z</updated>
+  <updated>2020-05-31T14:05:15.900Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARTS 02 - Google 如何做 Code Review</title>
+    <link href="https://zhangdinghao.cn/2020/arts02/"/>
+    <id>https://zhangdinghao.cn/2020/arts02/</id>
+    <published>2020-05-31T13:00:44.000Z</published>
+    <updated>2020-05-31T14:05:15.900Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   2</div><div class="line"> / \ / \</div><div class="line">3  4 4  3</div></pre></td></tr></table></figure>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  1</div><div class="line"> / \</div><div class="line">2   2</div><div class="line"> \   \</div><div class="line"> 3    3</div></pre></td></tr></table></figure>
+<p>Python 递归代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(node1, node2)</span>:</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">and</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> node1 <span class="keyword">or</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> node1.val != node2.val:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            <span class="keyword">return</span> check(node1.left, node2.right) <span class="keyword">and</span> check(node1.right, node2.left)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> check(root, root)</div></pre></td></tr></table></figure>
+<p>C++ 代码：<br><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode *p, TreeNode *q)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!p &amp;&amp; !q) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">if</span> (!p || !q) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> p-&gt;val == q-&gt;val &amp;&amp; check(p-&gt;left, q-&gt;right) &amp;&amp; check(p-&gt;right, q-&gt;left);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> check(root, root);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode-cn.com/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/" target="_blank" rel="noopener">Leetcode 对称二叉树题解视频</a></p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h3 id="How-To-Use-Utm-Parameters-To-Grow-Your-Audience"><a href="#How-To-Use-Utm-Parameters-To-Grow-Your-Audience" class="headerlink" title="How To Use Utm Parameters To Grow Your Audience"></a>How To Use Utm Parameters To Grow Your Audience</h3><p>文章链接：<a href="https://smashnotes.com/updates/how-to-use-utm-parameters-to-grow-your-audience" target="_blank" rel="noopener">How To Use Utm Parameters To Grow Your Audience</a></p>
+<p>很多网址包含 utm 参数，比如utm_source和utm_campaign，这主要是为了让统计引擎确定访问的来源。本文解释这些参数的含义。</p>
+<h3 id="The-Future-of-Swift-on-the-Server"><a href="#The-Future-of-Swift-on-the-Server" class="headerlink" title="The Future of Swift on the Server"></a>The Future of Swift on the Server</h3><p>文章链接：<a href="https://www.timc.dev/posts/future-of-server-side-swift/" target="_blank" rel="noopener">The Future of Swift on the Server</a></p>
+<p>自从 IBM 在 Swift 上打了退堂鼓后，Server-side Swift 社区受到了不小的打击。大家纷纷猜测会不会这个命题已经不再成立。</p>
+<p>这篇文章带来了不少的好消息，甚至认为 2020 将会是 Server-side Swift 的利好年，其中最主要就是 Swift6 的 feature 中绝大多数都直接或间接的和 Server-side 有关或者利好。</p>
+<p>还有 Swift 的核心团队迎来了 Tom Doron 和 Saleem Abdulrasool, 一个是 SwiftNIO 的负责人，一个在尝试把 Swift 移植到 Windows，这些迹象都说明 Swift 的核心团队对于让 Swift 跳出 Apple 生态的决心。</p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="Linux-进程"><a href="#Linux-进程" class="headerlink" title="Linux 进程"></a>Linux 进程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ps -ef | grep httpd</div></pre></td></tr></table></figure>
+<p><strong>TERM 信号</strong> 给父进程发送一个 TERM 信号，试图杀死它和它的子进程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">kill -TERM PPID</div></pre></td></tr></table></figure></p>
+<p><strong>killall 命令</strong> killall 命令杀死同一进程组内的所有进程。其允许指定要终止的进程的名称，而非 PID<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">killall httpd</div></pre></td></tr></table></figure></p>
+<p> <strong>停止和重启进程</strong> 有时候只想简单的停止和重启进程。如下： # kill -HUP PID 该命令让 Linux 和缓的执行进程关闭，然后立即重启。在配置应用程序的时候，这个命令很方便，在对配置文件修改后需要重启进程时就可以执行此命令。</p>
+<hr>
+<p> <strong>强杀 kill -9 PID</strong> 同样 kill -s SIGKILL 这个强大和危险的命令迫使进程在运行时突然终止，进程在结束后不能自我清理。危害是导致系统资源无法正常释放，一般不推荐使用，除非其他办法都无效。 当使用此命令时，一定要通过 ps -ef 确认没有剩下任何僵尸进程。只能通过终止父进程来消除僵尸进程。如果僵尸进程被 init 收养，问题就比较严重了。杀死 init 进程意味着关闭系统。 如果系统中有僵尸进程，并且其父进程是 init，而且僵尸进程占用了大量的系统资源，那么就需要在某个时候重启机器以清除进程表了。</p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://google.github.io/eng-practices/review/reviewer/" target="_blank" rel="noopener">How to do a code review</a></p>
+<p>这是谷歌开发实践的一篇文章，如何做 Code Review，这里是中文版链接：<a href="https://jimmysong.io/eng-practices/" target="_blank" rel="noopener">谷歌工程实践文档</a></p>
+<p>Google 有许多通用工程实践，几乎涵盖所有语言和项目。此文档为长期积累的最佳实践，是集体经验的结晶。我们尽可能地将其公之于众，您的组织和开源项目也会从中受益。</p>
+<p>Google 代码审查指南，实则两套指南：<code>代码审查者指南</code>和<code>代码开发者指南</code>，通过文章我们可以学习 Google 在工程化中如何保证质量，比如代码的功能是否与作者的意图相同？代码能够更精简吗？代码是否具有正确且设计良好的自动化测试？开发人员是否为变量、类、方法等选择了明确的名称？</p>
+<p>通过这篇文章，你能找到这些问题的所有答案，推荐每个技术人/技术团队阅读。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
+    
+    </summary>
+    
+      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
+    
+    
+      <category term="Swift" scheme="https://zhangdinghao.cn/tags/Swift/"/>
+    
+      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
+    
+      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
+    
+  </entry>
   
   <entry>
     <title>ARTS 01 - 为什么写作在远程工作中那么重要？</title>
@@ -568,7 +625,7 @@
     <link href="https://zhangdinghao.cn/2019/2019-readBooks/"/>
     <id>https://zhangdinghao.cn/2019/2019-readBooks/</id>
     <published>2019-12-29T16:04:45.000Z</published>
-    <updated>2020-05-28T09:42:27.085Z</updated>
+    <updated>2020-05-28T09:42:27.000Z</updated>
     
     <content type="html"><![CDATA[<p>转眼 2019 年就要结束了，受益于年初购买了新款 Kindle Paperwhite，所以 2019 年上半年阅读量还算不错，阅读了超过 24 本书，下半年由于工作原因以及自己将更多的精力用在了职业技能提升上，导致下半年阅读量直线下降。不过一年下来，也确实读了很多不错的好书，年底做下总结，也列出自己这一年读过的觉得还算不错的 10 本书。</p>
 <p>上半年读书总结可以阅读这篇博文 <a href="https://zhangdinghao.cn/2019/2019-read-notes-1/">2019 上半年读书总结 | DHTalk’s Blog</a>，在上半年的读书总结中我主要列出了上半年阅读过的书籍以及对书籍的简评，接下来简单聊一下今年阅读的十佳图书。</p>
@@ -1400,73 +1457,6 @@
     
     
       <category term="EOS" scheme="https://zhangdinghao.cn/tags/EOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019 🇬🇧英国之行</title>
-    <link href="https://zhangdinghao.cn/2019/2019-in-the-uk/"/>
-    <id>https://zhangdinghao.cn/2019/2019-in-the-uk/</id>
-    <published>2019-02-16T05:06:10.000Z</published>
-    <updated>2020-05-12T17:07:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>2019 年春节没有回家而去了英国，年假加春节假期一起有半个月时间，期间大概有一周时间游览了英国的几个城市。当然，这次出行看似是旅行，实则属于探亲，所以游玩的几个城市也没刻意做任何攻略，全是自然的走走看看，随手拍。</p>
-<p><img src="/2019UK/IMG_1586.JPG" alt=""><br>希斯罗机场的地铁，由于 T5 和其他几个航站楼距离较远，所以可以在机场免费取一张地铁票前往其他航站楼。</p>
-<h3 id="巴斯-Bath"><a href="#巴斯-Bath" class="headerlink" title="巴斯 Bath"></a>巴斯 Bath</h3><p>在巴斯玩了一天，这座城市很小，所以一天的游玩的时间就以足够。巴斯比较知名的几个景点是：普尔特尼三拱桥、罗马浴场博物馆、皇家新月楼、巴斯修道院、圆形广场、时装博物馆等。<br><img src="/2019UK/IMG_0819.JPG" alt=""><br>普尔特尼三拱桥，从巴斯火车站出来直接走过来的，几分钟路程，大桥非常漂亮。</p>
-<p><img src="/2019UK/IMG_0820.JPG" alt=""><br>某街道</p>
-<p><img src="/2019UK/IMG_0821.JPG" alt=""><br>双层观光巴士</p>
-<p><img src="/2019UK/IMG_0822.JPG" alt=""><br><img src="/2019UK/IMG_0853.JPG" alt=""><br><img src="/2019UK/IMG_0854.JPG" alt=""><br>大众点评上比较受欢迎的一个网红餐厅，我们 11 点钟左右过去人还不多，餐厅不大，按照大众点评推荐菜吃的，食物很不错，人均也不贵。</p>
-<p><img src="/2019UK/IMG_0856.JPG" alt=""><br>皇家新月楼，和圆形广场距离没多远。因为当天下雨，所以草地上没人，偶尔也有游客在附近拍照。</p>
-<p><img src="/2019UK/IMG_0855.JPG" alt=""><br>皇家新月楼草地里的小松鼠</p>
-<p>巴斯的景点很少，博物馆基本都是收费的，我们游玩当天天气还在下雨，所以只在服装博物馆玩了一下，门票价格好像是成人 9.5 磅，学生 8.5 磅。也有很多人打卡罗马浴场博物馆，我和我家那一位说对罗马帝国的澡堂子没兴趣，就没去看😄。</p>
-<h3 id="温彻斯特-Winchester"><a href="#温彻斯特-Winchester" class="headerlink" title="温彻斯特 Winchester"></a>温彻斯特 Winchester</h3><p>又是一座小城，早起坐火车到达后先去了车站附近的一个公共图书馆坐了一会，然后沿着这个城市的主街道游览。</p>
-<p><img src="/2019UK/IMG_1546.JPG" alt=""><br>当地的星巴克，如果你在店内饮用，可以选择马克杯更环保。</p>
-<p><img src="/2019UK/IMG_1547.JPG" alt=""><br>街道上某英式餐厅摆的车和花</p>
-<p><img src="/2019UK/IMG_0946.JPG" alt=""><br><img src="/2019UK/IMG_0947.JPG" alt=""><br>Statue of Alfred the Great 和素描的人</p>
-<p><img src="/2019UK/IMG_0948.JPG" alt=""><br><img src="/2019UK/IMG_0952.JPG" alt=""><br>伊丽莎白女王灯，在英国很多的街道都有，行人可以在有此灯的路口直接穿行，当行人步行穿过街道时车辆必须停车等待。当然英国过马路很多时候都是车礼让行人。</p>
-<p><img src="/2019UK/IMG_0949.JPG" alt="">、<br>Winchester City Museum 城市博物馆门口偶遇 “TNT”</p>
-<p><img src="/2019UK/IMG_0950.JPG" alt=""><br>小小的街道和行人</p>
-<p><img src="/2019UK/IMG_0951.JPG" alt=""><br>Winchester Cathedral 温彻斯特大教堂</p>
-<h3 id="伦敦-London"><a href="#伦敦-London" class="headerlink" title="伦敦 London"></a>伦敦 London</h3><p>伦敦有太多好玩并且免费的地方了，我们在伦敦待了将近 4 天，加上天气也不是特别好，所以只打卡了几个主要的景点。</p>
-<p><img src="/2019UK/IMG_1548.JPG" alt=""><br>到伦敦先办一张 oyster 地铁卡，此卡押金 5 磅，如果你在伦敦待不了多久充值不要太多，哪怕多次小额充值也可以，因为当你离开伦敦要退卡时，如果卡里面的余额超过 10 磅会很麻烦，如果你有 Young Person Railcard 可以在大的地铁站和此卡绑定，这样坐地铁的价格会优惠 1/3，当然你有了 Young Person Railcard，在英国买汽车和火车票也可以优惠 1/3。</p>
-<p><img src="/2019UK/IMG_1549.JPG" alt=""><br>肯辛顿宫花园</p>
-<p><img src="/2019UK/IMG_1550.JPG" alt=""><br>在亚伯特纪念碑前拍皇家地理学会</p>
-<p><img src="/2019UK/IMG_1551.JPG" alt=""><br><img src="/2019UK/IMG_1552.JPG" alt=""><br>科学博物馆中的 AppleII 和太空舱</p>
-<p><img src="/2019UK/IMG_1554.JPG" alt=""><br><img src="/2019UK/IMG_1553.JPG" alt=""><br>自然历史博物馆门前 33 米长的蓝鲸标本和旁边的长颈鹿标本</p>
-<p><img src="/2019UK/IMG_1555.JPG" alt=""><br><img src="/2019UK/IMG_1557.JPG" alt=""><br>伦敦街头随处可见的双层巴士以及不再使用的电话亭</p>
-<p><img src="/2019UK/IMG_1556.JPG" alt=""><br>伦敦街头的摩拜单车</p>
-<p><img src="/2019UK/IMG_1585.JPG" alt=""><br>尚未开业的海底捞火锅</p>
-<p><img src="/2019UK/IMG_1558.JPG" alt=""><br>大英博物馆正门</p>
-<p><img src="/2019UK/IMG_1559.JPG" alt=""><br><img src="/2019UK/IMG_1560.JPG" alt=""><br>大英博物馆旁的罗素广场</p>
-<p><img src="/2019UK/IMG_1561.JPG" alt=""><br>泰晤士河畔的涂鸦和滑板</p>
-<p><img src="/2019UK/IMG_1562.JPG" alt=""><br>夜晚中的伦敦眼，而在身后的大本钟正在整修。</p>
-<p><img src="/2019UK/IMG_1565.JPG" alt=""><br><img src="/2019UK/IMG_1566.JPG" alt=""><br>诺丁山道路旁漂亮的房子和出来游玩逛集市的人们</p>
-<p><img src="/2019UK/IMG_1564.JPG" alt=""><br>诺丁山某道路旁的老旧小汽车</p>
-<p><img src="/2019UK/IMG_1567.JPG" alt=""><br>海德公园不怕人的动物们</p>
-<p><img src="/2019UK/IMG_1569.JPG" alt=""><br><img src="/2019UK/IMG_1570.JPG" alt=""><br>伦敦中国城的灯笼和表演的艺人</p>
-<p><img src="/2019UK/IMG_1571.JPG" alt=""><br>特拉法加广场附近非常搞笑的 5 个黑人小哥在表演街舞</p>
-<p><img src="/2019UK/IMG_1572.JPG" alt=""><br>特拉法加广场某人使用粉笔画的</p>
-<p><img src="/2019UK/IMG_1573.JPG" alt=""><br>伦敦的地铁，这算是比较新的线路和车子了。</p>
-<p><img src="/2019UK/IMG_1574.JPG" alt=""><br>帕丁顿车站内</p>
-<p><img src="/2019UK/IMG_1584.JPG" alt=""><br>伦敦国家美术馆内梵高的向日葵</p>
-<h3 id="牛津-Oxford"><a href="#牛津-Oxford" class="headerlink" title="牛津 Oxford"></a>牛津 Oxford</h3><p>牛津也是很小的一座城市，在牛津玩没有特意打卡景点，就在街道随便走走，逛逛当地的市场什么的。</p>
-<p><img src="/2019UK/IMG_1575.JPG" alt=""><br>牛津公园里一个偏僻角落的 ofo</p>
-<p><img src="/2019UK/IMG_1576.JPG" alt=""><br><img src="/2019UK/IMG_1577.JPG" alt=""><br><img src="/2019UK/IMG_1578.JPG" alt=""><br>牛津自然博物馆</p>
-<p><img src="/2019UK/IMG_1579.JPG" alt=""><br>叹息桥</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>1、对英国有一个浅薄的观察，那就是街道、房子和车子等都很小，这可能和英国整个国家的国土面积以及文化有关吧。<br>2、我在英国遇到的很多人都很和善有礼貌，在这段时间听的最多的就是 thank you、excuse me，而且其中有一次我坐公交车的时候为了和司机说 thank you 直接从 2 层下来跑到前门说一声 thank you 就下车了，下车才发现这个车是有后门的。包括在牛津还遇到公交车司机帮助骑着代步车的老年人上车。<br>3、在我家那位的指导下，知道了过路口要主动按下路口的按钮并等待红绿灯变绿，知道了我可以随时通过伊丽莎白女王灯，当然还是有很多外国人闯红灯超出中国人的想象，可能也是因为人少吧，不像中国人多，一个人闯红灯后面的人跟着走的话，估计汽车就走不了了。<br>4、在英国旅行交通、住宿和餐饮都相对国内贵一些，而且车票价格根据买的时间早晚也不一样，所以出行要提前计划好并买票，如果有 Young Person Railcard 最好，因为有了它可以节省你 1/3 的交通费。<br>5、住宿的话 Airbnb 相对好一点，大部分时候可以做早餐，甚至房东提供早餐，现在 Airbnb 越来越像酒店了，我在伦敦的几天里住的 Airbnb 全程没见过房东，有问题联系房子里的管家，和酒店的区别就是有了一个厨房可以做饭。当然这个也要看运气，我在牛津住了一晚，房间是房东空出的一间出租的，当天晚上也可以和房东闲聊，第二天早上房东还给我们准备了早餐。<br>6、吃的方面，在外玩的话只要不是特别小的城市，我觉得使用大众点评就够了，一是因为这是中国的产品，里面很多的评价可能对我们更有用一些，也更符合中国人的饮食习惯；另外一方面也是因为太多的吃的地方都被中国人打卡了，一个大众点评就可以搞定。<br>7、在英国的很多城市和公园随处可见小动物，尤其是鸽子和松鼠，而且有很多小动物不怕人的，在大街上一群鸽子等着人投食是很常见的。我们在牛津街头长椅上吃面包的和薯片甚至都有鸽子要飞起来和我们抢着吃了。<br>8、这次旅行很开心，期待下一次可以有时间去英国更多的城市玩。如果美国签证放松的话，也要计划一下美国的西部自驾了，哈哈。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2019 年春节没有回家而去了英国，年假加春节假期一起有半个月时间，期间大概有一周时间游览了英国的几个城市。当然，这次出行看似是旅行，实则属于探亲，所以游玩的几个城市也没刻意做任何攻略，全是自然的走走看看，随手拍。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2019UK/IMG_
-    
-    </summary>
-    
-      <category term="闲言碎语" scheme="https://zhangdinghao.cn/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"/>
-    
-    
-      <category term="旅行" scheme="https://zhangdinghao.cn/tags/%E6%97%85%E8%A1%8C/"/>
     
   </entry>
   
