@@ -14,11 +14,11 @@
 
     <title>
         
-            Hexo 博客常用指令 - DHTalk&#39;s Blog
+            一月一清零 | 我们处在近 500 年的大周期中 - DHTalk&#39;s Blog
                 
     </title>
 
-    <link rel="canonical" href="https://zhangdinghao.cn/2019/hexo-commands/">
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/restart202005/">
 
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -251,7 +251,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('/img/contact-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -261,14 +261,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                          <a class="tag" href="/tags/#清零" title="清零">清零</a>
                         
                     </div>
-                    <h1>Hexo 博客常用指令</h1>
+                    <h1>一月一清零 | 我们处在近 500 年的大周期中</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Calvin on
-                        2019-05-06
+                        2020-06-01
                     </span>
                 </div>
             </div>
@@ -287,114 +287,70 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>原文链接：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/commands.html</a></p>
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo init [folder]</div></pre></td></tr></table></figure>
-<p>新建一个网站。如果没有设置 <a href="">folder</a> ，Hexo 默认在目前的文件夹建立网站。</p>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new &quot;post title with whitespace&quot;</div></pre></td></tr></table></figure>
-<h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>生成静态文件。</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-d, –deploy</td>
-<td>文件生成后立即部署网站</td>
-</tr>
-<tr>
-<td>-w, –watch</td>
-<td>监视文件变动</td>
-</tr>
-</tbody>
-</table>
-<p>该命令可以简写为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
-<h3 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo publish [layout] &lt;filename&gt;</div></pre></td></tr></table></figure>
-<p>发表草稿。</p>
-<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code>。</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-p, –port</td>
-<td>重设端口</td>
-</tr>
-<tr>
-<td>-s, –static</td>
-<td>只使用静态文件</td>
-</tr>
-<tr>
-<td>-l, –log</td>
-<td>启动日记记录，使用覆盖记录格式</td>
-</tr>
-</tbody>
-</table>
-<h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>部署网站。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-g, –generate</td>
-<td>部署之前预先生成静态文件</td>
-</tr>
-</tbody>
-</table>
-<p>该命令可以简写为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
-<h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo render &lt;file1&gt; [file2] ...</div></pre></td></tr></table></figure>
-<p>渲染文件。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-o, –output</td>
-<td>设置输出路径</td>
-</tr>
-</tbody>
-</table>
-<h3 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo migrate &lt;type&gt;</div></pre></td></tr></table></figure>
-<p>从其他博客系统 <a href="https://hexo.io/zh-cn/docs/migration" target="_blank" rel="noopener">迁移内容</a>。</p>
-<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo list &lt;type&gt;</div></pre></td></tr></table></figure>
-<p>列出网站资料。</p>
-<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure>
-<p>显示 Hexo 版本。</p>
-<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --safe</div></pre></td></tr></table></figure>
-<p>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
-<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --debug</div></pre></td></tr></table></figure>
-<p>在终端中显示调试信息并记录到 <code>debug.log</code>。当您碰到问题时，可以尝试用调试模式重新执行一次，<a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo%2Fissues%2Fnew" target="_blank" rel="noopener">并提交调试信息到 GitHub</a>。</p>
-<h3 id="简洁模式"><a href="#简洁模式" class="headerlink" title="简洁模式"></a>简洁模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --silent</div></pre></td></tr></table></figure>
-<p>隐藏终端信息。</p>
-<h3 id="自定义配置文件的路径"><a href="#自定义配置文件的路径" class="headerlink" title="自定义配置文件的路径"></a>自定义配置文件的路径</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --config custom.yml</div></pre></td></tr></table></figure>
-<p>自定义配置文件的路径，执行后将不再使用 <code>_config.yml</code>。</p>
-<h3 id="显示草稿"><a href="#显示草稿" class="headerlink" title="显示草稿"></a>显示草稿</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --draft</div></pre></td></tr></table></figure>
-<p>显示 <code>source/_drafts</code> 文件夹中的草稿文章。</p>
-<h3 id="自定义-CWD"><a href="#自定义-CWD" class="headerlink" title="自定义 CWD"></a>自定义 CWD</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --cwd /path/to/cwd</div></pre></td></tr></table></figure>
-<p>自定义当前工作目录（Current working directory）的路径。</p>
+                <p>5 月的最后几天，美国那边出了 2 件大事。</p>
+<p>一件事是伊隆·马斯克的 SpaceX 公司的太空船载人龙（Crew Dragon）和 NASA 进行了载人航天任务，这也开启了普通商业公司进行航天载人的第一步，随着科技发展，将来普通人进行太空旅行不是没有可能。</p>
+<p>另一件事是明尼苏达州的抗议事件，因为当地的少数族裔受到警方不公平待遇导致死亡，从而引发了抗议游行活动，事情愈演愈烈，导致发生暴力和打砸抢烧事件，当地很多知名品牌的门店都受到不同程度的抢掠。</p>
+<h3 id="同一社会的不同层面"><a href="#同一社会的不同层面" class="headerlink" title="同一社会的不同层面"></a>同一社会的不同层面</h3><p>一方面是美国科技企业的强大，通过技术实现了普通商业公司的载人航天项目，特朗普在观看火箭发射仪式上还在说美国又重新成为了世界领先，美国梦好像又回来了；</p>
+<p>另一方面是少数族裔的反抗，当然对于歧视或者差别对待这件事不是现在就有的，几十年前就有马丁路德金的《我有一个梦想》演讲，现在看来几十年过去了，他的梦想还远远没有实现。</p>
+<p>本次抗议事件不仅仅是因为警察事件的导火索，也是因为疫情期间美国失业严重，正好可以找到一个宣泄的机会，我在网上看到一些打砸抢烧的视频，其中 Nike 店被抢，从店里出来的人们抱着一堆衣服笑开了花。</p>
+<h3 id="中国也一样"><a href="#中国也一样" class="headerlink" title="中国也一样"></a>中国也一样</h3><p>这样两极分化的事情不仅仅发生在美国，在中国也一样。</p>
+<p>前几天国内两会时李克强总理在答记者会上回答了记者的一个问题，他表示现在国内还有 6 亿人每个月收入不足 1000 元。这样的话从总理口中说出估计让很多人都不敢相信。</p>
+<p>现在的中国社交网络上传播着大量的炫富视频，比如吃饭”炒一本”，本店所有客人我买单，还有各种豪车，好玩的等等，这样的视频传播让中国的年轻人误以为我们真的强大了，有钱了，这也不怕那也不怕了，所以总理说出这样的话才会让那么多人大跌眼镜，只是我们处于同一个社会的不同阶层而已。</p>
+<p>当然，不管是经济发展成什么样子，中国还有很长的路要走这一点是很确定的，月底看到 Ray Dalio 的文章 <a href="https://www.linkedin.com/pulse/big-cycles-over-last-500-years-ray-dalio/" target="_blank" rel="noopener">The Big Cycles Over The Last 500 Years</a>，这篇文章中讲述了世界大国的演变路径，还是很期待中国经济继续崛起的。</p>
+<p>虽然国内经济是在崛起，但是除了金钱之外，我们还有很多东西是缺失的，希望这个社会会越来越包容，越来越开放吧。如果说现在正在逆全球化的话，希望国内不会发生历史倒退的事情。</p>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p><div id="34997975"><div></div></div></p>
+<p>查理芒格合伙人的书，也是被芒格觉得很棒的为数不多的华裔投资人。</p>
+<p>本书分为上下两部分，第一部分讲文明、现代化和中国，讲述这种宏观的话题云淡风轻，让人觉得心胸开阔。下半部分讲价值投资和理性思考，如果你对投资理财感兴趣，推荐阅读。</p>
+<hr>
+<p><div id="30192587"><div></div></div></p>
+<p>万维钢专栏里面推荐过的一本书，如果从人类史上选出影响一些深刻影响人类历史发展的发明，你觉得会是什么呢？</p>
+<p>这本书通过不同的视角来告诉你为什么有些发明对人类发展起到了很大的改变。比如铁丝网的发明让美国人往西部扩展和发展成了可能、冷冻快餐的发明改变了女人在社会中的角色地位、空调的发明提升了人类生活的品质但也改变了生态环境等等。整体而言，这是一本消遣，或者了解一些冷知识的好书。</p>
+<hr>
+<p><div id="35047171"><div></div></div></p>
+<p>这算是吴晓波开出的一个书单，50 本书，每本都很经典。当然我觉得这本书不应该叫《影响商业的50本书》，而应该叫《影响经济、商业的50本书》。</p>
+<p>书中按照不同的模块进行了解读，比如改变经济和商业的《国富论》《通往奴役之路》《创新与企业家精神》，也有商业成长相关的《追求卓越》《基业长青》《第五项修炼》《创新者的窘境》等，还有记录动荡时代的《非理性繁荣》《政府为什么干预经济》《美国大城市的生与死》《世界是平的》等等。</p>
+<p>如果你喜欢阅读，并且对人类经济和商业发展感兴趣，可以读读这本书，或许你可以发现更大的世界。</p>
+<hr>
+<p><div id="27622006"><div></div></div></p>
+<p>高毅资产的基金经理出的一本书，整本书分为 3 个部分，分别是思想篇、实战篇和成长篇，书中包含演讲实录，投资的思考，比如如何在中国做价值投资等，也有在投资中应该关注和避免的内容。</p>
+<p>最近看几位大佬的故事发现了一个事实，那就是现在中国市场上的私募基金经理，而且是很不错的基金经理，好几位都不是经济相关专业出身的，但是偶然的机会进入了投资市场，并且通过几十年的学习和工作成为了这个领域中的佼佼者。</p>
+<p>或许这就是热爱的力量吧。</p>
+<hr>
+<p><a href="https://www.linkedin.com/pulse/big-cycles-over-last-500-years-ray-dalio/" target="_blank" rel="noopener">The Big Cycles Over The Last 500 Years</a></p>
+<p>这是桥水基金创始人 Ray Dalio 最近的文章，在这篇文章中他像解读经济周期一样的来解读近 500 年世界大国的演化与变迁。</p>
+<p><img src="/blogimg/20200601001.png" alt="20200601001"></p>
+<p>就如图中所示，中美两个世界大国的发展正在经历新的周期，美国的发展在逐渐衰退，而中国的发展却以世界上最快的发展速度上升。</p>
+<p>如果你也对历史感兴趣，也想从 Ray Dalio 的文字里了解一下世界发展的历史和当今世界的演变，可以阅读一下本文。</p>
+<hr>
+<h3 id="观影"><a href="#观影" class="headerlink" title="观影"></a>观影</h3><p><div id="33440173"><div></div></div></p>
+<p>新的一季亿万依旧强烈让人血脉喷张，鲍比和查克的较量总是那么有趣。</p>
+<hr>
+<p><div id="27622782"><div></div></div></p>
+<p>亚马逊推出的原创科幻剧集，脑洞很新奇。讲述一个男主角在乘坐无人汽车时发生了意外，他的女朋友选择将他的意识上传，男主就此来到了数字世界。</p>
+<p>在这个世界中一切都是数字化的，虽然世界都是虚拟出来的，但是这里的世界依然分三六九等，家人负担不起流量费用的，家人在这里的生活依旧很清贫，所以不管是真实世界还是虚幻的数字世界，人都摆脱不了命运上下阶层的安排。</p>
+<p>最后男主的管理员”天使”意外发现他的记忆有损坏，而男主来到虚拟的数字世界可能没有那么简单，自己出车祸也可能是被人有预谋的”意外”而已。</p>
+<p>说实话，很期待第二季的剧情发展。</p>
+<hr>
+<p><div id="30347315"><div></div></div></p>
+<p>不知不觉迎来了第三季，不知道本季剧情想往哪里发展，女主突然像变了一个人似的想要往权利的王座上爬，这也是我对这部剧不满意的一个点吧。</p>
+<p>好在男主的演技还是很炸裂，自己的儿子和女儿也都慢慢长大了，孩子们在后面的剧情中或许会有重要的角色扮演。整体来说还算满意。</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>现在国外疫情还没有得到有效控制，国内经济还在受疫情影响而没有恢复。最近或许是美国事情太多，也许是特朗普想要转移国内视线，也许是为了今年的总统大选，美国在对中国不断的发出制裁，而对中国企业和国内经济的影响或许要等几个月才会显现，或许这也是今年两会不公布今年经济预期目标的原因吧？毕竟大家还很艰难，想着好好生存下去才最重要。</p>
+<p>但从一个大的时间纬度来看，我们国家正处于经济的腾飞期，将来的经济体量在世界上排名第一还是很有可能的。所以，未来可期。</p>
+<script type="text/javascript">
+        setBookId(34997975,8.5,9,'34997975')
+        setBookId(30192587,7.8,8,'30192587')
+        setBookId(35047171,8.1,8,'35047171')
+        setBookId(27622006,8.6,9,'27622006')
+        setMovieId(33440173,8.9,9,'33440173')
+        setMovieId(27622782,8.8,9,'27622782')
+        setMovieId(30347315,7.5,8,'30347315')
+</script>
+
+
+
+
+
 
 
                 <div id="rewardContainer">
@@ -420,13 +376,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/apple-items-services/" data-toggle="tooltip" data-placement="top" title="使用 items-services 协议直接安装 iOS App">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/mysql-use-emoji/" data-toggle="tooltip" data-placement="top" title="MySQL 支持 emoji 图标存储">下一篇 &rarr;</a>
+                            <a href="/2020/arts02/" data-toggle="tooltip" data-placement="top" title="ARTS 02 - Google 如何做 Code Review">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -479,7 +431,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                          <a class="tag" href="/tags/#清零" title="清零">清零</a>
                         
                     </div>
                 </section>

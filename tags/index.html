@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Stay hungry Stay foolish.">
     <meta name="keyword" content="">
+    <meta name="referrer" content="no-referrer">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -18,6 +19,13 @@
     </title>
 
     <link rel="canonical" href="https://zhangdinghao.cn/tags/">
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+<!-- Custom Card JavaScript -->
+<script src="/js/card.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,14 +97,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -294,7 +302,7 @@
                 
                     <a href="#EOS" title="EOS" rel="1">EOS</a>
                 
-                    <a href="#清零" title="清零" rel="4">清零</a>
+                    <a href="#清零" title="清零" rel="5">清零</a>
                 
             </div>
 
@@ -468,9 +476,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/iOSDev-widget/">
+                     <a href="/2017/iOS-navigation-tabbar/">
                         <h2 class="post-title">
-                            iOS 开发之 Widget 的实现
+                            iOS NavigationController 和 TabBar 详细解析以及用法说明
                         </h2>
                         
                     </a>
@@ -483,9 +491,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/iOS-navigation-tabbar/">
+                     <a href="/2017/iOSDev-widget/">
                         <h2 class="post-title">
-                            iOS NavigationController 和 TabBar 详细解析以及用法说明
+                            iOS 开发之 Widget 的实现
                         </h2>
                         
                     </a>
@@ -513,9 +521,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/ios-3dtouch-peek-pop/">
+                     <a href="/2017/ios-tableView-leftSlid/">
                         <h2 class="post-title">
-                            iOS 3D Touch 开发(二) Peek & Pop
+                            iOS 8 以上实现 TableViewCell 左滑菜单功能
                         </h2>
                         
                     </a>
@@ -528,9 +536,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/ios-tableView-leftSlid/">
+                     <a href="/2017/ios-3dtouch-peek-pop/">
                         <h2 class="post-title">
-                            iOS 8 以上实现 TableViewCell 左滑菜单功能
+                            iOS 3D Touch 开发(二) Peek & Pop
                         </h2>
                         
                     </a>
@@ -880,21 +888,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/Swift-Animation07/">
-                        <h2 class="post-title">
-                            Swift Animation 内容层动画(三)
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/2017/Swift-Animation08/">
                         <h2 class="post-title">
                             Swift Animation 内容层动画(四)
@@ -913,6 +906,21 @@
                      <a href="/2017/Swift-Animation10/">
                         <h2 class="post-title">
                             Swift CoreAnimation:CATransition 转场动画
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/Swift-Animation07/">
+                        <h2 class="post-title">
+                            Swift Animation 内容层动画(三)
                         </h2>
                         
                     </a>
@@ -1518,24 +1526,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/restart202002/">
+                     <a href="/2020/restart202003/">
                         <h2 class="post-title">
-                            一月一清零 | 这个世界会好吗？
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/restart202001/">
-                        <h2 class="post-title">
-                            一月一清零 | 新年在病毒肆虐中到来
+                            一月一清零 | 静待春暖花开
                         </h2>
                         
                     </a>
@@ -1563,9 +1556,39 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/restart202003/">
+                     <a href="/2020/restart202002/">
                         <h2 class="post-title">
-                            一月一清零 | 静待春暖花开
+                            一月一清零 | 这个世界会好吗？
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/restart202005/">
+                        <h2 class="post-title">
+                            一月一清零 | 我们处在近 500 年的大周期中
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/restart202001/">
+                        <h2 class="post-title">
+                            一月一清零 | 新年在病毒肆虐中到来
                         </h2>
                         
                     </a>
@@ -1643,7 +1666,7 @@
 					<br>
                     👨🏻‍💻 技术 | 阅读 | 生活
                     <br>
-					<span class="post-count"> 本站共计 116.7k 字 </span>
+					<span class="post-count"> 本站共计 118.9k 字 </span>
                 </p>
             </div>
         </div>
