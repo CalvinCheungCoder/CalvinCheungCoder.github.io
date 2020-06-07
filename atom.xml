@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-06-01T12:08:57.909Z</updated>
+  <updated>2020-06-07T11:04:39.587Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -16,11 +16,105 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ARTS 03 - 如何使用 JavaScript 访问设备摄像头</title>
+    <link href="https://zhangdinghao.cn/2020/arts03/"/>
+    <id>https://zhangdinghao.cn/2020/arts03/</id>
+    <published>2020-06-07T10:22:24.000Z</published>
+    <updated>2020-06-07T11:04:39.587Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/4sum/" target="_blank" rel="noopener">18. 四数之和</a></p>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</div><div class="line"></div><div class="line">满足要求的四元组集合为：</div><div class="line">[</div><div class="line">  [-1,  0, 0, 1],</div><div class="line">  [-2, -1, 1, 2],</div><div class="line">  [-2,  0, 0, 2]</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>Python 3 实现：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; List[List[int]]:</span></div><div class="line">        nums.sort()</div><div class="line">        n = len(nums)</div><div class="line">        res = []</div><div class="line">        p = <span class="number">0</span> <span class="comment"># p, k, i, j</span></div><div class="line">        <span class="keyword">while</span> p &lt; n - <span class="number">3</span>:  <span class="comment"># 文中提到的条件1和条件2，可以直接跳过</span></div><div class="line">            <span class="keyword">if</span> nums[p] + <span class="number">3</span> * nums[p + <span class="number">1</span>] &gt; target: <span class="keyword">break</span>  </div><div class="line">            <span class="keyword">if</span> nums[p] + <span class="number">3</span> * nums[<span class="number">-1</span>] &lt; target:           </div><div class="line">                <span class="keyword">while</span> p &lt; n - <span class="number">4</span> <span class="keyword">and</span> nums[p] == nums[p + <span class="number">1</span>]: p += <span class="number">1</span></div><div class="line">                p += <span class="number">1</span></div><div class="line">                <span class="keyword">continue</span></div><div class="line">            k = p + <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> k &lt; n - <span class="number">2</span>:   <span class="comment"># k 和 p 的判断是一样的</span></div><div class="line">                <span class="keyword">if</span> nums[p] + nums[k] + <span class="number">2</span> * nums[k + <span class="number">1</span>] &gt; target: <span class="keyword">break</span></div><div class="line">                <span class="keyword">if</span> nums[p] + nums[k] + <span class="number">2</span> * nums[<span class="number">-1</span>] &lt; target: </div><div class="line">                    <span class="keyword">while</span> k &lt; n - <span class="number">3</span> <span class="keyword">and</span> nums[k] == nums[k + <span class="number">1</span>]:</div><div class="line">                        k += <span class="number">1</span></div><div class="line">                    k += <span class="number">1</span></div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                i = k + <span class="number">1</span></div><div class="line">                j = n - <span class="number">1</span></div><div class="line">                new_target = target - nums[p] - nums[k]</div><div class="line">                <span class="keyword">while</span> i &lt; j:</div><div class="line">                    <span class="keyword">if</span> nums[i] + nums[j] &gt; new_target: j -= <span class="number">1</span></div><div class="line">                    <span class="keyword">elif</span> nums[i] + nums[j] &lt; new_target: i += <span class="number">1</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        res.append([nums[p],nums[k],nums[i],nums[j]])</div><div class="line">                        i += <span class="number">1</span></div><div class="line">                        j -= <span class="number">1</span></div><div class="line">                        <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]: i += <span class="number">1</span> <span class="comment"># 避免结果重复</span></div><div class="line">                        <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[j] == nums[j + <span class="number">1</span>]: j -= <span class="number">1</span> <span class="comment"># 避免结果重复</span></div><div class="line">                <span class="keyword">while</span> k &lt; n - <span class="number">3</span> <span class="keyword">and</span> nums[k] == nums[k + <span class="number">1</span>]: k += <span class="number">1</span></div><div class="line">                k += <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> p &lt; n - <span class="number">4</span> <span class="keyword">and</span> nums[p] == nums[p + <span class="number">1</span>]: p += <span class="number">1</span></div><div class="line">            p += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://pspdfkit.com/blog/2020/blur-effect-materials-on-ios/" target="_blank" rel="noopener">An In-Depth Look at Blur Effect Materials on iOS</a></p>
+<p>本文以实例的形式深入详细的介绍了如何在 iOS 中实现 Blur Effect (毛玻璃模糊)效果，包括 Blur Effect Styles 各种样式在深色模式下的不同呈现，以及 Vibrancy Effect Styles 文本内容在模糊效果下的不同样式。</p>
+<p>比如加入模糊效果：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Add the `UIVisualEffectView` to the view hierarchy.</span></div><div class="line"><span class="keyword">let</span> visualEffectView = <span class="type">UIVisualEffectView</span>(effect: <span class="literal">nil</span>)</div><div class="line">visualEffectView.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></div><div class="line">view.addSubview(visualEffectView)</div><div class="line"><span class="comment">// Add appropriate constraints for the `visualEffectView`.</span></div><div class="line"></div><div class="line"><span class="comment">// Add your content to the visual effect view.</span></div><div class="line"><span class="keyword">let</span> contentView = makeMyFancyPrimaryContentView()</div><div class="line">visualEffectView.contentView.addSubview(contentView)</div><div class="line"><span class="comment">// Add constraints for your `contentView`.</span></div><div class="line"></div><div class="line"><span class="comment">// Finally, set the appropriate blur effect for the visual effect view.</span></div><div class="line">visualEffectView.effect = <span class="type">UIBlurEffect</span>(style: .systemMaterial)</div></pre></td></tr></table></figure>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="显示当前的⽬录名称"><a href="#显示当前的⽬录名称" class="headerlink" title="显示当前的⽬录名称"></a>显示当前的⽬录名称</h3><p><code>pwd</code> 显示当前的⽬录名称</p>
+<h3 id="⽂件查看"><a href="#⽂件查看" class="headerlink" title="⽂件查看"></a>⽂件查看</h3><p><code>ls</code> 查看当前⽬录下的⽂件</p>
+<p><code>ls</code> [选项，选项… ] 参数 … </p>
+<p>常⽤参数：</p>
+<ul>
+<li>-l ⻓格式显示⽂件</li>
+<li>-a 显示隐藏⽂件</li>
+<li>-r 逆序显示</li>
+<li>-t 按照时间顺序显示</li>
+<li>-R 递归显示</li>
+</ul>
+<h3 id="更改当前的操作⽬录"><a href="#更改当前的操作⽬录" class="headerlink" title="更改当前的操作⽬录"></a>更改当前的操作⽬录</h3><p><code>cd</code> 更改当前的操作⽬录</p>
+<ul>
+<li>cd /path/to/…. 绝对路径</li>
+<li>cd ./path/to/… 相对路径</li>
+<li>cd ../path/to/… 相对路径</li>
+</ul>
+<h3 id="建⽴⽬录"><a href="#建⽴⽬录" class="headerlink" title="建⽴⽬录"></a>建⽴⽬录</h3><p><code>mkdir</code> 建⽴⽬录</p>
+<p>常⽤参数</p>
+<ul>
+<li>-p 建⽴多级⽬录</li>
+</ul>
+<h3 id="删除空⽬录"><a href="#删除空⽬录" class="headerlink" title="删除空⽬录"></a>删除空⽬录</h3><p><code>rmdir</code> 删除空⽬录<br><code>rm -r</code> 删除⾮空⽬录</p>
+<h3 id="复制⽂件"><a href="#复制⽂件" class="headerlink" title="复制⽂件"></a>复制⽂件</h3><p><code>cp</code> 复制⽂件和⽬录</p>
+<ul>
+<li>cp [选项] ⽂件路径</li>
+<li>cp [选项] ⽂件… 路径</li>
+</ul>
+<p>常⽤参数</p>
+<ul>
+<li>-r 复制⽬录</li>
+<li>-p 保留⽤户、权限、时间等⽂件属性</li>
+<li>-a 等同于 -dpR</li>
+</ul>
+<h3 id="移动⽂件"><a href="#移动⽂件" class="headerlink" title="移动⽂件"></a>移动⽂件</h3><p><code>mv</code> 移动⽂件</p>
+<ul>
+<li>mv [选项] 源⽂件 ⽬标⽂件</li>
+<li>mv [选项] 源⽂件 ⽬录</li>
+</ul>
+<h3 id="删除⽂件"><a href="#删除⽂件" class="headerlink" title="删除⽂件"></a>删除⽂件</h3><p><code>rm</code> 删除⽂件</p>
+<p>常⽤参数</p>
+<ul>
+<li>-r 删除⽬录（包括⽬录下的所有⽂件）</li>
+<li>-f 删除⽂件不进⾏提示</li>
+<li>注意： rm 命令可以删除多个⽬录，需谨慎使⽤</li>
+</ul>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://www.webdevdrops.com/en/how-to-access-device-cameras-with-javascript/" target="_blank" rel="noopener">How to Access Device Cameras with JavaScript (Front and Rear)</a></p>
+<p>要访问用户的相机或者麦克风，我们可以使用 JavaScript 的 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API" target="_blank" rel="noopener">MediaStream API</a>。该 API 允许通过流访问这些设备捕获的视频和音频。</p>
+<p>先检查浏览器是否支持此 API：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (</div><div class="line">  <span class="string">"mediaDevices"</span> <span class="keyword">in</span> navigator &amp;&amp;</div><div class="line">  <span class="string">"getUserMedia"</span> <span class="keyword">in</span> navigator.mediaDevices</div><div class="line">) &#123;</div><div class="line">  <span class="comment">// ok, browser supports it</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然，本文中还介绍了如何访问设备的前后摄像头，截屏等。如果感兴趣或者有需要的可以阅读一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
+    
+    </summary>
+    
+      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
+    
+    
+      <category term="Swift" scheme="https://zhangdinghao.cn/tags/Swift/"/>
+    
+      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
+    
+      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
+    
+      <category term="iOS" scheme="https://zhangdinghao.cn/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一月一清零 | 我们处在近 500 年的大周期中</title>
     <link href="https://zhangdinghao.cn/2020/restart202005/"/>
     <id>https://zhangdinghao.cn/2020/restart202005/</id>
     <published>2020-05-31T16:00:35.000Z</published>
-    <updated>2020-06-01T12:08:57.909Z</updated>
+    <updated>2020-06-07T11:06:09.104Z</updated>
     
     <content type="html"><![CDATA[<p>5 月的最后几天，美国那边出了 2 件大事。</p>
 <p>一件事是伊隆·马斯克的 SpaceX 公司的太空船载人龙（Crew Dragon）和 NASA 进行了载人航天任务，这也开启了普通商业公司进行航天载人的第一步，随着科技发展，将来普通人进行太空旅行不是没有可能。</p>
@@ -1428,66 +1522,6 @@
     
     
       <category term="Hexo" scheme="https://zhangdinghao.cn/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL 支持 emoji 图标存储</title>
-    <link href="https://zhangdinghao.cn/2019/mysql-use-emoji/"/>
-    <id>https://zhangdinghao.cn/2019/mysql-use-emoji/</id>
-    <published>2019-02-19T14:13:43.000Z</published>
-    <updated>2019-12-29T11:54:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在<code>MySLQ</code>中 <code>UPDATA</code> 和 <code>INSERT</code> 数据的时候，如果数据上面带有<code>emoji</code>图标，例如：😂😂 很容易更新或者插入不成功，导致报错。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Error: ER_TRUNCATED_WRONG_VALUE_FOR_FIELD: </div><div class="line">Incorrect string value: &apos;\xF0\x9F\x91\xBD\xF0\x9F...&apos; for column &apos;name&apos; at row</div></pre></td></tr></table></figure>
-<p>都快崩溃了，但是还好终于解决了这种鬼问题。资料显示原因是，<code>MYSQL 5.5</code> 之前， <code>UTF8</code> 编码只支持1-3个字节，只支持<code>BMP</code>这部分的<code>unicode</code>编码区，而<code>emoji</code>图标恰好是4个字节的编码进行存储。从<code>MYSQL5.5</code>开始，可支持4个字节<code>UTF</code>编码<code>utf8mb4</code>，一个字符最多能有4字节，所以能支持更多的字符集。所以要解决问题，必需把数据库表字符编码全部改成<code>utf8mb4</code>。</p>
-<h3 id="常用字符集"><a href="#常用字符集" class="headerlink" title="常用字符集"></a>常用字符集</h3><ul>
-<li>ASCII：美国信息互换标准编码；英语和其他西欧语言；单字节编码，7位表示一个字符，共128字符。</li>
-<li>GBK：双字节，汉字内码扩展规范；中日韩汉字、英文、数字；双字节编码；共收录了21003个汉字，GB2312的扩展。</li>
-<li>UTF-8：Unicode标准的可变长度字符编码；Unicode标准（统一码），业界统一标准，包括世界上数十种文字的系统；</li>
-<li>UTF-8：使用一至三个字节为每个字符编码。</li>
-<li>utf8mb4：存储四个字节，应用场景用于存储emoji表情，因为可以emoji表情四个字节。</li>
-<li>utf8mb4：MySQL版本 &gt; 5.5.3 。</li>
-<li>其他常见字符集：UTF-32，UTF-16，Big5，latin1</li>
-<li>数据库中的字符集包含两层含义<br>  1.各种文字和符号的集合，包括各国家文字、标点符号、图形符号、数字等。<br>  2.字符的编码方式，即二进制数据与字符的映射规则。</li>
-</ul>
-<h3 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h3><p>MySQL 5.7.14<br>Mac OSX 10.11.6</p>
-<h3 id="首先备份"><a href="#首先备份" class="headerlink" title="首先备份"></a>首先备份</h3><p>升级数据之前备份您服务器上的所有数据，保持良好习惯，安全第一！</p>
-<h3 id="升级您的MySQL"><a href="#升级您的MySQL" class="headerlink" title="升级您的MySQL"></a>升级您的MySQL</h3><p>新的数据库可以在这里下载<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">Upgrade the MySQL server to v5.5.3+</a>。</p>
-<p>###修改您的数据库、表、字段<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 对每一个数据库:</div><div class="line">ALTER DATABASE 这里数据库名字 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;</div><div class="line"># 对每一个表:</div><div class="line">ALTER TABLE 这里是表名字 CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div><div class="line"># 对每一个字段:</div><div class="line">ALTER TABLE 这里是表名字 CHANGE 字段名字 重复字段名字 VARCHAR(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div><div class="line"># 上面一句或者使用modify来更改</div><div class="line">ALTER TABLE 这里是表名字 modify 字段名字 VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT &apos;&apos;;</div></pre></td></tr></table></figure></p>
-<p><code>utf8mb4</code>完全向后兼容<code>utf8</code>，无乱码或其他数据丢失的形式出现。理论上是可以放心修改，如果您不放心修改，您可以拿备份恢复数据，然后让程序员处理这种兼容<code>emoji</code>存储问题，存的时候过滤一遍转成<code>base64</code>，然后取的时候转回来？… 还是修改数据库比较方便。</p>
-<h3 id="检查你的字段和索引"><a href="#检查你的字段和索引" class="headerlink" title="检查你的字段和索引"></a>检查你的字段和索引</h3><p>不要将所有的都设置成<code>utf8mb4</code>，这个冒得必要。我只在我某些字段类型为<code>VARCHAR</code>的时候才设置成<code>utf8mb4</code>。</p>
-<h3 id="修改MySQL配置文件"><a href="#修改MySQL配置文件" class="headerlink" title="修改MySQL配置文件"></a>修改MySQL配置文件</h3><p>这个地方最坑，我在我Mac osx 系统上找不到<code>/etc/my.cnf</code> 它根本不存在，所以我们需要创建这样一个文件并修改它。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 进入这个目录，</div><div class="line"># 在这个目录下面有个后缀为`.cnf`的文件</div><div class="line">cd /usr/local/mysql/support-files/</div><div class="line"></div><div class="line"># 将这个文件复制到`etc`目录中并将名字命名为`my.cnf`</div><div class="line">sudo cp my-default.cnf /etc/my.cnf</div><div class="line"></div><div class="line"># 然后编辑`my.cnf`文件，将下面内容复制到里面。</div><div class="line">sudo vim /etc/my.cnf</div></pre></td></tr></table></figure>
-<p><a href="https://dev.mysql.com/doc/refman/5.5/en/option-files.html" target="_blank" rel="noopener">MySQL configuration file (/etc/my.cnf):</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[client]</div><div class="line">default-character-set = utf8mb4</div><div class="line"></div><div class="line">[mysql]</div><div class="line">default-character-set = utf8mb4</div><div class="line"></div><div class="line">[mysqld]</div><div class="line">character-set-client-handshake = FALSE</div><div class="line">character-set-server = utf8mb4</div><div class="line">collation-server = utf8mb4_unicode_ci</div></pre></td></tr></table></figure>
-<h3 id="重启MySQL"><a href="#重启MySQL" class="headerlink" title="重启MySQL"></a>重启MySQL</h3><p>重启步骤很重要，不然没有任何效果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">启动：/usr/local/mysql/support-files/mysql.server start</div><div class="line">停止：/usr/local/mysql/support-files/mysql.server stop</div><div class="line">重启：/usr/local/mysql/support-files/mysql.server restart</div></pre></td></tr></table></figure>
-<p>系统中可以以这种形式重启、停止或启动</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">service mysqld stop</div><div class="line">service mysqld start</div><div class="line">service mysqld restart</div></pre></td></tr></table></figure>
-<h3 id="查看是否设置成功"><a href="#查看是否设置成功" class="headerlink" title="查看是否设置成功"></a>查看是否设置成功</h3><p>通过下面命令查询是否设置成功！</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 登陆MySQL进行查询</div><div class="line">mysql&gt; SHOW VARIABLES WHERE Variable_name LIKE &apos;character\_set\_%&apos; OR Variable_name LIKE &apos;collation%&apos;;</div><div class="line"></div><div class="line"># 运行上面代码显示下面结果</div><div class="line"># +--------------------------+--------------------+</div><div class="line"># | Variable_name            | Value              |</div><div class="line"># +--------------------------+--------------------+</div><div class="line"># | character_set_client     | utf8mb4            |</div><div class="line"># | character_set_connection | utf8mb4            |</div><div class="line"># | character_set_database   | utf8mb4            |</div><div class="line"># | character_set_filesystem | binary             |</div><div class="line"># | character_set_results    | utf8mb4            |</div><div class="line"># | character_set_server     | utf8mb4            |</div><div class="line"># | character_set_system     | utf8               |</div><div class="line"># | collation_connection     | utf8mb4_unicode_ci |</div><div class="line"># | collation_database       | utf8mb4_unicode_ci |</div><div class="line"># | collation_server         | utf8mb4_unicode_ci |</div><div class="line"># +--------------------------+--------------------+</div><div class="line"></div><div class="line"># 查看表的情况</div><div class="line">mysql&gt;  SHOW FULL COLUMNS  FROM  users_profile;</div></pre></td></tr></table></figure>
-<p>到这一步表示你成功了！恭喜你！~</p>
-<h3 id="修复和优化表"><a href="#修复和优化表" class="headerlink" title="修复和优化表"></a>修复和优化表</h3><p>我跑到这一步其实没有任何必要修复和优化表，为了保险起见，我还是运行了这两条命令，虽然不知道它有什么卵用，放在这里做个笔记吧。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">REPAIR TABLE 表名字;</div><div class="line">OPTIMIZE TABLE 表名字;</div></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a href="https://mathiasbynens.be/notes/mysql-utf8mb4#character-sets" target="_blank" rel="noopener">How to support full Unicode in MySQL databases</a></li>
-<li><a href="https://forums.mysql.com/read.php?11,366143,376017#msg-376017" target="_blank" rel="noopener">my.cnf file does not exist on Mac OSX</a></li>
-</ul>
-<p><a href="https://segmentfault.com/a/1190000006851140" target="_blank" rel="noopener">原文链接</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在&lt;code&gt;MySLQ&lt;/code&gt;中 &lt;code&gt;UPDATA&lt;/code&gt; 和 &lt;code&gt;INSERT&lt;/code&gt; 数据的时候，如果数据上面带有&lt;code&gt;emoji&lt;/code&gt;图标，例如：😂😂 很容易更新或者插入不成功，导致报错。&lt;/p&gt;
-&lt;figure 
-    
-    </summary>
-    
-      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
-    
-    
-      <category term="MySQL" scheme="https://zhangdinghao.cn/tags/MySQL/"/>
     
   </entry>
   
