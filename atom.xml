@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-06-07T11:04:39.000Z</updated>
+  <updated>2020-06-14T06:54:33.141Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -14,6 +14,138 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARTS 04 - 用 CSS 实现主题切换</title>
+    <link href="https://zhangdinghao.cn/2020/arts04/"/>
+    <id>https://zhangdinghao.cn/2020/arts04/</id>
+    <published>2020-06-14T06:51:02.000Z</published>
+    <updated>2020-06-14T06:54:33.141Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener">面试题10- I. 斐波那契数列</a></p>
+<p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">F(0) = 0,   F(1) = 1</div><div class="line">F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.</div></pre></td></tr></table></figure>
+<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p>C 语言代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> f0 = <span class="number">0</span>, f1 = <span class="number">1</span>, f2 = f0 + f1;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</div><div class="line">        f2 = (f0 + f1) % <span class="number">1000000007</span>;</div><div class="line">        f0 = f1;</div><div class="line">        f1 = f2;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://juejin.im/post/5edf366e518825433e1fbca1?utm_source=gold_browser_extension" target="_blank" rel="noopener">iOS 代码混淆实现</a></p>
+<p>如果你项目中的代码和显存的产品有大量重复代码，亦或是你做的 App 对安全性要求比较高，为了通过 Apple 的审核和防止代码被反编译，这时候代码混淆就特别必要了，这篇文章通过 clang 过滤出类名和方法名，然后在从四六级单词词库里随机生成映射对应的类名和方法名来进行代码混淆。思路很不错。</p>
+<p>这里展示一段对映射的类做混淆的代码，如果你有代码混淆的需求，也想了解一下代码混淆的原理，推荐阅读一下这篇文章。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment">#!/bin/bash</span></div><div class="line"></div><div class="line">PROJECT_DIR=`cat ../path.txt`</div><div class="line">echo $PROJECT_DIR</div><div class="line"></div><div class="line">RENAME_CLASSES=rename_classes.txt</div><div class="line"></div><div class="line"><span class="comment">#First, we substitute the text in all of the files.</span></div><div class="line">sed_cmd=`sed -e <span class="string">'s@^@s/[[:&lt;:]]@; s@[[:space:]]\&#123;1,\&#125;@[[:&gt;:]]/@; s@$@/g;@'</span> $&#123;RENAME_CLASSES&#125; `</div><div class="line">find $&#123;PROJECT_DIR&#125; -type f \</div><div class="line">    \( -name <span class="string">"*.pbxproj"</span> -<span class="keyword">or</span> -name <span class="string">"*.pch"</span> -<span class="keyword">or</span> -name <span class="string">"*.h"</span> -<span class="keyword">or</span> -name <span class="string">"*.m"</span> -<span class="keyword">or</span> -name <span class="string">"*.xib"</span> -<span class="keyword">or</span> -name <span class="string">"*.storyboard"</span> \) \</div><div class="line">    -<span class="keyword">exec</span> sed -i <span class="string">""</span> <span class="string">"$&#123;sed_cmd&#125;"</span> &#123;&#125; +</div><div class="line"></div><div class="line"><span class="comment"># Now, we rename the .h/.m files</span></div><div class="line"><span class="keyword">while</span> read line; do</div><div class="line">    class_from=`echo $line | sed <span class="string">"s/[[:space:]]\&#123;1,\&#125;.*//"</span>`</div><div class="line">    class_to=`echo $line | sed <span class="string">"s/.*[[:space:]]\&#123;1,\&#125;//"</span>`</div><div class="line">    <span class="comment">#修改 .h .m</span></div><div class="line">    find $&#123;PROJECT_DIR&#125; -type f -regex <span class="string">".*[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]][^\/]*\.[hm]"</span> -<span class="keyword">print</span> | egrep -v <span class="string">'.bak$'</span> | \</div><div class="line">    <span class="keyword">while</span> read file_from; do</div><div class="line">         file_to=`echo $file_from | sed <span class="string">"s/\(.*\)[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]]\([^\/]*\)/\1$&#123;class_to&#125;\2/"</span>`</div><div class="line">         echo mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">         mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">    done</div><div class="line">    </div><div class="line">    <span class="comment">#修改 .xib</span></div><div class="line">    find $&#123;PROJECT_DIR&#125; -type f -regex <span class="string">".*[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]][^\/]*\.xib"</span> -<span class="keyword">print</span> | egrep -v <span class="string">'.bak$'</span> | \</div><div class="line">    <span class="keyword">while</span> read file_from; do</div><div class="line">         file_to=`echo $file_from | sed <span class="string">"s/\(.*\)[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]]\([^\/]*\)/\1$&#123;class_to&#125;\2/"</span>`</div><div class="line">         echo mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">         mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">    done</div><div class="line">done &lt; $&#123;RENAME_CLASSES&#125;</div></pre></td></tr></table></figure>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="Linux-⽹络状态查看⼯具"><a href="#Linux-⽹络状态查看⼯具" class="headerlink" title="Linux ⽹络状态查看⼯具"></a>Linux ⽹络状态查看⼯具</h3><h4 id="net-tools"><a href="#net-tools" class="headerlink" title="net-tools"></a>net-tools</h4><ul>
+<li>ifconfig</li>
+<li>route</li>
+<li>netstat</li>
+</ul>
+<h4 id="iproute2"><a href="#iproute2" class="headerlink" title="iproute2"></a>iproute2</h4><ul>
+<li>ip</li>
+<li>ss</li>
+</ul>
+<h3 id="Linux-网络状态查看命令"><a href="#Linux-网络状态查看命令" class="headerlink" title="Linux 网络状态查看命令"></a>Linux 网络状态查看命令</h3><p>root 用户查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ifconfig</div></pre></td></tr></table></figure>
+<p>普通用户查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/sbin/ifconfig</div></pre></td></tr></table></figure>
+<p>eth0 第⼀块⽹卡（⽹络接⼝）</p>
+<p>你的第⼀个⽹络接⼝可能叫做下⾯的名字</p>
+<ul>
+<li>eno1 板载⽹卡</li>
+<li>ens33 PCI-E⽹卡</li>
+<li>enp0s3 ⽆法获取物理信息的 PCI-E ⽹卡</li>
+<li>CentOS 7 使⽤了⼀致性⽹络设备命名，以上都不匹配则使⽤ eth0</li>
+</ul>
+<h3 id="Linux-⽹络接⼝命名修改"><a href="#Linux-⽹络接⼝命名修改" class="headerlink" title="Linux ⽹络接⼝命名修改"></a>Linux ⽹络接⼝命名修改</h3><p>⽹卡命名规则受 <code>biosdevname</code> 和 <code>net.ifnames</code> 两个参数影响</p>
+<p>编辑 <code>/etc/default/grub</code> ⽂件，增加 <code>biosdevname=0</code> <code>net.ifnames=0</code>    </p>
+<p>更新 grub<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</div></pre></td></tr></table></figure></p>
+<p>重启</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">reboot</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>biosdevname</th>
+<th>net.ifnames</th>
+<th>网卡名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认</td>
+<td>0</td>
+<td>1</td>
+<td>ens33</td>
+</tr>
+<tr>
+<td>组合1</td>
+<td>1</td>
+<td>0</td>
+<td>em1</td>
+</tr>
+<tr>
+<td>组合2</td>
+<td>0</td>
+<td>0</td>
+<td>eth0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-查看⽹络情况"><a href="#Linux-查看⽹络情况" class="headerlink" title="Linux 查看⽹络情况"></a>Linux 查看⽹络情况</h3><p>查看⽹卡物理连接情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mii-tool eth0</div></pre></td></tr></table></figure>
+<h3 id="Linux-查看⽹关命令"><a href="#Linux-查看⽹关命令" class="headerlink" title="Linux 查看⽹关命令"></a>Linux 查看⽹关命令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">route -n</div></pre></td></tr></table></figure>
+<p>使⽤ -n 参数不解析主机名</p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><h3 id="Quick-amp-Dirty-Theme-Switcher"><a href="#Quick-amp-Dirty-Theme-Switcher" class="headerlink" title="Quick &amp; Dirty Theme Switcher"></a>Quick &amp; Dirty Theme Switcher</h3><p>博主 Bradley Taunt 是一个前端开发者，前几天他写了一篇使用 CSS 实现网站主题切换的文章 <a href="https://uglyduck.ca/quick-dirty-theme-switcher/" target="_blank" rel="noopener">Quick &amp; Dirty Theme Switcher</a>。</p>
+<p>首先在 HTML 里定义主题切换按钮</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"color-select"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleDefaultTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleSecondTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleThirdTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>设置默认的主题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">class</span>=<span class="string">"theme-default"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>接下来 CSS 里面设置主题配色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.theme-default</span> &#123;</div><div class="line">   <span class="attribute">--accent-color</span>: <span class="number">#72f1b8</span>;</div><div class="line">   <span class="attribute">--font-color</span>: <span class="number">#34294f</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.theme-second</span> &#123;</div><div class="line">    <span class="attribute">--accent-color</span>: <span class="number">#FFBF00</span>;</div><div class="line">    <span class="attribute">--font-color</span>: <span class="number">#59316B</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.theme-third</span> &#123;</div><div class="line">    <span class="attribute">--accent-color</span>: <span class="number">#d9455f</span>;</div><div class="line">    <span class="attribute">--font-color</span>: <span class="number">#303960</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--accent-color);</div><div class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--font-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再美化一下主题切换按钮的样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span> &#123;</div><div class="line">    <span class="attribute">-moz-appearance</span>: none;</div><div class="line">    <span class="attribute">appearance</span>: none;</div><div class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">9999px</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0.8rem</span> <span class="number">0.8rem</span> <span class="number">0</span>;</div><div class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* Style each swatch to match the corresponding theme */</span></div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(1)</span> &#123; <span class="attribute">background</span>: <span class="number">#72f1b8</span>; <span class="attribute">border-color</span>: <span class="number">#34294f</span>; &#125;</div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(2)</span> &#123; <span class="attribute">background</span>: <span class="number">#FFBF00</span>; <span class="attribute">border-color</span>: <span class="number">#59316B</span>; &#125;</div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(3)</span> &#123; <span class="attribute">background</span>: <span class="number">#d9455f</span>; <span class="attribute">border-color</span>: <span class="number">#303960</span>; &#125;</div></pre></td></tr></table></figure>
+<p>最后 JavaScript 来进行主题切换</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Set a given theme/color-scheme</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTheme</span>(<span class="params">themeName</span>) </span>&#123;</div><div class="line">    localStorage.setItem(<span class="string">'theme'</span>, themeName);</div><div class="line">    <span class="built_in">document</span>.documentElement.className = themeName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Toggle between color themes</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleDefaultTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-default'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-default'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleSecondTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-second'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-second'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleThirdTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-third'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-third'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Immediately set the theme on initial load</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-default'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-default'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-second'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-second'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-third'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-third'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="Xbox-里面的父亲"><a href="#Xbox-里面的父亲" class="headerlink" title="Xbox 里面的父亲"></a>Xbox 里面的父亲</h3><p>一篇 2014 年的感人故事，儿子在 Xbox 里面发现了过世父亲的身影，故事发生在国外：<a href="https://www.facebook.com/Coyoter.Huang/posts/10216945532563571" target="_blank" rel="noopener">原文链接</a></p>
+<p>Well, when i was 4, my dad bought a trusty XBox.<br>我4岁的时候，父亲买了一台Xbox</p>
+<p>you know, the first, ruggedy, blocky one from 2001.<br>你知道的，是那台坚硬、结实，2001年推出的Xbox</p>
+<p>we had tons and tons and tons of fun playing all kinds of games together<br>我们一起玩了许多游戏，而且玩得非常开心….</p>
+<p>until he died, when i was just 6.<br>…直到他去世为止，那年我才6岁</p>
+<p>i couldnt touch that console for 10 years.<br>在往后十年，我没有办法碰那台游戏机</p>
+<p>but once i did, i noticed something.<br>直到有一次我打开它，我发现了一件事情</p>
+<p>we used to play a racing game, Rally Sports Challenge.<br>过去我曾与父亲玩过一款叫做《越野挑战赛》的赛车游戏</p>
+<p>actually pretty awesome for the time it came.<br>实际上在当年，它真的很好玩</p>
+<p>and once i started meddling around… i found a GHOST.literaly.<br>而当我开始在这款游戏中四处浏览时，我遇到了货真价实的”幽灵”。</p>
+<p>you know, when a time race happens,<br>在这款赛车游戏的计时赛中</p>
+<p>that the fastest lap so far gets recorded as a ghost driver?<br>最佳纪录保持者的记录将会以幽灵车手状态出来与你一同赛车</p>
+<p>yep, you guessed it<br>是的，你猜到了！</p>
+<p>his ghost still rolls around the track today.<br>父亲的灵魂至今仍在赛车场上奔驰着</p>
+<p>and so i played and played,and played,<br>于是我一遍又一遍的挑战</p>
+<p>untill i was almost able to beat the ghost.<br>我慢慢的可以追上这位幽灵车手</p>
+<p>until one day i got ahead of it,i surpassed it, and…<br>终于有一天，我成功了！我超越祂了！然后…</p>
+<p>i stopped right in front of the finish line,<br>我在终点线前停下来</p>
+<p>just to ensure i wouldnt delete it.<br>确保我不会就这样删除”父亲的记录”。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
+    
+    </summary>
+    
+      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
+    
+    
+      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
+    
+      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
+    
+      <category term="Linux" scheme="https://zhangdinghao.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>ARTS 03 - 如何使用 JavaScript 访问设备摄像头</title>
@@ -1393,135 +1525,6 @@
     
     
       <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 博客常用指令</title>
-    <link href="https://zhangdinghao.cn/2019/hexo-commands/"/>
-    <id>https://zhangdinghao.cn/2019/hexo-commands/</id>
-    <published>2019-05-05T16:12:02.000Z</published>
-    <updated>2019-05-07T16:26:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>原文链接：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/commands.html</a></p>
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo init [folder]</div></pre></td></tr></table></figure>
-<p>新建一个网站。如果没有设置 <a href="">folder</a> ，Hexo 默认在目前的文件夹建立网站。</p>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo new &quot;post title with whitespace&quot;</div></pre></td></tr></table></figure>
-<h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>生成静态文件。</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-d, –deploy</td>
-<td>文件生成后立即部署网站</td>
-</tr>
-<tr>
-<td>-w, –watch</td>
-<td>监视文件变动</td>
-</tr>
-</tbody>
-</table>
-<p>该命令可以简写为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
-<h3 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo publish [layout] &lt;filename&gt;</div></pre></td></tr></table></figure>
-<p>发表草稿。</p>
-<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code>。</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-p, –port</td>
-<td>重设端口</td>
-</tr>
-<tr>
-<td>-s, –static</td>
-<td>只使用静态文件</td>
-</tr>
-<tr>
-<td>-l, –log</td>
-<td>启动日记记录，使用覆盖记录格式</td>
-</tr>
-</tbody>
-</table>
-<h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>部署网站。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-g, –generate</td>
-<td>部署之前预先生成静态文件</td>
-</tr>
-</tbody>
-</table>
-<p>该命令可以简写为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
-<h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo render &lt;file1&gt; [file2] ...</div></pre></td></tr></table></figure>
-<p>渲染文件。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-o, –output</td>
-<td>设置输出路径</td>
-</tr>
-</tbody>
-</table>
-<h3 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo migrate &lt;type&gt;</div></pre></td></tr></table></figure>
-<p>从其他博客系统 <a href="https://hexo.io/zh-cn/docs/migration" target="_blank" rel="noopener">迁移内容</a>。</p>
-<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo list &lt;type&gt;</div></pre></td></tr></table></figure>
-<p>列出网站资料。</p>
-<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo version</div></pre></td></tr></table></figure>
-<p>显示 Hexo 版本。</p>
-<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --safe</div></pre></td></tr></table></figure>
-<p>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
-<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --debug</div></pre></td></tr></table></figure>
-<p>在终端中显示调试信息并记录到 <code>debug.log</code>。当您碰到问题时，可以尝试用调试模式重新执行一次，<a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo%2Fissues%2Fnew" target="_blank" rel="noopener">并提交调试信息到 GitHub</a>。</p>
-<h3 id="简洁模式"><a href="#简洁模式" class="headerlink" title="简洁模式"></a>简洁模式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --silent</div></pre></td></tr></table></figure>
-<p>隐藏终端信息。</p>
-<h3 id="自定义配置文件的路径"><a href="#自定义配置文件的路径" class="headerlink" title="自定义配置文件的路径"></a>自定义配置文件的路径</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --config custom.yml</div></pre></td></tr></table></figure>
-<p>自定义配置文件的路径，执行后将不再使用 <code>_config.yml</code>。</p>
-<h3 id="显示草稿"><a href="#显示草稿" class="headerlink" title="显示草稿"></a>显示草稿</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --draft</div></pre></td></tr></table></figure>
-<p>显示 <code>source/_drafts</code> 文件夹中的草稿文章。</p>
-<h3 id="自定义-CWD"><a href="#自定义-CWD" class="headerlink" title="自定义 CWD"></a>自定义 CWD</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --cwd /path/to/cwd</div></pre></td></tr></table></figure>
-<p>自定义当前工作目录（Current working directory）的路径。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文链接：&lt;a href=&quot;https://hexo.io/zh-cn/docs/commands.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://hexo.io/zh-cn/docs/commands.html&lt;/a&gt;&lt;/p&gt;
-&lt;
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://zhangdinghao.cn/tags/Hexo/"/>
     
   </entry>
   
