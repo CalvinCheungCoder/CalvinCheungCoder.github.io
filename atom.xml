@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-06-28T13:51:42.333Z</updated>
+  <updated>2020-06-28T13:51:42.000Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>ARTS 06 - 当你更新 DNS 时发生了什么？</title>
-    <link href="https://zhangdinghao.cn/2020/arts06/"/>
-    <id>https://zhangdinghao.cn/2020/arts06/</id>
+    <link href="https://zhangdinghao.cn/2020/06/28/arts06/"/>
+    <id>https://zhangdinghao.cn/2020/06/28/arts06/</id>
     <published>2020-06-28T13:27:05.000Z</published>
-    <updated>2020-06-28T13:51:42.333Z</updated>
+    <updated>2020-06-28T13:51:42.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
 <p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
@@ -102,8 +102,8 @@
   
   <entry>
     <title>ARTS 05 - 剖析 Uber 的 RIB 架构</title>
-    <link href="https://zhangdinghao.cn/2020/arts05/"/>
-    <id>https://zhangdinghao.cn/2020/arts05/</id>
+    <link href="https://zhangdinghao.cn/2020/06/21/arts05/"/>
+    <id>https://zhangdinghao.cn/2020/06/21/arts05/</id>
     <published>2020-06-21T14:02:24.000Z</published>
     <updated>2020-06-21T14:05:28.000Z</updated>
     
@@ -181,8 +181,8 @@
   
   <entry>
     <title>ARTS 04 - 用 CSS 实现主题切换</title>
-    <link href="https://zhangdinghao.cn/2020/arts04/"/>
-    <id>https://zhangdinghao.cn/2020/arts04/</id>
+    <link href="https://zhangdinghao.cn/2020/06/14/arts04/"/>
+    <id>https://zhangdinghao.cn/2020/06/14/arts04/</id>
     <published>2020-06-14T06:51:02.000Z</published>
     <updated>2020-06-14T06:54:33.000Z</updated>
     
@@ -313,8 +313,8 @@
   
   <entry>
     <title>ARTS 03 - 如何使用 JavaScript 访问设备摄像头</title>
-    <link href="https://zhangdinghao.cn/2020/arts03/"/>
-    <id>https://zhangdinghao.cn/2020/arts03/</id>
+    <link href="https://zhangdinghao.cn/2020/06/07/arts03/"/>
+    <id>https://zhangdinghao.cn/2020/06/07/arts03/</id>
     <published>2020-06-07T10:22:24.000Z</published>
     <updated>2020-06-07T11:04:39.000Z</updated>
     
@@ -407,8 +407,8 @@
   
   <entry>
     <title>一月一清零 | 我们处在近 500 年的大周期中</title>
-    <link href="https://zhangdinghao.cn/2020/restart202005/"/>
-    <id>https://zhangdinghao.cn/2020/restart202005/</id>
+    <link href="https://zhangdinghao.cn/2020/06/01/restart202005/"/>
+    <id>https://zhangdinghao.cn/2020/06/01/restart202005/</id>
     <published>2020-05-31T16:00:35.000Z</published>
     <updated>2020-06-22T06:45:33.000Z</updated>
     
@@ -494,8 +494,8 @@
   
   <entry>
     <title>ARTS 02 - Google 如何做 Code Review</title>
-    <link href="https://zhangdinghao.cn/2020/arts02/"/>
-    <id>https://zhangdinghao.cn/2020/arts02/</id>
+    <link href="https://zhangdinghao.cn/2020/05/31/arts02/"/>
+    <id>https://zhangdinghao.cn/2020/05/31/arts02/</id>
     <published>2020-05-31T13:00:44.000Z</published>
     <updated>2020-05-31T14:05:15.000Z</updated>
     
@@ -551,8 +551,8 @@
   
   <entry>
     <title>ARTS 01 - 为什么写作在远程工作中那么重要？</title>
-    <link href="https://zhangdinghao.cn/2020/arts01/"/>
-    <id>https://zhangdinghao.cn/2020/arts01/</id>
+    <link href="https://zhangdinghao.cn/2020/05/24/arts01/"/>
+    <id>https://zhangdinghao.cn/2020/05/24/arts01/</id>
     <published>2020-05-24T09:02:26.000Z</published>
     <updated>2020-05-24T09:20:07.000Z</updated>
     
@@ -632,8 +632,8 @@
   
   <entry>
     <title>你知道，这是牛市！</title>
-    <link href="https://zhangdinghao.cn/2020/readnote001/"/>
-    <id>https://zhangdinghao.cn/2020/readnote001/</id>
+    <link href="https://zhangdinghao.cn/2020/05/12/readnote001/"/>
+    <id>https://zhangdinghao.cn/2020/05/12/readnote001/</id>
     <published>2020-05-12T15:53:01.000Z</published>
     <updated>2020-05-12T16:31:52.000Z</updated>
     
@@ -669,8 +669,8 @@
   
   <entry>
     <title>一月一清零 | 生活虽难，但人间值得</title>
-    <link href="https://zhangdinghao.cn/2020/restart202004/"/>
-    <id>https://zhangdinghao.cn/2020/restart202004/</id>
+    <link href="https://zhangdinghao.cn/2020/05/01/restart202004/"/>
+    <id>https://zhangdinghao.cn/2020/05/01/restart202004/</id>
     <published>2020-05-01T07:24:02.000Z</published>
     <updated>2020-05-01T12:30:21.000Z</updated>
     
@@ -803,8 +803,8 @@
   
   <entry>
     <title>一月一清零 | 静待春暖花开</title>
-    <link href="https://zhangdinghao.cn/2020/restart202003/"/>
-    <id>https://zhangdinghao.cn/2020/restart202003/</id>
+    <link href="https://zhangdinghao.cn/2020/04/01/restart202003/"/>
+    <id>https://zhangdinghao.cn/2020/04/01/restart202003/</id>
     <published>2020-03-31T16:00:00.000Z</published>
     <updated>2020-03-31T16:02:14.000Z</updated>
     
@@ -884,8 +884,8 @@
   
   <entry>
     <title>一月一清零 | 这个世界会好吗？</title>
-    <link href="https://zhangdinghao.cn/2020/restart202002/"/>
-    <id>https://zhangdinghao.cn/2020/restart202002/</id>
+    <link href="https://zhangdinghao.cn/2020/03/01/restart202002/"/>
+    <id>https://zhangdinghao.cn/2020/03/01/restart202002/</id>
     <published>2020-03-01T05:49:55.000Z</published>
     <updated>2020-03-31T15:56:29.000Z</updated>
     
@@ -954,8 +954,8 @@
   
   <entry>
     <title>一月一清零 | 新年在病毒肆虐中到来</title>
-    <link href="https://zhangdinghao.cn/2020/restart202001/"/>
-    <id>https://zhangdinghao.cn/2020/restart202001/</id>
+    <link href="https://zhangdinghao.cn/2020/02/01/restart202001/"/>
+    <id>https://zhangdinghao.cn/2020/02/01/restart202001/</id>
     <published>2020-02-01T10:43:18.000Z</published>
     <updated>2020-03-31T15:56:25.000Z</updated>
     
@@ -1018,8 +1018,8 @@
   
   <entry>
     <title>使用 appledoc 生成 Objective-C 开发文档</title>
-    <link href="https://zhangdinghao.cn/2020/appledoc/"/>
-    <id>https://zhangdinghao.cn/2020/appledoc/</id>
+    <link href="https://zhangdinghao.cn/2020/01/17/appledoc/"/>
+    <id>https://zhangdinghao.cn/2020/01/17/appledoc/</id>
     <published>2020-01-17T03:09:50.000Z</published>
     <updated>2020-01-17T03:49:41.000Z</updated>
     
@@ -1056,8 +1056,8 @@
   
   <entry>
     <title>2019 年年终总结</title>
-    <link href="https://zhangdinghao.cn/2020/goodbye2019/"/>
-    <id>https://zhangdinghao.cn/2020/goodbye2019/</id>
+    <link href="https://zhangdinghao.cn/2020/01/01/goodbye2019/"/>
+    <id>https://zhangdinghao.cn/2020/01/01/goodbye2019/</id>
     <published>2020-01-01T11:29:42.000Z</published>
     <updated>2020-02-02T14:51:58.000Z</updated>
     
@@ -1099,8 +1099,8 @@
   
   <entry>
     <title>2019 年读书总结</title>
-    <link href="https://zhangdinghao.cn/2019/2019-readBooks/"/>
-    <id>https://zhangdinghao.cn/2019/2019-readBooks/</id>
+    <link href="https://zhangdinghao.cn/2019/12/30/2019-readBooks/"/>
+    <id>https://zhangdinghao.cn/2019/12/30/2019-readBooks/</id>
     <published>2019-12-29T16:04:45.000Z</published>
     <updated>2020-05-28T09:42:27.000Z</updated>
     
@@ -1145,8 +1145,8 @@
   
   <entry>
     <title>你当像鸟飞往你的山</title>
-    <link href="https://zhangdinghao.cn/2019/educated/"/>
-    <id>https://zhangdinghao.cn/2019/educated/</id>
+    <link href="https://zhangdinghao.cn/2019/12/29/educated/"/>
+    <id>https://zhangdinghao.cn/2019/12/29/educated/</id>
     <published>2019-12-29T05:35:26.000Z</published>
     <updated>2019-12-29T10:08:16.000Z</updated>
     
@@ -1208,8 +1208,8 @@
   
   <entry>
     <title>走进比尔：解码比尔·盖茨</title>
-    <link href="https://zhangdinghao.cn/2019/billgates/"/>
-    <id>https://zhangdinghao.cn/2019/billgates/</id>
+    <link href="https://zhangdinghao.cn/2019/09/21/billgates/"/>
+    <id>https://zhangdinghao.cn/2019/09/21/billgates/</id>
     <published>2019-09-21T06:17:17.000Z</published>
     <updated>2019-12-29T12:22:04.000Z</updated>
     
@@ -1282,8 +1282,8 @@
   
   <entry>
     <title>读书笔记 -《理财就是理生活》</title>
-    <link href="https://zhangdinghao.cn/2019/readnote0915/"/>
-    <id>https://zhangdinghao.cn/2019/readnote0915/</id>
+    <link href="https://zhangdinghao.cn/2019/09/15/readnote0915/"/>
+    <id>https://zhangdinghao.cn/2019/09/15/readnote0915/</id>
     <published>2019-09-15T08:15:29.000Z</published>
     <updated>2019-09-15T09:39:50.000Z</updated>
     
@@ -1342,8 +1342,8 @@
   
   <entry>
     <title>匿名币 Grin 节点搭建与 Grin Wallet 创建和转账</title>
-    <link href="https://zhangdinghao.cn/2019/GrinWallet/"/>
-    <id>https://zhangdinghao.cn/2019/GrinWallet/</id>
+    <link href="https://zhangdinghao.cn/2019/07/17/GrinWallet/"/>
+    <id>https://zhangdinghao.cn/2019/07/17/GrinWallet/</id>
     <published>2019-07-17T15:33:03.000Z</published>
     <updated>2019-07-17T15:34:26.000Z</updated>
     
@@ -1445,8 +1445,8 @@
   
   <entry>
     <title>使用 SSH 客户端登录 Google Cloud / VPS</title>
-    <link href="https://zhangdinghao.cn/2019/use-ssh/"/>
-    <id>https://zhangdinghao.cn/2019/use-ssh/</id>
+    <link href="https://zhangdinghao.cn/2019/07/13/use-ssh/"/>
+    <id>https://zhangdinghao.cn/2019/07/13/use-ssh/</id>
     <published>2019-07-13T14:12:42.000Z</published>
     <updated>2019-12-29T12:24:23.000Z</updated>
     

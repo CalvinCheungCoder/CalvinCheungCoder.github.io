@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            ARTS 04 - 用 CSS 实现主题切换 - DHTalk&#39;s Blog | Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/06/14/arts04/">
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+<!-- Custom Card JavaScript -->
+<script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/archive-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                    <h1>ARTS 04 - 用 CSS 实现主题切换</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-06-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener">面试题10- I. 斐波那契数列</a></p>
+<p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">F(0) = 0,   F(1) = 1</div><div class="line">F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.</div></pre></td></tr></table></figure>
+<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p>C 语言代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> f0 = <span class="number">0</span>, f1 = <span class="number">1</span>, f2 = f0 + f1;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</div><div class="line">        f2 = (f0 + f1) % <span class="number">1000000007</span>;</div><div class="line">        f0 = f1;</div><div class="line">        f1 = f2;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://juejin.im/post/5edf366e518825433e1fbca1?utm_source=gold_browser_extension" target="_blank" rel="noopener">iOS 代码混淆实现</a></p>
+<p>如果你项目中的代码和显存的产品有大量重复代码，亦或是你做的 App 对安全性要求比较高，为了通过 Apple 的审核和防止代码被反编译，这时候代码混淆就特别必要了，这篇文章通过 clang 过滤出类名和方法名，然后在从四六级单词词库里随机生成映射对应的类名和方法名来进行代码混淆。思路很不错。</p>
+<p>这里展示一段对映射的类做混淆的代码，如果你有代码混淆的需求，也想了解一下代码混淆的原理，推荐阅读一下这篇文章。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="comment">#!/bin/bash</span></div><div class="line"></div><div class="line">PROJECT_DIR=`cat ../path.txt`</div><div class="line">echo $PROJECT_DIR</div><div class="line"></div><div class="line">RENAME_CLASSES=rename_classes.txt</div><div class="line"></div><div class="line"><span class="comment">#First, we substitute the text in all of the files.</span></div><div class="line">sed_cmd=`sed -e <span class="string">'s@^@s/[[:&lt;:]]@; s@[[:space:]]\&#123;1,\&#125;@[[:&gt;:]]/@; s@$@/g;@'</span> $&#123;RENAME_CLASSES&#125; `</div><div class="line">find $&#123;PROJECT_DIR&#125; -type f \</div><div class="line">    \( -name <span class="string">"*.pbxproj"</span> -<span class="keyword">or</span> -name <span class="string">"*.pch"</span> -<span class="keyword">or</span> -name <span class="string">"*.h"</span> -<span class="keyword">or</span> -name <span class="string">"*.m"</span> -<span class="keyword">or</span> -name <span class="string">"*.xib"</span> -<span class="keyword">or</span> -name <span class="string">"*.storyboard"</span> \) \</div><div class="line">    -<span class="keyword">exec</span> sed -i <span class="string">""</span> <span class="string">"$&#123;sed_cmd&#125;"</span> &#123;&#125; +</div><div class="line"></div><div class="line"><span class="comment"># Now, we rename the .h/.m files</span></div><div class="line"><span class="keyword">while</span> read line; do</div><div class="line">    class_from=`echo $line | sed <span class="string">"s/[[:space:]]\&#123;1,\&#125;.*//"</span>`</div><div class="line">    class_to=`echo $line | sed <span class="string">"s/.*[[:space:]]\&#123;1,\&#125;//"</span>`</div><div class="line">    <span class="comment">#修改 .h .m</span></div><div class="line">    find $&#123;PROJECT_DIR&#125; -type f -regex <span class="string">".*[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]][^\/]*\.[hm]"</span> -<span class="keyword">print</span> | egrep -v <span class="string">'.bak$'</span> | \</div><div class="line">    <span class="keyword">while</span> read file_from; do</div><div class="line">         file_to=`echo $file_from | sed <span class="string">"s/\(.*\)[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]]\([^\/]*\)/\1$&#123;class_to&#125;\2/"</span>`</div><div class="line">         echo mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">         mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">    done</div><div class="line">    </div><div class="line">    <span class="comment">#修改 .xib</span></div><div class="line">    find $&#123;PROJECT_DIR&#125; -type f -regex <span class="string">".*[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]][^\/]*\.xib"</span> -<span class="keyword">print</span> | egrep -v <span class="string">'.bak$'</span> | \</div><div class="line">    <span class="keyword">while</span> read file_from; do</div><div class="line">         file_to=`echo $file_from | sed <span class="string">"s/\(.*\)[[:&lt;:]]$&#123;class_from&#125;[[:&gt;:]]\([^\/]*\)/\1$&#123;class_to&#125;\2/"</span>`</div><div class="line">         echo mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">         mv <span class="string">"$&#123;file_from&#125;"</span> <span class="string">"$&#123;file_to&#125;"</span></div><div class="line">    done</div><div class="line">done &lt; $&#123;RENAME_CLASSES&#125;</div></pre></td></tr></table></figure>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="Linux-⽹络状态查看⼯具"><a href="#Linux-⽹络状态查看⼯具" class="headerlink" title="Linux ⽹络状态查看⼯具"></a>Linux ⽹络状态查看⼯具</h3><h4 id="net-tools"><a href="#net-tools" class="headerlink" title="net-tools"></a>net-tools</h4><ul>
+<li>ifconfig</li>
+<li>route</li>
+<li>netstat</li>
+</ul>
+<h4 id="iproute2"><a href="#iproute2" class="headerlink" title="iproute2"></a>iproute2</h4><ul>
+<li>ip</li>
+<li>ss</li>
+</ul>
+<h3 id="Linux-网络状态查看命令"><a href="#Linux-网络状态查看命令" class="headerlink" title="Linux 网络状态查看命令"></a>Linux 网络状态查看命令</h3><p>root 用户查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ifconfig</div></pre></td></tr></table></figure>
+<p>普通用户查看</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/sbin/ifconfig</div></pre></td></tr></table></figure>
+<p>eth0 第⼀块⽹卡（⽹络接⼝）</p>
+<p>你的第⼀个⽹络接⼝可能叫做下⾯的名字</p>
+<ul>
+<li>eno1 板载⽹卡</li>
+<li>ens33 PCI-E⽹卡</li>
+<li>enp0s3 ⽆法获取物理信息的 PCI-E ⽹卡</li>
+<li>CentOS 7 使⽤了⼀致性⽹络设备命名，以上都不匹配则使⽤ eth0</li>
+</ul>
+<h3 id="Linux-⽹络接⼝命名修改"><a href="#Linux-⽹络接⼝命名修改" class="headerlink" title="Linux ⽹络接⼝命名修改"></a>Linux ⽹络接⼝命名修改</h3><p>⽹卡命名规则受 <code>biosdevname</code> 和 <code>net.ifnames</code> 两个参数影响</p>
+<p>编辑 <code>/etc/default/grub</code> ⽂件，增加 <code>biosdevname=0</code> <code>net.ifnames=0</code>    </p>
+<p>更新 grub<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</div></pre></td></tr></table></figure></p>
+<p>重启</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">reboot</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>biosdevname</th>
+<th>net.ifnames</th>
+<th>网卡名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认</td>
+<td>0</td>
+<td>1</td>
+<td>ens33</td>
+</tr>
+<tr>
+<td>组合1</td>
+<td>1</td>
+<td>0</td>
+<td>em1</td>
+</tr>
+<tr>
+<td>组合2</td>
+<td>0</td>
+<td>0</td>
+<td>eth0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-查看⽹络情况"><a href="#Linux-查看⽹络情况" class="headerlink" title="Linux 查看⽹络情况"></a>Linux 查看⽹络情况</h3><p>查看⽹卡物理连接情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mii-tool eth0</div></pre></td></tr></table></figure>
+<h3 id="Linux-查看⽹关命令"><a href="#Linux-查看⽹关命令" class="headerlink" title="Linux 查看⽹关命令"></a>Linux 查看⽹关命令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">route -n</div></pre></td></tr></table></figure>
+<p>使⽤ -n 参数不解析主机名</p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><h3 id="Quick-amp-Dirty-Theme-Switcher"><a href="#Quick-amp-Dirty-Theme-Switcher" class="headerlink" title="Quick &amp; Dirty Theme Switcher"></a>Quick &amp; Dirty Theme Switcher</h3><p>博主 Bradley Taunt 是一个前端开发者，前几天他写了一篇使用 CSS 实现网站主题切换的文章 <a href="https://uglyduck.ca/quick-dirty-theme-switcher/" target="_blank" rel="noopener">Quick &amp; Dirty Theme Switcher</a>。</p>
+<p>首先在 HTML 里定义主题切换按钮</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"color-select"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleDefaultTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleSecondTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggleThirdTheme()"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>设置默认的主题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">class</span>=<span class="string">"theme-default"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>接下来 CSS 里面设置主题配色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.theme-default</span> &#123;</div><div class="line">   <span class="attribute">--accent-color</span>: <span class="number">#72f1b8</span>;</div><div class="line">   <span class="attribute">--font-color</span>: <span class="number">#34294f</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.theme-second</span> &#123;</div><div class="line">    <span class="attribute">--accent-color</span>: <span class="number">#FFBF00</span>;</div><div class="line">    <span class="attribute">--font-color</span>: <span class="number">#59316B</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.theme-third</span> &#123;</div><div class="line">    <span class="attribute">--accent-color</span>: <span class="number">#d9455f</span>;</div><div class="line">    <span class="attribute">--font-color</span>: <span class="number">#303960</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--accent-color);</div><div class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--font-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再美化一下主题切换按钮的样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span> &#123;</div><div class="line">    <span class="attribute">-moz-appearance</span>: none;</div><div class="line">    <span class="attribute">appearance</span>: none;</div><div class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">9999px</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0.8rem</span> <span class="number">0.8rem</span> <span class="number">0</span>;</div><div class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* Style each swatch to match the corresponding theme */</span></div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(1)</span> &#123; <span class="attribute">background</span>: <span class="number">#72f1b8</span>; <span class="attribute">border-color</span>: <span class="number">#34294f</span>; &#125;</div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(2)</span> &#123; <span class="attribute">background</span>: <span class="number">#FFBF00</span>; <span class="attribute">border-color</span>: <span class="number">#59316B</span>; &#125;</div><div class="line"><span class="selector-class">.color-select</span> <span class="selector-tag">button</span><span class="selector-pseudo">:nth-child(3)</span> &#123; <span class="attribute">background</span>: <span class="number">#d9455f</span>; <span class="attribute">border-color</span>: <span class="number">#303960</span>; &#125;</div></pre></td></tr></table></figure>
+<p>最后 JavaScript 来进行主题切换</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Set a given theme/color-scheme</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTheme</span>(<span class="params">themeName</span>) </span>&#123;</div><div class="line">    localStorage.setItem(<span class="string">'theme'</span>, themeName);</div><div class="line">    <span class="built_in">document</span>.documentElement.className = themeName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Toggle between color themes</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleDefaultTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-default'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-default'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleSecondTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-second'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-second'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleThirdTheme</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) !== <span class="string">'theme-third'</span>)&#123;</div><div class="line">        setTheme(<span class="string">'theme-third'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Immediately set the theme on initial load</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-default'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-default'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-second'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-second'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (localStorage.getItem(<span class="string">'theme'</span>) === <span class="string">'theme-third'</span>) &#123;</div><div class="line">        setTheme(<span class="string">'theme-third'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="Xbox-里面的父亲"><a href="#Xbox-里面的父亲" class="headerlink" title="Xbox 里面的父亲"></a>Xbox 里面的父亲</h3><p>一篇 2014 年的感人故事，儿子在 Xbox 里面发现了过世父亲的身影，故事发生在国外：<a href="https://www.facebook.com/Coyoter.Huang/posts/10216945532563571" target="_blank" rel="noopener">原文链接</a></p>
+<p>Well, when i was 4, my dad bought a trusty XBox.<br>我4岁的时候，父亲买了一台Xbox</p>
+<p>you know, the first, ruggedy, blocky one from 2001.<br>你知道的，是那台坚硬、结实，2001年推出的Xbox</p>
+<p>we had tons and tons and tons of fun playing all kinds of games together<br>我们一起玩了许多游戏，而且玩得非常开心….</p>
+<p>until he died, when i was just 6.<br>…直到他去世为止，那年我才6岁</p>
+<p>i couldnt touch that console for 10 years.<br>在往后十年，我没有办法碰那台游戏机</p>
+<p>but once i did, i noticed something.<br>直到有一次我打开它，我发现了一件事情</p>
+<p>we used to play a racing game, Rally Sports Challenge.<br>过去我曾与父亲玩过一款叫做《越野挑战赛》的赛车游戏</p>
+<p>actually pretty awesome for the time it came.<br>实际上在当年，它真的很好玩</p>
+<p>and once i started meddling around… i found a GHOST.literaly.<br>而当我开始在这款游戏中四处浏览时，我遇到了货真价实的”幽灵”。</p>
+<p>you know, when a time race happens,<br>在这款赛车游戏的计时赛中</p>
+<p>that the fastest lap so far gets recorded as a ghost driver?<br>最佳纪录保持者的记录将会以幽灵车手状态出来与你一同赛车</p>
+<p>yep, you guessed it<br>是的，你猜到了！</p>
+<p>his ghost still rolls around the track today.<br>父亲的灵魂至今仍在赛车场上奔驰着</p>
+<p>and so i played and played,and played,<br>于是我一遍又一遍的挑战</p>
+<p>untill i was almost able to beat the ghost.<br>我慢慢的可以追上这位幽灵车手</p>
+<p>until one day i got ahead of it,i surpassed it, and…<br>终于有一天，我成功了！我超越祂了！然后…</p>
+<p>i stopped right in front of the finish line,<br>我在终点线前停下来</p>
+<p>just to ensure i wouldnt delete it.<br>确保我不会就这样删除”父亲的记录”。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/06/21/arts05/" data-toggle="tooltip" data-placement="top" title="ARTS 05 - 剖析 Uber 的 RIB 架构">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/06/07/arts03/" data-toggle="tooltip" data-placement="top" title="ARTS 03 - 如何使用 JavaScript 访问设备摄像头">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 124.1k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+    <script>
+        var _baId = '418b76fef727b6da80febf464b8907d3';
+        // Originial
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?" + _baId;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

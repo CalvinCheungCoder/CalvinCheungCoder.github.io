@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            一月一清零 | 这个世界会好吗？ - DHTalk&#39;s Blog | Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/03/01/restart202002/">
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+<!-- Custom Card JavaScript -->
+<script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/contact-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#清零" title="清零">清零</a>
+                        
+                    </div>
+                    <h1>一月一清零 | 这个世界会好吗？</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-03-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>相信很多人和我一样都是在家里自我隔离的状态中度过了 2 月，或许是在家中自我隔离等待复工，或是在家里进行远程办公。今年的这个春节假期估计也是大部分人经历过的最长春节假期了。</p>
+<p>回首 2 月份，感觉既漫长又快速。漫长是因为没有办法外出工作或者活动，没有了社交活动，每天看的最多的新闻就是疫情进展，这个感觉太漫长；快速是因为在家里办公、学习或者等待复工的过程，现在回首感觉 2 月份什么事情都没做呢就过去了，所以感觉过的太快，很多书还没有看，很多剧还没有追，很多工作还没有做等等。</p>
+<h3 id="疫情下的生活"><a href="#疫情下的生活" class="headerlink" title="疫情下的生活"></a>疫情下的生活</h3><p>记得 2 月初的时候，由于疫情形势不明朗，复工时间一直无法确定，也一直在延长复工的时间，从 2 月 3 日延长到 10 日，再延长到 17 日，网上甚至有了这样的段子：</p>
+<blockquote>
+<p>通知：假期延迟至 2 月 2 号<br>通知：假期延迟至 2 月 10 号<br>通知：假期延迟至 2 月 17 号<br>通知：公司没有了，不用回来了</p>
+</blockquote>
+<p>虽然这是一个段子，但是也一定程度上反映了社会的真实情况，在疫情期间，由于长时间的停工停产，大家都在居家隔离，也没办法进行线下消费，出现了很多小公司、小的线下商店倒闭关门的情况。就连做了十几年 IT 培训的兄弟连北京校区宣布关闭，员工遣散。</p>
+<p>也有很多行业是根据工作天数或者工作量来发放工资的，由于 2 月份没办法工作，导致这部分行业的人员没有了工资收入，同时可能还有各种贷款和信用卡账单要还，这个冬天，对于很多人来说真的是异常的寒冷。</p>
+<h3 id="疫情下的经济"><a href="#疫情下的经济" class="headerlink" title="疫情下的经济"></a>疫情下的经济</h3><p>记得在 2 月 3 号股市开盘时就开始大跌，当天收盘时上证指数跌幅近 8%，千股跌停，导致很多人忍痛割肉，但同时也有人在大跌时买入优质资产，静等上涨。现在回头来看，选择在 2 月 3 号卖出的大部分人应该是后悔了，因为从 2 月 4 号开始大盘就开始企稳上涨。</p>
+<p>当然在当时的情况下不管是卖出或者买入都无可厚非，因为疫情影响，整个经济形势十分不明朗，大家避险情绪严重，选择暂时卖出可以理解。但当时能够选择在大跌时买入的人才是真的勇敢，真的就像 Mark Elliot Zuckerberg 那句话说的一样：</p>
+<blockquote>
+<p>悲观者往往正确，但乐观者往往成功。</p>
+</blockquote>
+<p>至少现在看来，过去的一个多月时间，经过全国人民的努力，疫情已经基本被控制，虽然在这个过程中各地发生了很多令人感到心痛、感到不悦的事件，但乐观者往往成功，我相信更多的人是真心的为了抗击病毒在无私的付出，向这些无私的天使们致敬。</p>
+<p>就在 2 月底国内疫情进入最后攻坚战的情况下，又在亚洲和欧洲发现了感染病例，导致世界主要发达国家股市大幅度下跌，尤其是美国股市，更是创下自 2008 年金融危机以来最大一周跌幅。而国内上证指数也在 2 月最后的一个交易日下跌近 4%，又让很多国人损失惨重。</p>
+<p>这样的行情下，我们也只能相信一切都会变好，虽然疫情对各行各业的打击都很惨重，但没有一个冬天不会过去，没有一个春天不会到来。</p>
+<h3 id="疫情下我的生活"><a href="#疫情下我的生活" class="headerlink" title="疫情下我的生活"></a>疫情下我的生活</h3><p>在疫情还没有这么严重的时候，也就是 1 月底，当时刚过完大年初一，从家里直达上海的返程火车也被停运了，虽然当时刚刚在家待了 2 天，但是考虑到疫情可能会很快爆发，于是我和老婆决定大年初三从郑州赶回上海，当时返回上海的火车上人还不是很多，到达上海火车站时人还很少，大家都带着口罩但是还没有体温检测，记得当时坐滴滴回住处的时候师傅还在问我们，现在还没有开始上班你们怎么这么早就来上海了？我也只能笑着回答说回来先自我隔离。</p>
+<p>而后一周大概在 2 月初，疫情好像突然严重，每天确诊人数大幅增加，各地也开始戒严，不允许再出入等。也就是在这个时候，我在网络上逐渐看到了很多令人心痛的图片和视频，各地在进行戒严的时候有点”不择手段”了。</p>
+<p>幸运的是上海受影响的程度还不是很大，也因为返回上海很早，工作和生活基本没有受到什么影响，也不用在返程中与大量的人员接触了。自己在家进行自我隔离，除了买菜不再外出，在家老老实实的，不给其他人添麻烦。</p>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>因为经济形势不好，所以阅读了很多和经济相关的文章和书。这里记录几篇我过去一个月读过的感觉不错的文章：</p>
+<p><a href="https://mp.weixin.qq.com/s/jzDx3qaX99w0RrbSmBs3fg" target="_blank" rel="noopener">如何建立一套自己的投资系统？（一）</a><br><a href="https://mp.weixin.qq.com/s/UCpicQl_nehNnZfjDomAqA" target="_blank" rel="noopener">如何建立一套自己的投资系统？（二）</a><br><a href="https://mp.weixin.qq.com/s/DJDoMnyBRI2-FI-NXpX3og" target="_blank" rel="noopener">如何建立一套自己的投资系统？（三）</a></p>
+<p>这三篇文章是我关注的公众号孟岩（DreamyTalks）在今年写的文章，关于如何建立一套自己的投资系统，推荐阅读。</p>
+<p>2 月份唯一完整读完的一本书</p>
+<p> <a href="https://book.douban.com/subject/30229576/" target="_blank" rel="noopener">《时间的玫瑰》但斌</a> | 中信出版社</p>
+<p>就像巴菲特说没有多少投资者能够跑赢大盘指数一样，在投资过程中也有太多需要克服的人性中的弱点，更何况短期股市可能波动很大，大部分投资者没办法做到理性思考和理性操作，而价值投资的理念很大程度上克服了这种人性的弱点，把资产的价值放到更加长久的纬度去看，才能战胜短期的波动，获得不错的投资收益。</p>
+<blockquote>
+<p>在2000年的一个早上，杰夫·贝佐斯给巴菲特打电话，问巴菲特：“你的投资体系这么简单，为什么你是全世界第二富有的人，别人却不和你做一样的事情？” <br><br>巴菲特回答说：“因为没人愿意慢慢地变富。” </p>
+</blockquote>
+<p>在投资市场没有人愿意慢慢变富，就像生活中各种投机活动一样，大家都只想赚快钱，而且赚的越多越好，这才导致了整个社会畸形的价值观念。投资只想找到买了就能马上赚钱，并且可以赚大钱的股票；学生不专注于学业却只想当网红，当明星，做直播；工作中不肯踏实学习和积累，只想走近道搞关系。 </p>
+<p>但斌的这本书让我更多的了解了价值投资的意义以及要对时间有敬畏感，要在现在做出对的选择，当然想要做出正确的选择需要很大的努力和持续的学习能力，这本书里的关于投资的理念值得每个投资者学习。</p>
+<hr>
+<p><img src="/blogimg/20200229001.jpg" alt="20200229001.jpg"></p>
+<p>也是因为经济形势不好，为了做些对冲，我在月初大盘下跌的时候抄底买入了一些大盘指数基金，当然其它的基金也在定投。虽然月底最后一个交易日上证指数又大幅下跌，至少目前为止，今年的收益率跑赢了大盘，也算是寒冬中的一点自我安慰吧。</p>
+<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>2 月份之所以完整阅读的书只有一本，是因为我花费了很多时间在学习前端开发，之前只是懂一点简单的 HTML 和 CSS 语法，没有完整的知识体系，而我对用户界面也比较感兴趣，所以找到了一套比较完整的前端资料来学习。</p>
+<p>在没有对一个领域进行深入的了解的时候，总是会短视该领域，直到我开始进行学习的时候才明白为什么前端程序员平时这么痛苦了。除了要掌握 HTML5 基础的语法，还要学 Javascript，前端页面的各种布局方式、jQuery、前后端交互 Node+Gulp / MongoDB+Express / Ajax，还有各种框架诸如 Vue、ReactNative、Angular 等。</p>
+<p>只有真正的进入一个领域才会发现，哪怕这个领域很小，也有很多值得学习的东西。估计前端这套资料想要学完的话，大概要半年的时间了，任重而道远啊。</p>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>2 月完整的看了一部电影，第 92 届奥斯卡金像奖最佳影片之一的<a href="https://movie.douban.com/subject/30252495/" target="_blank" rel="noopener">《1917》</a>。</p>
+<p>电影讲述的是一战时的 2 个 16 岁的英国士兵传递重要的战争讯息的过程，重点在电影的拍摄手法上，一镜到底，整体评价一般吧，看完之后没有感觉剧情对电影有多重要，反而是被一镜到底的拍摄而吸引。</p>
+<p>不知道导演真的是需要一镜到底还是为了一镜到底而选择一镜到底。就像诺兰导演那样，他有些偏执的使用胶片拍摄电影，但是他导演的作品确实属于上乘之作，至于使用胶片还是数码摄像也就不那么重要了。</p>
+<p>除了电影之外，我在 Youtube 上也发现了 2 个不错的视频博主，主要是讲金融和科技相关的，是近期才火起来的博主，发现在国内平台哔哩哔哩上也有他们的视频，那就是<a href="https://space.bilibili.com/472747194?" target="_blank" rel="noopener">《巫师财经》</a>和<a href="https://space.bilibili.com/481774557" target="_blank" rel="noopener">《DannyData小丹尼》</a>。</p>
+<p>这两个博主的视频风格不同于抖音系列的短视频，他们的视频内容相对较长，而且视频内容的信息来源相对靠谱，比如他们在解读科技上市公司时，都会选择阅读大量的公司年报、公司高层的演讲或采访、交易所数据等，内容涉及到大量的英文资料，所以更新速度都很慢，真的属于国内做视频自媒体的”奇葩”了。</p>
+<p>推荐一下巫师财经的最新视频<a href="https://www.youtube.com/watch?v=mXzK7YRpd08&amp;t=21s" target="_blank" rel="noopener">《疫情对经济的影响：专题报告》</a>，视频共 25 分钟，对国内十几个产业进行了解读，看完也能对国内的宏观经济走势有个大概的了解。</p>
+<p>就在最近巫师财经又被爆出抄袭，真是人红是非多，当然这种瓜我就不吃了，毕竟互联网上信息鱼龙混杂。对于我们个人来说，选择什么样的信息，相信什么样的信息还是见仁见智了。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>回顾了过去的 2 月份，2020 年也过去了 1/6 了，不过好在很多地区马上就可以现场复工了，经济想要恢复一时半会肯定是不现实的问题，但我希望各行业能够快点恢复吧，尽量实现工作与生产的正常化。</p>
+<p>虽然国内的疫情有所好转，但我对此并不乐观，保守估计我会继续在 5 月份之前做好防护工作，这 2-3 个月的时间里还是不能大意，安全为主。</p>
+<p>对于国内的经济，我乐观看待，虽然今年的经济数据不会太好看，但没有一个冬天不会过去，没有一个春天不会到来。就像前面说的一样：悲观者往往正确，但乐观者往往成功。短期的痛苦不会太长久，希望大家都能乐观的对待未来。</p>
+<p>这个世界会好的。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/04/01/restart202003/" data-toggle="tooltip" data-placement="top" title="一月一清零 | 静待春暖花开">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/02/01/restart202001/" data-toggle="tooltip" data-placement="top" title="一月一清零 | 新年在病毒肆虐中到来">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#清零" title="清零">清零</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 124.1k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+    <script>
+        var _baId = '418b76fef727b6da80febf464b8907d3';
+        // Originial
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?" + _baId;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

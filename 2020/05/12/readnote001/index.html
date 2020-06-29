@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            你知道，这是牛市！ - DHTalk&#39;s Blog | Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/05/12/readnote001/">
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+<!-- Custom Card JavaScript -->
+<script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+            <!-- Pygments Highlight CSS -->
+            <link rel="stylesheet" href="/css/highlight.css">
+
+                <!-- Custom Fonts -->
+                <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+                <!-- Hux change font-awesome CDN to qiniu -->
+                <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+                <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>你知道，这是牛市！</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-05-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>忘记了是在 2018 还是 2019 年读过的一段小故事，讲的是投资中仓位的事情，不过当时读完以后记忆挺深刻的。上个月在翻阅<a href="https://book.douban.com/subject/27601129/" target="_blank" rel="noopener">《股票大作手回忆录》</a>的时候才又发现了这个故事的真实出处。</p>
+<p>细细品味这个故事，就会发现为什么在牛市的时候很多人依旧赚不到钱的原因。这个故事来源于该书的第五章： <code>“老火鸡”的至理名言：成功的秘诀在于预判大势和耐心坚守</code></p>
+<blockquote>
+<p>有些客户总是希望在他人的催促和逼迫下做事，一旦失败就将责任归咎于别人。这些人经常找到老帕特里奇，告诉他一个内线人士的朋友的朋友建议他们操作某只股票。他们会告诉他自己没有按照这个内幕消息操作，希望老帕特里奇指导他们该怎么办。然而，不论这个内幕消息是建议他们买入还是卖出，老先生的答案通常都是一样的。<br><br>客户会讲完自己的困惑，然后问他：“你认为我该如何去做？”<br><br>老火鸡先生把头扭向一侧，面带慈祥的微笑，注视着他的同行，最后意味深长地说：“你知道，这是牛市！”<br><br>我不止一次地听他说：“噢，这是牛市，你知道的！”好像他正在给你一张价值100万美元意外保险所覆盖的无价的护身符。当然，我也没有听懂他这句话的含义。<br><br>一天，一个叫作埃尔默·哈伍德（Elmer Harwood）的家伙冲进了公司，写下了一张交易单交给营业员。然后他冲到帕特里奇先生身边，而这时帕特里奇先生正在恭敬地听约翰·范宁（John Fanning）讲故事，说他无意间听说基恩给他的一位经纪公司下单，但约翰跟进只买了100股，赚了区区3个点，当然在约翰卖出之后，这只股票3天之内就上涨了23个点。这至少是约翰第四次给他讲述这个悲惨的故事，但是老火鸡先生一直保持着同情的微笑，好像是第一次听到这个故事一样。<br><br>埃尔默找到这位老先生，连一句道歉都没有就直接打断了约翰·范宁，他对老火鸡说：“帕特里奇先生，我刚刚卖掉了手上的克莱美汽车。我的人说市场肯定会有一次回调，到时我可以用更便宜的价格买回来。所以，你最好也这样做，我的意思是说，如果你现在手头上还有这只股票的话。”<br><br>埃尔默疑惑地看着这个人，他刚刚透露给了他可以买进的最新内幕消息。这些业余的或者说免费的内幕消息传播者总认为，获得消息的人应该对自己感激不尽，尤其是在内幕消息被证实之前更应如此。<br><br>“是的，哈伍德先生，我的确还持有这只股票，当然有了！”火鸡先生感激地说，埃尔默真是一个好人，能想到这个老头。“现在是你平仓获利的好时机，下次下跌时你可以再买回来。”埃尔默说着，就像是给这个老人开出了一张存款单一样。由于没有从受益者脸上看到热情洋溢的感激之情，埃尔默接着说：“我刚刚把手头所有的股票都卖了。”<br><br>从他的言谈举止中，保守估计他卖出了10000股。但帕特里奇先生遗憾地摇着脑袋，轻声说：“不！不！我不能那样做。”<br><br>“什么意思？”埃尔默大叫道。<br><br>“我就是不能那样做！”帕特里奇先生说，他一幅非常为难的样子。<br><br>“我不是已经给你透露买入的消息了吗？”<br><br>“你确实这么做了，哈伍德先生，我非常感激。我，先生，但是……”<br><br>“停住！听我说！那只股票是不是10之内上涨了7个点？是不是？”<br><br>“的确如此，我对你感激不尽，小兄弟，但是我没有想去卖掉这只股票。”<br><br>“为什么不卖？”埃尔默问，他开始出现自我怀疑的神情。大多数内幕消息的提供人士对于接受一方总是习惯于这种反应。<br><br>“是的，我不能卖。”<br><br>“为什么不能？”埃尔默身体往前靠得更近了。<br><br>“为什么？因为这是牛市啊！”这位老家伙说话的样子就像是在不紧不慢地详细解释这个事情。<br>“确实这样，”埃尔默说，由于失望他流露出愠怒的表情，“我和你的看法一样，现在是牛市。但是你最好还是脱手那只股票，回调时再买回来，这样你可以降低自己的成本。”<br><br>“小兄弟，”老帕特里奇带着十分苦恼的口吻说，“小兄弟，如果我现在卖掉这只股票，我就会失去我的仓位，然后我该怎么办呢？”<br><br>埃尔默·哈伍德摊开双手，摇着头走到我身边，希望得到我的同情。“你能搞明白吗？”他假装耳语一样低声问我，“我问你呢？”<br><br>我一言不发。所以他接着说：“我给他提供克莱美汽车的消息，他买了500股，已经赚了7个点的利润，现在我建议他平仓，在回调时再买回来，其实早就该回调了。我告诉他时，他是怎么说的？他说如果他卖掉这只股票，就会无事可做。你明白他在说什么吗？”<br><br>“对不起，哈伍德先生，我没有说过我会无事可做，”老伙计插话说道，“我说我会丢掉自己的仓位。当你到我这个年龄的时候，经历过多次股市的繁荣恐慌，你就会明白任何人都无法承受丢掉仓位的代价，就是约翰·戴维森·洛克菲勒（John Davison Rockefeller，美国慈善家、资本家，1870年创立标准石油，19世纪第一个亿万富翁）也承受不起。先生，我希望这只股票回调，这样你就可以用很低的价格重新买回。但我只能根据自己多年的经验来进行操作，我付出了惨痛的代价，现在我不想再交第二次学费。但我对你仍然感激不尽，就像我已经挣到了这笔钱并且存到了银行。这是牛市，你懂的。”然后他就走开了，留下了一脸茫然的埃尔默。</p>
+</blockquote>
+<h3 id="利弗莫尔的思考"><a href="#利弗莫尔的思考" class="headerlink" title="利弗莫尔的思考"></a>利弗莫尔的思考</h3><p>当我开始思考为什么自己对市场走势判断准确，却没有赚到应当赚到的足够多的钱时，我开始明白帕特里奇先生话中的深刻含义。越研究，我就越明白这位老先生是多么睿智。显然在他年轻时候因为同样的缺点遭受过巨大的损失，现在他已经知道了自己人性的缺点。经验告诉他，诱惑难以抗拒，却总是代价昂贵，所以他不会让自己去陷入这种诱惑，我也曾经付出过同样的代价。</p>
+<p>我认为，当我最终理解了老帕特里奇先生的谆谆告诫，这是自我交易教育的一大进步。他不断告诉其他客户：“噢，你知道这是牛市！”他其实是想告诉他们，赚大钱不能靠个股的波动，而要靠大盘走势；不能靠解读盘面，而要靠预判整个市场和市场趋势。</p>
+<p>在这里请允许我说一件事：在华尔街经过多年历练，赚过几百万美元，也赔过几百万美元，我想告诉你的是，我能挣到大钱从来不是因为我的思考，而是因为我的坚守。你明白吗？是我持之以恒的坚守！对市场判断正确不足为奇，在牛市中你总可以找到从一开始就做多的人，在熊市中也会找到从一开始就做空的人。我认识很多人，他们总能在恰当的时间做出准确无误的判断，在可以实现利润最大化的价位开始买入或卖出股票。他们的经历和我完全一样，也就是说，他们也没有因此真正挣到多少钱。既能正确判断市场走势又能坚守操作准则的人少之又少，我发现这是最难学到的事情之一。然而一个股票作手只有在掌握了这一点之后他才能挣到大钱，当一个人掌握了交易秘诀之后，挣几百万美元比无知蒙昧时挣几百美元还要容易。</p>
+<p>原因在于一个人可以一眼就看清楚市场走势，但他在市场中花费时间去按照自己的判断行事时就会失去耐心，开始自我怀疑。这就是在华尔街有如此之多的人，他们根本不属于傻瓜甚至连第三层级的傻瓜都不是，却仍然在赔钱的原因。不是市场击败了他们，是他们自己击败了自己，他们虽然有头脑，但缺少一颗坚守的心。老火鸡知行合一，他自己所说之言正是他一直在做的事情，他不但勇于相信自己的理念，而且深刻领会并耐心地坚守着自己的信念。</p>
+<p>我的致命伤就在于无视市场大势，绞尽脑汁地快进快出。没有人可以抓住所有的波动，在牛市你要做的就是在自己认为牛市走到终点之前一直买入和持有。要做到这一点，你必须研究大盘，而不是靠小道消息或者影响个股的特殊因素。然后你要忘掉手上所有的股票，忘记才能真正做到耐心地等待，直到你看到——或者你更喜欢的说法是，你认为自己看到了市场反转，即市场大势开始完全转向时为止。为了做到这一点，你必须开动脑筋、扩展视野，否则我的建议只不过是一堆废话，就像让你低买高卖一样。一个人能够学到的最有用的知识之一就是不要总是想着抓住最后一个或第一个0.125美元，这两个美元是世界上最昂贵的东西，它们让炒股者付出的代价可谓是成千上百万美元，足可以修建一条横贯美洲大陆的水泥高速公路。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>在股市或者任一投资市场中都存在这样的情况发生，有些人在市场相对底部的位置买入，如果按照市场的发展并且一直持有资产到市场上涨结束的时候，这笔投资的收益应该是最大的，这样的操作基本可以打败 99.99% 的市场投资者。</p>
+<p>但人是非理性的动物，尤其是在投资市场，太多的人就像故事中的埃尔默·哈伍德一样，期望在牛市中回调前卖出持仓，然后回调结束的时候再买入，这样的波段操作下来可以使自己的仓位不断增加。</p>
+<p>可笑的是因为这是牛市啊，你最重要的仓位卖出就没有了，而如果市场没有按照预期进行回调，或者回调的时候你并没有买入，反而你失去了仓位，而再去追高则增加了自己的持仓成本。</p>
+<p>这也是为什么牛市很多人赚不到钱的原因：市场在上涨，赚到了一点钱就卖出了仓位，而后又高价买入，然后赚到钱又卖出，最后再追高买入，虽然在每个上涨的波段中都赚到了一些钱，但是自己持仓成本在不断增加。最后在市场上涨的高位时被套，然后市场下跌，把自己赚的钱再还给市场。</p>
+<p>这是我个人认为该书中比较有意思的一个章节，也是对我很有启发的一个章节。市场总会向阻力最小的方向发展，所以在投资市场最重要的是找到市场对的方向买入，然后静待一个合适的时机进行卖出。仅此而已，控制好买入和卖出的时机，做好风险控制，这是投资中最简单的事，也是投资中最重要的事。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/05/24/arts01/" data-toggle="tooltip" data-placement="top" title="ARTS 01 - 为什么写作在远程工作中那么重要？">&larr; 上一篇</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/05/01/restart202004/" data-toggle="tooltip" data-placement="top" title="一月一清零 | 生活虽难，但人间值得">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 124.1k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+    <script>
+        var _baId = '418b76fef727b6da80febf464b8907d3';
+        // Originial
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?" + _baId;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
