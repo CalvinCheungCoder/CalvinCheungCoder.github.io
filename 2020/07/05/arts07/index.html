@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            ARTS 07 - 如何不靠运气变得富有 - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/07/05/arts07/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/archive-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                    </div>
+                    <h1>ARTS 07 - 如何不靠运气变得富有</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-07-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/roman-to-integer/" target="_blank" rel="noopener">13. 罗马数字转整数</a></p>
+<p>罗马数字包含以下七种字符: <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">字符          数值</div><div class="line">I             1</div><div class="line">V             5</div><div class="line">X             10</div><div class="line">L             50</div><div class="line">C             100</div><div class="line">D             500</div><div class="line">M             1000</div></pre></td></tr></table></figure>
+<p>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 27 写做  <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。</p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
+<ul>
+<li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li>
+<li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。 </li>
+<li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
+</ul>
+<p>给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</p>
+<p>示例 1:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: "III"</div><div class="line">输出: 3</div></pre></td></tr></table></figure>
+<p>示例 2:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: "IV"</div><div class="line">输出: 4</div></pre></td></tr></table></figure>
+<p>示例 3:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: "IX"</div><div class="line">输出: 9</div></pre></td></tr></table></figure>
+<p>示例 4:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: "LVIII"</div><div class="line">输出: 58</div><div class="line">解释: L = 50, V= 5, III = 3.</div></pre></td></tr></table></figure>
+<p>示例 5:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: "MCMXCIV"</div><div class="line">输出: 1994</div><div class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</div></pre></td></tr></table></figure>
+<p>Python 实现：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">romanToInt</span><span class="params">(self, s: str)</span> -&gt; int:</span></div><div class="line">        Roman2Int = &#123;<span class="string">'I'</span>:<span class="number">1</span>,<span class="string">'V'</span>:<span class="number">5</span>,<span class="string">'X'</span>:<span class="number">10</span>,<span class="string">'L'</span>:<span class="number">50</span>,<span class="string">'C'</span>:<span class="number">100</span>,<span class="string">'D'</span>:<span class="number">500</span>,<span class="string">'M'</span>:<span class="number">1000</span>&#125;</div><div class="line">        Int = <span class="number">0</span></div><div class="line">        n = len(s)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> range(n - <span class="number">1</span>):</div><div class="line">            <span class="keyword">if</span> Roman2Int[s[index]] &lt; Roman2Int[s[index + <span class="number">1</span>]]:</div><div class="line">                Int -= Roman2Int[s[index]]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                Int += Roman2Int[s[index]]</div><div class="line"></div><div class="line">        <span class="keyword">return</span> Int + Roman2Int[s[<span class="number">-1</span>]]</div></pre></td></tr></table></figure>
+<p><a href="https://leetcode-cn.com/problems/roman-to-integer/solution/qing-xi-tu-jie-python3-by-ml-zimingmeng/" target="_blank" rel="noopener">解题思路</a></p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://hacks.mozilla.org/2020/06/welcoming-safari-to-the-webextensions-community/" target="_blank" rel="noopener">Web Extension API 介绍（英文）</a></p>
+<p>6 月 22 日的 WWDC 大会中，苹果宣布 Safari 浏览器会使用 Web Extensions API 支持浏览器插件。这意味着只要使用这个 API，你的插件就可以同时在 Firefox，Chrome，Opera 、Edge 和 Safari 中运行。这里还有 MDN 上面的 <a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Add-ons/WebExtensions/What_are_WebExtensions" target="_blank" rel="noopener">API 教程</a>。</p>
+<p><a href="https://insights.dice.com/2020/06/29/apple-wwdc-2020-highlights-big-things-web-developers/" target="_blank" rel="noopener">Apple WWDC 2020 对 Web 开发者的意义（英文）</a></p>
+<p>刚刚举行的苹果开发者大会，公布了几个对 Web 开发者会产生影响的决定，比如 Safari 开始支持插件，并且插件可以在苹果商店出售，以及允许网站使用 FaceID 和 TouchID 进行用户认证。</p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p>如何强制修改 GitLab 账号密码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">gitlab-rails console production</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">user = User.where(id: 1).first</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">user.password=‘12345678’</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">user.password_confirmation=‘12345678’</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">user.save!</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">quit</div></pre></td></tr></table></figure>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://nav.al/rich?from=timeline&amp;isappinstalled=0&amp;scene=2&amp;clicktime=1577267366&amp;enterid=1577267366" target="_blank" rel="noopener">How to Get Rich: Every Episode</a></p>
+<p><a href="https://github.com/taosue/how-to-get-rich-without-getting-lucky/" target="_blank" rel="noopener">如何不靠运气变得富有（中文）</a></p>
+<p>Naval 是美国风险投资家，这是他的3小时长播客《如何不靠运气变得富有》的中文翻译，介绍了他的财富观，主要内容如下，非常推荐阅读。</p>
+<ol>
+<li>追求财富，而不是金钱或地位</li>
+<li>为世界创造更多</li>
+<li>自由市场是人类固有</li>
+<li>致富与运气无关</li>
+<li>你必须有点异乎寻常，才能独自走在前沿</li>
+<li>出租时间不会让你变得富有</li>
+<li>我们应该升级自己的自由，而不是生活方式</li>
+<li>给社会提供它不知道如何获得的东西</li>
+<li>互联网极大地丰富了职业发展的可能性</li>
+<li>寻找财富游戏中的长期战友</li>
+<li>选择智慧、精力充沛和正直的合作伙伴</li>
+<li>与理性的乐观主义者合作</li>
+<li>用特殊技能（Specific knowledge）武装自己</li>
+<li>特殊技能（specific knowledge）极富创造性或技术性</li>
+<li>学会销售，学会建造</li>
+<li>阅读你所热爱的内容，直到你爱上阅读</li>
+<li>数学和逻辑才是一切事物的基础</li>
+<li>没有被称为“商业”的技能</li>
+<li>勇敢承担责任才能获得影响力</li>
+<li>冷静的头脑，健康的身体，充满爱的家庭</li>
+<li>没有什么快速致富的方法</li>
+<li>产品化你自己</li>
+<li>找到让你富有、健康和有创造力的爱好</li>
+</ol>
+<h3 id="好内容推荐"><a href="#好内容推荐" class="headerlink" title="好内容推荐"></a>好内容推荐</h3><p><a href="https://www.notion.so/PRODUCT-THINKING-a601a12335044f349a22caf57f274c27" target="_blank" rel="noopener">PRODUCT THINKING · 产品沉思录精选</a></p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/07/01/restart202006/" data-toggle="tooltip" data-placement="top" title="一月一清零 | 我们正在经历并创造历史">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 127.2k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+    <script>
+        var _baId = '418b76fef727b6da80febf464b8907d3';
+        // Originial
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?" + _baId;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
