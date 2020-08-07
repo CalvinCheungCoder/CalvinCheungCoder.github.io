@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            ARTS 08 - iOS Crash 分析攻略 - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/08/07/arts08/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/archive-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                    <h1>ARTS 08 - iOS Crash 分析攻略</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-08-07
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/add-two-numbers/" target="_blank" rel="noopener">两数相加</a></p>
+<p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</div><div class="line">输出：7 -&gt; 0 -&gt; 8</div><div class="line">原因：342 + 465 = 807</div></pre></td></tr></table></figure>
+<p>Python3 代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">class Solution:</div><div class="line">    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:</div><div class="line">        a = ListNode() # 保留完整的链表</div><div class="line">        l3 = a  # 保留完整的链表</div><div class="line">        c = 0  # 进位</div><div class="line">        while l1 or l2:</div><div class="line">            x=l1.val if l1 else 0  # 没有下一节点时取0</div><div class="line">            y=l2.val if l2 else 0</div><div class="line">            tmp = x+y</div><div class="line">            if tmp+c &lt;10:</div><div class="line">                l3.next = ListNode(tmp+c)</div><div class="line">                c=0  # 不进位，清零</div><div class="line">            else:</div><div class="line">                l3.next = ListNode(tmp+c-10)</div><div class="line">                c=1  # 进位，进1</div><div class="line">            # print(tmp)</div><div class="line">            # print(l1)</div><div class="line">            # print(l2)</div><div class="line">            if l1:</div><div class="line">                l1 = l1.next  # 进入链表的下一节点</div><div class="line">            if l2:</div><div class="line">                l2 = l2.next  # 进入链表的下一节点</div><div class="line">            l3 = l3.next</div><div class="line">        if c==1:</div><div class="line">            l3.next = ListNode(1)  # 最后一个进位增加一个末尾节点，元素为1</div><div class="line">        return a.next  # a的第一个是0，因此去头节点</div></pre></td></tr></table></figure>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://mp.weixin.qq.com/s/hVj-j61Br3dox37SN79fDQ" target="_blank" rel="noopener">iOS Crash 分析攻略</a></p>
+<p>本文主要从 Crash 日志渠道、Crash 捕获的原理、看懂 Crash 日志、Crash分析方法 等角度向大家普及下 Crash 原理及分析的思路。</p>
+<p>其中讲到的知识点有：Mach异常、UNIX信号、常见 Crash 错误码、Mach-O、汇编等。</p>
+<p>Crash 定位的过程是不断追溯 Crash 现场发生了什么的过程，通过对 Crash 日志的原理和内容的深入了解，可以帮助我们更快更好的定位应用崩溃问题。</p>
+<p>然而现实中可能还是会有些疑难的 Crash 不易定位，是因为 Crash 日志其实也并未保存了 Crash 现场最全的信息，更进一步的优化就是丰富 Crash 日志的信息，让我们获取更多的 Crash 现场信息， 比如 KSCrash 这个框架在这块做了一些努力。这些开源项目的代码是值得学习的。</p>
+<h3 id="参考-amp-引用-amp-拓展阅读"><a href="#参考-amp-引用-amp-拓展阅读" class="headerlink" title="参考&amp;引用&amp;拓展阅读"></a>参考&amp;引用&amp;拓展阅读</h3><p>总线错误: <a href="https://zh.wikipedia.org/wiki/%E6%80%BB%E7%BA%BF%E9%94%99%E8%AF%AF" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%80%BB%E7%BA%BF%E9%94%99%E8%AF%AF</a></p>
+<p>书籍:《深入解析 Mach OS X &amp; iOS 操作系统》</p>
+<p>崩溃捕获系统的原理: <a href="https://junyixie.github.io/2019/09/28/CrashMonitorSystem/" target="_blank" rel="noopener">https://junyixie.github.io/2019/09/28/CrashMonitorSystem/</a></p>
+<p>分析iOS Crash文件: <a href="https://developer.aliyun.com/article/8854" target="_blank" rel="noopener">https://developer.aliyun.com/article/8854</a></p>
+<p>iOS开发同学的arm64入门: <a href="https://blog.cnbluebox.com/blog/2017/07/24/arm64-start/" target="_blank" rel="noopener">https://blog.cnbluebox.com/blog/2017/07/24/arm64-start/</a></p>
+<p>SIGSEGV 和 SIGBUS: <a href="https://www.cnblogs.com/charlesblc/p/6262783.html?spm=ata.13261165.0.0.26cd7529Cecpmj" target="_blank" rel="noopener">https://www.cnblogs.com/charlesblc/p/6262783.html?spm=ata.13261165.0.0.26cd7529Cecpmj</a></p>
+<p>iOS 调试进阶：<a href="https://zhuanlan.zhihu.com/c_142064221" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/c_142064221</a></p>
+<p>KSCrash：<a href="https://github.com/kstenerud/KSCrash" target="_blank" rel="noopener">https://github.com/kstenerud/KSCrash</a></p>
+<p>PLCrashReporter: <a href="https://github.com/microsoft/plcrashreporter" target="_blank" rel="noopener">https://github.com/microsoft/plcrashreporter</a></p>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p><a href="https://hackernoon.com/ten-useful-git-log-tricks-7nt3yxy" target="_blank" rel="noopener">Ten Useful Git Log Tricks</a></p>
+<h3 id="简洁的方式查看"><a href="#简洁的方式查看" class="headerlink" title="简洁的方式查看"></a>简洁的方式查看</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log --oneline</div></pre></td></tr></table></figure>
+<p>此命令可帮助您以更简洁的方式查看提交。它会将每次提交压缩到一行，并且只有很少的信息，例如较短的提交哈希，提交消息。</p>
+<h3 id="按日期查看"><a href="#按日期查看" class="headerlink" title="按日期查看"></a>按日期查看</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log --after="2020-15-05"</div><div class="line"></div><div class="line">git log --after="2020-15-05" --before="2020-25-05" // 仅显示5月15日至5月25日的提交</div><div class="line">git log --after="yesterday" // shows only commits from yeserday</div><div class="line"></div><div class="line">git log --after="today" // shows only today commits</div><div class="line"></div><div class="line">git log --before="10 day ago" // omits last 10 days commits</div><div class="line"></div><div class="line">git log --after="1 week ago" //show only commits from last week</div><div class="line"></div><div class="line">git log --after="2 week ago"</div><div class="line"></div><div class="line">git log --after="2 month ago" // shows only last 2 months commits</div></pre></td></tr></table></figure>
+<p>这些命令将按给定的时间间隔过滤提交。例如，– after将仅在给定时间段之后进行提交，而– before将仅在给定时间段之前进行提交。</p>
+<h3 id="git日志与差异更改"><a href="#git日志与差异更改" class="headerlink" title="git日志与差异更改"></a>git日志与差异更改</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log -p</div></pre></td></tr></table></figure>
+<p>此命令将显示具有差异更改的日志。这样您就可以知道每次提交中所做的更改。</p>
+<h3 id="按作者过滤提交"><a href="#按作者过滤提交" class="headerlink" title="按作者过滤提交"></a>按作者过滤提交</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log --author="Srebalaji"</div></pre></td></tr></table></figure>
+<p>上面的命令将过滤出特定作者所做的提交。请注意，Git按正则表达式模式过滤掉。因此，不必担心确切的名称匹配或区分大小写。</p>
+<p>Git日志可以采用多个选项，因此你可以根据需要组合选项。例如，</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log --after="1 week ago" --author="srebalji" -p</div></pre></td></tr></table></figure>
+<h3 id="通过日志消息过滤提交"><a href="#通过日志消息过滤提交" class="headerlink" title="通过日志消息过滤提交"></a>通过日志消息过滤提交</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log --grep="ISSUE-43560"</div></pre></td></tr></table></figure>
+<p>上面的命令将按各自的模式过滤提交。并且请记住，默认情况下它区分大小写。要使搜索不区分大小写，可以传递-i参数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log -i --grep="issue-43560"</div></pre></td></tr></table></figure>
+<p>下面的命令正在使用正则表达式模式搜索，并将搜索两个问题ID。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">git log -i --grep="issue-43560\|issue-89786"</div></pre></td></tr></table></figure>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://justjavascript.com/" target="_blank" rel="noopener">Just JavaScript 课程</a></p>
+<p>著名程序员 Dan Abramov 正在撰写的 JavaScript 教程，他还没有写完。只要在上面网址报名，每写好一部分就会通过邮件发给你。</p>
+<p><a href="https://mp.weixin.qq.com/s/trknf6B8EGvcqdSg8SODTQ" target="_blank" rel="noopener">如何优雅做系统错误提示？</a></p>
+<p>对于软件系统的错误提醒，作者在文章中给出了 4 点建议。</p>
+<ol>
+<li>不要提示用户不关心的信息</li>
+<li>清楚表达问题原因</li>
+<li>给出引导建议</li>
+<li>提示内容尽可能简短</li>
+</ol>
+<p><a href="https://mp.weixin.qq.com/s/z1ZVYXjNGutoovth5-lL-Q" target="_blank" rel="noopener">iPadOS 鼠标的设计哲学</a></p>
+<p>iPadOS 是 Apple 最近两年重点发力的系统，也是苹果希望打造强于 PC 的系统。而相比较于传统的 PC，iPad 本身是触摸设备，而如何使鼠标的接入更加的好用和自然，这是 Apple 花了很大心思做的事情。</p>
+<p>作者王禹效在这篇文章里详细分析了 Apple 是如何为 iPadOS 设计鼠标功能的，包括与传统桌面操作系统鼠标在逻辑、显示和设计上的区别，以及 Apple 做出这些改变的原因。</p>
+<p>作者认为其实 Apple 不是什么魔法师，只是在设计时认真的去为用户做考量，愿意在这些别人不在意的细节上投资。一点点积累之后，就有了自己独特的用户体验。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/07/05/arts07/" data-toggle="tooltip" data-placement="top" title="ARTS 07 - 如何不靠运气变得富有">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#tips" title="tips">tips</a>
+                        
+                          <a class="tag" href="/tags/#ARTS" title="ARTS">ARTS</a>
+                        
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 128.8k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+    <script>
+        var _baId = '418b76fef727b6da80febf464b8907d3';
+        // Originial
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?" + _baId;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
