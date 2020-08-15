@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2020-08-07T03:37:49.038Z</updated>
+  <updated>2020-08-15T03:41:27.903Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARTS 09 - MessageMock：优雅的模拟 Objective-C 方法</title>
+    <link href="https://zhangdinghao.cn/2020/08/15/arts09/"/>
+    <id>https://zhangdinghao.cn/2020/08/15/arts09/</id>
+    <published>2020-08-15T03:40:20.000Z</published>
+    <updated>2020-08-15T03:41:27.903Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
+<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
+<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
+<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
+<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">20. 有效的括号</a></p>
+<p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;{&#39;</code>，<code>&#39;}&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<ol>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+</ol>
+<p>注意空字符串可被认为是有效字符串。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;()&quot;</div><div class="line">输出: true</div></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;()[]&#123;&#125;&quot;</div><div class="line">输出: true</div></pre></td></tr></table></figure></p>
+<p>示例 3:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;(]&quot;</div><div class="line">输出: false</div></pre></td></tr></table></figure></p>
+<p>示例 4:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;([)]&quot;</div><div class="line">输出: false</div></pre></td></tr></table></figure></p>
+<p>示例 5:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;&#123;[]&#125;&quot;</div><div class="line">输出: true</div></pre></td></tr></table></figure></p>
+<p>Python 3 代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">class Solution:</div><div class="line">    def isValid(self, s):</div><div class="line">        while &apos;&#123;&#125;&apos; in s or &apos;()&apos; in s or &apos;[]&apos; in s:</div><div class="line">            s = s.replace(&apos;&#123;&#125;&apos;, &apos;&apos;)</div><div class="line">            s = s.replace(&apos;[]&apos;, &apos;&apos;)</div><div class="line">            s = s.replace(&apos;()&apos;, &apos;&apos;)</div><div class="line">        return s == &apos;&apos;</div></pre></td></tr></table></figure>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://mp.weixin.qq.com/s/jm2QvYqnvFCPcRPocpj9ZQ" target="_blank" rel="noopener">MessageMock : 优雅的模拟 Objective-C 方法</a></p>
+<p>开源地址：<a href="https://github.com/indulgeIn/MessageMock" target="_blank" rel="noopener">MessageMock</a></p>
+<p>在代码测试中，对于一些不容易获取的对象，可以虚拟（mock）出一个对象来帮助完成测试。在 iOS 中，已经有 OCMock 这样比较有名的开源框架去解决这个问题。但是 OCMock 在使用上的问题是比较繁琐麻烦，测试一个小的功能可能在使用上也比较麻烦。本文为这种场景提供了一种新的思路，基于 <code>objc_msgSend</code> 来进行方法的“模拟”和“校验”。</p>
+<p><strong>MessageMock</strong> 通过任意<code>[target selector]</code>调用命中目标方法：</p>
+<ul>
+<li>修改目标方法返回值、参数</li>
+<li>验证目标方法返回值、参数</li>
+<li>跳过目标方法调用</li>
+<li>获取目标方法命中次数</li>
+</ul>
+<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p><a href="https://github.com/anuraghazra/github-readme-stats/blob/master/docs/readme_cn.md" target="_blank" rel="noopener">GitHub Readme Stats</a></p>
+<p>一个可以自己部署的服务，生成个人 GitHub 账户的统计，可以插在自述文件里面。如图所示，你还可以自定义卡片样式和内容。</p>
+<p><img src="/blogimg/20200815001.png" alt="20200815001"><br><img src="/blogimg/20200815002.png" alt="20200815002"><br><img src="/blogimg/20200815003.png" alt="20200815003"></p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://qvault.io/2020/07/08/how-sha-2-works-step-by-step-sha-256/" target="_blank" rel="noopener">SHA-256 的原理（英文）</a></p>
+<p>本文通过一个简单的例子，一步步演示 SHA-256 算法，如何将字符串变成一个256位的哈希值。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
+    
+    </summary>
+    
+      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
+    
+    
+      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
+    
+      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
+    
+      <category term="iOS" scheme="https://zhangdinghao.cn/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>ARTS 08 - iOS Crash 分析攻略</title>
@@ -1442,80 +1503,6 @@ setBookInfo(8.8,9.0,'35009826','https://book.douban.com/subject/35009826/','http
     
     
       <category term="读书笔记" scheme="https://zhangdinghao.cn/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>走进比尔：解码比尔·盖茨</title>
-    <link href="https://zhangdinghao.cn/2019/09/21/billgates/"/>
-    <id>https://zhangdinghao.cn/2019/09/21/billgates/</id>
-    <published>2019-09-21T06:17:17.000Z</published>
-    <updated>2019-12-29T12:22:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>说起微软，我们最初的记忆可能只有 MS-DOS 和 Windows 系统，以及因为 Windows 系统而成为全球首富的比尔盖茨，然而有关比尔盖茨的故事，有关他执掌微软以及现在运营的 <a href="https://zh.wikipedia.org/wiki/%E6%AF%94%E5%B0%94%E5%8F%8A%E6%A2%85%E7%90%B3%E8%BE%BE%C2%B7%E7%9B%96%E8%8C%A8%E5%9F%BA%E9%87%91%E4%BC%9A" target="_blank" rel="noopener">比尔及梅琳达·盖茨基金会</a> 的故事我们却知之甚少或者一无所知。</p>
-<p>对于比尔盖茨，我也只是偶尔在 <a href="https://www.gatesnotes.com/" target="_blank" rel="noopener">比尔盖茨的 Blog</a> 上看到一些他分享的读书笔记，以及他的基金会去贫困地区做的一些事情的文章。在 2019 年 9 月 20 日，<a href="https://www.netflix.com" target="_blank" rel="noopener">Netflix</a> 放出了一部有关比尔盖茨的纪录片，名字就叫做 <a href="https://www.netflix.com/title/80184771" target="_blank" rel="noopener">走进比尔：解码比尔·盖茨</a>，就像当初看到沃伦巴菲特的纪录片时一样兴奋，我在深夜开始观看，一口气看完了这部将近 3 个小时的片子。</p>
-<p>这部纪录片主要讲述了什么呢，主要分为 1.比尔盖茨创办微软以及他与保罗艾伦和家庭成员之间的故事。2.他和妻子梅琳达通过基金会帮助发展中国家解决卫生问题、解决脊髓灰质炎疾病的问题。3.为了解决使用传统能源给地球带来的环境问题，他开始关注核能。</p>
-<h3 id="发展中国家的卫生问题"><a href="#发展中国家的卫生问题" class="headerlink" title="发展中国家的卫生问题"></a>发展中国家的卫生问题</h3><p>在大城市长大和生活的人们可能很难想象在世界上的一些贫困国家和地区人们的生活状态，他们甚至没有一个像样的厕所，就更不要说干净的水和安全的房子了。</p>
-<p>这张照片是在贫困地区的清洁人员把开放厕所里面的粪便装入这样的大铁皮桶里。</p>
-<p><img src="/blogimg/2019092101.png" alt="2019092101.png"></p>
-<p>装满了铁皮桶以后拉着去附近的水都已经发臭的小河里。<br><img src="/blogimg/2019092102.png" alt="2019092102.png"></p>
-<p>然后把粪便倒在这样的小河中。<br><img src="/blogimg/2019092103.png" alt="2019092103.png"></p>
-<p>可想而知这样处理粪便会带来多么严重的卫生问题，但是这是他们的无奈之举，因为他们生活的环境并没有好到哪里去。在贫民窟里，房子破破烂烂，没有下水管道和污水处理系统，这就是他们生活的地方，到处都是垃圾。</p>
-<p><img src="/blogimg/2019092104.png" alt="2019092104.png"></p>
-<p>在记者拍这个记录片的时候，采访了一家人以后记者想要去小便，家里的女主人指了指旁边的小水沟，意思是让他在那里方便，当时记者感到很惊讶，因为这个小水沟也是他们平时生活取水的地方。</p>
-<p>比尔盖茨做的是解决他们的卫生间问题，要设计一套和现代社会完全不一样的马桶，要便宜并且能够方便使用，要能够有很好的方式去处理粪便而不会污染到居民的生活环境。</p>
-<p>所以他找了很多的方案设计了很多的马桶以及污水和粪便处理系统，在 2018 年，比尔盖茨还在北京参加了 <a href="https://www.hk01.com/%E8%B2%A1%E7%B6%93%E5%BF%AB%E8%A8%8A/255658/%E5%A4%9A%E7%9B%B8-%E8%93%8B%E8%8C%A8%E5%8C%97%E4%BA%AC%E6%8E%A8%E9%8A%B7%E9%A6%AC%E6%A1%B6-%E5%86%80%E6%96%B0%E4%B8%96%E4%BB%A3%E5%BB%81%E6%89%80%E5%B8%B6%E4%BE%86%E6%95%B8%E5%8D%81%E5%84%84%E7%BE%8E%E5%85%83%E5%95%86%E6%A9%9F" target="_blank" rel="noopener">新世代厕所博览会</a>，最终比尔盖茨带着研制的各种新型马桶和一种小型的污水处理装置在贫困地区开始投放使用。</p>
-<p>这是粪便处理装置的工作示意图，通过燃烧粪便产生热量驱动机器运转，燃烧产生的水蒸气最终处理成干净的水。<br><img src="/blogimg/2019092105.png" alt="2019092105.png"></p>
-<p>处理过的粪便还可以用来种植一些蔬菜，比如西红柿。<br><img src="/blogimg/2019092115.png" alt="2019092115.png"></p>
-<p>这是小型处理厂最终的样子，占地面积很少并且不需要外部能源输入，直接使用通过特殊马桶处理过的粪便进行处理。<br><img src="/blogimg/2019092106.png" alt="2019092106.png"></p>
-<p>比尔盖茨在喝通过小型处理厂处理粪便产生的纯净水。<br><img src="/blogimg/2019092116.png" alt="2019092116.png"></p>
-<p>在 2018 年，<a href="https://en.wikipedia.org/wiki/Lixil_Group" target="_blank" rel="noopener">骊住集团</a> 与比尔盖茨合作生成比尔盖茨研发的马桶。</p>
-<h3 id="战胜脊髓灰质炎"><a href="#战胜脊髓灰质炎" class="headerlink" title="战胜脊髓灰质炎"></a>战胜脊髓灰质炎</h3><p>脊髓灰质炎简称小儿麻病症，在我小的时候，大概是在上个世纪末，我生活的农村地区还能看到有一些人患有该疾病。</p>
-<p>这是一张患有脊髓灰质炎的小孩的照片。大量的人得了这个疾病的后果就是身体发育有问题，行动不便，生活也会有大量的困难，而且也会有部分人因为这个疾病而死去，而在西方发达国家，这种疾病早就通过给小孩子注射疫苗的方式根除了。在一些落后的发展中国家，这种疾病还是一个很大的问题。<br><img src="/blogimg/2019092107.png" alt="2019092107.png"></p>
-<p>所以，这是基金会也是比尔盖茨关注的第二个问题，他对该项目划拨 4 亿美元，但是要求自己要随时关注着项目的进行。在给贫困地区人们注册疫苗的时候，很快问题出现了。</p>
-<p>宗教领袖说疫苗是西方世界的阴谋，要让儿童绝育，说支持消灭脊髓灰质炎的人是当代希特勒，比尔盖茨去到索科托素丹的王宫，和当地的领袖交流，回答他们的问题，最终他们同意协商。</p>
-<p><img src="/blogimg/2019092112.png" alt="2019092112.png"></p>
-<p>虽然有了很多志愿者去给当地的人注射疫苗，但总是有一些地方依旧有疾病的发生，比尔盖茨想搞懂为什么，他让团队通过高清的卫星照片加计算机处理，制作了详细的尼日利亚地图，最终发现原来是一些生活在不同区交界的人们被忽略了，因为这个区的志愿者觉得另外一个区应该会给他们注射，而另外一个区的又觉得另一个区的志愿者会给他们注射，最后导致忽略了这些人。</p>
-<p><img src="/blogimg/2019092111.png" alt="2019092111.png"></p>
-<p>在 2010 年，随着先进技术的使用加上当地人的配合，就连十几亿人的印度都快实现了 0 病例。而在尼日利亚，患病的人群也在逐渐下降，但就在当年的 9 月，新的困难又出现了。</p>
-<p>50 名武装分子袭击了尼日利亚北部的堡夕监狱，放出近 150 名恐怖组织博科圣地的成员，新一轮的恐怖袭击席卷尼日利亚。有一些疫苗接种人员被炸弹炸死，保护疫苗接种者的警察被枪杀，还利用儿童做诱饵杀害志愿者等等，因为有恐怖分子的存在，很多人告诉比尔盖茨想要彻底消灭脊髓灰质炎是不可能的了。</p>
-<p>但在 2013 年 比尔盖茨去阿布扎比，和一些机构合作计划在 6 年内消灭脊髓灰质炎，这大概要花费60亿美元，基金会很多项目还需要花钱，然后比尔盖茨找到了老朋友沃伦巴菲特。当巴菲特问比尔盖茨有多大的概率可以彻底消灭脊髓灰质炎时，比尔盖茨说他基本押上了基金会的声誉并对此有很大的信心。于是，巴菲特对他说了下面这句话。</p>
-<p><img src="/blogimg/2019092114.png" alt="2019092114.png"></p>
-<h3 id="解决能源以及全球的环境问题"><a href="#解决能源以及全球的环境问题" class="headerlink" title="解决能源以及全球的环境问题"></a>解决能源以及全球的环境问题</h3><p>全球变暖以及环境问题一直以来都是全世界关注的重大问题，这次，比尔盖茨把视角转到了新能源，他希望通过新能源的改造与使用来解决全球的环境以及传统能源枯竭的问题。</p>
-<p>虽然全球已经在使用新能源，比如风能、太阳能等，但是这些新能源受环境影响较大，而且这些新能源产生的电能进行储存也是一个巨大的困难。而且因为使用传统能源产生的大气污染对环境的影响也是深远的。</p>
-<p>所以，比尔盖茨选择了核能，但是核能对很多人来说是陌生的甚至是可怕的，尤其是今年 HBO 播出的迷你剧《切尔诺贝利》更让大家又一次认识到了核泄漏造成的危害之大，危害之广。因为核电站的设计缺陷或者人为操作失误造成重大的核泄漏事件对人们造成的影响是深远的，远的来说，切尔诺贝利的发生简直是对人类狂妄自大的惩罚。以及前几年发生的日本福岛核电站泄露事故不由得让人胆战心惊。</p>
-<p>如何解决核电站的稳定性和安全性是重要的问题，哪怕发生了断电、地震、海啸或者其他的自然灾害，保证核泄漏的事故不会发生才是最重要的。</p>
-<p>这又是一场投资巨大的项目，比尔盖茨找来世界上厉害的科学家，根据以往的技术方案以及核泄漏的事故原因进分析，与泰拉电力合作研发了新的核电站。随后对这个方案进行实验环节，比尔盖茨得到美国政府允许与中国合作进行新型核电站的实验。</p>
-<p><img src="/blogimg/2019092117.png" alt="2019092117.png"></p>
-<p>经过 5 年的努力，事情好像终于有了一些进展，但是新的问题又来了，中美贸易战开始了，而美国政府之前对这个项目的许诺现在也要撤回了，终止与中国的核电站合作。而这个困难接下来要怎么解决，目前还是未知数。。。</p>
-<h3 id="微软、朋友、爱人和家庭"><a href="#微软、朋友、爱人和家庭" class="headerlink" title="微软、朋友、爱人和家庭"></a>微软、朋友、爱人和家庭</h3><p>在整部剧中还有大量的篇幅来讲述盖茨读书时的生活，讲述他古怪的性格以及聪明的大脑，盖茨在高中时进入了私立学校湖滨中学，以及他在高中时期认识的几个好朋友，正是在这个时期，他的中学生活为未来创建微软打下了基础。</p>
-<p>在高中三年级的时候，湖滨中学与隔壁的一个女校进行了合并，在开学之初学校需要给 2 个校区的学生进行排课，这是一个复杂的工程，最终比尔盖茨和保罗花了 2 个星期的时间写好了程序，完美的处理了学校的排课问题。</p>
-<p>接下来，更多的学校找到他们想要他们帮助排课，还有一些其他行业的公司想要盖茨帮助他们编写程序，由此开始了他们的编程之路。然后就是进入大学，继续编程，然后辍学创办微软的故事了。</p>
-<p><img src="/blogimg/2019092119.png" alt="2019092119.png"></p>
-<p>当然，剧中还有很多盖茨在微软的故事，他年轻时的轻狂与羁傲不训，以及他与保罗·艾伦隔阂的产生。以至于到后来他们彼此原谅，但是在保罗·艾伦趋势时，盖茨也没能见到他最后一面。</p>
-<p>不仅仅是微软和保罗的故事，剧中还提到了在盖茨妈妈的安排下他和沃伦巴菲特认识并成为好朋友的故事。</p>
-<p><img src="/blogimg/2019092108.png" alt="2019092108.png"><br><img src="/blogimg/2019092109.png" alt="2019092109.png"><br><img src="/blogimg/2019092110.png" alt="2019092110.png"></p>
-<p>剧中还讲述了盖茨和梅琳达认识并结婚的故事，这部分相当有趣。当然，现在看来他们两人的结合也是非常合适的，他们在生活中相互扶持，以及后来创办 <a href="https://zh.wikipedia.org/wiki/%E6%AF%94%E5%B0%94%E5%8F%8A%E6%A2%85%E7%90%B3%E8%BE%BE%C2%B7%E7%9B%96%E8%8C%A8%E5%9F%BA%E9%87%91%E4%BC%9A" target="_blank" rel="noopener">比尔及梅琳达·盖茨基金会</a> ，梅琳达也在其中扮演了重要的角色。</p>
-<p>剧中也有一些家人的部分，以及采访了比尔盖茨的姐姐。</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>我查看了盖茨基金会最近这些年做的慈善事情，不仅仅是剧中所列出的这 3 个方面，还有很多其他方面有意义的事情，可能也是编剧需要吧，选择了 3 个相对不错的项目。</p>
-<p>看本剧发现了比尔盖茨和沃伦巴菲特的一个共同点：读书。这个方面我在 <a href="https://www.gatesnotes.com/" target="_blank" rel="noopener">比尔盖茨的 Blog</a> 上就已经发现了，他经常在 Blog 上分享一些自己读过不错的书，一般还会有一篇读书的笔记或者感想。剧中他的助理会每周整理他的书，并且他也会偶尔时间去湖边的小屋带着十几本书度过一周，在这里他读书和思考。</p>
-<p><img src="/blogimg/2019092118.png" alt="2019092118.png"></p>
-<p>当记者问他现在一般会读什么类型的书的时候，他这样回答。当然，现在的盖茨也是一个态度积极的人，做任何事情都有着非同常人的积极性和乐观的态度。<br><img src="/blogimg/2019092120.png" alt="2019092120.png"></p>
-<p>因为这部剧现在还没有中文世界传播，我看网上少有的几个评价已经有人再说这部剧类似于盖茨的 PR 稿了。不可否认有人会有这样的想法，但从某些角度来看，盖茨在从微软退休后所积极从事的慈善事业就是值得我们敬佩的。无独有偶，在中国，阿里巴巴创始人马云也是和盖茨相似的人，他们都在决定甚至还没有退休之前就已经开始或者将要做慈善了，或许这是有钱人追求快乐的方式？</p>
-<p>如今的微软，是唯一一个可以和苹果公司共同号称市值突破 10000 亿美元的科技公司。微软最近这些年的转型也在程序员心目中有着不错的口碑，比如收购了 <code>Github</code> 之后积极推进开源事业，为免费用户开放私有仓库权限。开发了好用且好看的 IDE 工具 <code>Visual Studio Code</code>，简称 <code>VS Code</code>。当然，这一切都是在比尔盖茨退休之后完成的。</p>
-<p>由此剧我觉得也给我一些启发，比如如何做真正有价值且对社会有积极意义的事情，富豪们都在积极的做慈善，这也许称得上是最显而易见的对社会有意义的事情，作为普通人的我们如果做对社会有价值和有意义的事情呢？</p>
-<p>我个人觉得，作为各行各业的普通人，做好最本职的工作，通过工作产生对社会有价值的东西。比如商人不卖假货、厨师做菜干净卫生且不使用有害或者腐烂的食材、程序员开发软件更加注重质量和用户的体验、有能力的人可以通过互联网对别人提供有价值的信息等等，这都是我个人认为普通人都能尽力做好的事情，当然或许有点理想主义了。如果这些有点理想主义，偶尔做点公益也是好的吧。或许日行一善；或者勿以善小而不为，勿以恶小而为之。</p>
-<p><img src="/blogimg/IMG_0480.jpg" alt="IMG_0480 (1).jpg"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;说起微软，我们最初的记忆可能只有 MS-DOS 和 Windows 系统，以及因为 Windows 系统而成为全球首富的比尔盖茨，然而有关比尔盖茨的故事，有关他执掌微软以及现在运营的 &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%AF
-    
-    </summary>
-    
-    
-      <category term="Movie" scheme="https://zhangdinghao.cn/tags/Movie/"/>
     
   </entry>
   
