@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            比特币改革 The BitCoin Reformation - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/10/12/BitcoinReformationFinal/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#BitCoin" title="BitCoin">BitCoin</a>
+                        
+                          <a class="tag" href="/tags/#加密货币" title="加密货币">加密货币</a>
+                        
+                    </div>
+                    <h1>比特币改革 The BitCoin Reformation</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-10-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>作者：Adamant Research<br>译者：Thomas（第一译者）&amp; Jessie &amp; Maurice Lee<br>原作链接：<a href="https://docsend.com/view/ijd8qrs" target="_blank" rel="noopener">https://docsend.com/view/ijd8qrs</a></p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">简介</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>在十六世纪末期，一群乌合之众般的叛逆知识份子和创业家建立了一个国家。这个国家位于欧洲大陆上最不受欢迎的一块土地，为了抵御过于频繁的洪水而建造百里壕沟。治水的同时，这个国家甚至与当时地表上最大的帝国进行了八十年的战争。</p>
+<p>这段挣扎的岁月、新思想的大熔炉熔铸出了荷兰与英国的黄金时期。创新的经济机构改变了世界。美国也进行了一场极其成功的社会经济实验：纽约市。</p>
+<p><strong>本作品的观点是</strong>：二十一世纪的比特币、加密技术、互联网、千禧一代远非潮流而已；他们一起预示了一波巨大的改变，其与十六、十七世纪的欧洲宗教改革有相似的特性。</p>
+<ul>
+<li>容许比特币或是反对比特币的立场将成为影响重大的政治立场分野 - 比特币网络的驱动力在存款、放贷、承销、承保</li>
+<li>合作型托管将成为产业标准</li>
+<li>境外银行业务可能将转变成比特币银行业务</li>
+<li>将快速成熟的领域：比特币债券、年金、借贷、保险</li>
+<li>IEO (交易所公开发行) 将成为常态且继续成长</li>
+<li>比特币持有者将加速这场思想改革</li>
+</ul>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">目录</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>一：分析方法论</p>
+<p>二：改革的四个先决条件</p>
+<ul>
+<li>1/ 以租金为商业模式的垄断式服务提供者</li>
+<li>2/ 科技变革作为催化剂</li>
+<li>3/ 新经济阶级的诉求</li>
+<li>4/ 可信赖的防御策略和退出策略</li>
+<li>当时的教条对比今天的教条</li>
+</ul>
+<p>三：改革期间的金融、经济</p>
+<ul>
+<li>1/ 100% 存款准备率与严格的协议</li>
+<li>2/ 企业保险：谨慎的信任网络</li>
+<li>3/ 流动性高的担保作为放贷和衍生性金融商品的基础</li>
+<li>4/ 在通货紧缩的世界里获取资本</li>
+</ul>
+<p>四：结语</p>
+<p>五：附录</p>
+<ul>
+<li>早期的异议</li>
+<li>公开逆反</li>
+<li>镇压</li>
+<li>荷兰、新阿姆斯特丹、纽约</li>
+</ul>
+<p>后记</p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">一：过去是通向未来的钥匙</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>作为一个投资人和分析师，我的目标在于识别社会经济发展的趋势并对其演变作出预测。我阅读、筛选、分享。我听取那些值得信任的正直的专家，将噪音与信号分离。然而，最主要的挑战仍在于：世俗的趋势往往仅在事后才清晰可见。</p>
+<p>对此，我相信解法在于：<strong>识别与今天进程相似的多个历史观点</strong>。为了降低我成为趋势盲的可能性，我广泛的研读历史。阅读历史书籍与文章时，我的目标在于识别与今天趋势相近的、对称的历史趋势。这么做让我更加开放的思考各种互相牵连的因子，进而能对过去不可能想到的因果关系提出假说。我相信这么做让我能更准确的分析不同结果发生的机率，从而让我能更理性的进行投资和创业活动。</p>
+<p>过去我曾分析比特币和早期石油产业的相似 (联系)、和搜索引擎战争的相似 (联系)、和域名市场的相似 (联系)、和点对点文件分享的相似 (联系)、和互联网协议发展的相似 (联系)。但是，在这个被比特币日益影响的今天，我始终觉得自己没有掌握到时代脉搏的广度和深度 - <strong>直到我研读了新教改革的这段历史，我才感到自己对比特币的影响力有了深具潜力的蓝图</strong>。</p>
+<p>希望您在阅读本报告时能如同我进行研究时一样享受它。</p>
+<p>Sincerely,</p>
+<p>Tuur Demeester</p>
+<p>(引述：想要预测未来的人必须以史为鉴，因为人类世界的事件总是与过去事件相似。原因在于一个事实：这些事件背后的人们在过去、现在、未来都被同样的热情支配，因此这些事件必然拥有相似的结果 - 马基维利, 1517)</p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">二：改革的四个先决条件</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>回顾历史可以知道，新教改革之所以可能发生，有四个先决条件，而这四个先决条件在今天同样存在：垄断性服务提供者占主导地位的现况、科技催化变革、新的经济阶层的出现、以及叛逆者拥有可靠的防御策略与退出策略。</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">1/ 以租金为商业模式的垄断式服务提供者</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>于 2002 年发表的论文 <strong>《对新教改革的经济学分析》</strong> 认为天主教会垄断了信仰服务的供应，同时，在法律系统里有话语权的信仰权威拥有能驱逐反对者的市场力量。（注 [1]）</p>
+<p><img src="/blogimg/20201012001.jpeg" alt=""></p>
+<p style="text-align: center;">图 1：新教改革的经济学分析</p>
+
+<p>多个世纪以来，天主教会执行了非常重要的守门功能：守护天国之门，而门的钥匙即是由牧师提供的对罪的宽恕。该论文作者认为，若这个垄断的信仰权威对人⺠过度索取，将造成两种风险：(a) 人⺠可能选择从其他渠道获得信仰服务、(b) 世俗权威可能寻求另外的信仰服务提供者。这两者在新教改革期间都有发生。</p>
+<p>今天，我们关注的这个垄断服务提供者是国际货币与金融体系（注 [2]）。自从 1944 年布雷顿森林协议后，作为世界储备货币的美元一直享有通天般的特权。与十六世纪的天主教会相似，在法律系统里有话语权的金融权威拥有能驱逐反对者的市场力量。另外，<strong>以法币为准作结算的银行体系执行了重要的守门功能：</strong> <strong>守着通向世界财富与养老基金体系之门</strong>。</p>
+<p>在量化宽松、负利率、货币战争横行的今天，处于垄断的银行体系可能正在为它所提供的服务漫天要价 (这个体系的用户正在承担著通胀税)。这代表银行体系可能面临两种风险：(a) 人⺠可能选择从其他管道获得金融服务、(b) 世俗权威可能寻求另外的金融服务提供者。换言之，若比特币不断扩大其市场份额，大胆的猜测，可能最终他将被政治实体全面认可而成为合法的货币。</p>
+<p><img src="/blogimg/20201012002.jpeg" alt=""></p>
+<p style="text-align: center;">图 2</p>
+
+<p>(插图：1559 年 Pieter Bruegel 绘製「The Fight between Carnival and Lent」的图中细节。Pieter 的公寓里捕捉到了十六世纪的大冲突：左边是放纵的逆反者，右边是衰弱的天主教会)<br>(引述：「暂时征税变成永久征税，同时很多新的税制针对最富有的教会成员所制定。教会文件显示 […] 异端份子的儿子与孙子必须替他付钱赎罪 […] 只要缴纳相关费用，过世亲人的灵魂可以免于炼狱的惩罚。」— The Market Place of Christianity, P.117)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">2/ 科技变革作为催化剂</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>十六世纪时，多个改变世界的技术开始被广泛采用：印刷术让印出一本书的成本从整整一年劳动所获的收入降为买一只鸡的价格（注 [3]）；复式记帐法加速了国际贸易 (注 [4])；指南针与沙漏的改进让探险者能够探索未知地域并安全返还，解锁了世界大探险的进程 (注 [5])；科学研究的蓬勃发展促成技术发明的繁荣 (注 [6])。</p>
+<p>二十世纪晚期、二十一世纪早期时，几个重要的发明促成数字革命：通信技术和邮件系统让远程工作成为可能；计算机与资料储存的商业化大幅降低基础设施成本，从而降低新创公司的成本；开源软件为创业者提供稳固且免费的开发工具；密码学促成了整套防御技术和去信任资讯安全技术的发明；社交媒体容许快速的、无官僚介入的信息快速散布和传播。</p>
+<p><img src="/blogimg/20201012003.png" alt=""></p>
+<p style="text-align: center;">图 3</p>
+
+<p>(图表：十五世纪时欧洲的书本价格每年下降 2.4%，持续一百年，同期间大学课程科学科目的占比上升 25-40%)</p>
+<p><img src="/blogimg/20201012004.png" alt=""></p>
+<p style="text-align: center;">图 4</p>
+
+<p>(图表：1Mb/s 的网线价格二十年内降低了 99%，从最初的 10 万美金到现在的不到 10 美金）</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">3/ 新经济阶级的诉求</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>十六、十七世纪时，横跨欧洲的海上贸易不断成长 (注 [7])。从瑞士绵延到英伦海峡的莱茵河是主要贸易干道， 低地国 (今天的荷兰、比利时) 的城市因为位于河口而享有天然的贸易活动优势。洲际航运活动也开始起飞，主要用于欧亚之间的香料贸易。贸易量的增加放大了科技创新对社会的影响，同时，法律完善的港口城市里专业化产业开始繁荣起来 - 绘画、布料、印刷、武器、地毯、教书、医药，这些产业的顶尖专家能为整个欧洲招来生意。随着贸易增加、技术创新与分工的日益专业化，整体社会的财富不断积累，同时农业在整体经济中的占比缩小，从而弱化了地主与教会的财富，促成了新的商人阶级的出现。</p>
+<p>今天，⻄方的阶级分化比较模糊。但是我们相信人口中特定比例的族群比其他族群更拥抱改变。拿千禧一代（以 96 年为分水岭）来说，他们对传统金融体系保持怀疑态度，热情拥抱数字变革。脸书 Facebook 在 2016 年做的调查发现，千禧一代中只有 8% 相信金融机构提供的建议、45% 愿意拥抱新选项 (注 [8])。另外，一篇 Transamerica Center for Retirement Services 做的调查显示千禧一代中 76% 相信 <strong>「和上一代相比，我们将更难获得社会保障」、</strong> 79% 担心 <strong>「当我们准备好退休的时候，已经没有了退休福利」</strong>(注 [9])。千禧一代在所有世代中最活跃的投资比特币 (注 [10])，同时这个群体也将预期在 2029 时成为拥有最多可支配收入的一代 (注 [11])。</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">4/ 可靠的防御策略和退出策略</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>一个拥有良好的经济水平、教育水平与财富积累能力的公民，如果没有可靠的防御策略和退出策略，是不会选择与主流现状对抗的。</p>
+<p>长达八十年的荷兰起义 (比欧洲近代其他革命事件都历时更久) 并非偶然。这些被称为海上乞丐的革命份子无疑是驾驭水势的专家。1573 年荷兰人通过让周遭平原淹水的方法成功抵御⻄班牙人入侵 Alkmaar 市。同样的淹水策略成功摧毁⻄班牙关键的物资补给线。一年后又是同样的策略成功抵御⻄班牙人对荷兰教育中心 Lieden 镇的入侵。荷兰共和的⻄部阵线由「Waterline」所保卫：一连串足够靠近、能通过视线进行通讯的武装城镇，以及能在数小时之内策动淹水的周围土地。同时，因为靠近北海以及依靠其上庞大的舰队， 荷兰人拥有撤退、移⺠不列颠群岛的后备方案，以及在 17 世纪到来后转战北美洲的选择。</p>
+<p>在二十一世纪的今天，那些对经济现状持怀疑态度的叛逆者所拥有的自卫武器即是<strong>密码学</strong>  - 它实现了隐私保护与财产保护 (注 [12])。加密技术早已非常普及。举例来说，HTTPS 协定的普及率在 2014 年到 2018 年期间从 13% 上升到 77%(注 [13])。然而，如果服务提供者开后门让掌权人士获取权限的话，加密技术的意义何在？因此，我们观察到人们对数字身份自主权的兴趣与日俱增，尤其是拥抱比特币并对 VPN、Blockstack、wifi 网状网络 (注 [14])、Tor、Signal、Purism、U2F、PGP 等项目感兴趣的千禧一代。</p>
+<p>(引述：「1996 前出生的千禧一代是一群 911 事件发生时已足够成熟能够理解其前因后果、经历了 2008 金融危机，正在努力打拼的年轻群体。」— Pew Research 2018)</p>
+<p><img src="/blogimg/20201012005.jpeg" alt=""></p>
+<p style="text-align: center;">图 5</p>
+
+<p>(插图：Relief of Liden, 1574。洪水冲破挡水墙进了田园，但同时也是洪水削弱了⻄班牙军队的势力，让荷兰援船得以赶到救援)</p>
+<p>(引述：「如果征服其他城市同样这么耗时，那么就算集齐全世界的财富与时间也不可能攻克荷兰的 24 个反抗城镇。」— ⻄班牙指挥官 Don Luis De Reqeusens, 1574)</p>
+<p>(引述：「密码学代表了隐私权的未来发展，同时依照逻辑也代表了货币、银行、金融的未来。[…] 如果给人们两个选项 — 要在一个处处留下详细电子证据的货币体系里生活，还是在一个与其平行却能保持匿名与隐私的货币体系里生活 — 人们将会选择后者。更有甚者，人们将会争取后者」— Orlin Grabbe, 1995)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">当时的教条对比今天的教条</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>从代表逆反运动本质的教条里我们可以观察到新教革命与比特币革命的相似处。当时的教条呼吁团结与坚持信念，一如今天的教条一般。</p>
+<p>十六世纪，路德教派改革运动的核心教义可以被总结为「Sola Fide」，直译是「相信足矣」，中译为 「因信称义」- 通向天堂的路上神父不是必须，信仰者的信仰与奉献足矣。另外一个在改革期间普及的教条是「Sola Scriptura」，直译是「圣经经文足矣」。这样的教条代表只认圣经为唯一不会堕落的权威。</p>
+<p>在今天的比特币圈子里，部分号召语往往被当作<strong>网络梗（memes）</strong> 因而不被接纳。我们认为，这些号召语代表逆反运动里的核心精神，可能预示着一场新的改革运动。其中一条是拉丁文「Vires in Numeris」(注 [15])，意即「数字即是力量」。Tyler Winklevoss 常被引述的一句话总结了这个教条的精神：“我们选择将自己的钱财与信心放在一个不受政治算计、人类失误的数学框架里。”(注 [16])</p>
+<p>另外一个广受比特币支持者欢迎的教条是「无需信任，只管验证」。这句话在 90 年代就已存在 (注 [17])，或许是美国前总统 Ronald Reagan 那句「相信它，但记得验证它」的变种 (注 [18])。这句话鼓励人们主动验证新开源软件的正当性；在比特币圈子里这句话鼓励人们主动验证链上的交易。<br>2013 年一篇论坛贴中发明了「HODL」一词，在今天代表一个比特币持有者无论价格再怎么波动都坚持持有 (注 [19])。最后，有个教条是「不是你的私钥，就不是你的比特币」，代表对第三方托管者的不信任 (注 [20])。</p>
+<p><img src="/blogimg/20201012006.jpeg" alt=""></p>
+<p style="text-align: center;">图 6</p>
+
+<p>(插图：Christ and the Sheep Shed, 1524, Nurenberg。这幅有名的木板刻画宣传了因信称义的观念， 同时描绘天主教会掠夺羊棚、挥霍无度。)</p>
+<p>(引述：所谓必须拥有一个独立的货币，而不能只是基于现有法币开发更多私有的或防审查的付款方式， 这样的观念既不是由密码朋克也不是由学术界的密码学家所提出，而是自由主义未来派的信奉者所提出。 - Nick Szabo, 2019)</p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">三：改革期间的金融、经济</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>改革期间我们目睹了一个新兴的文化与经济阶级试图在一个波动性高且充满变化、充满敌意的环境里试图自我保护。这是一个由各自乖僻的经济参与者组成的网络，每一个人都对自己的信念全身心的投入， 完全背离传统做生意的方式，并且拥有非常有效的防御机制。</p>
+<p><img src="/blogimg/20201012007.jpeg" alt=""></p>
+<p style="text-align: center;">图 7</p><p><br>(插图：马里纳斯 · 范 · 雷默斯威尔的绘画作品《税务员》，1542 年。)<br><br></p><h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">1/ 100% 存款准备金率与严格的协议</span><span class="suffix" style="display: none;"></span></h3><br><br>1609 年时，荷兰的商人与政府官员联合创立了 Amsterdam Wisselbank (AWB)，其满足了两个需求：<br><br>第一，它将保护来自荷兰南部和其他地方的商人难⺠带来的黄金与白银；第二，它将发布具有国际公信力、以荷兰盾来计算价值的银行票据和汇票。<br><br><strong>AWB 当年的安全机制举世无双</strong>。它位于阿姆斯特丹市里，受长达五十里壕沟的 Dutch Waterline 所保卫。AWB 的金库与营运皆位于市中心最醒目的位置：市政厅。同时，该银行的组织架构显示了其对肩负信托责任的绝对决心。AWB 由 4 个委员共同领导，并决不允许办公室里只有一位委员的情况发生。这些委员管理了下面四名记帐员、四名监察员，三名收款员，以及一名贵金属验证师。为了防治诈欺，每位记帐员只负责其专门的业务 (注 [21]) 。当时商贸实力顶尖的荷兰东印度公司在 AWB 有专门帐户，并只通过 AWB 进行付款 （注 [22])。<br><br>尽管号称完全准备金的 AWB 在无担保贷款事发后蒙上阴影，十七世纪时它的声誉依旧举世无敌，同时，它的稳定与可靠也促成荷兰共和国当时的繁荣。到了 1776 年仍有 <strong>亚当 · 斯密在《国富论》里赞誉 AWB 的银行票据比法币更加优越。</strong> 要知道 AWB 的服务并不便宜：它对金币托管、开户、交易皆收取 1% 年费，并对提款收取 1.5% 的费用。但总体而言，AWB 的银行票据代表着折扣：每张票据的价值比其所挂钩的实体金属币价值高出一截。<br><br>我们预测，在面对第三方的挤兑、财产盗窃与损失风险、以及长期法规环境的不确定性时，比特币社群将日渐采纳安全性较高、无需太多信任的<strong>比特币存款</strong>的服务。<br><br><strong>对信任需求最低的解决方案，正是那些让盗窃或诈欺极度不可行的设计方案。</strong> 延迟机制和程式化多签机制的出现，让我们看到了极具说服力且牢固的托管解决方案的开端，因为它们代表前所未见的高安全水平。我们对最近被提出的多种智能合约方案充满信心，例如 Bob McElrath （注 [23]), Byran Bishop （注 [24]), 以及 Pieter Wuille （注 [25]) 各自提出的方案等等。依照这样的逻辑，越来越多的多重签名比特币贮存方案可能预示着一个更大趋势的到来。截至 2019 年十月，比特币总流通量的 32% 贮存于隐私保护性更高的 P2SH 地址格式，而 12% 则贮存于多重签名地址里 (2014 年是 0%) （注 [26])。<br><br><img src="/blogimg/20201012008.jpeg" alt=""><p style="text-align: center;">图 8</p>
+
+<p>(插图：阿姆斯特丹威塞尔银行用来运送金币的马车)</p>
+<p>(引述：“[…] 一种交易设置方案，将用户和攻击者绑定在一起，在弱安全的热键被允许任意使用硬币之前，总是使用公共观察和延迟时间。在延迟期间，有机会启动恢复 / 回收，这可以触发更深的冷储存参数或 […] 重置延迟时间。” Byran Bishop 描述了 2019 年的多签、预签保险库计划)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">2/ 企业保险 - 谨慎的信任网络</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>十六世纪时，随着海上贸易活动急速增长，人们需要相应的金融工具来对冲贸易带来的风险。最早的海上保险产品是 <strong>「海上贷款」</strong>，由于在船只安全返港后才还款，其贷款利率特别高。这种合约对于不了解该次航行潜在利润的投资人而言特别有用。另一种选项是 <strong>「commenda contract」</strong>，让投资人有权与船长共享成功返航的利润，这个亮点是船长自己也是投资人。一般来说，船长出三分之一的成本，投资人出四分之一。返航之后，投资人拿四分之三的利润，旅行者拿四分之一。</p>
+<p>这两种海上保险产品都并非完美 （注 [27])。早期的保险合约在意大利开始实行，其中商人自己作为核保人，这样的模式后来<strong>催生了保户互助的互助保险合约</strong>。到了十六世纪时保险合约的使用已扩散到英国、法国、荷兰、⻄班牙。对于商人来说，索赔是一个挑战。由于服务可靠性参差不齐，若是找错了保险服务提供商，商人可能追索无门。在仍不成熟的航运市场里，由于信息不对称，对于保险业者来说最大的风险是代理风险 - 即商人有时会过度承保、故意沉船，甚至替已经失踪的船只买保险。</p>
+<p>在双方风险都如此巨大的情形下，商人必须缴纳高额保险费给品质高的保险服务商，而服务商们则往往选择只卖保险给可信任的商人。其他决定保险费率的因素包括保险服务商的财务状况，以及所在城市的法治文化。阿姆斯特丹和威尼斯官方就不断的尝试设立保险经纪人的牌照核发和推动公会，但始终没能流行起来。</p>
+<p><img src="/blogimg/20201012009.jpeg" alt=""></p>
+<p style="text-align: center;">图 9</p>
+
+<p>(插图：威廉 · 凡 · 德 · 维尔德绘的一艘荷兰商船 (细节)，1650 年。)</p>
+<p><img src="/blogimg/20201012010.jpeg" alt=""></p>
+<p style="text-align: center;">图 10</p>
+
+<p>(插图：荷兰 VOC 商人和他的妻子，Aelbert Cuyp, 1640-1660。)</p>
+<p>(引述：“虽然市场上的‘传统’犯罪超过 5 亿美元，而现金容量超过 20 亿美元，但在加密货币市场里只有约 1.5 亿美元的犯罪和 5 亿美元的现金容量。”AON 董事杰夫 · 汉森，2019 年 7 月)<br><strong>比特币产业里的保险业仍处于非常早期的阶段。</strong> 自从 2013 年比特币挖坑兴起以来，市场上已有一些简单的保险合约产品：投资人向挖矿公司预购矿机，而挖矿公司利用这些资金来生产挖矿芯片与矿机。就像十六世纪航运时期，挖矿公司与投资人共享挖矿利润。一些比特币托管业者也开始提供保险服务，但是从网页上不明显的小字里我们发现这些保险服务往往仅限于热钱包，而热钱包里的比特币价值往往不及受托总价值的 10%。与十六世纪相同的是，比特币保险市场里同样充满风险：价格波动的风险、政府管制的风险、信息安全的风险、服务提供商可能跑路的风险等等。由于比特币有无国界交易的特性，各国政策变动的风险也必须在投资人考虑之中。成功的比特币保险业者必定对技术与营运细节了解透彻，并将责任与经营长期客户关係当作企业原则。因此，今天比特币托管业者普遍以完全准备金作自我保险的现状并不让人意外。</p>
+<p><img src="/blogimg/20201012011.jpeg" alt=""></p>
+<p style="text-align: center;">图 11</p>
+
+<p>(图表：VOC 之前交易公司的投资资金与回报, Gelderblom &amp; Jonker, 2004)</p>
+<p>(引述：”利率的下降显示阿姆斯特丹次级市场的成功，为了满足生产力需求潮水一般的资金涌进市场，其中最好的例子是短期贷款，这个成功背后的原因是充满活力的证券交易市场和与其相辅相成的信贷技术” - GELDERBLOM &amp; JONKER)</p>
+<p><img src="/blogimg/20201012012.png" alt=""></p>
+<p style="text-align: center;">图 12</p>
+
+<p>(图表：VOC 股票担保下的新贷款的供应导致阿姆斯特丹利率大幅下降。Gelderblom &amp; Jonker, 2004)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">3/ 流动性高的担保作为放贷和衍生性金融商品的基础</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>1602 年时商人们合并了六家小公司、集中了 64 吨黄金，成立了荷兰东印度公司 (VOC)，其目标是管理与亚洲进行贸易往来的商船和航运，并且 VOC 当时享有荷兰政府允许的垄断特权 （注 [28])。</p>
+<p>此垄断情形甚至让 VOC 在八十年战争里也扮演了重要的军事与经济角色。1604 年东印度公司向社会公开募集资金、让大众认购股票，<strong>是世界近代史上第一次首次公开募股，并成功完成募集的案例</strong> – 荷兰超过 2% 的人口认购了东印度公司的股份 （注 [29])。为了维护市场信息透明，该募集采取记名股票以及规范清楚的股票所有权和转移方式 （注 [30])。1610 年，东印度公司完成首次股息发放。</p>
+<p>VOC 股票高度流通，成为理想的抵押品：在 VOC 成立数个月之内，价值 27600 荷兰盾的 VOC 股票就被用来当作囚犯交换的筹码。1607 年一名贵族以价值 3000 荷兰盾的 VOC 股票作为抵押贷款 2000 荷兰盾，利率为 8% (贷款价值比 66%)。VOC 股票抵押市场非常的活跃，但因为不是公开市场所以留下的记录不多。1623 年政府针对债务违约后抵押品清算的流程制定规范，到了 1640 年代阿姆斯特丹证券交易所已常规的进行 VOC 股票回购交易。</p>
+<p>由于以 VOC 股票作为抵押品大受欢迎，阿姆斯特丹的抵押贷款市场利率从 1596 年的 8% 下降到 1620 的 6% 以下。另外，VOC 股票市场的高流通性使其成为十七世纪蓬勃发展的衍生品 — 远期合约 (包含做空)、期权合约、回购合约 – 的标的资产。历史学家 L.O.Petram 在他针对 VOC 所撰写的论文里总结：「在 1630-1650 年之后，投资人普遍对次级市场更感兴趣，而不是 VOC 本身的贸易行为。（注 [31])」</p>
+<p><img src="/blogimg/20201012013.jpeg" alt=""></p>
+<p style="text-align: center;">图 13</p>
+
+<p>(图表：我们的假设是，衍生品市场将围绕着那些经济中对价格最敏感的行业 (即企业需要对冲风险的经济产品) 发展。)</p>
+<p>(引述：到 1580 年代，年金体系已经足够完善，可以作为可靠工具面向多元化的公众，包括商人、寡妇、孤儿和慈善机构。” GELDERBLOM &amp; JONKER, 2004)</p>
+<p>(“年金可以用于多种用途，特别是作为继承人之间结算余额的一种手段…… 在安特卫普周遭，异常的城市增长以及市民的广泛参与，对土地和信贷的區域市场产生了巨大的影响。” 林伯杰和德维吉尔德，2018 年)</p>
+<p>目光移到今天，我们将发现比特币投资者与过去的 VOC 股票持有者有相同之处：他们通常都看重长期趋势、对比特币 / VOC 股票的资产配置比例很大、避免贩卖这些资产以免被征资本利得税、并且他们大多是有高度投资野心的年轻人。我们预期未来以比特币作为抵押来贷款的现象将会愈趋普及 （注 [32])。我们同样看好比特币衍生性商品市场，因为它能帮助比特币产业里的企业在追求持续增长的同时，能订定精准的风险管理策略。我们提出的假说是：<strong>受到价格波动影响最大的产业将发展出最大的衍生性商品市场</strong>，例如十六世纪的阿姆斯特丹、1980 年代的农业与贵金属市场。明天的比特币市场或许也将遵循这样的轨迹。</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">4/ 在通货紧缩的世界里获取资本</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>所谓的年金合约是一个以定价贩售的合约，给予受保人每隔一定时间收到一定款项的权利。以年金替代贷款的现象从十四世纪开始变得频繁，因为它并没有违反天主教会的高利贷禁令 （注 [33])(从十六世纪开始，法律普遍允许以偿还合约剩余价值的方式来终结年金合约)。年金合约往往用于给资本密集且对风险承受度低的企业、农场，或是地方政府等提供资金。在十四世纪的低地国里逐渐分化两个新的经济阶级：海岸边的地主由于砂质土壤与频繁淹水，往往过度贷款导致土地遭到政府没收；在相对稳定的法兰德斯地区，地主以发放年金的方式募资加速企业成长 (通常用作开发房地产)，而年纪大的居⺠则购买年金作退休后收入。年金可以被交易，因此成为受到城市居⺠欢迎的投资工具。在荷兰起义爆发、海上贸易带来的收入日渐增加后，政府借助发放年金的方式向大众募资，用以保护城市居⺠。</p>
+<p>之所以年金比共同人寿保险 (十八世纪时在英国出现) 更早普及的重要原因是：后者要求受保人对保险机构高度信任 – 受保人必须一辈子都相信这些机构，并且他们也没办法通过赎回抵押品来终结合约。当然这其中也有文化的因素：客户更倾向于下注于长寿 (年金) 而非短寿 (保险)。</p>
+<p>刚过十周年生日不久的比特币在借贷服务方面成长、运行良好。据 Genesis Capital 报告显示，自该基金 2018 三月成立以来，共承接了总价值 20 亿美元的等值比特币借贷（注 [34])。这些需求来自避险基金、持有比特币存货的企业和比特币交易市场里的散户。另外，我们观察到了六百年前<strong>荷兰城市里的年金服务与今日 IEO (首次交易平台发行) 平台币之间的相似之处</strong>（注 [35])。例如，交易所 Bitfinex 发行平台币 LEO，在法规制度不明确的艰难时期提振市场流动性，同时也有助于降低 Tether 流动性问题所带来的风险（注 [36])。LEO 具有年金的属性，因为 Bitfinex 提供随时、无条件以市场价格购回 LEO 的服务。其他海外交易所也采取了类似的策略：币安交易所发行 BNB (币安币)、火币交易所发行 HT (火币积分)、加密货币衍生品交易所 FintruX 发行 FTX token（注 [37])。虚拟货币交易所往往拥有依赖其核心服务的忠诚用户，而这些平台币实现了平台向大众借款的功能。</p>
+<p>拿十六世纪时屡遭入侵的荷兰城镇和唯利是图的荷兰商人作为类比，我们预期海外交易所发行类似年金的平台币将继续广受欢迎，而虚拟货币交易将持续风靡千禧一代。事实上，这些平台币是虚拟货币市场里简单的保险合约设计。我们预期未来虚拟货币市场里将出现寿险公司，或许将提振日渐衰弱的寿险产业。研究一再显示，通货膨胀会抑制市场对寿险的需求。因此，若有一天比特币被广泛的接纳为高度保值的投资工具，寿险产业自然而然将再现繁荣。</p>
+<p>(引述：“IEO 就像高盛 (Goldman Sachs) 闯进纳斯达克 (Nasdaq) 一样。这是一个新的筹资方式可能会改变金融业的现状。但监管必须出台。” 史蒂芬 · 奈拉约夫，Alchemist 首席执行官，2019 年 6 月)</p>
+<p><img src="/blogimg/20201012014.png" alt=""></p>
+<p style="text-align: center;">图 14</p>
+
+<p>(资料来源：寿险总裁协会第六次年会，iii.org, ycharts)</p>
+<p>(引述：”通胀上升 1 个百分点，人均实际人寿保险净值将下降 1.20%。” 加州大学伯克利分校教授大卫 · 巴贝尔，1981 年)</p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">四：结语</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>Eric Weinstein (Thiel Capital 董事总经理) 最近表示，所谓「好想法击败平庸的想法」的说法是错误的，正确的说法应该是 <strong>「匹配的想法击败不匹配的想法」</strong> 注 [38])。这样的说法如同达尔文主义的逻辑：一个想法能起飞与否取决于其所依赖的环境条件是否成熟。</p>
+<p>确实，历史显示想法本身的品质并不足以保证其被社会广泛采纳。历史上首度提出蒸气引擎原理的人是⻄元一世纪的古希腊数学家亚历山大港的希罗，但蒸气引擎的商业化普及还要等到一千六百年之后；可移动式的印刷机早出现在十四世纪的韩国，但要等到十五世纪约翰内斯 · 谷登堡发明印刷术时才引发了革命；维京人比哥伦布和哈德逊早数百年登陆美洲。换句话说，好的想法往往会因为环境的因素而无法普及，所谓「生不逢时」。</p>
+<p>但是每过一阵子，一旦天时、地利、人和齐聚，变革就如同星辰连线一般，促成整个社会同时接纳许多高品质的想法，并触发壮观的连锁效应，彻底重塑社会。新教革命正是这样的时刻：许多想法同时发芽、 思想叛逆者数量激增、社会伤口愈合，一整个时代的创业家共同创造一系列的金融与经济革新。五百年前发生的事情可能将再次发生。</p>
+<p>今天，我们观察到以千禧一代为主的广泛社会对于央行、国家干预主义的批判。同时，技术人员马不停蹄的开发出能够挑战经济现况、破旧立新的工具。研究报告预期千禧一代在十年内将成为收入最高的一代，而这群拥抱科技、经历过 911 事件的人们拥有加密技术进行自我防御的能力。除此之外，比特币生态圈正全面迈向成熟，尤其在存款、保险、借贷、衍生性商品，与早期型态的寿险方面。如果这样的趋势持续发展下去，以比特币为基础的、层层堆叠的协议与技术将成为全球经济引擎，取代目前的国际货币金融体系。</p>
+<p><strong>比特币改革，你准备好了吗？</strong></p>
+<p>(引述：「如果一个新创公司的潜力正比于其竞争对手的规模与无能程度的乘积，则世界上最成功的新创公司将与国家、政府直接竞争。这不是不可能，这是虚拟货币正在做的事情。」— YC 联合创始人 Paul Graham 写于 2019 八月)</p>
+<p><img src="/blogimg/20201012015.png" alt=""></p>
+<p style="text-align: center;">图 15.&nbsp;YC 联合创始人 Paul Graham 的推文</p>
+
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">五：附录：聚焦在低地国的简明宗教改革编年史</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">1 / 早期的异议</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>西元 1511 年，来自鹿特丹的伊拉斯莫斯（Erasmus）出版了广受欢迎的《愚人讼》（Praise of Folly），一部对天主教教会的大胆嘲讽&nbsp;注 [39])。六年后的 1517 年，马丁．路德带着他的〈九十五条论纲〉— 针对天主教教会寻租的严厉批判 — 进入公众视野 （注 [40])。数个月内，数以千计的〈九十五条论纲〉副本已经在欧洲流通。为了回应这项反对天主教教义而广为人知的异端思想，第一次的焚书就发生在 1521 年 （注 [41])。在 1522 年，时任神圣罗马帝国皇帝的查理五世（King Charles V）在低地国（现今荷兰、比利时及卢森堡一带）成立了专责压迫异端的宗教裁判所 （注 [42])。在 1523 年，我们见证了第一次对异端的火刑 （注 [43])。查理五世在 1535 年对所有的异端处以死刑，并于 1539 年对在根特（Ghent）反对他的抗税活动采取了严厉的措施。</p>
+<p>在这段时期，没有任何社会阶层可以免于政治压迫；即便是虔诚的佛莱明（Flemish，现今比利时的北部地区）天主教徒杰拉杜斯 · 麦卡托（Gerardus Mercator，以其 1569 年的世界地图而闻名的制图学家），也在 1543 年被宗教裁判所起诉，并且被关押在监狱长达七个月直到他因证据不足被释放。同年，哥白尼（Copernicus）出版了他的日心说，而来自佛莱明的解剖学家维萨里（Vesalius）则根本地挑战了盖伦（Galen）的解剖学模型，这是一千五百年以来的首次。</p>
+<p>西元 1548 年，人道学者 Christoffel Plantijn 移居安特卫普，而他的出版社将迅速闻名于全西欧 （注 [44])。西元 1555 年第一个地下清教徒市政府成立。</p>
+<p><img src="/blogimg/20201012016.jpeg" alt=""></p>
+<p style="text-align: center;">图 16</p>
+
+<p>(插图：在他的画作《愚人之船》(1500) 中，希罗宁姆斯 · 博施将神职人员置于聚光灯下。这首讽刺诗的灵感可能来自于 1497 年的诗 Stultifera Navis，诗的前言中写道：“谁登上了愚人之船，驶向地狱，又笑又唱。“)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">2 / 公开逆反</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>1559 年，哈布斯堡（Hapsburg）的国王离开布鲁塞尔前往西班牙，之后他同父异母的妹妹玛格丽特成为荷兰总督。1566 年被称为 “奇迹年”。一开始，佛兰德斯贵族与荷兰总督分享了一份不起诉请愿书，得到了温和的反应。受鼓舞的新教派系开始在教堂内布道，并伴随着后来被称为圣像破坏的破坏行为。地方休战是在没有总督同意的情况下达成的，新教徒被允许在安特卫普城墙内的 6 个教堂传教 （注 [45])。那年晚些时候，新教徒 (geuzen) 军队的失败开始使权力向有利于保皇党的方向倾斜。</p>
+<p>(引述：“在这一地区 (佛兰德斯)，加尔文派传教士的胆大妄为已发展到如此地步，以至于他们在布道中告诫人们，光撤除心里全部的偶像崇拜是不够的；也要从他们眼前除掉。他们似乎是在一点一点地试图让他们的听众明白，有必要掠夺教堂、废除其所有的形象。” 西班牙政府官员，1566 年)</p>
+<p><img src="/blogimg/20201012017.jpeg" alt=""></p>
+<p style="text-align: center;">图 17</p>
+
+<p>(插图：荷兰民族被西班牙人攻击的寓言。作者：Joannes Gijsius 1616)</p>
+<p><img src="/blogimg/20201012018.jpeg" alt=""></p>
+<p style="text-align: center;">图 18</p>
+
+<p>(插图：鸟瞰安特卫普 1572 年阿尔瓦城堡的风貌。来源：Civitates Orbis Terrarum I)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">3 / 镇压</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>1567 年，西班牙阿尔巴公爵率领一万名西班牙老兵抵达荷兰 （注 [46])。他建立了一个 “血族法庭”，在他担任荷兰总督的六年里，一些人认为他要为一万八千人的死亡负责 （注 [47])。到达荷兰后，阿尔巴提高了税收，并开始在城市边缘建造一座巨大的堡垒，于 1572 年完工。这个笔尖状的城堡成为 “16 世纪最受研究的城市设施之一” （注 [48])。三年后，西班牙王室陷入财政困境，停止向低地的雇佣军支付报酬。1576 年，在安特卫普城堡指挥官桑丘 · 德阿维拉的指挥下，这些雇佣军洗劫了安特卫普城 （注 [49])。这种 “西班牙式的愤怒” 成为了几个世纪以来最严重的暴行之一，7-10% 的人口在三天内被谋杀，一千所房屋被摧毁。</p>
+<p>尽管在接下来的几年里遭到了激烈的抵抗，包括对西班牙城堡的部分破坏，1585 年，安特卫普市向西班牙投降，所有的新教徒都被给予四年的时间来处理他们的事务并离开这座城市。根特和布鲁塞尔也是如此。在安特卫普被洗劫后的 20 年里，这个城市近 50% 的居民移居国外 （注 [50])。欧洲最强大的经济体刚刚经历了一次心脏病发作：下个世纪，安特卫普的工资水平仍比莱顿 (Leiden) 低 35% （注 [51])。</p>
+<p><img src="/blogimg/20201012019.jpeg" alt=""></p>
+<p style="text-align: center;">图 19</p>
+
+<p>(插图：这幅来自 1580 年的蚀刻画展示了西班牙入侵者是如何威胁荷兰人的。狮子是与荷兰有关的象征)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">4 / 荷兰、新阿姆斯特丹、纽约</span><span class="suffix" style="display: none;"></span></h3>
+
+<p>安特卫普和荷兰南部其他地区的陷落，帮助开启了荷兰共和国的黄金时代，大约 5 万到 10 万佛兰德人涌入荷兰 （注 [52])。同時，作為相對宗教自由的英國也迎來一波波人口移入 （注 [53])。经过几十年的战争和征服，西班牙帝国内部已经衰弱 (部分是由于近亲繁殖的自然结果) （注 [54])，它强有力的以等级为基础的规则被证明无法与荷兰和英国经济的灵活、有活力和以商业为导向的组织相匹敌。一方面是宗教和商业上的宽容，另一方面是被水环绕的可防御的领土，这被证明是成功的秘诀。在接下来的 200 年里，荷兰和英格兰走在经济创新和增长的前沿。</p>
+<p>1579 年，荷兰北部各省聚集在一起签署乌得勒支联盟，在这个联盟中，他们宣布脱离西班牙独立。该文件宣布了荷兰领土上完全的宗教自由，这种自由也将在新阿姆斯特丹得到尊重。1588 年，强大的英吉利海峡舰队被摧毁后，西班牙放弃了征服英格兰的企图。1602 年，安特卫普移民德克 · 范 · 奥斯等人创立了荷兰东印度公司。范 · 奥斯还资助了亨利 · 哈德逊 1607 年的北美探险，在世界上最古老的股票凭证上签名，并与他人共同创立了阿姆斯特丹交易所银行 (1609 年)。同年，西班牙和荷兰共和国签订了和平条约。1620 年，清教徒前辈们乘坐“五月花” 号船，在荷兰的莱顿城定居下来，他们在自己的祖国英格兰找到了宗教不宽容的避难所。1621 年，佛兰芒 - 荷兰商人威廉 · 乌塞林克斯获得了斯塔顿公司的许可，成立了荷兰西印度公司(WIC)，垄断了北美的勘探。1624 年，第一批荷兰移民到达曼哈顿外的总督岛。1626 年，瓦隆 · 彼得 · 米努伊特从伦纳普印第安人手中买下了曼哈顿岛，并选择它作为新荷兰的首都——那时它还是一个纯粹的商业企业。1638 年，手稿被走私出意大利后，伽利略以日心说为中心的《两门新科学》在荷兰出版。1643 年，艾萨克 · 乔戈斯估计曼哈顿的人口为 500 人，当地使用的语言为 18 种 （注 [55])。1644 年，英国诗人约翰 · 弥尔顿出版了《论出版自由》，这是一本捍卫言论和表达自由的哲学着作。1654 年，一小群葡萄牙裔犹太人抵达曼哈顿，在犹太社区向欧洲委员会请愿后，新阿姆斯特丹州长彼得 · 施托伊弗桑特 (Peter Stuyvesant) 最终同意让他们留下来，为未来的非荷兰定居者树立了一个受欢迎的先例 （注 [56])。1664 年，新阿姆斯特丹被英国军队占领并改名为纽约，当时人口为 9000 （注 [57])。1665 年，斯宾诺莎的老师、佛兰德难民 Franciscus Van Den Enden 出版了《自由政治论文》，在书中他为言论自由、宗教自由、平等主义、废奴主义和直接民主进行了辩护。1683 年，英国伯爵汤玛斯 · 东安被任命为纽约州州长，负责推广那里的圣公会教堂——但他从未成功 （注 [58])。1689 年，约翰 · 洛克出版了《关于宽容的一封信》，其中斐洛斯 · 考法为宗教宽容提出了一个极具影响力的观点。1777 年，纽约通过了第一部没有任何宗教机构的州宪法，成为唯一一个公務人員不需經過宗教测试的革命州 （注 [59])。</p>
+<p><img src="/blogimg/20201012020.jpeg" alt=""></p>
+<p style="text-align: center;">图 20</p>
+
+<p>(图表：“1631 年，财产价值超過 ƒ100,000 的商人有超過一半来自荷兰南部。)</p>
+<p>(引述：“1600 年后荷兰的事态发展与人们普遍认为的政府公债作为二级市场起源的重要性背道而驰。VOC 股票，而不是政府债券，提供了关键的突破。” GELDERBLOM &amp; JONKER, 2004)</p>
+<p><img src="/blogimg/20201012021.jpeg" alt=""></p>
+<p style="text-align: center;">图 21</p>
+
+<p>(插图：新荷兰地图 - 荷兰人的存在是目前已知的纽约市地区最大的。)</p>
+<p>(引述：“在一切自由之上，请给我自由，让我知道，让我表达，让我根据良心自由地辩论。” 约翰 · 弥尔顿, 1644)</p>
+<p>(引述：“本公约进一步 […] 决定、宣布在本州內任何人都将永远被允许从事宗教职业和進行宗教崇拜，不得有任何歧视或偏爱。” 纽约州宪法 1777 年)</p>
+<h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: bold; background-color: #000; color: #fff; padding: 2px 10px; width: fit-content; font-size: 17px; margin: 60px auto 10px;"><span class="prefix" style="display: none;"></span><span class="content">后记</span><span class="suffix" style="display: none;"></span></h3>
+
+<p><img src="/blogimg/20201012022.jpeg" alt=""></p>
+<p style="text-align: center;">图 22. 勃鲁盖尔的 “狂欢节和大斋节之间的战争” 油画作品</p>
+
+<p>在勃鲁盖尔的 “狂欢节和大斋节之间的战争” 的油画作品中，展示了一对已婚夫妇。男人背着一个袋子，象征着自私和不完美；女人背着一盏没有点亮的灯笼，象征着缺乏智慧。在一名小丑的伴随之下，夫妇俩相互扶持，漫步离去。在分析画中的象形符号后，我们得到了一条支持改革前景的信息：尽管普罗大众无法达到知识阶级所希求他们的启蒙，他们通常不会搅和在知识阶级里部落主义式的互怼和群战。这种脱离并不是普遍的冷漠导致的，而是对和平家庭生活和个人经济进步的务实兴趣。</p>
+<p>在勃鲁盖尔的书中，我们对人类状况的长期改善持同情乐观的态度，包括今天的比特币改革。诚然，任何争论的双方都充满了偏见和错误的判断，但只要有足够长的时间，就可以卸下偏执和狂热的包袱，点亮理性的明灯。</p>
+<p>历史的旅程蜿蜒曲折，在一次次的分叉中通向更具潜力的世界。</p>
+<h2 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-size: 22px; text-align: center; position: relative; font-weight: bold; color: black; line-height: 1.1em; padding-top: 12px; padding-bottom: 12px; margin: 70px 30px 30px; border: 1px solid #000;"><span style="float: left; display: block; width: 90%; border-top: 1px solid #000; height: 1px; line-height: 1px; margin-left: -5px; margin-top: -17px;"> </span><span class="prefix" style="display: block; width: 3px; margin: 0 0 0 5%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span class="content" style="display: block; -webkit-box-reflect: below 0em -webkit-gradient(linear,left top,left bottom, from(rgba(0,0,0,0)),to(rgba(255,255,255,0.1)));">六：参考资料</span><span class="suffix" style="display: block; width: 3px; margin: 0 0 0 95%; height: 3px; line-height: 3px; overflow: hidden; background-color: #000; box-shadow: 3px 0 #000,
+    0 3px #000,
+    -3px 0 #000,
+    0 -3px #000;"></span><span style="float: right; display: block; width: 90%; border-bottom: 1px solid #000; height: 1px; line-height: 1px; margin-right: -5px; margin-top: 16px;"> </span></h2>
+
+<p>[1] An Economic Analysis of the Protestant Reformation, Authors：Robert B. Ekelund, Jr., Robert F. Hébert, and Robert D. Tollison. Journal of Political Economy, Vol. 110, No. 3 (June 2002), pp. 646-671.: <em style="font-style: italic; color: black;">注脚 1</em></p>
+<p>[2] 国际货币与金融体系一词常被 Bank for International Settlement 使用，至少从 1984 年开始，出现在由 Group of Twenty Four 发表的报告 “A Revised Program of Action Towards Reform of the International Monetary and Financial System.” 中: <em style="font-style: italic; color: black;">注脚 2</em></p>
+<p>[3] 参阅 Dittmar &amp; Seabold, ‘Gutenberg’s moving type propelled Europe towards the scientific revolution,’LSE Business Review, 2019.: <em style="font-style: italic; color: black;">注脚 3</em></p>
+<p>[4] 例如 Basil S. Yamey, ‘Notes on the Origin of Double-Entry Bookkeeping,’’ 1947.: <em style="font-style: italic; color: black;">注脚 4</em></p>
+<p>[5] 参阅 Lois Ann Swanick, ‘An Analysis of Navigational Instruments in the Age of Exploration,’2005.: <em style="font-style: italic; color: black;">注脚 5</em></p>
+<p>[6] 参阅 Dittmar&amp;Seabold，出处同注 3: <em style="font-style: italic; color: black;">注脚 6</em></p>
+<p>[7] 十六世纪时，欧洲境内贸易活动大幅增加，收入弹性成长，对出口产品的需求价格弹性也显著成长。经济发展进步的区域能够以较低价格提供较高品质的产品，自然而然将需求从较为落后的区域那里吸引过来。’Wee, H. V. D.,’Structural Changes and Specialization in the Industry of the Southern Netherlands, 1100-1600,’p. 216, 1975.: <em style="font-style: italic; color: black;">注脚 7</em></p>
+<p>[8] 参阅’Millennials + money:The unfiltered journey,’Facebook,2016.: <em style="font-style: italic; color: black;">注脚 8</em></p>
+<p>[9] 来源’18th Annual Transamerica Retirement Survey,’2018.: <em style="font-style: italic; color: black;">注脚 9</em></p>
+<p>[10] 来源’Bitcoin is a Demographic Mega-Trend: Data Analysis,’Spencer Bogard, 2019.: <em style="font-style: italic; color: black;">注脚 10</em></p>
+<p>[11] 来源 来源’Coming of age, how millennials are becoming a growing economic force,’Snapchat, 6/18/2018.: <em style="font-style: italic; color: black;">注脚 11</em></p>
+<p>[12] 1990 年代初期，密码朋克社群已清楚的认知到加密技术提供的隐私保护和人权保护之间的关係。Phil Zimmerman 在 1991 年写道 ‘当强加密技术普及，政府将更难将其定罪。因此使用 PGP 技术有助于维护民主。’另外，Eric Hughes 于 1993 年写道’如果我们想要有任何隐私权，我们就必须捍卫它。[…] 密码朋克做的事情就是写代码。我们知道会需要有些人来开发保护隐私权的软件，而我们就是那些人.’.: <em style="font-style: italic; color: black;">注脚 12</em></p>
+<p>[13] 来源 Swire, Hemmings, Kirkland, ‘Online Privacy and ISPs,’2016; letsencrypt.org, 12/31/2019.: <em style="font-style: italic; color: black;">注脚 13</em></p>
+<p>[14] Zhang, L., Zhao, L., Wang, Z., &amp; Liu, J. 于’WiFi Networks in Metropolises: From Access Point and User Perspectives.’ (2017) 一文提到’数据显示今日的大都会里已有高密度的无线存取点，它们提供几乎无所不在的互联网存取。[…] 我们可以预见在不久的将来，车辆和运算能力越来越强的个人行动装置将实现行动无限存取点的功能，共同建立并维护大都会层级的无线网状网路.’.: <em style="font-style: italic; color: black;">注脚 14</em></p>
+<p>[15] 出自 Bitcointalk Forum, 2011 年五月。后来因 Casascius 推出的实体比特币而普及: <em style="font-style: italic; color: black;">注脚 15</em></p>
+<p>[16] New York Times, 4/11/2013, Nathaniel Popper 采访: <em style="font-style: italic; color: black;">注脚 16</em></p>
+<p>[17] 参阅 Shiu-Kai Chin, ‘High-Confidence Design for Security: Don’t Trust - Verify,’1999: <em style="font-style: italic; color: black;">注脚 17</em></p>
+<p>[18] 参阅 <a href="https://en.wikipedia.org/wiki/Trust,_but_verify" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Trust,_but_verify</a> : <em style="font-style: italic; color: black;">注脚 18</em></p>
+<p>[19] ‘I AM HODLING,’GameKyuubi, 2013 十二月于 Bitcointalk.org: <em style="font-style: italic; color: black;">注脚 19</em></p>
+<p>[20] 可能出处为 2014 年 reddit.com 上的一个讨论，标题为’PSA: if you don’t own your private keys, you don’t own your bitcoin.’另一个可能出处是 Andreas Antonopoulos.: <em style="font-style: italic; color: black;">注脚 20</em></p>
+<p>[21] 后来，AWB 违背自己的规章，私自放出无担保贷款给阿姆斯特丹市议会、荷兰政府、荷兰东印度公司。到 1669 年时 AWB 只保有 57% 的准备金水平。这些高风险的放贷行为最终造成了 AWB 的消亡。资料来源：“How Amsterdam got Fiat Money,” Quinn &amp; Roberds, 2010.注脚 21</p>
+<p>[22] 来源 <a href="https://www.beursgeschiedenis.nl/en/moment/the-bank-of-amsterdam/" target="_blank" rel="noopener">https://www.beursgeschiedenis.nl/en/moment/the-bank-of-amsterdam/</a> 注脚 22</p>
+<p>[23] Bob McElrath, “On-Chain Defense in Depthm” 01/25/2019 于 Bitcoin Switzerland 的演讲。注脚 23</p>
+<p>[24] Bryan Bishop, “Bitcoin Vaults with anti-theft recovery/clawback mechanisms,” 08/07/2019 给比特币开发者的电邮。注脚 24</p>
+<p>[25] Wuille, “Miniscript,” 08/19/2019 给比特币开发者的电邮。注脚 25</p>
+<p>[26] h.info注脚 26</p>
+<p>[27] 来源 Kingston, “Governance and institutional change in marine insurance, 1350-1850,” 2014.注脚 27</p>
+<p>[28] 结果空前成功。1669 年时，VOC 有 50 条商船，40 条护航用的战船，并雇用 20,000 人。来源 “Introduction to Financial Technology,” Roy S. Freeman, 2006.注脚 28</p>
+<p>[29] 来源 “Completing a Financial Revolution: The Finance of the Dutch East India Trade and the Rise of the Amsterdam Capital Market, 1595-1612,” Gelderblom &amp; Jonker, 2004.注脚 29</p>
+<p>[30] 随着时间推移，阿姆斯特丹证交所开发出了一种握手协议来安全的执行交易。交易员 Joseph de la Vega 于 1688 年描述 “证交所的一个成员张开他的手，另一个成员将其手中股票取走，从而完成一个预定价格的股票交易，并由二次握手确认交易。一个新的握手示意一张新的卖单，然后买方出价。再一次次的握手中交易员手掌发红了起来。” 引述自 Roy S. Freeman 的 “Introduction to Financial Technology,” p.4. 注脚 30</p>
+<p>[31] 来源 “The world’s first stock exchange: how the Amsterdam market for Dutch East India Company shares became a modern securities market, 1602-1700,” L. O. Petram, 2011.注脚 31</p>
+<p>[32] 或许值得一提的是，前面提到 1607 年以 VOC 股票抵押贷款的贷款价值比 66% 与 Unchained Capital 比特币抵押贷款所采用的贷款价值比。<a href="https://www.unchained-capital.com/loans/" target="_blank" rel="noopener">https://www.unchained-capital.com/loans/</a> 注脚 32</p>
+<p>[33] 参阅 “The Use of Perpetual Annuities in Rural Brabant in the Fifteenth and Sixteenth Centuries,” Limberger &amp; De Vijlder, 2018. 自 16 世纪以来，法律通常担保以现金价值赎回年金 - 让年金这样的产品类似于借贷。注脚 33</p>
+<p>[34] 参阅 genesiscap.co, “Digital Asset Lending Snapshot” 2019 Q3 Insights. 注脚 34</p>
+<p>[35] 参阅 Gertrude Chavez-Dreyfuss, “Initial Exchange Offerings Flourish in Crypto Market,” 6/20/2019. 注脚 35</p>
+<p>[36] 参阅 <a href="https://www.bitfinex.com/wp-2019-05.pdf" target="_blank" rel="noopener">https://www.bitfinex.com/wp-2019-05.pdf</a> 和 <a href="https://leo.bitfinex.com/" target="_blank" rel="noopener">https://leo.bitfinex.com/</a>. 注脚 36</p>
+<p>[37] 参阅 <a href="https://www.binance.com/resources/ico/Binance_WhitePaper_en.pdf" target="_blank" rel="noopener">https://www.binance.com/resources/ico/Binance_WhitePaper_en.pdf</a>. 注脚 37</p>
+<p>[38] 参阅 <a href="https://twitter.com/EricRWeinstein" target="_blank" rel="noopener">https://twitter.com/EricRWeinstein</a> 于 8/24/2019 的推文注脚 38</p>
+<p>[39] “1536 年时《愚人讼》已有 36 种不同的拉丁文版本,” 出自 Egbertus Van Gulik “Erasmus and His Books” (2018) p.118.注脚 39</p>
+<p>[40] “梵蒂冈文献指出 1512 年时，富裕的银行家族，例如德国的 Fuggers 家族，成为赎罪券收据和其他税务收据的收款者。随著中世纪时间推演，税的种类越多、对人民的负担越来越沉重。原本暂时性的税改为永久的税，并且针对了最富裕的教堂成员出现了许多新的税种。[…] 除了赎罪券的市场以外，也有大量证据显示同样的寻租行为存在于婚姻市场里。内婚制与婚姻法规被操纵、赎罪诺言被加诸于婚姻契约里，以便将租金最大化。” 出自 “An Economic Analysis of the Protestant Reformation,” Journal of Political Economy, 2022, p. 656.注脚 40</p>
+<p>[41] 来源 Inge De Moor, “De kracht van het protestantse woord: Het succes van de hagenpreken in Antwerpen en Gent,” 2010. 注脚 41</p>
+<p>[42] 来源 Amy Eberlin, “Flemish Relgious Emigration in the 16th/17th Centuries.” 注脚 42</p>
+<p>[43] “荷兰的反异教徒法规的压抑性冠绝全欧洲 - 1523 到 1566 年间至少 1300 人被处决、数千人被起诉、罚款或是放逐。” 出自 Judith Pollmann, “Countering the Reformation in France and the Netherlands,” 2006. 注脚 43</p>
+<p>[44] Plantjin 移居安特卫普的动机是 “就我想开始做的生意而言，世界上没有其他城市可以提供给我更多资源了。安特卫普很容易到达；各国都在这个市场进行贸易；做生意不可或缺的各种原物料都能在这里找到；各行各业的工匠都能在这里轻易的找到、指导。” 来源: “From Antwerp and Amsterdam to London: The Decline of Financial Centres in Europe,” Peter Spufford, De Economist 154, 2006, p.155. 注脚 44</p>
+<p>[45] 参阅 <a href="https://en.wikipedia.org/wiki/Compromise_of_Nobles" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Compromise_of_Nobles</a>. 注脚 45</p>
+<p>[46] 这徵征著八十年战争 (荷兰独立战争) 的开始。在接下来的五十年里，西班牙将陆续派遣 140,000 名士兵到荷兰作战。1574 年尖峰时西班牙的法兰德斯军团一共有 86,235 名士兵。来源: Geoffrey Parker, “The Army of Flanders and the Spanish Road, 1567-1659,” 2004. 注脚 46</p>
+<p>[47] 参阅 “The Spanish Road to the Netherlands,” Geoffrey Parker, 2012. 注脚 47</p>
+<p>[48] Source “Cities at War in Early Modern Europe,” Martha Pollak, 2010, p.14. 注脚 48</p>
+<p>[49] 谣言指出一艘载有西班牙士兵薪资的黄金舰队被名为海上乞丐的荷兰私掠舰拦截，给安特卫普失陷提供了一个理由。参阅 “From Criminal to Courtier: The Soldier in Netherlandish Art 1550-1672,” David Kunzle, p. 145. 注脚 49</p>
+<p>[50] 来源 “Antwerpen in de tijd van de Reformatie,” Guido Marnef, 1996, p.25: <a href="https://www.dbnl.org/tekst/marn002antw01_01/" target="_blank" rel="noopener">https://www.dbnl.org/tekst/marn002antw01_01/</a> 注脚 50</p>
+<p>[51] 参阅 “Prices and wages as development variables: A comparison between England and the Southern Netherlands, 1400–1700,” 1978, p. 93. 部分原因是荷兰共和国 (1587-1863) 针对任何抵达安特卫普货品实施进口通行费，导致安特卫普的总体经济水平直到 1850 年代才重新回到其 16 世纪达到的顶峰状态。参阅 <a href="https://en.wikipedia.org/wiki/Antwerp#Historical_population" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Antwerp#Historical_population</a>. 注脚 51</p>
+<p>[52] 例子包括 Justus Lipsius (莱登大学第一任院长), Dirck van Os, Franciscus van den Enden (斯宾诺莎的老师), , Judocus Hondius (新世界的製图师)。另外，参阅 St. Andrews Institute 提供的数据，以及 Heinz Schilling 的 “Innovation through Migration: The Settlements of Calvinistic Netherlanders in Sixteenth- and Seventeenth-Century Central and Western Europe,” 1983. 注脚 52</p>
+<p>[53] 参阅 “Complexity and diversity: domestic material culture and French immigrant identity in early modern London,” Greig Parker, 2013. 注脚 53</p>
+<p>[54] 参阅 “The Role of Inbreeding in the Extinction of a European Royal Dynasty,” 2009. 注脚 54</p>
+<p>[55] 来源 Collin Woodard, “American Nations,” 2011.注脚 55</p>
+<p>[56] 参阅 Paul Finkelman, “The Roots of Religious Freedom in Early America: Religious Toleration and Religious Diversity in New Netherland and Colonial New York,” 2012. 注脚 56</p>
+<p>[57] “公爵的殖民地 (今天的曼哈顿) 或许是新世界里最多种语言混合的地方了。除了荷兰归正会的多数人，若实施人口普查我们会发现有来自荷兰与瑞典的路德教派信徒、来自法国的加尔文主义信徒、长老会信徒、清教徒、分离主义者、浸信会信徒、重浸派信徒、贵格会信徒、以及来自不列颠群岛或其他地方的其他新教宗派信徒，还有一小群犹太教信徒以及天主教信徒。[…] 新荷兰 (今天的曼哈顿) 之所以能实现如此高度的宗教包容几乎没有特定的理论或哲学依据。这样的包容是从一种需求里诞生的 - 人们需要在一个刚刚开发的边境上生活，并且鼓励相互的贸易与商业活动。简单来说，荷兰西印度公司将世俗的成功至于神学统一之上。” Finkelman, 2012. 注脚 57</p>
+<p>[58] 参阅 Finkelman, 2012. 注脚 58</p>
+<p>[59] 参阅 Finkelman, 2012. 注脚 59</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/01/restart202008/" data-toggle="tooltip" data-placement="top" title="一月一清零 | 听说我们身处牛市">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#BitCoin" title="BitCoin">BitCoin</a>
+                        
+                          <a class="tag" href="/tags/#加密货币" title="加密货币">加密货币</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 145.0k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?418b76fef727b6da80febf464b8907d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

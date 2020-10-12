@@ -244,6 +244,36 @@
 
 <div class="post-preview">
 
+    <a href="/2017/05/04/iOS-dhSearchView/">
+        <h2 class="post-title">
+            一步一步实现 iOS App 的搜索功能
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            先看下 App 中实现的搜索效果图：
+
+左侧为搜索初始页面，右侧为搜索的结果列表页面，现在说一下实现的思路和步骤： 
+
+点击搜索按钮跳转到搜索页面（包含头部热门搜索视图以及搜索历史视图和清空搜索历史功能）
+搜索框输入内容开始搜索并展示搜索结果列表
+点击搜索列表的某一行跳转到下级页面，并记录搜索历史数据
+如果清空搜索框内的内容，再次展示搜索页面
+
+搜索页......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-05-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/05/02/iOS-UIView-tips/">
         <h2 class="post-title">
             UIView 的 setNeedsDisplay 和 setNeedsLayout 方法
@@ -447,31 +477,6 @@ UIWebView 有一个可选的代理方法：- (BOOL)webView:(UIWebView *)webView 
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/14/iOS-DeviceModel/">
-        <h2 class="post-title">
-            iOS 封装获取机型工具类
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            日常开发中我们常需要根据机型来做一些特殊的处理，本文针对此种需求，将此功能抽离出来，封装成工具类，能够极大方便日常的开发。
-Tool.h 暴露接口
-+ (NSString *)getCurrentDeviceModel;
-Tool.m 实现
-+ (NSString *)getCurrentDeviceModel&#123;    int mib[2];......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -566,6 +571,10 @@ Tool.m 实现
                         
                             
                             <a href="/tags/#Movie" title="Movie" rel="2">Movie</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -762,7 +771,7 @@ Tool.m 实现
 					<br>
                     👨🏻‍💻 技术 | 阅读 | 生活
                     <br>
-					<span class="post-count"> 本站共计 130.3k 字 </span>
+					<span class="post-count"> 本站共计 145.0k 字 </span>
                 </p>
             </div>
         </div>
