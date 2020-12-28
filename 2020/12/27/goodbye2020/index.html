@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            2020 年年终总结 - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2020/12/27/goodbye2020/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                    <h1>2020 年年终总结</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2020-12-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>对未来的真正慷慨，是把一切都献给现在。</p>
+<p style="text-align:right;"> —– 加缪</p>
+
+</blockquote>
+<p>转眼间 2020 年已经接近尾声，现在回想年初新冠疫情的经历还历历在目，虽然间隔一年新冠病毒又开始肆虐来袭，病毒虽然可怕，但我们可以根据以往的经验进行防护；可是生活不是下围棋，你只能复盘过去的得失，却无法预测未来的发展。</p>
+<p>2020 年对大多数人来讲都是猝不及防的一年，当然对于我也一样，好在一年到头生活整体上还算过得去，从不同的层面看也会有一些得失，但得失会让我有更多的思考和总结，接下来就从生活的不从层面对过去的一年做个告别。</p>
+<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>因为年初疫情的影响，很多行业都遭受了沉重的打击，实体行业最甚，互联网行业很多公司也受到影响，倒闭和裁员的一大批，加上今年毕业生数量的增加，整个就业市场很不乐观。</p>
+<p>庆幸的是我所在的公司没有被疫情影响太大，整体业务没有受到影响，所以工作一切如常，项目正常推进，就这样又平淡的过了一年。</p>
+<h3 id="投资"><a href="#投资" class="headerlink" title="投资"></a>投资</h3><p>3 月份全球金融市场受疫情影响连续下跌，美股、A股、港股以及欧洲主要市场的下跌都让人害怕。就连巴菲特在当时抄底航空股以后也很快的割肉离场，因为疫情对经济的影响实在是太大了，而市场是经济的晴雨表。</p>
+<p>不仅仅是航空股，连原油都下跌惨重，原因很简单，因为疫情影响，全球的出行市场受到大冲击，而作为目前全球交通主要燃料的石油需求也迅速下降，更甚至中国的投资者在原油市场出现了负的价格，真的是神奇。</p>
+<p>但在随后的 2 个月，金融市场开始逐渐恢复，价格开始上涨，直到今年年底，各类资产价格上涨都很多。</p>
+<h4 id="基金"><a href="#基金" class="headerlink" title="基金"></a>基金</h4><p>在 3 月份的下跌中，我虽然相信市场会恢复正常，但却没敢进行大量抄底，随后我又听从大佬的建议，买入了原油基金，最后原油继续下跌导致亏损，连带账户整体收益率下降了。</p>
+<p><img src="/blogimg/20201227001.jpg" alt="20201227001.jpg"></p>
+<p align="center">↑ 截止至今基金账户整体收益</p>
+
+<p>截止到现在，基金账户总体收益刚刚 20%，还没有赶上大盘收益。当然这应该和我定投有关，因为平时并没有特别关注基金账户，买入基本是定投为主，每个月支付宝自动扣款买入，平时自己不用在这上面关心太多，但对应的收益率也不高。</p>
+<h4 id="🇺🇸-美股"><a href="#🇺🇸-美股" class="headerlink" title="🇺🇸 美股"></a>🇺🇸 美股</h4><p>说起美股，其实我并没有真正意义上的美股账户，之前已经在雪盈证券、微牛上注册账号，但是因为出入金难的问题，一直没有进行过出金操作。临近年底发现一个博主在推荐支持数字货币入金的美股证券，我看了看证券公司相关的信息，还是放弃了，毕竟资金安全才是第一位的。</p>
+<p>但是在今年 3 月份美股大跌时我在微牛开通了一个 $10000 的模拟账户，分别买入了 <code>APPL</code> 和 <code>MSFT</code>，买入的逻辑也非常简单，因为自己在互联网行业，深知技术对社会发展的深远影响，而苹果和微软也是全球为数不多的优质科技公司。</p>
+<p>虽然经历严重疫情，苹果拆股等事件，截止到现在整体收益率竟然也达到了 95% 以上，虽然和某些中概股以及电动车相关的股票没办法比，但这个账户我只在 3 月底买入操作了一次，中间再无其他操作，省心。当然，如果明年数字货币市场牛市发展不错的话，我或许会考虑转移部分资金到🇺🇸美股。</p>
+<p><img src="/blogimg/20201227002.jpg" alt="20201227002.jpg"></p>
+<p align="center">↑ 美股模拟账户收益</p>
+
+<h4 id="数字货币"><a href="#数字货币" class="headerlink" title="数字货币"></a>数字货币</h4><p>数字货币今年的行情可谓是跌宕起伏，3 月份跟随传统金融市场大跌，比特币跌到 $3800 附近，爆仓金额超过百亿，而后市场开始逐步上涨，截止到现在比特币价格达到了 $28200。</p>
+<p><img src="/blogimg/20201227004.PNG" alt="20201227004.PNG"></p>
+<p align="center">↑ 比特币现价</p>
+
+<p>而在今年的下半年，我从比特币现货市场开始转移到了期货市场，因为也是刚刚接触期货，前期盲目的跟随大V的想法进行操作，盲目做空比特币，导致短短几个月时间亏损 2 个 BTC，按照现在的价格进行计算，在期货市场交的学费折合一台长续航版的特斯拉 Model 3 了。</p>
+<p>所幸下半年比特币行情不错，我也及时进行了止损，目前也在总结自己的一套实践方法，截止到目前至少从人民币本位的价格计算还是赚的，至于币本位亏损的学费，明年再赚回来吧。</p>
+<p><img src="/blogimg/20201227003.jpg" alt="20201227003.jpg"></p>
+<p align="center">↑ 期货账户实盘收益率</p>
+
+<p>前段时间接触到了期权，发现做期权比期货更加的安全，而且期权的策略组合可以很丰富的变化，这也是为什么很多大牛都在玩期权的原因。利用合理的衍生品工具，合理控制风险，不断放大利润。</p>
+<h3 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h3><p>随着比特币价格突破上次牛市高点，网络上各式各样的人都在讨论它了，不乏很多人说自己以前知道比特币但是没有买入，有些甚至说以前买过比特币，但是看不懂所以没有拿住，种种讨论最终指向一个最终结果：我错过了比特币，我错失了财富自由的机会。</p>
+<p>这个话题很有意思，万维钢在《直觉泵与其他思考工具》序言中也提到过这个问题，严格意义上这是一个哲学问题，而你也没有错过财富自由的机会，因为这个机会本就不属于你。万维钢序言片段如下：</p>
+<blockquote>
+<p>哲学的技艺科学家要做习题、棋手要打谱、律师和商人要学习案例，丹尼特说的“直觉泵”，就是哲学家的思维工具。这里的“直觉”是个好词儿，代表快速产生思维的灵感。直觉泵，就是说书中这些好像寓言故事和成语典故一样的思维工具，能给你“泵”出各种直觉来.</p>
+<p>咱们举个简单的例子，看看有章法的思维和普通人的思维有什么区别。</p>
+<p>现在比特币非常火了，要好几万元人民币一个，而几年前才值几块钱一个。有个技术爱好者很早就听说过比特币，当时没当回事儿。后来比特币几百元一个，他觉得太贵了还是没出手。现在的他追悔莫及，逢人就说他本来有机会成为百万富翁。</p>
+<p>如果他学过一点哲学，他就不会说这种傻话。丹尼特讲了一个直觉泵叫“古怪的狱卒”。说有个监狱里的狱卒，会在每天半夜犯人们都熟睡的时候，把监狱的大门打开几个小时。那请问，在这几个小时内，犯人们是自由的吗？</p>
+<p>如果那时候犯人能醒过来，他们的确可以逃跑！这就好像如果当年你知道比特币将来会那么值钱你一定会买一样。但是事实上那时候犯人是熟睡的，而你当年也真的不知道比特币的未来行情。</p>
+<p>这个直觉泵的要点在于，当你谈论“自由”的时候，你必须考虑当时外界的因果背景。你不知道和你睡着了一样，你的因果背景里没有那个选项，那不是真的自由，那不叫“有机会”。</p>
+<p>苏格拉底有句名言叫“未经审视的人生不值得过”，我们同样可以说，未经审视的思想不值得拥有——或者至少不值得说出来。</p>
+<p>学习哲学的第一步，就是要学会审视自己的思想。</p>
+</blockquote>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>今年因为长时间关注数字货币的原因，本以为阅读的书不多，但总结下来发现整体也读了 20 多本，主要的书目如下，因为书籍太多，没办法再附加每本书的摘录和读书笔记，明年我会尽可能的对读过的还不错的书形成对应的读书笔记发布到博客上。</p>
+<p><div id="35188914"><div></div></div></p>
+<p><div id="35050614"><div></div></div></p>
+<p><div id="20390865"><div></div></div></p>
+<p><div id="26798608"><div></div></div></p>
+<p><div id="24325274"><div></div></div></p>
+<p><div id="35033233"><div></div></div></p>
+<p><div id="35060315"><div></div></div></p>
+<p><div id="35009826"><div></div></div></p>
+<p><div id="34997975"><div></div></div></p>
+<p><div id="30192587"><div></div></div></p>
+<p><div id="35047171"><div></div></div></p>
+<p><div id="27622006"><div></div></div></p>
+<p><div id="34952676"><div></div></div></p>
+<p><div id="30377678"><div></div></div></p>
+<p><div id="34925762"><div></div></div></p>
+<p><div id="30443502"><div></div></div></p>
+<p><div id="25985021"><div></div></div></p>
+<p><div id="27601129"><div></div></div></p>
+<p><div id="33464162"><div></div></div></p>
+<p><div id="26985299"><div></div></div></p>
+<p><div id="30229576"><div></div></div></p>
+<p><div id="30401752"><div></div></div></p>
+<p><div id="34438225"><div></div></div></p>
+<p><div id="34906885"><div></div></div></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>2020 马上过去，我已然忘记了自己年初对今年的期望，只是经历这一年，疫情、工作、投资以及生活的种种，亦或许是因为年龄增长到某个节点的缘故，对生活的细节感受想要变得更加具体。</p>
+<p>最近也加入了孟岩老师的有知有行投资课，一方面希望自己能够做到知行合一，另一方面也希望在接下来的一年里，自己能够更好的阅读和生活。</p>
+<p>对于投资方面，希望自己在期货和期权方面能够学到一些东西，形成自己的一套交易策略，在降低风险的前提下去放大利润，看看这辆特斯拉学费明年能给我挣回来几辆吧，最后也争取明年进行🇺🇸美股出入金操作。</p>
+<p>2020 再见，2021 你好！</p>
+<p><img src="/blogimg/20201227005.jpg" alt="20201227005.jpg"></p>
+<p align="center">↑ 有知有行投资课报名海报</p>
+
+<script type="text/javascript">
+    setBookInfo(7.5,7.5,'35188914','https://book.douban.com/subject/35188914/','https://img3.doubanio.com/view/subject/s/public/s33716660.jpg','价值','张磊','高瓴创始人兼首席执行官张磊首部力作,沉淀15年，张磊的投资思想首度全面公开<br>全书共3个部分10个章节，介绍了张磊的个人历程、他所坚持的投资理念和方法以及他对价值投资者自我修养的思考，还介绍了他对具有伟大格局观的创业者、创业组织以及对人才、教育、科学观的理解。书中包含 大 量珍贵资料，不仅有首次提出的7大高瓴公式，详细拆解的10多个投资案例，还有11张精致手绘彩插和19张珍贵照片。')
+
+    setBookInfo(8.5,9,'35050614','https://book.douban.com/subject/35050614/','https://img9.doubanio.com/view/subject/s/public/s33702245.jpg','我的二本学生','黄灯','作者黄灯在一所二本院校从教,长期的课堂教学以及课后的师生交流，使她成为这群学生成长变化的见证者。《我的二本学生》相当于她的教学札记，这里面有她15年一线教学经验的分享，对4500个学生的长期观察和长达10年的跟踪走访，也有两届班主任工作的总结思考，更有近100名学生的现身说法，是黄灯向读者描摹一群年轻人生活剪影的尝试。')
+
+    setBookInfo(7.5,8,'20390865','https://book.douban.com/subject/20390865/','https://img1.doubanio.com/view/subject/s/public/s24438658.jpg','投资交易心理分析','布雷特 N. 斯蒂恩博格','《投资交易心理分析》内容简介：战胜自身心智才可战胜资本市场，破解心理谜团方能胜出投资博弈。当市场跟你耍花招时，你不再困惑，取而代之的是一种“曾经沧海”的感觉，任何东西都无法替代因经验而产生的自信。再好的投资策略与交易系统都要经受交易心理的考验。')
+
+    setBookInfo(7.5,8,'26798608','https://book.douban.com/subject/26798608/','https://img2.doubanio.com/view/subject/s/public/s28738153.jpg','3小时快学期权','上海证券交易所衍生品部','如果将衍生品比作金融产品中的皇冠，那么期权以其复杂性和策略多变性当之无愧成为这顶皇冠上的明珠，期权在满足投资者更多样化的风险管理和产品设计需求的同时，也具有杠杆性高、专业性强、风险大、投资策略多变性等特征，这从客观上要求参与期权交易的投资者应当熟悉期权投资知识和交易规则，具有较强的风险承受能力，投资者培育作为保障期权市场长期健康发展的重要因素。在期权产品上市前，上交所就针对投资者持续开展了一系列培训活动，意识到能否将复杂深奥的期权知识以通俗易懂的方式展示给投资者是培育工作成功与否的关键，于是以历史穿越笔法，将期权知识凝练成江湖上大名鼎鼎的“独孤九剑剑诀”，囊括了期权交易从入门到进阶的相关知识，形象概述了期权交易投资的精要。')
+
+    setBookInfo(7.8,8,'24325274','https://book.douban.com/subject/24325274/','https://img1.doubanio.com/view/subject/s/public/s26682138.jpg','海龟交易法则',' [美] 柯蒂斯·费思','在金融界，流传着这样一个著名的故事。1983年，美国期货界的两个挚友——理查德•丹尼斯与威廉•埃克哈特之间就一个问题产生了分歧：伟大的期货交易者究竟是天生的，还是可以后天培养的？他们就这个问题进行了一场赌博，并为寻找答案进行了一场试验，这就是著名的“海龟交易试验”。')
+
+setBookInfo(7.8,8.0,'35033233','https://book.douban.com/subject/35033233/','https://wfqqreader-1252317822.image.myqcloud.com/cover/568/30842568/t6_30842568.jpg','大钱细思：优秀投资者如何思考和决断','[美]乔尔?蒂林哈斯特（Joel Tillinghast）','说起富达基金，人们首先就会想到超级明星彼得·林奇，在执掌富达麦哲伦基金的13年中，林奇将旗下资产规模从1800万美元奇迹般地发展为140亿美元。<br>不过现在，投资专家们更关注乔尔·蒂林哈斯特的一举一动。他不仅是林奇亲自选定的衣钵传人，更保持了惊人的近30年的成功选股纪录。1989年，蒂林哈斯特创建了富达低价股基金，从那时起到现在，该基金年平均回报率高达13.8%，规模成长到了400多亿美元。')
+
+setBookInfo(7.8,8.0,'35060315','https://book.douban.com/subject/35060315/','https://wfqqreader-1252317822.image.myqcloud.com/cover/523/31265523/t6_31265523.jpg','向上生长','九边','百万读者称赞口碑作者，九边首部力作。<br>本书从多个角度，阐述我们在生活中遇到的各种困惑、难题，然后逐个进行深层分析，从而告诉你如何精准选择，抓住每一次出现的机会，拥有一条一路向前的人生路径。')
+
+setBookInfo(8.8,9.0,'35009826','https://book.douban.com/subject/35009826/','https://img9.doubanio.com/view/subject/s/public/s33622685.jpg','一生的旅程',' [美] 罗伯特·艾格 / [美] 乔尔·洛弗尔','◆比尔·盖茨罕见2000字推荐，神级领导力教科书。<br>◆这是我多年来读过最好的商业书之一。——比尔盖茨<br>◆迪士尼CEO自述如何请比我优秀的人为我工作！<br>◆《纽约时报》畅销书排行榜第1名！现象级全球畅销书，畅销美、英、德、法等20国！<br>◆改变好莱坞格局，迪士尼成为好莱坞代名词！2019年迪士尼出品的电影占全美电影票房近四成！')
+
+setBookInfo(8.5,9,'34997975','https://book.douban.com/subject/34997975/','https://img3.doubanio.com/view/subject/s/public/s33638692.jpg','文明、现代化、价值投资与中国','李录','《文明、现代化、价值投资与中国》是喜马拉雅资本创始人、查理·芒格家族资产管理人、价值投资思想第三代代表人物李录的文集。全书包含上下两篇，上篇脱胎于在投资界口耳相传的“现代化十六讲”，作者提出了人类社会从1.0文明到3.0文明演化的思想，讨论了现代化的诞生、本质与铁律。作者站在全体人类的角度，思考人类未来的共同命运；同时，对中国未来的现代化演进进程做出了预测。下篇收录了作者二十余年来的重要演讲、思考与书评，其中包括作者在北京大学光华管理学院、哥伦比亚大学商学院等的几次著名演讲，除了涉及价值投资的观念、方法与实践外，作者还对人类与人性、时代与未来等问题进行了思考。')
+
+        setBookInfo(7.8,8,'30192587','https://book.douban.com/subject/30192587/','https://img3.doubanio.com/view/subject/s/public/s29737802.jpg','塑造世界经济的50项伟大发明','[英] 蒂姆·哈福德','这本书聚焦于世界经济运行中令人着迷的一些细节，为此挑选了50项具体发明——纸张、条形码、知识产权和书写本身等。在每一个案例中，我们会近距离观察，看看这些发明到底改变了什么。一路上，我们会发现一些令人惊讶的问题的答案。')
+
+        setBookInfo(8.1,8,'35047171','https://book.douban.com/subject/35047171/','https://img9.doubanio.com/view/subject/s/public/s33631354.jpg','影响商业的50本书','吴晓波','解商业世界，要从哪里开始？著名财经作家吴晓波，从私人书房的上千本商业经典中，精心挑选出50部代表性作品，逐一重读，带你用一本书的时间，理解近300年来的经济理论迭代、商业发展脉络。同时，也为拥有不同理论基础和阅读爱好的读者，提供了诚意满满的宝藏书单。')
+
+        setBookInfo(8.6,9,'27622006','https://book.douban.com/subject/27622006/','https://img1.doubanio.com/view/subject/s/public/s29700059.jpg','投资中不简单的事','邱国鹭 / 邓晓峰 / 卓利伟 / 孙庆瑞 / 冯柳 / 王世宏','●投资中变与不变的是什么？如何把对市场状态的识别应用于投资实践？如何在资本市场中屏蔽噪音，做出正确的决策？如何用很“笨”的基本面投资逻辑，挣“守正出奇”之大财？ 继《投资中最简单的事》后，高毅资产诚意推出又一价值投资力作《投资中不简单的事》。')
+
+        setBookInfo(9.0,9,'34952676','https://book.douban.com/subject/34952676/','https://piccdn3.umiwi.com/img/202003/30/202003301944477760458649.jpg?x-oss-process=image/resize,m_fill,h_320,w_240','苏世民：我的经验与教训','[美] 苏世民','这是一部投资、管理类图书，是一部关于成功创业的书，还是一部处世哲学。<br>苏世民创立的黑石集团是全球私募股权资产管理公司和房地产管理公司的巨头。截至2019年第三季度，黑石管理的资金总额超过5500亿美元。黑石集团人均利润是高盛的9倍，过去30余年平均回报率高达30%以上。美国排名前50的公司和养老基金中，70%以上都有黑石的投资。')
+
+        setBookInfo(8.5,9,'30377678','https://book.douban.com/subject/30377678/','https://img1.doubanio.com/view/subject/s/public/s33678368.jpg','曾国藩传','张宏杰','曾国藩，没有显赫的家世，天赋堪称晚清同时代大人物当中最差，却官至两江总督、直隶总督、武英殿大学士，在复杂的时代变局中超越众人，成就最大，被誉为大清“中兴第一名臣”，且最后全身而退。他的人生经历，无论是过去还是现在都给人以特别的启示。')
+
+        setBookInfo(7.5,8,'34925762','https://book.douban.com/subject/34925762/','https://img3.doubanio.com/view/subject/s/public/s33551591.jpg','钱从哪里来','唐涯','1. 2019—2020年罗振宇“时间的朋友”跨年演讲重磅推荐，帮你找准自己的财富坐标。<br>2. 香帅最新力作，用通俗的语言、详实的数据、生动的案例为你解析，2020年，我们如何撬动财富。<br>3. 财富只是结果，前提是“人”+“资金“”的正确决策。本书用宏观、行业、城市、资产四大角度，为你锚定财富容器与载体，找到财富的逻辑。')
+
+        setBookInfo(9.5,10,'30443502','https://book.douban.com/subject/30443502/','https://img9.doubanio.com/view/subject/s/public/s29988314.jpg','周期',' [美]霍华德·马克斯','每个投资人都想弄清楚自己现在所处的周期位置。也就是说，人们渴望知道自己下一步应该追加投资，继续留在市场，还是应该果断卖出，离开市场。大家都知道市场周期起伏波动，然而，大部分投资人往往只想到市场周期的首层浅思维。这本书会带你进入市场周期的二层浅思维，教你看懂过去的周期规律，看清现在的周期位置，看透未来的周期趋势，获得少数赢家穿越金融危机、长期战胜市场的投资布局真经。')
+
+        setBookInfo(8.0,8,'25985021','https://book.douban.com/subject/25985021/','https://img2.doubanio.com/view/subject/s/public/s27814883.jpg','人类简史',' [以色列] 尤瓦尔·赫拉利','十万年前，地球上至少有六种不同的人<br>但今日，世界舞台为什么只剩下了我们自己？<br>从只能啃食虎狼吃剩的残骨的猿人，到跃居食物链顶端的智人，<br>从雪维洞穴壁上的原始人手印，到阿姆斯壮踩上月球的脚印，<br>从认知革命、农业革命，到科学革命、生物科技革命，<br>我们如何登上世界舞台成为万物之灵的？')
+
+        setBookInfo(8.2,8,'27601129','https://book.douban.com/subject/27601129/','https://img1.doubanio.com/view/subject/s/public/s29634599.jpg','股票大作手回忆录',' 埃德温·勒菲弗','杰克 施瓦格在对当代30位证券交易员的采访时，向他们提出了同样一个问题：哪一本书让证券交易员过目不忘、受益匪浅？《股票大作手回忆录》独占榜单名首。这本书记录了美国股票史上传奇人物杰西·利弗莫尔（Jesse Livermore）的投机生涯。他把天赋、才华和热情倾注在金融市场上。他被人们称为“少年作手”和“华尔街巨熊”。他在14岁与人凑了5美元进场，15岁赚到一千美元，21岁赚到一万美元，24岁赚到五万美元，29岁身价百万美元，30岁身价三百万美元，52岁身价一亿美元。美国总统威尔逊曾亲自召见他，华尔街之王摩根先生也找人跟他协商。1929年，他做空股市赚走一亿美元，成为股票历史上疯狂的大空头。他一生四起四落，赢得很多的掌声，也留下很深的遗憾。他的操作经验至今仍是股市的教科书，被彼得·林奇、巴菲特、索罗斯、格雷厄姆等推崇。')
+
+        setBookInfo(8.2,8,'33464162','https://book.douban.com/subject/33464162/','https://img1.doubanio.com/view/subject/s/public/s33504428.jpg','货币的非国家化','  [英] 弗里德里希·冯·哈耶克','对多元货币理论与实践的分析')
+
+        setBookInfo(8.8,9,'26985299','https://book.douban.com/subject/26985299/','https://img9.doubanio.com/view/subject/s/public/s29585484.jpg','小岛经济学','彼得·希夫 / 安德鲁·希夫','你一定非常想知道：通货膨胀到底是怎么来的？<br>为什么中国要购买那么多的美国国债？<br>扭转恶化的经济状况是该花钱，还是存钱？<br>为什么有些国家很富有，而另外一些国家却很穷？<br>席卷全球的经济危机又是怎么发生的？')
+
+        setBookInfo(8.2,8,'30229576','https://book.douban.com/subject/30229576/','https://img2.doubanio.com/view/subject/s/public/s29774992.jpg','时间的玫瑰','但斌','投机和短线交易为什么常常会失败？<br>腾讯和茅台高速成长的逻辑是什么？<br>中国资本市场蓝筹时代正在到来？<br>跨过银行、地产，未来哪些行业更有机会？')
+
+        setBookInfo(6.2,6,'30401752','https://book.douban.com/subject/30401752/','https://piccdn3.umiwi.com/img/201812/26/201812261444463201066356.jpg?x-oss-process=image/resize,m_fill,h_320,w_240','城里的房子','徐远','无论是经济发展还是个人生活，在我们的生活中，关于房子的话题始终是一个热门话题，房产税、学区房、限购等话题，都是很多人日常生活中的热门话题，对于土地和房子，我们有着很多人所不能理解的执念。本书作者徐远是北京大学的老师，长期关注中国经济和金融的发展，做各种城市调研和企业研究，对于房子有着自己独特的看法。本书分为“房产配置， 远近高低各不同”“多维勾勒房市轮廓”“对标发达城市， 拨开中国房价迷雾”“房价的经济学透视”“短问快答，解开买房的 共同疑惑”五篇内容，可以说主要涵盖了我们关于房子讨论的热门问题。有理论，有实战，有答疑，相信对于我们对房子这件事的理解和把握，会有比较好的帮助，帮助我们读懂房产的财富逻辑。')
+
+        setBookInfo(7.2,7,'34438225','https://book.douban.com/subject/34438225/','https://img1.doubanio.com/view/subject/s/public/s33303467.jpg','第三道门',' [美]亚历克斯·班纳言 / Alex Banayan','《第三道门》将读者带入一场非同寻常的冒险——从比尔·盖茨的会客厅、陆奇的办公室、沃伦·巴菲特的股东大会，到杂货店里追逐拉里·金，再到为Lady Gaga出谋划策……<br>亚历克斯·班纳言讲述自己如何从大学宿舍出发，去追寻各行业的成功人士，探索他们在事业起步阶段，为实现梦想是如何另辟蹊径、突破自我的。')
+
+        setBookInfo(7.8,8,'34906885','https://book.douban.com/subject/34906885/','https://piccdn3.umiwi.com/img/201912/30/201912301311587477439036.jpg?x-oss-process=image/resize,m_fill,h_320,w_240','让时间陪你慢慢变富','李笑来','《让时间陪你慢慢变富》是一本写给普通人的书。<br>我自认是个普通人，2011年的春天，我误打误撞进入了投资领域。转眼8年过去，我做得很好，成绩相当不错。毫无疑问，是定投改变了我的命运。')
+
+</script>
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/10/12/BitcoinReformationFinal/" data-toggle="tooltip" data-placement="top" title="比特币改革 The BitCoin Reformation">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2020 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+					<span class="post-count"> 本站共计 147.5k 字 </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?418b76fef727b6da80febf464b8907d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
