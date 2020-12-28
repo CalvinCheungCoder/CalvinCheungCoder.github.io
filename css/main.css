@@ -172,7 +172,7 @@ blockquote {
 	color:gray;
 	font-style:normal;
 	font-size:1em;
-	/*margin:20px 0 20px*/
+	margin-top: 20px;
 }
 blockquote p {
 	margin:15px 0px 15px 0px
