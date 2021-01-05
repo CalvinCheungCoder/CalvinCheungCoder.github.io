@@ -91,13 +91,13 @@
                     
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -269,7 +269,7 @@
 <p>当读取某物的温度时，我们可以抛出这些错误中的一个，或者返回 OK</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getReactorTemperature</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="number">90</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkReactorOperational</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</div><div class="line">    <span class="keyword">let</span> temp = getReactorTemperature()</div><div class="line"></div><div class="line">    <span class="keyword">if</span> temp &lt; <span class="number">10</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">TemperatureError</span>.tooCold</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> temp &gt; <span class="number">90</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">TemperatureError</span>.tooHot</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"OK"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>当涉及到捕捉抛出的错误时，SE-0276 文档让我们以同样的方式处理 tooHot 和 tooCold，用逗号将它们分开。</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">try</span> checkReactorOperational()</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Result: \(result)"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">TemperatureError</span>.tooHot, <span class="type">TemperatureError</span>.tooCold &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Shut down the reactor!"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"An unknown error occurred."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">try</span> checkReactorOperational()</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(result)</span>"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">TemperatureError</span>.tooHot, <span class="type">TemperatureError</span>.tooCold &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Shut down the reactor!"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"An unknown error occurred."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>你可以处理任意数量的错误情况，甚至可以根据需要绑定错误中的值。</p>
 <p>当然这只是这篇文章中的一部分，如果你对 Swift 5.3 新特性感兴趣，可以阅读一下这篇文章或者翻阅苹果官方文档。</p>
 <h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p>Linux 下常见的压缩包格式有 5 种: <code>zip</code> <code>tar.gz</code> <code>tar.bz2</code> <code>tar.xz</code> <code>tar.Z</code>，接下来说一说解压缩。</p>
@@ -527,7 +527,9 @@
 					<br>
                     👨🏻‍💻 技术 | 阅读 | 生活
                     <br>
-					<span class="post-count"> 本站共计 147.5k 字 </span>
+                    <span class="post-count"> 本站共计 147.5k 字 </span>
+                    <!-- CNZZ 统计 -->
+<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
                 </p>
             </div>
         </div>
@@ -629,10 +631,6 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-<!-- CNZZ 统计 -->
-<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-
 
 <!-- Side Catalog -->
 
