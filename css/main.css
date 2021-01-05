@@ -169,7 +169,7 @@ article {
 	overflow-x:hidden
 }
 blockquote {
-	background-color: #F5F5F5;
+	/*background-color: #F5F5F5;*/
 	color:gray;
 	font-style:normal;
 	font-size:1em;
