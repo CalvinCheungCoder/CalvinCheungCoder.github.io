@@ -169,11 +169,14 @@ article {
 	overflow-x:hidden
 }
 blockquote {
+	background-color: #F5F5F5;
 	color:gray;
 	font-style:normal;
 	font-size:1em;
 	margin-top: 20px;
+    border-left: 5px solid #DDDDDD;
 }
+
 blockquote p {
 	margin:15px 0px 15px 0px
 }
@@ -1177,11 +1180,6 @@ ul{
 }
 .post-cardpreview a {
 	color: #DDDDDE!important
-}
-blockquote {
-    font-style:normal;
-	font-size:1em;
-    border-left: 5px solid #90A2AA;
 }
 @media only screen and (max-width:767px) {
 	.navbar-default .navbar-collapse {
