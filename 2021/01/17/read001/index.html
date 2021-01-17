@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            Read.001《我的二本学生》时代变迁下的青年学生命运 - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2021/01/17/read001/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                          <a class="tag" href="/tags/#阅读" title="阅读">阅读</a>
+                        
+                    </div>
+                    <h1>Read.001《我的二本学生》时代变迁下的青年学生命运</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2021-01-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>这是前段时间微信读书推荐的一本书，随后发现朋友圈也有朋友在读，也勾起了我阅读的兴趣。看书名也能知道这是一本纪实书籍，作者是广东某二本高校的一名教师，通过她的视角，我们得以看到相差 9 年的 2 届毕业生在学习、就业、职业发展等所面临的种种状态。</p>
+<p>作者带的第一个班级是 062111，在她的记录中，这一届学生毕业前都有着对未来美好前程的无限憧憬，而且和作者联系紧密的一些学生在毕业多年以后生活也还算可以，甚至有几位同学成家、置业，生活水平达到了中产以上。</p>
+<p>而当作者再一次接手毕业班时已是 1516045，2 个班级时间差别了 9 年，而这 9 年也是中国经济突飞猛进、社会财富开始积聚的 9 年。时间来到 2015 年这届学生，从他们那里作者看到的更多的是迷茫，尤其是在目前高物价、高房价、大学扩招的种种现实背景下，在书中作者是这样描述这些学生的。</p>
+<blockquote>
+<p>在考察062111班毕业多年的境况后，我依然为教育对年轻人前途的积极作用感到欣慰：尽管读大学对整个家庭而言，更像经过艰难权衡后的投资选择，经济成本与时间成本比我求学时代高得多；尽管两极分化的趋势已经显现，但我还是为班上大部分孩子，通过上大学能够换来一份衣食无忧的生活，感到踏实的庆幸。</p>
+<p>但通过近十年公共课、专业课上与孩子们的接触和观察，我感觉趋势发生了很大的改变，就算在经济发达的广东地区，就算我所面对的学生，大部分来自广东省，比之062111班，1516045班的孩子已有更多的个体，陷入了真实的迷惑和困顿。毕业季来临，越来越多的学生敲响我办公室的门，试图从班主任的口中，下载一个关于未来的坚定答案；越来越多的学生询问考研的细节、考公务员与创业的胜算，他们在穷尽各种可能后，往往回到一个问题：如果这样，念大学，到底有什么意义？我不知道，这种无法穷尽所有个体感知的清晰印象，是来自个别的偶然倾诉，还是包蕴了一个群体的确定趋势？</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>临近毕业，一种看不到出路的迷茫，成为他们真实又沉重的情绪。对比我带过的两个班，我明显感到1516045班孩子的精神状态，比不上062111班富有活力和朝气。尽管062111班是我们独立成系后，招收的第一届学生，各个方面都处于一种摸索和未知状态，但因为整体经济形势好，房价也相对合理，大部分学生，并未表现出悲观和迷惘的精神面貌，更没有一个学生，为了提高就业的竞争力，拼命去考研。而到1516045班，客观而言，不管在专业设置、师资配备、教学条件等方面，比之以前，都有了很大改善，更为重要的是，就业好，一直是我们学校在广东高校中拥有的良好口碑。但就算如此，还是难掩学生对未来和前途的深重担忧，很多学生，从大一开始，就早早谋划考研，班上考研学生的比例直线上升，人数也早早过半。对农村孩子而言，经历过大一的兴奋期后，一旦认清真相，意识到理想和现实的差距后，往往会陷入长久的情绪低落期。但我没有想到，1516045班的低落期如此之长，以至大四来临，还没有走出。</p>
+</blockquote>
+<hr>
+<p>当然，要说学生的状态差异也不能全是因为社会原因，家庭因素也有很大的占比。都说父母是孩子最好的老师，在孩子成长过程中性格、思想的很多方面多少都会受到家庭的影响，对于这点黄老师也有观察。</p>
+<blockquote>
+<p>越是和学生深入交流，越能感知其背后的家庭，在他们身上烙下的印痕，学生成长的可能性，越来越受制于家庭的溢出效应。我同样惊讶地发现，尽管在代际的偏见中，八零后、九零后甚至零零后，往往被贴上更多的标签，而事实上，如果能获得和他们平等交流的机会，其个体的丰富性，便会于自在的打开中，昭然若揭。令人欣慰的是，尽管就业的局促、房价的高涨，已成为他们一毕业就无可逃避的生存压力，但某种建设性的力量，还是从他们身上倔强地生长。无论是婉丽、沐光、芳坤对故乡、亲人的回望和牵挂，还是子然小小年纪就投身公益的热情，都让我看到喷薄而出的生命热力，和来自青春的尊严与尝试。</p>
+<p>更重要的是，对我而言，因为“导师制”所带来的近距离观察，年轻人身上所呈现的丰富性，极大地纠正了我的偏见。客观说来，尽管对他们而言，“读书改变命运”的成色，在教育市场化的语境下，早已褪色了很多，但在和更多的学生具体交流后，我还是能感受到农村孩子上大学的重要意义。他们从最底层的社会挣扎出来，在转型期的驳杂中，经历的心灵磨难、挣扎，并不比父辈少半点。他们也许错过了“读书改变命运”的时代，但他们避免了，若不读书，就会滑入更为糟糕境地的可能。当我从他们的讲述中，感知到身后一群群没有受到良好教育的孩子如何在底层挣扎的图景，我能明显感到，那群被抛出的孩子，其无望、狂放，早已成为社会触目惊心的疤痕。对沐光而言，在破败的村庄，若不是通过读书，等待他的，很有可能就是二弟的命运。就算暂时不能在城里立足，他来到广州的突围，也算得上一次胜利的逃离，通过念大学，他至少避免了变成烂仔的可能。</p>
+</blockquote>
+<p>家庭因素、就业压力、高成本的生活，种种因素也就造成了目前毕业生找工作难，生活看不到希望的种种情况。</p>
+<p>在我写此文的不久前，拼多多员工猝死在社会上引发激烈的讨论，也有部分拼多多员工借此曝光了该企业更多的企业细节。</p>
+<p><img src="/blogimg/20210117001.jpg" alt="20210117001.jpg"></p>
+<p align="center">↑ 脉脉软件曝光的拼多多员工猝死信息，但随后该帖子被删除</p>
+
+<p>过去的 2020 年里有个词被提到的次数很多，那就是”内卷”。由于近一年多的新冠疫情影响，整个社会的就业压力增大，这又导致了大学扩招，更多的学生选择了考研，而选择了考研也并不意味着一帆风顺，留给后面几年的就业压力依旧也不小。</p>
+<p>最近一线城市的房价又开始涨了，现在实体经济不行，政府又放了太多的水，导致资产价格上行，目前在社交网络上每天都可以看到很多普通人晒基金收益、股票收益的，好像这个市场中赚钱就像呼吸一样简单。</p>
+<p>而经济如此下去，导致了更多的行业内卷、生活成本上升、房价上涨等等，这些问题不仅仅是很多毕业生要面临的，对于更多的社会普通阶层的打工人来讲，生活也是越来越不容易。</p>
+<blockquote>
+<p>我想起李萌在讨论课上的话：“我们横着去看这个社会的时候，当然可以说，我们很骄傲，我们的GDP增长了多少，我们在全世界排在第二，但是，当我们纵着去看这个时代，我们会发现，每个个体的人变得非常重要。因为我们每一个人只有一生，每个人只有一辈子，我们都是在为自己的一生而奔波而劳动，我们的爱恨情仇，在整个时代背景下，不过历史长河中的一朵小小浪花，但它却会真切地落到每个人身上，会让人椎心至痛。我们站在远方、站在高处，当然可以看到远方的河水波澜壮阔，但当我们置身人群深处的时候，是否知道自己身处何方？”</p>
+</blockquote>
+<p>经济数据当然重要，但数字背后是一个个活生生的人啊，生活不易。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/12/27/goodbye2020/" data-toggle="tooltip" data-placement="top" title="2020 年年终总结">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                          <a class="tag" href="/tags/#阅读" title="阅读">阅读</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2021 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+                    <span class="post-count"> 本站共计 149.8k 字 </span>
+                    <br>
+                    <!-- CNZZ 统计 -->
+                    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?418b76fef727b6da80febf464b8907d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

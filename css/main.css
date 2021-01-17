@@ -127,7 +127,7 @@
 	font-family:"Avenir Next",BlinkMacSystemFont,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
 	line-height:2;
 	font-size:16px;
-	color:#404040;
+	color:black;
 	overflow-x:hidden
 }
 p {
@@ -169,16 +169,16 @@ article {
 	overflow-x:hidden
 }
 blockquote {
-	/*background-color: #F5F5F5;*/
-	color:gray;
+	background-color: #F9F9F9;
+	color:#404040;
 	font-style:normal;
 	font-size:1em;
 	margin-top: 20px;
-    border-left: 5px solid #DDDDDD;
+    border-left: 5px solid #595959;
 }
 
 blockquote p {
-	margin:15px 0px 15px 0px
+	margin:0px 0px 25px 0px
 }
 small.img-hint {
 	display:block;
@@ -1217,4 +1217,10 @@ ul{
 	color: #DDDDDE!important;
 	text-decoration:none
 }
+
+blockquote {
+	background-color: #343D46;
+    border-left: 5px solid #90A2AA;
+}
+
 }
