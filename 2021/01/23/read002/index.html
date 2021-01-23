@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            Read.002《俞军产品方法论》产品经理的高级进阶 - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2021/01/23/read002/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                          <a class="tag" href="/tags/#阅读" title="阅读">阅读</a>
+                        
+                    </div>
+                    <h1>Read.002《俞军产品方法论》产品经理的高级进阶</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2021-01-23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>高阶产品经理是什么样的？他们又是怎么样在用户体验、公司业务等各方面进行利益平衡的呢？带着这样的好奇我读了这本书，当然一方面也是冲着俞军的大名来的。</p>
+<p><img src="/blogimg/20210123001.jpeg" alt="20210123001"></p>
+<p align="center">↑ 《俞军产品方法论》</p>
+
+<h2 id="最初的产品经理"><a href="#最初的产品经理" class="headerlink" title="最初的产品经理"></a>最初的产品经理</h2><p>产品经理岗位最初来源于宝洁，在以宝洁为代表的消费品时代，产品经理的侧重点都在销售上面。因为需求相对确定，生产也很标准化，有工业时代成熟的方法论来支撑，使得产品本身容易同质化，但在品牌定位、营销、渠道控制上的差别，决定公司是可以挣10亿元还是100亿元。因此，宝洁时代的产品经理，在销售和营销方向创造的价值更大。</p>
+<p>进入软件时代，产品经理的主要工作是管理软件生产。早年软件的设计大多数是to B的，to B的需求相对容易明确，根据客户的需求进行迭代即可。即使有一些to C（面向个人）的产品，也因为市场稀缺性的缘故，用户选择较少，产品不愁卖。那个时代最稀缺的是生产软件的合格工程师，供给远远跟不上需求。所以产品经理在管理生产上更能创造价值：沟通协调，版本控制，按时交付。因此，软件时代的产品经理，在协调和生产上创造的价值更大。</p>
+<p>随着互联网信息分发效率和数据可反馈性的提升，让互联网产品经理对产品本身可以进行快速的迭代，也需要产品经理具有快速迭代的能力。而随着流程和工具的普及，使产品工作在一定范围和程度上被科学化、标准化了。标准化能降低门槛，也进一步降低了产品经理的入行门槛，不但降低了对产品经理所拥有的经验和技术的要求，甚至降低了对其理解用户能力的要求。</p>
+<p>这也是目前互联网行业产品经理比较多的原因，因为做技术研发的岗位可以转产品经理、测试也可以转产品经理，市场上就有了太多的互联网产品经理。</p>
+<h2 id="产品经理做什么"><a href="#产品经理做什么" class="headerlink" title="产品经理做什么"></a>产品经理做什么</h2><blockquote>
+<p>产品经理如果要学习成熟学科的话，最主要的是学习经济学和心理学。经济学就是讲在约束条件下追求利益最大化。一般来说，不仅企业是这样，用户也是这样，每个用户都是在自利地追求价值最大化。</p>
+</blockquote>
+<p>产品是由人加工，有用户，且可以被交易的商品或服务。因此，产品要经过“需求”“生产”“销售”三个环节。产品经理要对产品的市场结果负责，需要对这三个环节分别进行关注，并“协调”公司不同分工下的不同职能，让大家共同完成目标。</p>
+<p>在此俞军提出了对产品经理一个很重要的模型：交易模型。</p>
+<p>这要求产品经理除了掌握用户模型，还能理解一个领域各利益方的价值判断和行为习惯，以及产品实现过程中的各种干扰因素，这样才能自如地设计和优化交易模型。这里是把所有产品看作交易，搜索、社交、阅读等信息类产品只是货币价格为零的特殊交易。研究交易模型，除了理解产业链上各方的价值判断和复杂关系，主要研究的就是交易费用。</p>
+<p>我们认为，一个好产品要有三个属性：（对用户）有效用，（企业）有收益，可持续。只有可持续，才能让企业长期赚钱；只有可持续，才能长期为用户创造更多价值。而可持续就涉及交易模型设计问题。只有产业链上各方在创造价值和利益分配方面公平合理，有竞争性，产品才可持续。</p>
+<h3 id="理解用户"><a href="#理解用户" class="headerlink" title="理解用户"></a>理解用户</h3><p>从产品经理的视角来看，用户不是自然人，而是需求的集合。</p>
+<p>如何理解用户是需求的集合？由于不同产品满足用户不同场景下的需求，当某个产品完全满足了某个用户在某个场景下的某类需求，那么就可以说此用户是该产品的一个用户。举个例子，如果某个用户一个月有100次使用专车的需求，100次全用了滴滴专车，那么我们可以说此用户是滴滴专车的一位用户；如果100次专车需求中，只有50次使用了滴滴专车，那么这个用户就只有一半是属于滴滴的，滴滴其实只获得了半个用户。</p>
+<p><code>用户价值 =新体验–旧体验– 替换成本</code></p>
+<p>从这个维度，提升用户价值有三种方式：让新体验最大化，让旧体验最小化，降低替换成本，三者互相影响。要让用户价值最大化，必须综合权衡三者，总是在当前约束条件下进行资源最优配置。</p>
+<h3 id="理解产品"><a href="#理解产品" class="headerlink" title="理解产品"></a>理解产品</h3><p>卖产品是卖一种在约束条件下的效用组合。分析产品的重点是弄明白这个产品利从何来、利往何去，它创造了什么价值，价值是怎么分配的。从价值的维度分析，才能推演它的趋势，才能理解用户的需求，而不是只从表面上看它有没有某种功能，是不是又改版了。如果它增加一个功能，那为什么要增加，这种做法也可能是错的，这些永远要自己去判断。</p>
+<p>以创造用户价值为目的，打破一个旧的利益平衡，建立一个对己方有利的新产业链，这样的产品才容易成功。这种情况是要做一个规模较大的产品，也有很多领域是可以很多产品并存的。但互联网时代和软件时代、消费品时代完全不一样，平台型的大规模产品非常常见。</p>
+<p>一个好产品应该有三个属性：有效用，有利润，可持续。有效用当然是指对用户有使用价值，有利润是指产品必须让企业获利（可以是间接的），然后在“可持续”这个属性上达到用户利益和商业利益的统一。可持续其实是靠实践验证的，即追求长期利益最大化。</p>
+<h3 id="理解企业"><a href="#理解企业" class="headerlink" title="理解企业"></a>理解企业</h3><p>产品经理的用户，首先是企业。产品经理与企业交换价值，所以需要先理解企业。</p>
+<p>总体上，企业的本质，只在于两点：第一，发现市场获利机会；第二，生产效率高于市场。</p>
+<h2 id="交易与交易模型"><a href="#交易与交易模型" class="headerlink" title="交易与交易模型"></a>交易与交易模型</h2><p>产品通过交易转移到了一个更能创造价值的人手里，樵夫拿到斧子和音乐家拿到小提琴，他们就能创造比之前要大得多的价值。他们利用这两个物品创造新价值的能力也增加了，也就是说，这个世界上的总物质没有增加，但这个世界上的人类创造新价值的能力增加了。</p>
+<p>这就是这个世界无时无刻不在发生交易的原因——交易创造价值。</p>
+<p>世界上没有等价交换，只要不存在强迫和欺诈，一定是双方都主观判断自己会受益，才会完成交易。如果有一方亏本，他就不会愿意进行交易。产品即交易，作为产品经理，就要帮助用户创造这样的交换，产品设计要以终为始，一开始就奔着最后能成交去设计。</p>
+<p>所以，一个企业的核心最终目标就应该是创造交易，有交易才有用户，才算完成了价值创造，才有可能赚钱。发现市场机会，其实就是发现你能促成一个交易，让用户付出某种代价来买你的产品。这种代价可能是金钱，也可能是时间，或者是体力、精力、精神等。</p>
+<p>你愿意放弃已获得的某个东西，大概率是为了换取当下对你而言更高的用户价值。交换创造价值，反过来也可以理解为，不创造当下主观价值的交换不可能存在。</p>
+<p>所以也可以从这个角度去思考产品经理这个角色。产品经理用产品促成企业和用户间的价值交换，每一次交换都会创造价值。产品经理最终要做的，是持续不断地发现市场上高于用户支付代价的用户价值，并设计合适的交易模型把它固化为产品。</p>
+<p>劳动、分工、新技术、制度和交易都是创造价值的一些手段。交易和交换本质上是一回事，我们从上帝视角来看，双方都是在交易或者交换。但是从单方视角来看，交易的任何一方都只关心“我会付出什么，我会得到什么”。只有得到的大于付出的，他才愿意参与交换，否则他就不会执行这个交换行为（理性人还能做到根据机会成本做决策）。</p>
+<p>企业以产品为媒介，创造用户价值并和用户交换。企业的一切行为也应该围绕“让交换行为更多地发生”。以下是让更多的交换行为发生的具体做法。</p>
+<p>（1）持续发现和追加可交换的、有利可图的用户价值。<br>（2）创造和更高效率地创造这些用户价值。<br>（3）持续降低生产成本和所有交易成本。<br>（4）企业行为的权重，按影响用户交换行为的ROI排序。<br>（5）维护企业生存能力和可持续发展能力。</p>
+<p>除此以外，产品经理还要关注产品的效用、边际、成本、供需关系和相对价格等知识。</p>
+<h2 id="理性决策"><a href="#理性决策" class="headerlink" title="理性决策"></a>理性决策</h2><p>产品经理是做权衡的，不是做“设计”或“创意”的。或者说，我们中的很多人可能对“设计”存在误解。广义的设计，是对整个系统加以改变。无论什么领域，建筑、消费品、在线服务，设计都是要放在系统背景下考虑的。如果把“设计”狭义地定义成好创意、自我表达、好审美等等，其实是只选择去满足一小部分用户的诉求，只能在小众市场成功。而互联网产品做大后都是平台，就不适合运用创意思维和设计师思维了，需要适当引入经济学思维，习惯于权衡取舍，追求整个系统的效率。当然，也会有著名的现象级产品宣称自己遵从这类狭义设计理念，一般来说那可能是因为产品遇到了一轮巨大的新要素红利，本身已创造了巨大用户价值，其他因素的影响权重都降低，随便怎么做都锦上添花。在这种情况下，好的审美或交互当然有市场价值，但它们其实不会左右产品的成功与否。若产品本身已成功，创始人或管理者无论怎么解释，不论他是真这么想还是为了营销，历史也不能重演，第三方也就无法证伪。</p>
+<p>行为科学研究得出结论，一个人一天的行为中大约有5%是非习惯性的，而其他95%的行为都源自习惯。这基本上意味着是习惯而不是逻辑，决定了我们的一生。我们以为自己是理性的，我们以为自己的一举一动都是讲逻辑、有道理的。但事实上，我们的多数日常行为，都是一些我们自己根本无法了解的隐蔽动机导致的结果。所谓理性，是指当条件合适时（理性并非总是优于本能和习惯），优先用逻辑、知识和思维去做出决策和预期收益最大化的行为，而不是任由本能和习惯驱使。</p>
+<p>逻辑决策也是“讲理决策”，结论靠逻辑推导得来。但需要对方具备相应的认知水平，否则就会鸡同鸭讲。想让一个人理解和接受一个道理，是要在他的偏好和认知结构内去实现的。如果对方不具备相应的偏好和认知结构，就需要帮他补齐，但这个成本实在太高了。所以，逻辑决策的成本远高于数据决策。</p>
+<h3 id="决策的误区"><a href="#决策的误区" class="headerlink" title="决策的误区"></a>决策的误区</h3><p>产品经理作为研究人的职业，关于认知偏误的知识是其必修课，既要极力避免自己犯这些错，也要从这些角度理解人性，理解一些用户行为背后的原理。维基百科词条“认知偏误列表”列举了近两百种认知偏误，下面这些是产品经理需要关注的。</p>
+<h4 id="1、归因偏误"><a href="#1、归因偏误" class="headerlink" title="1、归因偏误"></a>1、归因偏误</h4><p>一些常见的归因偏误现象如下。</p>
+<p>自利偏误：将成功归因于自己，而将失败归因于环境。把集体行动的结果归因于自己，多过其他人会归因的程度。</p>
+<p>正面效应与负面效应：评价喜欢的人的行为时，把他们做好事归因于内在本质，而把他们做坏事归因于环境因素。评价不喜欢的人的行为时，把他们做好事归因于环境因素，而把他们做坏事归因于内在本质。</p>
+<p>群体归因偏误：把个体的特质当作其所属群体的特质，或把个体的行为当作其所属群体的偏好。</p>
+<p>终极归因偏误：把问题归因于整个群体，而非群体中的个体。</p>
+<p>基本归因偏误：解释他人行为时，过度归因于内在特质（一定是他有这样的人格，才做出这样的行为），而非外在情境（也许是情势所迫，或这个场所有特殊的潜规则）。</p>
+<h4 id="2、锚定效应"><a href="#2、锚定效应" class="headerlink" title="2、锚定效应"></a>2、锚定效应</h4><p>锚定效应是指为不熟悉的事物估值时，会把熟悉的类似事物或不久前接触到的无关数值当作“锚”，估出来的数值会大大倾向“锚”。类似的偏误现象还有以下几种。</p>
+<p>幸存者偏差：过度关注在某些经历后幸存下来的人事物，忽略那些没有幸存的（沉默的数据），造成结论偏离实际情况。</p>
+<p>峰终定律：我们对一项事物进行体验之后，印象最深的是在峰值与结束时的体验，而在过程中好与不好体验的比重、好与不好体验的时间长短，对记忆影响很小。高峰之后，终点出现得越迅速，这件事留给我们的印象越深刻。</p>
+<p>框架效应：同一资讯以不同方式呈现会使得人的想法不同，例如告知公众有一个做法将会“导致三分之一的人死亡”和“保护三分之二的人活下来”的效果是不一样的。</p>
+<p>禀赋效应：指人们拥有或即将拥有某物品或资产时，对其价值的评估会比没有时高出许多，因而不愿失去或放弃它。</p>
+<p>心理账户：人们将消费分门别类（住宅、食物、服装、娱乐、投资等），且每一个类别对应各自的心理账户，每个心理账户都有自己的预算和单独的参照点，使得各个账户之间的替代性非常有限。一个人对给定数量金钱赋予的价值，取决于这部分钱属于哪一个心理账户，继而依赖于背景、框架和情境。心理账户能解释同一个人在不同事物上的花钱矛盾现象。</p>
+<p>损失厌恶：指人们面对同样数量的收益和损失时，认为损失更加令人难以忍受。损失带来的负效用约为同量收益的正效用的2.5倍。损失厌恶反映了人们的风险偏好并不客观，当涉及的是收益时，人们表现为风险厌恶；当涉及的是损失时，人们则表现为风险寻求。</p>
+<h4 id="3、选择性注意"><a href="#3、选择性注意" class="headerlink" title="3、选择性注意"></a>3、选择性注意</h4><p>人们常常倾向于忽略掉不符合自己期望的东西，只看到自己期望看到的东西，他们期望看到的东西又是基于熟悉的东西、先前的经历，或是个人的欲望、兴趣需求，这就是选择性注意。</p>
+<h4 id="4、刻板印象"><a href="#4、刻板印象" class="headerlink" title="4、刻板印象"></a>4、刻板印象</h4><p>刻板印象是指对某人或某一类人产生的一种比较固定的、类化的看法。人们习惯把人进行机械的归类，把某个具体的人看作某类人的典型代表，把对某类人的评价视为对某个人的评价。典型现象如种族歧视、地域歧视、职业歧视、性别歧视等。</p>
+<h4 id="5、自我中心偏误"><a href="#5、自我中心偏误" class="headerlink" title="5、自我中心偏误"></a>5、自我中心偏误</h4><p>自我美化偏误：会美化回忆中的自己，往往认为自己比实际情况更好。例如记忆中自己的考试成绩比实际更好。</p>
+<p>支持选择偏误：回顾自己做过的选择时，倾向认为它是明智的，给出高于实际的评价。如购买后把之前的购买决定合理化，即使买下的商品太过昂贵或有瑕疵。</p>
+<p>错误共识效应：高估别人对自己的认同程度，认为所有人以同一方式思考。</p>
+<p>投射偏误：不自觉地以为他人（或未来的自己）和（现在的）自己有相似的情感、思想与价值观。</p>
+<p>素朴实在论：相信自己所见所闻即是真相，是客观且不带偏见的，认为这是显而易见的事实。</p>
+<p>控制错觉：高估自己对外在事件的影响力，认为事情是受自己控制或影响的，但实际上它可能与自己毫无关系。</p>
+<p>达克效应：能力过差的人由于无法分辨能力好与能力差的不同，因而会错误地高估自己的真实水准，有一种虚幻的自我优越感。</p>
+<p>逆火效应：遇上与自身信念抵触的观点或证据时，除非它们足以完全摧毁原信念，否则会忽略或反驳它们，原信念反而更加强化。</p>
+<p>证实偏见：人们普遍偏向能够验证己方假设和观点的信息，而不是那些否定假设的信息。关注、寻找、诠释、记忆信息的方向多半是能证实自己假设和成见的方向，而那些可能推翻自己观点的信息往往会被忽视掉。</p>
+<p>舒适区效应：对于过去常用的方案，高估效益或成功机会；对于过去少用的方案，低估效益或成功机会。</p>
+<h4 id="6、信念偏误"><a href="#6、信念偏误" class="headerlink" title="6、信念偏误"></a>6、信念偏误</h4><p>可得性偏误：对容易想到的事，会高估其发生概率。然而一件事是否容易想到还受发生多久、激起情绪的程度等因素影响，无法反映实际的发生概率。</p>
+<p>频率错觉：因最近注意到一件原先没注意到的事，就觉得这件事到处都在发生。</p>
+<p>后见之明偏误：又称“我早就知道了”“马后炮”“事后诸葛亮”。在事情发生或发展后，以为自己事前就能预测其发生与发展。</p>
+<p>可获性层叠：一件事越常被公开谈论，人们就越相信其正确性，类似“三人成虎”。货币错觉：专注于货币名目上（表面上）的价值，而非其实质购买力。</p>
+<p>一致性偏误：记忆中他人过去的态度与行为会变得像目前的态度与行为。</p>
+<p>巴纳姆效应：人们会把他们认为是为自己量身定做的人格描述评价为高度准确，而这些描述往往十分模糊及普遍，能放诸四海而皆准，适用于很多人。这个效应多出现于占卜星相、算命和个体性格分析等情境。</p>
+<p>基本比率忽视：只关注针对性的信息，忽略一般性的信息（基本比率），导致不恰当的认知。例如因为酒驾较容易肇事，就认为肇事者中很多是酒驾，然而由于酒驾者占所有驾驶者的比例很小，肇事者中酒驾者的比例不会那么高。</p>
+<p>赌徒谬误：认为某事多次发生则未来发生的概率较小，或多次未发生则未来发生的概率较大。就像赌徒认为掷骰子时连续几把结果是“大”，那么下一把是“小”的概率更高，而忽视了每一次掷骰子都是独立事件，有独立概率。</p>
+<p>逆赌徒谬误：认为发生概率很小的事不会发生，如果发生了，一定是做了很多次。</p>
+<h4 id="7、决策类偏误"><a href="#7、决策类偏误" class="headerlink" title="7、决策类偏误"></a>7、决策类偏误</h4><p>结果偏误：评价决策好坏时，根据其最终结果，而不是根据做决策的过程。</p>
+<p>道德评价偏误：评价他人行为的道德时，根据结果而不是根据做出行为时的情境。资讯偏误：倾向寻求更多资讯以做出决策，即使寻求的资讯对决策没有帮助。</p>
+<p>共有资讯偏误：团队讨论倾向花较多时间与精力讨论所有成员都知道的事（即共有资讯），而花较少时间讨论较少成员知道的事。</p>
+<p>集体错觉：团体在决策过程中，由于成员倾向让自己的观点与团体一致，因而令整个团体缺乏不同的思考角度，不能进行客观分析。</p>
+<p>从众效应：倾向做很多人做的事，或相信很多人相信的事，以和他人保持一致，也就是“随大流”。</p>
+<p>沉没成本谬误：当人们证实先前累积的投入（沉没成本）已经浪费掉了，仍然对这些已经不能回收的成本念念不忘，因而做出不理性的选择。</p>
+<p>塞麦尔维斯反射：条件反射般地否定、拒绝新证据或新知识，因其有悖于现有的常规、信仰或价值观。</p>
+<p>麦纳马拉谬误：过度相信数据，依赖数据评估事情，忽略难以量化的事。此典故源自美国前国防部长麦纳马拉，他相信能用量化数据（如击毙越军的尸体数量和减少己方人员的伤亡数量）衡量美国在越战中的成功，但忽略了其他因素。</p>
+<h2 id="产品经理的选拔与成长"><a href="#产品经理的选拔与成长" class="headerlink" title="产品经理的选拔与成长"></a>产品经理的选拔与成长</h2><p>最后，俞军还提到了对于产品经理岗位的选拔和成长相关的话题。如一个成功产品是培养出一个好产品经理的必要条件，反之却不一定。当一种重要新技术或其他新要素找到合适应用，进入爆发期后，注定能创造巨大新价值，即使产品决策质量平庸一些，只要没被竞品拉开差距，也不会妨碍产品取得巨大的市场成功。（只有特定的“天选之子”能创造或能做到特定规模的产品，这样的情况虽然存在，但很难被证明或证伪。）在移动互联网发展后期的今天，产品实践机会已经变成最稀缺的资源，为每个产品实践机会去寻找、配备好的产品经理是值得的，一个好产品经理能提高产品的成功率和发展天花板。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>本书的内容更多的是从高阶的层面讲产品经理应该学习什么，比如产品经理要理解用户、产品和企业，要学习经济学相关领域的知识，要学会理解交易和交易模型，从而从更高的纬度去理解和完善产品的交易模型。</p>
+<p>除了这些基本的知识外，书中还告诉读者如何避免决策失误，产品经理如何选拔、成长等内容。建议产品经理或者对产品感兴趣的同学阅读。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/01/17/read001/" data-toggle="tooltip" data-placement="top" title="Read.001《我的二本学生》时代变迁下的青年学生命运">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                          <a class="tag" href="/tags/#阅读" title="阅读">阅读</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2021 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+                    <span class="post-count"> 本站共计 156.1k 字 </span>
+                    <br>
+                    <!-- CNZZ 统计 -->
+                    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?418b76fef727b6da80febf464b8907d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
