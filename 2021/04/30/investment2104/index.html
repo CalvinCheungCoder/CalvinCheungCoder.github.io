@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calvin 的个人主页，主要记录技术、读书、投资理财等相关内容，座右铭：Stay hungry Stay foolish.">
+    <meta name="keyword" content="技术、读书、思考、成长、理财、投资、管理">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+            2021年4月投资月报：黄昏十字星？ - DHTalk&#39;s Blog | Stay hungry Stay foolish.
+                
+    </title>
+
+    <link rel="canonical" href="https://zhangdinghao.cn/2021/04/30/investment2104/">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+    <!-- Custom Card JavaScript -->
+    <script src="/js/card.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DHTalk&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#投资" title="投资">投资</a>
+                        
+                          <a class="tag" href="/tags/#月报" title="月报">月报</a>
+                        
+                    </div>
+                    <h1>2021年4月投资月报：黄昏十字星？</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Calvin on
+                        2021-04-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>上个月末因为非常看好 4 月份的行情，所以杠杆稍微有点高，谁知道 4 月份上半个月创出新高后行情很快进行了万点大回撤，回撤力度之快超出了我的想象，然后在日线 MA120 的位置迅速反弹，截止到月底行情收了这样的一个十字星。</p>
+<p><img src="/blogimg/2021043005.png" alt="2021043005.png"></p>
+<p align="center">↑ BTC 月线走势</p>
+
+<h2 id="期货收益统计"><a href="#期货收益统计" class="headerlink" title="期货收益统计"></a>期货收益统计</h2><p>截止到当日 23:51，『区块创新』账户净值为 <code>1.5017</code>，上月净值为 <code>1.5426</code>，本月净值增长 <code>-0.0409</code>，因为该账户相对稳定，而且在价格低位进行了加仓，整体回撤较少。</p>
+<p>『期货搏一搏』账户净值为 <code>7.1384</code>，上月净值为 <code>12.0924</code>，本月净值增长 <code>-4.954</code>，因为该账户初期投入资金较少，最高时翻了 30 多倍，利润已经全部提现，所以剩余资金的杠杆相对较高，故本月回撤较多。</p>
+<p><img src="/blogimg/2021043001.jpg" alt="2021043001"></p>
+<p align="center">↑ 期货账户</p>
+
+<h2 id="网格收益统计"><a href="#网格收益统计" class="headerlink" title="网格收益统计"></a>网格收益统计</h2><p>『Pionex网格』账户净值为 <code>1.9151</code>，上月净值为 <code>1.2926</code>，本月净值增长 <code>0.6225</code>。因为网格吃波动的价差，所以波动越大收益越大，而且波动过后价格如果依然能够回归的话，波段吃的是最舒服的。</p>
+<p><img src="/blogimg/2021043002.jpg" alt="2021043002"></p>
+<p align="center">↑ Pionex网格</p>
+
+<h2 id="基金收益统计"><a href="#基金收益统计" class="headerlink" title="基金收益统计"></a>基金收益统计</h2><p>基金账户『基金长盈』目前净值<code>0.9952</code>，上月净值 <code>0.9797</code>，本月净值增长<code>0.0155</code>。</p>
+<p>基金账户『跑赢大盘』目前净值<code>0.9065</code>，上月净值 <code>0.8826</code>，本月净值增长<code>0.0239</code>。</p>
+<p><img src="/blogimg/2021043003.jpg" alt="2021043003"></p>
+<p align="center">↑ 基金账户</p>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>常言道币圈一日人间一年，因为这个圈子更新迭代非常快，每年的玩法都是不一样的，比如今年比较火的 DeFi、NFT 等，实际上很考验人的学习能力的。</p>
+<p>当然交易不是一朝一夕就能做到完美的，接下来的 5 月份继续学习，继续看好未来的加密货币。</p>
+<p><img src="/blogimg/2021043004.png" alt="2021043004"></p>
+<p align="center">↑ BTC 彩虹模型</p>
+
+<p>随着 4 月份价格调整的结束，看着彩虹模型图的走势，继续期待接下来几个月的 BTC 走势。</p>
+
+
+                <div id="rewardContainer">
+                  <div></div>
+                  <button id="rewardButton" disable="enable" onclick="var qr=document.getElementById('QR'); 'none'===qr.style.display?qr.style.display='block':qr.style.display='none'">
+                    <span>赞赏</span>
+                  </button>
+                  <div id="QR" style="display: none;">
+                    <div id="wechat" style="display:inline-block">
+                      <img id="wechat_qr" src="/img/wx.png" alt="DIYgod 微信扫一扫，向我赞赏" data-action="zoom">
+                      <p>微信扫一扫，向我赞赏</p>
+                    </div><div id="alipay" style="display:inline-block">
+                      <img id="alipay_qr" src="/img/ali.png" alt="DIYgod 支付宝扫一扫，向我赞赏" data-action="zoom">
+                      <p>支付宝扫一扫，向我赞赏</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/03/31/investment2103/" data-toggle="tooltip" data-placement="top" title="2021年3月投资月报：稳是王道">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+                <br/>
+                
+                    <!-- valine 公共JS代码 start (一个网页只需插入一次) -->
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                    <div id="comment"></div>
+                    <script>
+                        var notify = false == true ? true : false;
+                        var verify = false == true ? true : false;
+                        var visitor = false == true ? true : false;
+                  new Valine({
+                      el: '#comment',
+                                notify: notify,
+                                verify: verify,
+                        enable: 'false'
+                        app_id: 'WQIfXvHbniLw45ttBBB3f1KF-gzGzoHsz',
+                      app_key: 'E6Jj4yJ5JLhlX5K3QO8AKmXF',
+                            placeholder: '快来评论一下吧!',
+                            avatar: 'monsterid',
+                            pageSize: 10,
+                            visitor: visitor
+                        });
+                </script>
+                <!-- valine 公共JS代码 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#投资" title="投资">投资</a>
+                        
+                          <a class="tag" href="/tags/#月报" title="月报">月报</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mindhacks.cn/" target="_blank">Mind Hacks</a></li>
+                    
+                        <li><a href="https://onevcat.com/" target="_blank">喵神</a></li>
+                    
+                        <li><a href="http://mrpeak.cn/" target="_blank">mrpeak</a></li>
+                    
+                        <li><a href="http://blog.sunnyxx.com/" target="_blank">sunnyxx的技术博客</a></li>
+                    
+                        <li><a href="https://www.atjason.com/" target="_blank">Jason</a></li>
+                    
+                        <li><a href="http://blog.devtang.com/" target="_blank">唐巧</a></li>
+                    
+                        <li><a href="http://blog.ibireme.com/" target="_blank">伽蓝之堂</a></li>
+                    
+                        <li><a href="http://colachan.com/" target="_blank">可乐橙</a></li>
+                    
+                        <li><a href="https://www.bmpi.dev/" target="_blank">构建我的被动收入</a></li>
+                    
+                        <li><a href="https://coolshell.cn/" target="_blank">酷 壳 – CoolShell</a></li>
+                    
+                        <li><a href="https://tinyfool.org/" target="_blank">Tinyfool&#39;s blog</a></li>
+                    
+                        <li><a href="https://oldj.net/" target="_blank">oldj&#39;s blog</a></li>
+                    
+                        <li><a href="https://lutaonan.com/" target="_blank">Randy&#39;s Blog</a></li>
+                    
+                        <li><a href="https://dbarobin.com/" target="_blank">Cryptospace</a></li>
+                    
+                        <li><a href="http://kittenyang.com/" target="_blank">Kitten 的时间胶囊</a></li>
+                    
+                        <li><a href="http://ftqq.com/" target="_blank">方糖气球🎈</a></li>
+                    
+                        <li><a href="https://www.gatesnotes.com/" target="_blank">GatesNotes</a></li>
+                    
+                        <li><a href="https://imtx.me/" target="_blank">I&#39;M TUALATRIX</a></li>
+                    
+                        <li><a href="https://zhowkev.in/" target="_blank">Kevin Blog</a></li>
+                    
+                        <li><a href="https://blog.forecho.com/" target="_blank">forecho&#39;s Blog</a></li>
+                    
+                        <li><a href="https://daimajia.com/" target="_blank">代码家</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                    <li>
+                        <a href="/atom.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/zhangdinghao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhang-ding-hao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/CalvinCheungCoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    &copy; 2016 -  2021 Calvin, All rights reserved.
+					<br>
+                    👨🏻‍💻 技术 | 阅读 | 生活
+                    <br>
+                    <span class="post-count"> 本站共计 158.6k 字 </span>
+                    <br>
+                    <!-- CNZZ 统计 -->
+                    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zhangdinghao.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-104503948-1';
+    var _gaDomain = 'null';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?418b76fef727b6da80febf464b8907d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://zhangdinghao.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
