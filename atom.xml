@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2021-05-31T14:43:13.827Z</updated>
+  <updated>2021-06-30T14:05:34.509Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -16,11 +16,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>2021年6月投资月报：月度级别的震荡</title>
+    <link href="https://zhangdinghao.cn/2021/06/30/investment2106/"/>
+    <id>https://zhangdinghao.cn/2021/06/30/investment2106/</id>
+    <published>2021-06-30T13:35:39.000Z</published>
+    <updated>2021-06-30T14:05:34.509Z</updated>
+    
+    <content type="html"><![CDATA[<p>市场经历如此重挫的下跌，在 6 月份一个月的时间里竟然没有像样的反弹，而是进行了长达一个多月的的宽幅震荡，月线级别看相比上月底的价格还有所回落，看着这样的月线，让人心凉。</p>
+<p><img src="/blogimg/2021063001.png" alt="2021053101.png"></p>
+<p align="center">↑ BTC 月线走势</p>
+
+<h2 id="期货收益统计"><a href="#期货收益统计" class="headerlink" title="期货收益统计"></a>期货收益统计</h2><p>截止到当日 21:34，『区块创新』账户净值为 <code>0.001</code>，上月净值为 <code>0.0069</code>，本月净值增长 <code>-0.0059</code>，账户净值下跌源于震荡中的错误操作。</p>
+<p>『Pionex网格』账户净值为 <code>0.7409</code>，上月净值为 <code>0.7408</code>，本月净值增长 <code>0.0001</code>，净值微弱的增长来自于网格利润。</p>
+<p><img src="/blogimg/2021063002.JPEG" alt="2021063002"></p>
+<p align="center">↑  区块创新和 Pionex 网格</p>
+
+<h2 id="基金收益统计"><a href="#基金收益统计" class="headerlink" title="基金收益统计"></a>基金收益统计</h2><p>基金账户『基金长盈』目前净值<code>1.0346</code>，上月净值 <code>1.0267</code>，本月净值增长<code>0.0079</code>。</p>
+<p>基金账户『跑赢大盘』目前净值<code>0.9450</code>，上月净值 <code>0.9244</code>，本月净值增长<code>0.0206</code>。</p>
+<p><img src="/blogimg/2021063003.JPEG" alt="2021063003"></p>
+<p align="center">↑ 基金账户</p>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在经历如此长时间的下跌震荡周期以后，市场也马上面临方向选择的问题，在本月自己也阅读了一些技术分析相关的书籍，接下来希望能够使用账户轻仓实践，基本面+技术面的方式逐步形成属于自己的交易系统。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;市场经历如此重挫的下跌，在 6 月份一个月的时间里竟然没有像样的反弹，而是进行了长达一个多月的的宽幅震荡，月线级别看相比上月底的价格还有所回落，看着这样的月线，让人心凉。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blogimg/2021063001.png&quot; alt=&quot;2021
+    
+    </summary>
+    
+      <category term="投资" scheme="https://zhangdinghao.cn/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="投资" scheme="https://zhangdinghao.cn/tags/%E6%8A%95%E8%B5%84/"/>
+    
+      <category term="月报" scheme="https://zhangdinghao.cn/tags/%E6%9C%88%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2021年5月投资月报：最严重的一次单月下跌</title>
     <link href="https://zhangdinghao.cn/2021/05/31/investment2105/"/>
     <id>https://zhangdinghao.cn/2021/05/31/investment2105/</id>
     <published>2021-05-31T13:59:02.000Z</published>
-    <updated>2021-05-31T14:43:13.827Z</updated>
+    <updated>2021-06-30T13:37:55.080Z</updated>
     
     <content type="html"><![CDATA[<p>没想到 4 月份的一个黄昏十字星竟然一语中的。但是我却在开心的迎接 5 月，而且自己内心也希望本月能够有一个不错的涨幅，谁成想本月创造了 BTC 历史最大跌幅，本月振幅达 51.59%，截止到发文时 BTC 价格在 $36700 附近。</p>
 <p><img src="/blogimg/2021053104.png" alt="2021053104.png"></p>
@@ -1763,63 +1803,6 @@ setBookInfo(8.8,9.0,'35009826','https://book.douban.com/subject/35009826/','http
     
     
       <category term="清零" scheme="https://zhangdinghao.cn/tags/%E6%B8%85%E9%9B%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ARTS 02 - Google 如何做 Code Review</title>
-    <link href="https://zhangdinghao.cn/2020/05/31/arts02/"/>
-    <id>https://zhangdinghao.cn/2020/05/31/arts02/</id>
-    <published>2020-05-31T13:00:44.000Z</published>
-    <updated>2020-05-31T14:05:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
-<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
-<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
-<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
-<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>给定一个二叉树，检查它是否是镜像对称的。</p>
-<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   2</div><div class="line"> / \ / \</div><div class="line">3  4 4  3</div></pre></td></tr></table></figure>
-<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
-   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  1</div><div class="line"> / \</div><div class="line">2   2</div><div class="line"> \   \</div><div class="line"> 3    3</div></pre></td></tr></table></figure>
-<p>Python 递归代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(node1, node2)</span>:</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">and</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> node1 <span class="keyword">or</span> <span class="keyword">not</span> node2:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> node1.val != node2.val:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            <span class="keyword">return</span> check(node1.left, node2.right) <span class="keyword">and</span> check(node1.right, node2.left)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> check(root, root)</div></pre></td></tr></table></figure>
-<p>C++ 代码：<br><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode *p, TreeNode *q)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!p &amp;&amp; !q) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">if</span> (!p || !q) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> p-&gt;val == q-&gt;val &amp;&amp; check(p-&gt;left, q-&gt;right) &amp;&amp; check(p-&gt;right, q-&gt;left);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> check(root, root);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode-cn.com/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/" target="_blank" rel="noopener">Leetcode 对称二叉树题解视频</a></p>
-<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><h3 id="How-To-Use-Utm-Parameters-To-Grow-Your-Audience"><a href="#How-To-Use-Utm-Parameters-To-Grow-Your-Audience" class="headerlink" title="How To Use Utm Parameters To Grow Your Audience"></a>How To Use Utm Parameters To Grow Your Audience</h3><p>文章链接：<a href="https://smashnotes.com/updates/how-to-use-utm-parameters-to-grow-your-audience" target="_blank" rel="noopener">How To Use Utm Parameters To Grow Your Audience</a></p>
-<p>很多网址包含 utm 参数，比如utm_source和utm_campaign，这主要是为了让统计引擎确定访问的来源。本文解释这些参数的含义。</p>
-<h3 id="The-Future-of-Swift-on-the-Server"><a href="#The-Future-of-Swift-on-the-Server" class="headerlink" title="The Future of Swift on the Server"></a>The Future of Swift on the Server</h3><p>文章链接：<a href="https://www.timc.dev/posts/future-of-server-side-swift/" target="_blank" rel="noopener">The Future of Swift on the Server</a></p>
-<p>自从 IBM 在 Swift 上打了退堂鼓后，Server-side Swift 社区受到了不小的打击。大家纷纷猜测会不会这个命题已经不再成立。</p>
-<p>这篇文章带来了不少的好消息，甚至认为 2020 将会是 Server-side Swift 的利好年，其中最主要就是 Swift6 的 feature 中绝大多数都直接或间接的和 Server-side 有关或者利好。</p>
-<p>还有 Swift 的核心团队迎来了 Tom Doron 和 Saleem Abdulrasool, 一个是 SwiftNIO 的负责人，一个在尝试把 Swift 移植到 Windows，这些迹象都说明 Swift 的核心团队对于让 Swift 跳出 Apple 生态的决心。</p>
-<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="Linux-进程"><a href="#Linux-进程" class="headerlink" title="Linux 进程"></a>Linux 进程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ps -ef | grep httpd</div></pre></td></tr></table></figure>
-<p><strong>TERM 信号</strong> 给父进程发送一个 TERM 信号，试图杀死它和它的子进程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">kill -TERM PPID</div></pre></td></tr></table></figure></p>
-<p><strong>killall 命令</strong> killall 命令杀死同一进程组内的所有进程。其允许指定要终止的进程的名称，而非 PID<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">killall httpd</div></pre></td></tr></table></figure></p>
-<p> <strong>停止和重启进程</strong> 有时候只想简单的停止和重启进程。如下： # kill -HUP PID 该命令让 Linux 和缓的执行进程关闭，然后立即重启。在配置应用程序的时候，这个命令很方便，在对配置文件修改后需要重启进程时就可以执行此命令。</p>
-<hr>
-<p> <strong>强杀 kill -9 PID</strong> 同样 kill -s SIGKILL 这个强大和危险的命令迫使进程在运行时突然终止，进程在结束后不能自我清理。危害是导致系统资源无法正常释放，一般不推荐使用，除非其他办法都无效。 当使用此命令时，一定要通过 ps -ef 确认没有剩下任何僵尸进程。只能通过终止父进程来消除僵尸进程。如果僵尸进程被 init 收养，问题就比较严重了。杀死 init 进程意味着关闭系统。 如果系统中有僵尸进程，并且其父进程是 init，而且僵尸进程占用了大量的系统资源，那么就需要在某个时候重启机器以清除进程表了。</p>
-<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://google.github.io/eng-practices/review/reviewer/" target="_blank" rel="noopener">How to do a code review</a></p>
-<p>这是谷歌开发实践的一篇文章，如何做 Code Review，这里是中文版链接：<a href="https://jimmysong.io/eng-practices/" target="_blank" rel="noopener">谷歌工程实践文档</a></p>
-<p>Google 有许多通用工程实践，几乎涵盖所有语言和项目。此文档为长期积累的最佳实践，是集体经验的结晶。我们尽可能地将其公之于众，您的组织和开源项目也会从中受益。</p>
-<p>Google 代码审查指南，实则两套指南：<code>代码审查者指南</code>和<code>代码开发者指南</code>，通过文章我们可以学习 Google 在工程化中如何保证质量，比如代码的功能是否与作者的意图相同？代码能够更精简吗？代码是否具有正确且设计良好的自动化测试？开发人员是否为变量、类、方法等选择了明确的名称？</p>
-<p>通过这篇文章，你能找到这些问题的所有答案，推荐每个技术人/技术团队阅读。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
-    
-    </summary>
-    
-      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
-    
-    
-      <category term="Swift" scheme="https://zhangdinghao.cn/tags/Swift/"/>
-    
-      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
-    
-      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
     
   </entry>
   
