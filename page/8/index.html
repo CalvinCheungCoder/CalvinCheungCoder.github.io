@@ -91,13 +91,13 @@
                     
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -241,6 +241,27 @@
 
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/05/02/iOS-UIView-tips/">
+        <h2 class="post-title">
+            UIView 的 setNeedsDisplay 和 setNeedsLayout 方法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            UIView的setNeedsDisplay和setNeedsLayout方法首先两个方法都是异步执行的。而setNeedsDisplay会调用自动调用drawRect方法，这样可以拿到  UIGraphicsGetCurrentContext，就可以画画了。而setNeedsLayout会默认调用layoutSubViews，这样就可以处理子视图中的......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-05-02
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -451,28 +472,6 @@ Tool.m 实现
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/14/use-sys-mail/">
-        <h2 class="post-title">
-            iOS 使用系统邮箱实现个人 App 意见反馈功能
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            当个人开发者在做意见反馈时，大多因为精力、能力等等限制使用系统的自带邮件进行手机用户反馈。现在总结一下使用系统邮箱采集用户反馈的方法。
-// 意见反馈 检测是否安装邮箱if ([MFMailComposeViewController canSendMail]) &#123; // 用户已设置邮件账户     [self sendBySysMail];&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -538,13 +537,13 @@ Tool.m 实现
                             
                         
                             
-                            <a href="/tags/#年终总结" title="年终总结" rel="3">年终总结</a>
-                            
-                        
-                            
                         
                             
                             <a href="/tags/#PM" title="PM" rel="2">PM</a>
+                            
+                        
+                            
+                            <a href="/tags/#年终总结" title="年终总结" rel="3">年终总结</a>
                             
                         
                             
@@ -552,11 +551,11 @@ Tool.m 实现
                             
                         
                             
-                            <a href="/tags/#投资" title="投资" rel="6">投资</a>
+                            <a href="/tags/#投资" title="投资" rel="7">投资</a>
                             
                         
                             
-                            <a href="/tags/#月报" title="月报" rel="6">月报</a>
+                            <a href="/tags/#月报" title="月报" rel="7">月报</a>
                             
                         
                             
@@ -775,7 +774,7 @@ Tool.m 实现
 					<br>
                     👨🏻‍💻 技术 | 阅读 | 生活
                     <br>
-                    <span class="post-count"> 本站共计 159.8k 字 </span>
+                    <span class="post-count"> 本站共计 160.1k 字 </span>
                     <br>
                     <!-- CNZZ 统计 -->
                     <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
