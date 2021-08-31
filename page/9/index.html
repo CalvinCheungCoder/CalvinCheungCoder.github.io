@@ -244,6 +244,31 @@
 
 <div class="post-preview">
 
+    <a href="/2017/04/14/iOS-DeviceModel/">
+        <h2 class="post-title">
+            iOS 封装获取机型工具类
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            日常开发中我们常需要根据机型来做一些特殊的处理，本文针对此种需求，将此功能抽离出来，封装成工具类，能够极大方便日常的开发。
+Tool.h 暴露接口
++ (NSString *)getCurrentDeviceModel;
+Tool.m 实现
++ (NSString *)getCurrentDeviceModel&#123;    int mib[2];......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Calvin on
+        2017-04-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/04/14/use-sys-mail/">
         <h2 class="post-title">
             iOS 使用系统邮箱实现个人 App 意见反馈功能
@@ -449,30 +474,6 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/04/05/textfield-encapsulation/">
-        <h2 class="post-title">
-            iOS 禁止 Textfield 使用复制粘贴菜单栏
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在日常开发工作中，有很多涉及密码的文本框，处于安全考虑我们一般都是不让用户使用复制和粘贴功能的，也就是长按文本框内容时禁止弹出文本复制、粘贴等菜单栏，接下来简单说一下这种需求怎么实现。
-1、创建基于 UITextfield 的 BaseTextfield
-2、在 BaseTextfield.m 中写入如下代码
-- (BOOL)canPerformAct......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Calvin on
-        2017-04-05
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -552,13 +553,11 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
                             
                         
                             
-                            <a href="/tags/#投资" title="投资" rel="7">投资</a>
+                            <a href="/tags/#投资" title="投资" rel="8">投资</a>
                             
                         
                             
-                            <a href="/tags/#月报" title="月报" rel="7">月报</a>
-                            
-                        
+                            <a href="/tags/#月报" title="月报" rel="8">月报</a>
                             
                         
                             
@@ -568,15 +567,17 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
                             
                         
                             
+                        
+                            
                             <a href="/tags/#阅读" title="阅读" rel="2">阅读</a>
                             
                         
                             
-                            <a href="/tags/#清零" title="清零" rel="7">清零</a>
+                            <a href="/tags/#Movie" title="Movie" rel="2">Movie</a>
                             
                         
                             
-                            <a href="/tags/#Movie" title="Movie" rel="2">Movie</a>
+                            <a href="/tags/#清零" title="清零" rel="7">清零</a>
                             
                         
                             
@@ -775,7 +776,7 @@ App Store1024*1024，在iTunes Connect上传一张，在项目资源中添加
 					<br>
                     👨🏻‍💻 技术 | 阅读 | 生活
                     <br>
-                    <span class="post-count"> 本站共计 160.1k 字 </span>
+                    <span class="post-count"> 本站共计 160.9k 字 </span>
                     <br>
                     <!-- CNZZ 统计 -->
                     <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279591338'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1279591338%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
