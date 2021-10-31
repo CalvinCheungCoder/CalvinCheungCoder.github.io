@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdinghao.cn/"/>
-  <updated>2021-10-04T15:14:58.809Z</updated>
+  <updated>2021-10-31T14:11:16.279Z</updated>
   <id>https://zhangdinghao.cn/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2021年10月投资月报：市场被涨服</title>
+    <link href="https://zhangdinghao.cn/2021/10/31/investment2110/"/>
+    <id>https://zhangdinghao.cn/2021/10/31/investment2110/</id>
+    <published>2021-10-31T13:16:01.000Z</published>
+    <updated>2021-10-31T14:11:16.279Z</updated>
+    
+    <content type="html"><![CDATA[<p>不同于 9 月下跌带来的恐惧以及市场充斥着各种熊市的声音，10 月开始 BTC 就进行了强劲的上涨，一个月的时间最高涨幅达到了 <code>56.04%</code>，于是市场中那些喊着熊市的人又重新喊着牛市来了。</p>
+<p><img src="/blogimg/2021103101.png" alt="2021103101.png"></p>
+<p align="center">↑ BTC 月线走势</p>
+
+<h2 id="期货收益统计"><a href="#期货收益统计" class="headerlink" title="期货收益统计"></a>期货收益统计</h2><p><img src="/blogimg/2021103102.JPEG" alt="2021103102.JPEG"></p>
+<p align="center">↑  期货收益</p>
+
+<p>截止到 10/31 21:30，『期货』账户时间加权收益率为 <code>-99.62%</code>，年化收益率是 <code>-54.66%</code>。</p>
+<p>时间加权收益率较上月增长 <code>+0.11%</code>，年化收益率较上月增长 <code>+12.69%</code>。</p>
+<h2 id="长期账户和-Pionex-账户统计"><a href="#长期账户和-Pionex-账户统计" class="headerlink" title="长期账户和 Pionex 账户统计"></a>长期账户和 Pionex 账户统计</h2><p><img src="/blogimg/2021103103.JPEG" alt="2021103103.JPEG"></p>
+<p align="center">↑  长期账户和 Pionex 网格</p>
+
+<p>截止到 10/31 21:30，『长期主义』账户时间加权收益率为 <code>+69.68%</code>，年化收益率暂无。</p>
+<p>时间加权收益率增长 <code>+35.66%</code>，年化收益率暂无。</p>
+<p>截止到 10/31 21:30，『Pionex 网格』账户时间加权收益率为 <code>-19.42%</code>，年化收益率<code>-77.59%</code>。</p>
+<p>时间加权收益率增长 <code>-14.02%</code>，年化收益率<code>+4.08%%</code>。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>目前行情也走到了关键位置，各种链上数据也表明牛市还没有结束，可能接下来的 2 个月左右的时间会出现快速的拉盘上涨然后再进行下跌。目前因为国内的政策原因出入金变得更加困难了，新人的参与可能需要新的暴涨才会吸引他们入场。</p>
+<p>价格在上涨，风险在积聚。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不同于 9 月下跌带来的恐惧以及市场充斥着各种熊市的声音，10 月开始 BTC 就进行了强劲的上涨，一个月的时间最高涨幅达到了 &lt;code&gt;56.04%&lt;/code&gt;，于是市场中那些喊着熊市的人又重新喊着牛市来了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blogimg/202
+    
+    </summary>
+    
+      <category term="投资" scheme="https://zhangdinghao.cn/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="投资" scheme="https://zhangdinghao.cn/tags/%E6%8A%95%E8%B5%84/"/>
+    
+      <category term="月报" scheme="https://zhangdinghao.cn/tags/%E6%9C%88%E6%8A%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>2021年9月投资月报：重复历史的下跌？</title>
@@ -1533,85 +1576,6 @@ setBookInfo(8.8,9.0,'35009826','https://book.douban.com/subject/35009826/','http
     
       <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
     
-    
-      <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
-    
-      <category term="ARTS" scheme="https://zhangdinghao.cn/tags/ARTS/"/>
-    
-      <category term="iOS" scheme="https://zhangdinghao.cn/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ARTS 05 - 剖析 Uber 的 RIB 架构</title>
-    <link href="https://zhangdinghao.cn/2020/06/21/arts05/"/>
-    <id>https://zhangdinghao.cn/2020/06/21/arts05/</id>
-    <published>2020-06-21T14:02:24.000Z</published>
-    <updated>2020-06-21T14:05:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言：什么是ARTS"><a href="#前言：什么是ARTS" class="headerlink" title="前言：什么是ARTS?"></a>前言：什么是ARTS?</h2><p>ARTS 源于耗子叔在极客时间的专栏<a href="https://time.geekbang.org/column/intro/48" target="_blank" rel="noopener">《左耳听风》</a>打卡活动。</p>
-<p>Algorithm：每周至少做一个 Leetcode 的算法题。主要是为了编程训练和学习。</p>
-<p>Review：阅读并点评至少一篇英文技术文章。主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</p>
-<p>Tip：学习至少一个技术技巧。主要是为了总结和归纳你在日常工作中所遇到的知识点。</p>
-<p>Share：分享一篇有观点和思考的技术文章。主要是为了建立你的影响力，能够输出价值观。</p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p><a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="noopener">14. 最长公共前缀</a></p>
-<p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
-<p>如果不存在公共前缀，返回空字符串 “”。</p>
-<p>示例 1:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">输入: ["flower","flow","flight"]</div><div class="line">输出: "fl"</div></pre></td></tr></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</div><div class="line">输出: &quot;&quot;</div></pre></td></tr></table></figure>
-<p>解释: 输入不存在公共前缀。</p>
-<p>说明:</p>
-<p>所有输入只包含小写字母 a-z 。</p>
-<p>Python 代码：<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonPrefix</span><span class="params">(self, strs: List[str])</span> -&gt; str:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> strs: <span class="keyword">return</span> <span class="string">""</span></div><div class="line">        str0 = min(strs)</div><div class="line">        str1 = max(strs)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str0)):</div><div class="line">            <span class="keyword">if</span> str0[i] != str1[i]:</div><div class="line">                <span class="keyword">return</span> str0[:i]</div><div class="line">        <span class="keyword">return</span> str0</div></pre></td></tr></table></figure></p>
-<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://medium.com/swlh/ios-architecture-exploring-ribs-3db765284fd8" target="_blank" rel="noopener">iOS Architecture: Exploring RIBs</a></p>
-<p>RIB 架构背后的主要思想是，应用程序应由业务逻辑而不是视图驱动。展示 RIB 的最佳方法是一棵树：每个 RIB 都是一个节点，并且它可以不包含子节点，也可以包括一个或多个子节点。</p>
-<p><img src="/blogimg/20200621001.png" alt="20200621001.png"></p>
-<p>在应用程序生命周期中，可以附加和分离 RIB ，创建子节点并与之交互。</p>
-<p>RIB 即 “路由 + 交互器 + 构造器 （Router Interactor Builder）”。</p>
-<ul>
-<li><p>路由(Router) 负责相邻 RIB 之间的导航</p>
-</li>
-<li><p>交互器(Interactor) 是处理 RIB 业务逻辑的主要组件。它响应用户交互，与后端对话，并准备数据显示给用户。</p>
-</li>
-<li><p>构造器(Builder) 是一个将所有 RIB 片段组合在一起的构造器。</p>
-</li>
-</ul>
-<p>还有一个可选的 视图(View) 和 展示器(Presenter)。 View 本身没有任何业务逻辑，它仅负责呈现 UI 并接受传递给 Interactor 的用户交互。 Interactor 拥有 View ，并且 View 通过委托模式与 Interactor  对话。 Presenter 基本上是 View 实现的协议。</p>
-<p>例如，在 View 上点击“登录”按钮将触发 Interactor 中的 Web 任务， Interactor 将告诉 Presenter 显示活动指示器。登录成功后， Interactor 将告诉 Router 导航到下一个页面。</p>
-<p>想要了解组件是如何协同工作的，可以查看<a href="https://medium.com/swlh/ios-architecture-exploring-ribs-3db765284fd8" target="_blank" rel="noopener">原文</a></p>
-<p>点击查看带有 UI 和所有必需逻辑的完整<a href="https://github.com/Stan-Ost/RIBsTutorialExample" target="_blank" rel="noopener">示例项目</a></p>
-<h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><h3 id="centos-7-FIREWALL-命令"><a href="#centos-7-FIREWALL-命令" class="headerlink" title="centos 7 FIREWALL 命令"></a>centos 7 FIREWALL 命令</h3><h4 id="查看已经开放的端口"><a href="#查看已经开放的端口" class="headerlink" title="查看已经开放的端口"></a>查看已经开放的端口</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">firewall-cmd --list-ports</div></pre></td></tr></table></figure>
-<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</div></pre></td></tr></table></figure>
-<p>注意：–permanent表示永久保存</p>
-<h4 id="开启端口区间"><a href="#开启端口区间" class="headerlink" title="开启端口区间"></a>开启端口区间</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">firewall-cmd --zone=public --add-port=80-1000/tcp --permanent</div></pre></td></tr></table></figure>
-<p>命令含义</p>
-<p><code>–zone</code> #作用域</p>
-<p><code>–add-port=80/tcp</code> #添加端口，格式为：端口 / 通讯协议</p>
-<p><code>–permanent</code> #永久生效，没有此参数重启后失效</p>
-<h4 id="重启-firewall"><a href="#重启-firewall" class="headerlink" title="重启 firewall"></a>重启 firewall</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
-<h4 id="停止-firewall"><a href="#停止-firewall" class="headerlink" title="停止 firewall"></a>停止 firewall</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">systemctl stop firewalld.service</div></pre></td></tr></table></figure>
-<h4 id="禁止-firewall-开机启动"><a href="#禁止-firewall-开机启动" class="headerlink" title="禁止 firewall 开机启动"></a>禁止 firewall 开机启动</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">systemctl disable firewalld.service</div></pre></td></tr></table></figure>
-<h4 id="查看默认-firewall-状态"><a href="#查看默认-firewall-状态" class="headerlink" title="查看默认 firewall 状态"></a>查看默认 firewall 状态</h4><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">firewall-cmd --state</div></pre></td></tr></table></figure>
-<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a href="https://testing.googleblog.com/2017/07/code-health-to-comment-or-not-to-comment.html" target="_blank" rel="noopener">Code Health: To Comment or Not to Comment?</a></p>
-<p>谷歌的厕所里面贴的是各种编程知识，这篇就是谷歌的”厕所文”之一，谈什么时候应该写注释。</p>
-<p><img src="/blogimg/20200621002.png" alt="20200621002.png"></p>
-<hr>
-<p><a href="https://mohitkhare.me/blog/git-tags-explained/" target="_blank" rel="noopener">Git tags : Explained</a></p>
-<p>git tag命令用来给仓库打标签，本文简单介绍这个命令的用法。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言：什么是ARTS&quot;&gt;&lt;a href=&quot;#前言：什么是ARTS&quot; class=&quot;headerlink&quot; title=&quot;前言：什么是ARTS?&quot;&gt;&lt;/a&gt;前言：什么是ARTS?&lt;/h2&gt;&lt;p&gt;ARTS 源于耗子叔在极客时间的专栏&lt;a href=&quot;https://t
-    
-    </summary>
-    
-      <category term="DevTips" scheme="https://zhangdinghao.cn/categories/DevTips/"/>
-    
-    
-      <category term="Swift" scheme="https://zhangdinghao.cn/tags/Swift/"/>
     
       <category term="tips" scheme="https://zhangdinghao.cn/tags/tips/"/>
     
